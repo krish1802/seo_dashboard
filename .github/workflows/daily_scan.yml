@@ -27,10 +27,13 @@ jobs:
       - name: Run SEO crawl
         run: python crawl_script.py
 
-      - name: Commit and push results
+            - name: Commit and push results
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "SEO Bot"
           git config user.email "seo-bot@github-actions"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git add seo_reports/
           git diff --staged --quiet || git commit -m "🤖 Daily SEO scan $(date +'%Y-%m-%d')"
           git push
