@@ -27,7 +27,7 @@ jobs:
       - name: Run SEO crawl
         run: python crawl_script.py
 
-            - name: Commit and push results
+      - name: Commit and push results
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
