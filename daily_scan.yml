@@ -1,0 +1,33 @@
+name: Daily SEO Scan
+
+on:
+  schedule:
+    - cron: '30 1 * * *'   # 7:00 AM IST every day
+  workflow_dispatch:         # manual trigger from GitHub UI
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests pandas
+
+      - name: Run SEO crawl
+        run: python crawl_script.py
+
+      - name: Commit and push results
+        run: |
+          git config user.name "SEO Bot"
+          git config user.email "seo-bot@github-actions"
+          git add seo_reports/
+          git diff --staged --quiet || git commit -m "🤖 Daily SEO scan $(date +'%Y-%m-%d')"
+          git push
