@@ -1,0 +1,61 @@
+name: WordPress SEO Auto-Optimizer
+
+on:
+  # Run on a schedule (every day at 2 AM UTC)
+  schedule:
+    - cron: '0 2 * * *'
+
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run only (no changes applied)?'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+      max_pages:
+        description: 'Max pages to fetch (10 posts each)'
+        required: false
+        default: '10'
+
+jobs:
+  seo-optimizer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-seo
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv beautifulsoup4
+
+      - name: Run SEO Optimizer
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: python seo_optimizer.py
+
+      - name: Upload SEO Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-report-${{ github.run_number }}
+          path: seo_report.json
+          retention-days: 30
