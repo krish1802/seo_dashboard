@@ -45,11 +45,16 @@ jobs:
       - name: Install dependencies
         run: pip install requests python-dotenv beautifulsoup4
 
+      - name: Debug secrets presence
+        run: |
+          echo "WP_URL set: ${{ secrets.WP_URL != '' }}"
+          echo "WP_USER set: ${{ secrets.WP_USER != '' }}"
+          echo "WP_APP_PASSWORD set: ${{ secrets.WP_APP_PASSWORD != '' }}"
       - name: Run SEO Optimizer
         env:
           WP_URL: ${{ secrets.WP_URL }}
           WP_USER: ${{ secrets.WP_USER }}
-          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}  
         run: python wordpress_auto.py
 
       - name: Upload SEO Report
