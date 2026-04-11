@@ -276,10 +276,17 @@ def apply_seo_fixes(post, dry_run=True):
     raw_title    = post["title"]["rendered"]
     slug         = post["slug"]
     content_html = post["content"]["rendered"]
-    meta         = post.get("meta", {})
 
+    # 🔥 Add ALT tags
     clean_title   = clean_html_entities(raw_title)
     keywords      = extract_keywords_from_title(clean_title)
+
+    # ✅ HERE (correct place)
+    content_html, alt_updated = add_alt_tags_to_images(content_html, keywords)
+
+    meta = post.get("meta", {})
+    meta = clean_duplicate_og_tags(meta)
+
     new_seo_title = generate_seo_title(clean_title)
     new_meta_desc = generate_meta_description(content_html, clean_title, keywords)
     new_slug      = optimize_slug(clean_title)
@@ -321,7 +328,10 @@ def apply_seo_fixes(post, dry_run=True):
         return result
 
     changes = {}
-
+    # 🔥 Save updated content if ALT tags were added
+    if alt_updated:
+        changes["content"] = content_html
+        result["changes_made"].append("Added missing ALT tags to images")
     if raw_title != clean_title:
         changes["title"] = clean_title
         result["changes_made"].append("Cleaned HTML entities from title")
@@ -482,6 +492,33 @@ def fix_post_by_id(post_id, dry_run=False):
         print(f"  Applied   : {result['changes_made']}")
     return result
 
+def add_alt_tags_to_images(content_html, keywords):
+    soup = BeautifulSoup(content_html, "html.parser")
+    images = soup.find_all("img")
+
+    updated = False
+    for i, img in enumerate(images):
+        if not img.get("alt"):
+            alt_text = " ".join(keywords[:3]) if keywords else f"image {i+1}"
+            img["alt"] = alt_text
+            updated = True
+
+    return str(soup), updated
+
+
+def clean_duplicate_og_tags(meta):
+    """
+    Remove duplicate OG tags (Yoast + RankMath conflict)
+    Keep only Yoast for consistency
+    """
+    cleaned = meta.copy()
+
+    # Remove RankMath OG if Yoast exists
+    if "_yoast_wpseo_opengraph-title" in meta:
+        cleaned.pop("rank_math_facebook_title", None)
+        cleaned.pop("rank_math_facebook_description", None)
+
+    return cleaned
 
 # ══════════════════════════════════════════════════════════════════════════
 # MAIN
@@ -509,6 +546,7 @@ if __name__ == "__main__":
     # ── OPTION 3: Fix a single post by ID ───────────────────────────────────
     # fix_post_by_id(2330, dry_run=True)    # audit only
     # fix_post_by_id(2330, dry_run=False)   # apply fixes
+
 
 
 os.makedirs("output", exist_ok=True)
