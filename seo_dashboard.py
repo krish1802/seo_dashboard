@@ -18,6 +18,14 @@ from datetime import datetime, timedelta
 from urllib.parse import urljoin, urlparse
 from collections import defaultdict
 from pathlib import Path
+from google.analytics.data_v1beta import BetaAnalyticsDataClient
+from google.analytics.data_v1beta.types import RunReportRequest
+
+GA4_PROPERTY_ID = "532475459"  # e.g. "123456789"
+GA4_CREDENTIALS_PATH = "ga4_credentials.json"
+
+def get_ga4_client():
+    return BetaAnalyticsDataClient.from_service_account_file(GA4_CREDENTIALS_PATH)
 
 SITE_URL = "https://aifrontierdispatch.com"
 DOMAIN = "aifrontierdispatch.com"
@@ -104,6 +112,64 @@ st.markdown("""
 
 
 # ═══ CRAWL ENGINE ═══
+def fetch_ga4_data(days=7):
+    try:
+        client = get_ga4_client()
+
+        request = RunReportRequest(
+            property=f"properties/{GA4_PROPERTY_ID}",
+            dimensions=[{"name": "date"}],
+            metrics=[
+                {"name": "activeUsers"},
+                {"name": "sessions"},
+                {"name": "screenPageViews"}
+            ],
+            date_ranges=[{"start_date": f"{days}daysAgo", "end_date": "today"}],
+        )
+
+        response = client.run_report(request)
+
+        data = []
+        for row in response.rows:
+            data.append({
+                "date": row.dimension_values[0].value,
+                "users": int(row.metric_values[0].value),
+                "sessions": int(row.metric_values[1].value),
+                "pageviews": int(row.metric_values[2].value),
+            })
+
+        return pd.DataFrame(data)
+
+    except Exception as e:
+        st.error(f"GA4 Error: {e}")
+        return None
+
+def fetch_top_pages():
+    try:
+        client = get_ga4_client()
+
+        request = RunReportRequest(
+            property=f"properties/{GA4_PROPERTY_ID}",
+            dimensions=[{"name": "pagePath"}],
+            metrics=[{"name": "screenPageViews"}],
+            date_ranges=[{"start_date": "7daysAgo", "end_date": "today"}],
+        )
+
+        response = client.run_report(request)
+
+        rows = []
+        for row in response.rows:
+            rows.append({
+                "page": row.dimension_values[0].value,
+                "views": int(row.metric_values[0].value)
+            })
+
+        return pd.DataFrame(rows).sort_values("views", ascending=False).head(10)
+    
+    except Exception as e:
+        st.error(f"Top Pages Error: {e}")
+        return None
+    
 def crawl_site(start_url, max_pages=100, progress_bar=None, status_text=None):
     visited, queue, results = set(), [start_url], []
     parsed = urlparse(start_url)
@@ -326,6 +392,7 @@ with st.sidebar:
         "📈 Growth Tracker",
         "🔍 Technical Audit",
         "🏆 SERP Rankings",
+        "📊 Traffic Analytics",
         "📝 Content Analysis",
         "🔑 Keywords",
         "⚡ Run New Scan"
@@ -419,6 +486,37 @@ if page == "🏠 Overview":
             r1.metric("Top 3", int((pos <= 3).sum()))
             r2.metric("Top 10", int((pos <= 10).sum()))
             r3.metric("Not Ranked", int(pos.isna().sum()))
+    st.divider()
+    st.markdown("## 📊 Google Analytics (Live Traffic)")
+
+    ga_df = fetch_ga4_data()
+
+    if ga_df is not None and len(ga_df) > 0:
+        c1, c2, c3 = st.columns(3)
+
+        c1.metric("Users (7d)", ga_df["users"].sum())
+        c2.metric("Sessions (7d)", ga_df["sessions"].sum())
+        c3.metric("Pageviews (7d)", ga_df["pageviews"].sum())
+
+        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"],
+                    title="Traffic Trend (Last 7 Days)")
+        st.plotly_chart(fig, use_container_width=True)
+    
+    st.divider()
+    st.markdown("## 🔥 Top Pages (Last 7 Days)")
+
+    top_pages = fetch_top_pages()
+
+    if top_pages is not None and len(top_pages) > 0:
+        fig = px.bar(top_pages, x="page", y="views",
+                    title="Top Performing Pages",
+                    color_discrete_sequence=["#01696f"])
+        fig.update_layout(xaxis_tickangle=-45, height=350)
+        st.plotly_chart(fig, use_container_width=True)
+
+        st.dataframe(top_pages, use_container_width=True)
+    else:
+        st.info("No GA4 top pages data available.")
 
 
 # ═══════════════════════════════════════
@@ -780,6 +878,48 @@ elif page == "🔑 Keywords":
     else:
         st.warning("No keyword data.")
 
+elif page == "📊 Traffic Analytics":
+    st.markdown("# 📊 Traffic Analytics")
+    st.markdown("Live data from Google Analytics (GA4)")
+    st.divider()
+
+    ga_df = fetch_ga4_data()
+
+    if ga_df is not None and len(ga_df) > 0:
+        # KPIs
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Users (7d)", ga_df["users"].sum())
+        c2.metric("Sessions (7d)", ga_df["sessions"].sum())
+        c3.metric("Pageviews (7d)", ga_df["pageviews"].sum())
+
+        st.divider()
+
+        # Traffic trend
+        st.markdown("### 📈 Traffic Trend")
+        fig = px.line(
+            ga_df,
+            x="date",
+            y=["users", "sessions", "pageviews"],
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+        st.divider()
+
+        # Top pages
+        st.markdown("### 🔥 Top Pages")
+        top_pages = fetch_top_pages()
+
+        if top_pages is not None and len(top_pages) > 0:
+            fig2 = px.bar(top_pages, x="page", y="views")
+            fig2.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig2, use_container_width=True)
+
+            st.dataframe(top_pages, use_container_width=True)
+        else:
+            st.info("No top pages data available.")
+
+    else:
+        st.warning("No Google Analytics data found.")
 
 # ═══════════════════════════════════════
 # PAGE: RUN SCAN
