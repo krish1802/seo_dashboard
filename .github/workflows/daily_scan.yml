@@ -2,7 +2,8 @@ name: Daily SEO Scan + Fix Issues
 
 on:
   schedule:
-    - cron: '30 1 * * *'   # 7:00 AM IST every day
+    # Runs every day at 01:30 UTC (07:00 IST). Adjust as needed.
+    - cron: '30 1 * * *'
   workflow_dispatch:
 
 permissions:
@@ -14,6 +15,7 @@ jobs:
     timeout-minutes: 60
 
     env:
+      # WordPress credentials (set these as GitHub Secrets)
       WP_URL: ${{ secrets.WP_URL }}
       WP_USER: ${{ secrets.WP_USER }}
       WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
@@ -30,14 +32,25 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pandas python-dotenv beautifulsoup4
+          pip install \
+            requests \
+            pandas \
+            beautifulsoup4 \
+            python-dotenv
 
-      - name: Run SEO audit crawl
+      # 1) Pre-fix technical audit crawl
+      - name: Run SEO crawl (pre-fix)
         run: python crawl_script.py
 
-      - name: Run WordPress fix issues bot
+      # 2) Run CSV-driven fixer (fix_issues.py reads latest *_technical_audit_*.csv)
+      - name: Run Fix Issues based on latest audit
         run: python fix_issues.py
 
+      # 3) Post-fix crawl to capture improved state
+      - name: Run SEO crawl (post-fix)
+        run: python crawl_script.py
+
+      # 4) Commit and push updated seo_reports/ back to repo
       - name: Commit and push results
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,6 +58,8 @@ jobs:
           git config user.name "SEO Bot"
           git config user.email "seo-bot@github-actions"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+
           git add seo_reports/
+          # Only commit if there are changes
           git diff --staged --quiet || git commit -m "🤖 Daily SEO scan + fixes $(date +'%Y-%m-%d')"
           git push
