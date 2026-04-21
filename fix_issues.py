@@ -3,13 +3,14 @@
 Fix issues based on latest technical audit CSV.
 
 - Reads latest seo_reports/<DOMAIN>_technical_audit_YYYY-MM-DD.csv
-- For each URL with issues, resolves the WP post via slug
-- Fixes what can be fixed via WP REST:
-  * SEO title length (via Yoast/Rank Math meta)
-  * Meta description length
-  * Missing image alt attributes
-  * Slug cleanup (shorter, cleaned)
-- Writes a CSV + JSON report of fixes performed.
+- For each URL with issues and status=200:
+    * Resolves WP post via slug
+    * Fixes:
+        - SEO title (Yoast + Rank Math meta)
+        - Meta description (Yoast + Rank Math meta)
+        - Missing image alt attributes
+        - Slug cleanup (shorter, keyword-based)
+- Writes CSV + JSON report in seo_reports/
 """
 
 import os
@@ -103,7 +104,7 @@ def _auth_header():
         "Content-Type": "application/json",
     }
 
-# ── TEXT UTILITIES (MATCHING YOUR AUTOBOT) ──────────────────────────────
+# ── TEXT UTILITIES ──────────────────────────────────────────────────────
 
 def clean_html_entities(text: str) -> str:
     return html.unescape(text or "")
@@ -214,9 +215,13 @@ def latest_audit_csv() -> str | None:
     files = sorted(glob.glob(pattern))
     return files[-1] if files else None
 
-# ── CORE FIXER LOGIC ─────────────────────────────────────────────────────
+# ── CORE FIXER LOGIC (USED BY CLI & STREAMLIT) ──────────────────────────
 
-def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
+def fix_from_audit(dry_run: bool = False):
+    """
+    Returns a list[dict] results; each dict contains:
+      url, slug, post_id, fixed (bool), reason, issues, changes (list[str])
+    """
     csv_path = latest_audit_csv()
     if not csv_path:
         print("❌ No technical audit CSV found in seo_reports/")
@@ -226,11 +231,10 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
     df = pd.read_csv(csv_path)
     df["issues"] = df["issues"].astype(str).fillna("")
 
-    # Only URLs with issues and status 200
     df = df[(df["status"].astype(str) == "200") & (df["issues"].str.len() > 0)]
 
     results = []
-    for idx, row in df.iterrows():
+    for _, row in df.iterrows():
         url = row["url"]
         issue_str = row["issues"]
         print(f"\n🔧 Fixing based on audit for URL: {url}")
@@ -247,6 +251,7 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
                 "fixed": False,
                 "reason": "No matching WP post",
                 "issues": issue_str,
+                "changes": [],
             })
             continue
 
@@ -255,7 +260,6 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
         wp_content = post["content"]["rendered"]
         meta = post.get("meta", {}) or {}
 
-        # Decide what to fix based on audit issues
         changes = {}
         changes_meta = {}
         changes_made = []
@@ -264,21 +268,27 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
         keywords = extract_keywords_from_title(clean_title)
 
         # Title related issues
-        if ("Missing title" in issue_str or "Title short" in issue_str or "Title long" in issue_str):
+        if ("Missing title" in issue_str or
+            "Title short" in issue_str or
+            "Title long"  in issue_str):
+
             new_title = generate_seo_title(clean_title)
             old_yoast_title = meta.get("_yoast_wpseo_title", "")
             if new_title != old_yoast_title:
                 changes_meta["_yoast_wpseo_title"] = new_title
-                changes_meta["rank_math_title"] = new_title
+                changes_meta["rank_math_title"]   = new_title
                 changes_made.append("Updated SEO title (Yoast/RankMath)")
 
         # Meta description issues
-        if ("Missing meta desc" in issue_str or "Meta short" in issue_str or "Meta long" in issue_str):
+        if ("Missing meta desc" in issue_str or
+            "Meta short"        in issue_str or
+            "Meta long"         in issue_str):
+
             new_desc = generate_meta_description(wp_content, clean_title, keywords)
             old_yoast_desc = meta.get("_yoast_wpseo_metadesc", "")
             if new_desc != old_yoast_desc:
                 changes_meta["_yoast_wpseo_metadesc"] = new_desc
-                changes_meta["rank_math_description"] = new_desc
+                changes_meta["rank_math_description"]  = new_desc
                 changes_made.append("Updated meta description (Yoast/RankMath)")
 
         # Image alt issues
@@ -288,7 +298,7 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
                 changes["content"] = new_content
                 changes_made.append(f"Added ALT tags to {alt_count} image(s)")
 
-        # Slug too long (URL-level heuristic, we can still tidy slug)
+        # Slug cleanup (heuristic using title/URL issues)
         if "Title long" in issue_str or "Slug" in issue_str:
             new_slug = optimize_slug_from_title(clean_title)
             if new_slug and new_slug != post["slug"] and len(new_slug) < len(post["slug"]):
@@ -296,7 +306,10 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
                 changes_made.append(f"Slug cleaned to '{new_slug}'")
 
         if changes_meta:
-            changes["meta"] = {**meta, **changes_meta}
+            # merge into existing meta so we don't drop fields
+            merged_meta = dict(meta)
+            merged_meta.update(changes_meta)
+            changes["meta"] = merged_meta
 
         if not changes:
             print("   ℹ️ Nothing to change for this post (based on mappable issues).")
@@ -312,7 +325,7 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
             continue
 
         if dry_run:
-            print("   🧪 DRY RUN — would apply:", changes_made)
+            print("   🧪 DRY RUN — would apply:", ", ".join(changes_made))
             results.append({
                 "url": url,
                 "slug": slug,
@@ -329,9 +342,10 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
                 fixed = True
                 reason = ""
             else:
-                print("   ❌ Save failed:", resp.status_code if resp else "no response")
+                status = resp.status_code if resp else "no response"
+                print("   ❌ Save failed:", status)
                 fixed = False
-                reason = f"Save failed ({resp.status_code})" if resp else "no response"
+                reason = f"Save failed ({status})"
             results.append({
                 "url": url,
                 "slug": slug,
@@ -344,16 +358,16 @@ def fix_from_audit(dry_run: bool = False, min_score_to_fix: int = 80):
 
         time.sleep(REQUEST_DELAY)
 
-    # Save report
     today = datetime.today().strftime("%Y-%m-%d")
     rep_df = pd.DataFrame(results)
-    csv_out = os.path.join(OUTPUT_DIR, f"{DOMAIN}_fix_issues_{today}.csv")
+    csv_out  = os.path.join(OUTPUT_DIR, f"{DOMAIN}_fix_issues_{today}.csv")
     json_out = os.path.join(OUTPUT_DIR, f"{DOMAIN}_fix_issues_{today}.json")
     rep_df.to_csv(csv_out, index=False)
     with open(json_out, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     print(f"\n📄 Fix report saved → {csv_out}")
     return results
+
 
 if __name__ == "__main__":
     print("🚀 Running CSV-driven Fix Issues (based on latest technical audit)...")
