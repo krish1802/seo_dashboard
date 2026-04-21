@@ -22,11 +22,14 @@ from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import RunReportRequest
 
 GA4_PROPERTY_ID = "532475459"  # e.g. "123456789"
-GA4_CREDENTIALS_PATH = "ga4_credentials.json"
+from google.oauth2 import service_account
+
 
 def get_ga4_client():
-    return BetaAnalyticsDataClient.from_service_account_file(GA4_CREDENTIALS_PATH)
-
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["ga4"]
+    )
+    return BetaAnalyticsDataClient(credentials=credentials)
 SITE_URL = "https://aifrontierdispatch.com"
 DOMAIN = "aifrontierdispatch.com"
 OUTPUT_DIR = "seo_reports"
