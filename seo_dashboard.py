@@ -25,6 +25,9 @@ import streamlit as st
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import RunReportRequest
 
+# Import CSV-driven fixer
+from fix_issues import fix_from_audit, latest_audit_csv  # from fix_issues.py
+
 # Optional: dotenv
 try:
     from dotenv import load_dotenv
@@ -38,12 +41,6 @@ except ImportError:
 
 GA4_PROPERTY_ID = "532475459"
 # GA4_CREDENTIALS_PATH = "ga4_credentials.json"
-# # ──────────────────────────────────────────────────────────────
-# # GA4 CLIENT
-# # ──────────────────────────────────────────────────────────────
-
-# def get_ga4_client():
-#     return BetaAnalyticsDataClient.from_service_account_file(GA4_CREDENTIALS_PATH)
 
 from google.oauth2 import service_account
 
@@ -53,7 +50,8 @@ def get_ga4_client():
         st.secrets["ga4"]
     )
     return BetaAnalyticsDataClient(credentials=credentials)
-
+# def get_ga4_client():
+#     return BetaAnalyticsDataClient.from_service_account_file(GA4_CREDENTIALS_PATH)
 
 SITE_URL = "https://aifrontierdispatch.com"
 DOMAIN = "aifrontierdispatch.com"
@@ -88,7 +86,6 @@ SLUG_STOP_WORDS = {
 }
 
 REQUEST_DELAY = 1.5
-
 
 # ──────────────────────────────────────────────────────────────
 # WORDPRESS AUTOBOT: SESSION + AUTH
@@ -128,7 +125,6 @@ def _make_session():
 
 SESSION = _make_session()
 
-
 def safe_request(method, url, max_attempts=4, **kwargs):
     global SESSION
     kwargs.setdefault("timeout", 30)
@@ -149,11 +145,9 @@ def safe_request(method, url, max_attempts=4, **kwargs):
                 print("  ❌ All retries exhausted.")
                 raise
 
-
 def _auth_header():
     token = b64encode(f"{WP_USER}:{WP_APP_PASS}".encode()).decode()
     return {"Authorization": f"Basic {token}", "Content-Type": "application/json"}
-
 
 # ──────────────────────────────────────────────────────────────
 # WORDPRESS AUTOBOT: PERFORMANCE AUDIT
@@ -245,7 +239,6 @@ def audit_page_performance(url):
 
     return perf
 
-
 # ──────────────────────────────────────────────────────────────
 # WORDPRESS AUTOBOT: TEXT HELPERS
 # ──────────────────────────────────────────────────────────────
@@ -253,21 +246,17 @@ def audit_page_performance(url):
 def clean_html_entities(text):
     return html_lib.unescape(text)
 
-
 def strip_html_tags(text):
     return BeautifulSoup(text, "html.parser").get_text(separator=" ").strip()
 
-
 def word_count(text):
     return len(strip_html_tags(text).split())
-
 
 def extract_keywords_from_title(title):
     clean = clean_html_entities(title).lower()
     clean = re.sub(r"[^a-z0-9\s]", " ", clean)
     words = [w for w in clean.split() if w and w not in SLUG_STOP_WORDS and len(w) > 2]
     return words[:5]
-
 
 def optimize_slug(title):
     clean = clean_html_entities(title).lower()
@@ -276,7 +265,6 @@ def optimize_slug(title):
     slug = "-".join(words[:8])
     slug = re.sub(r"-+", "-", slug).strip("-")
     return slug
-
 
 def generate_seo_title(raw_title, site_name="AI Frontier Dispatch"):
     clean = clean_html_entities(raw_title).strip()
@@ -288,7 +276,6 @@ def generate_seo_title(raw_title, site_name="AI Frontier Dispatch"):
         trimmed = clean[:max_content].rsplit(" ", 1)[0]
         return f"{trimmed} | {site_name}"
     return full
-
 
 def generate_meta_description(content_html, title, keywords):
     soup = BeautifulSoup(content_html, "html.parser")
@@ -310,7 +297,6 @@ def generate_meta_description(content_html, title, keywords):
         desc = (desc + kw_phrase)[:META_DESC_MAX]
     return desc.strip()
 
-
 def add_alt_tags_to_images(content_html, keywords):
     soup = BeautifulSoup(content_html, "html.parser")
     images = soup.find_all("img")
@@ -324,7 +310,6 @@ def add_alt_tags_to_images(content_html, keywords):
             updated = True
             count += 1
     return str(soup), updated, count
-
 
 def clean_duplicate_og_tags(meta):
     cleaned = dict(meta)
@@ -341,7 +326,6 @@ def clean_duplicate_og_tags(meta):
     if og_desc and cleaned.get("_yoast_wpseo_twitter-description") == og_desc:
         cleaned.pop("_yoast_wpseo_twitter-description", None)
     return cleaned
-
 
 def seo_score(title_clean, meta_desc, slug, content_html, keywords):
     issues = []
@@ -381,9 +365,8 @@ def seo_score(title_clean, meta_desc, slug, content_html, keywords):
         score -= 10
     return max(0, score), issues
 
-
 # ──────────────────────────────────────────────────────────────
-# WORDPRESS AUTOBOT: FETCH & APPLY
+# WORDPRESS AUTOBOT: FETCH & APPLY (POST-LEVEL AUTOBOT)
 # ──────────────────────────────────────────────────────────────
 
 def get_all_posts(status="publish", per_page=10, max_pages=5):
@@ -413,7 +396,6 @@ def get_all_posts(status="publish", per_page=10, max_pages=5):
             break
         time.sleep(REQUEST_DELAY)
     return all_posts
-
 
 def apply_seo_fixes(post, dry_run=True, min_score_to_fix=80):
     pid = post["id"]
@@ -526,7 +508,6 @@ def apply_seo_fixes(post, dry_run=True, min_score_to_fix=80):
 
     return result
 
-
 def run_seo_optimizer(
     status="publish",
     per_page=10,
@@ -558,7 +539,7 @@ def run_seo_optimizer(
         title = clean_html_entities(post["title"]["rendered"])
         print(f"[{i:>3}/{len(posts)}] ID {pid} — {title[:55]}")
 
-        result = apply_seo_fixes(post, dry_run=dry_run, min_score_to_fix=min_score_to_fix)
+        result = apply_seo_fixes(post, dry_run=dry_run, min_score_to_fix=min_score)
         score = result["score_before"]
 
         if score < min_score_to_fix:
@@ -593,7 +574,6 @@ def run_seo_optimizer(
 
     return report
 
-
 # ──────────────────────────────────────────────────────────────
 # ORIGINAL DASHBOARD HELPERS (AUDIT/SERP LOADERS)
 # ──────────────────────────────────────────────────────────────
@@ -607,17 +587,14 @@ def get_report_dates():
                 dates.add(m.group(1))
     return sorted(dates, reverse=True)
 
-
 def load_csv(prefix, date):
     path = f"{OUTPUT_DIR}/{prefix}_{date}.csv"
     return pd.read_csv(path) if os.path.exists(path) else None
-
 
 def load_audit(date): return load_csv(f"{DOMAIN}_technical_audit", date)
 def load_serp(date): return load_csv("serp_tracking", date)
 def load_keywords(date): return load_csv(f"{DOMAIN}_page_keywords", date)
 def load_clusters(date): return load_csv(f"{DOMAIN}_keyword_clusters", date)
-
 
 def compute_audit_snapshot(df):
     if df is None or len(df) == 0:
@@ -646,7 +623,6 @@ def compute_audit_snapshot(df):
         "health_score": round((clean / total) * 100, 1) if total else 0,
     }
 
-
 def compute_serp_snapshot(df):
     if df is None or len(df) == 0:
         return None
@@ -659,7 +635,6 @@ def compute_serp_snapshot(df):
         "not_ranked": int(pos.isna().sum()),
         "avg_position": round(pos.dropna().mean(), 1) if len(pos.dropna()) > 0 else None,
     }
-
 
 def load_all_snapshots():
     all_dates = get_report_dates()
@@ -677,7 +652,6 @@ def load_all_snapshots():
     serp_df = pd.DataFrame(serp_rows).sort_values("date") if serp_rows else pd.DataFrame()
     return audit_df, serp_df
 
-
 def delta_str(new_val, old_val, higher_is_better=True, fmt="{:.0f}", suffix=""):
     if old_val is None or new_val is None:
         return "—", "kpi-delta-neu"
@@ -692,7 +666,6 @@ def delta_str(new_val, old_val, higher_is_better=True, fmt="{:.0f}", suffix=""):
         cls = "kpi-delta-neg" if diff > 0 else "kpi-delta-pos"
     return label, cls
 
-
 def trend_icon(new_val, old_val, higher_is_better=True):
     if old_val is None or new_val is None or new_val == old_val:
         return "→", "trend-flat", "FLAT"
@@ -701,6 +674,22 @@ def trend_icon(new_val, old_val, higher_is_better=True):
         return "↑", "trend-up", "IMPROVED"
     return "↓", "trend-down", "DECLINED"
 
+# ──────────────────────────────────────────────────────────────
+# FIX REPORT HELPERS (FOR ✅ Fixed Issues TAB)
+# ──────────────────────────────────────────────────────────────
+
+def get_fix_report_dates():
+    dates = set()
+    if os.path.exists(OUTPUT_DIR):
+        for f in os.listdir(OUTPUT_DIR):
+            m = re.search(rf"{re.escape(DOMAIN)}_fix_issues_(\d{{4}}-\d{{2}}-\d{{2}})\.csv", f)
+            if m:
+                dates.add(m.group(1))
+    return sorted(dates, reverse=True)
+
+def load_fix_issues(date: str):
+    path = f"{OUTPUT_DIR}/{DOMAIN}_fix_issues_{date}.csv"
+    return pd.read_csv(path) if os.path.exists(path) else None
 
 # ──────────────────────────────────────────────────────────────
 # GA4 HELPERS
@@ -733,7 +722,6 @@ def fetch_ga4_data(days=7):
         st.error(f"GA4 Error: {e}")
         return None
 
-
 def fetch_top_pages():
     try:
         client = get_ga4_client()
@@ -754,7 +742,6 @@ def fetch_top_pages():
     except Exception as e:
         st.error(f"Top Pages Error: {e}")
         return None
-
 
 # ──────────────────────────────────────────────────────────────
 # STREAMLIT UI
@@ -791,7 +778,8 @@ with st.sidebar:
         "📝 Content Analysis",
         "🔑 Keywords",
         "⚡ Run New Scan",
-        "🛠️ Fix Issues",    # NEW
+        "🛠️ Fix Issues",
+        "✅ Fixed Issues",
     ], label_visibility="collapsed")
     st.divider()
     dates = get_report_dates()
@@ -801,11 +789,8 @@ with st.sidebar:
     st.divider()
     st.caption("SEO Automation Toolkit — Free Edition")
 
-
 # ──────────────────────────────────────────────────────────────
 # PAGE ROUTING
-# (for brevity: only Overview + Technical Audit + Fix Issues shown;
-#  you can paste in your other page code as needed)
 # ──────────────────────────────────────────────────────────────
 
 if page == "🏠 Overview":
@@ -830,7 +815,7 @@ if page == "🏠 Overview":
         c5.metric("Avg Load Time", f"{avg_load:.2f}s" if pd.notna(avg_load) else "N/A")
         st.divider()
 
-    # (You can bring back the full Overview implementation from your original file here)
+    # You can re-add the rest of your Overview content (GA4 charts, etc.) here
 
 elif page == "🔍 Technical Audit":
     st.markdown("# 🔍 Technical SEO Audit")
@@ -879,98 +864,204 @@ elif page == "🔍 Technical Audit":
         st.warning("No data. Run a scan!")
 
 elif page == "🛠️ Fix Issues":
-    st.markdown("# 🛠️ Fix SEO Issues on WordPress")
+    st.markdown("# 🛠️ Fix SEO Issues (WordPress)")
     st.markdown(
-        "This connects to your WordPress site via REST using the `.env` credentials "
-        "and auto-fixes SEO issues on posts."
+        "This connects to your WordPress site via REST using credentials "
+        "and auto-fixes SEO issues. You can either:\n\n"
+        "- Run the CSV-driven fixer (latest Technical Audit CSV → WP fixes)\n"
+        "- Or run the original post-level autobot over all posts."
     )
     st.divider()
 
-    st.warning(
-        "**Live changes ahead**:\n\n"
-        "- Updates SEO titles and meta descriptions\n"
-        "- Cleans slugs\n"
-        "- Adds ALT attributes for images\n"
-        "- Normalizes Yoast / Rank Math meta\n\n"
-        "Make sure your `.env` has **WP_URL**, **WP_USER**, **WP_APP_PASSWORD`."
-    )
+    tab1, tab2 = st.tabs(["CSV-driven Fix (Recommended)", "Legacy Autobot"])
 
-    dry_run = st.checkbox("Dry run (no changes, just simulate & report)", value=True)
-    min_score = st.slider("Minimum SEO score to fix", 0, 100, 80, 5)
-    max_pages = st.slider("Max WordPress post pages to fetch", 1, 50, 10, 1)
-    per_page = st.slider("Posts per page (WordPress API)", 5, 50, 10, 5)
-    report_path = st.text_input("Report output file", "seo_report.json")
+    with tab1:
+        st.markdown("### CSV-driven Fix from Technical Audit")
+        st.write(
+            "Uses the latest Technical Audit CSV (`seo_reports/...technical_audit_YYYY-MM-DD.csv`), "
+            "maps URLs → WordPress posts, and fixes what it can (SEO title/meta, ALT text, slug)."
+        )
+        st.warning(
+            "Live changes:\n"
+            "- SEO titles & meta descriptions (Yoast + Rank Math)\n"
+            "- Image ALT attributes\n"
+            "- Slug cleanup\n\n"
+            "Make sure `WP_URL`, `WP_USER`, `WP_APP_PASSWORD` are set."
+        )
 
-    only_from_audit = st.checkbox(
-        "Only target URLs that have issues in latest Technical Audit (status=200)",
-        value=False
-    )
-
-    audit_df = load_audit(selected_date) if only_from_audit else None
-
-    if st.button("🚀 Run WordPress SEO Auto-Optimizer", type="primary", use_container_width=True):
-        with st.spinner("Running WordPress SEO autobot… this may take a few minutes."):
-            try:
-                results = []
-                if only_from_audit and audit_df is not None and len(audit_df) > 0:
-                    target_urls = audit_df[
-                        (audit_df["status"].astype(str) == "200") &
-                        (audit_df["issues"].astype(str).str.len() > 0)
-                    ]["url"].tolist()
-                    st.write(f"Targeting {len(target_urls)} URLs from Technical Audit…")
-
-                    for url in target_urls:
-                        slug = url.rstrip("/").split("/")[-1]
-                        resp = safe_request(
-                            "get",
-                            f"{API_BASE}/posts",
-                            params={"slug": slug, "context": "edit"},
-                            headers=_auth_header(),
+        dry_run_csv = st.checkbox("Dry run (simulate only, no changes)", value=True)
+        if st.button("🚀 Run Fix Issues from Latest Audit", type="primary"):
+            with st.spinner("Running fix_from_audit against WordPress..."):
+                try:
+                    results = fix_from_audit(dry_run=dry_run_csv)
+                    if not results:
+                        st.info("No results returned (no audit or no applicable fixes).")
+                    else:
+                        df = pd.DataFrame(results)
+                        st.success(f"Completed. {df['fixed'].sum()} rows marked as fixed.")
+                        st.dataframe(df, use_container_width=True, height=500)
+                        st.download_button(
+                            "📥 Download Fix Report CSV",
+                            df.to_csv(index=False).encode(),
+                            "fix_issues_from_audit.csv",
+                            "text/csv",
                         )
-                        if resp.ok and resp.json():
-                            post = resp.json()[0]
-                            res = apply_seo_fixes(post, dry_run=dry_run, min_score_to_fix=min_score)
-                            if res:
-                                results.append(res)
-                        time.sleep(REQUEST_DELAY)
+                except Exception as e:
+                    st.error(f"Error while running CSV-driven fixer: {e}")
 
-                    with open(report_path, "w", encoding="utf-8") as f:
-                        json.dump(results, f, indent=2, ensure_ascii=False)
-                else:
-                    results = run_seo_optimizer(
-                        status="publish",
-                        per_page=per_page,
-                        max_pages=max_pages,
-                        dry_run=dry_run,
-                        min_score_to_fix=min_score,
-                        report_file=report_path,
-                    )
+    with tab2:
+        st.markdown("### Legacy WordPress SEO Autobot (Post-level)")
+        st.warning(
+            "**Live changes ahead**:\n\n"
+            "- Updates SEO titles and meta descriptions\n"
+            "- Cleans slugs\n"
+            "- Adds ALT attributes for images\n"
+            "- Normalizes Yoast / Rank Math meta\n\n"
+            "Make sure your `.env` has `WP_URL`, `WP_USER`, `WP_APP_PASSWORD`."
+        )
 
-                if results:
-                    df = pd.DataFrame([
-                        {
-                            "id": r["id"],
-                            "title": r["title"],
-                            "score_before": r["score_before"],
-                            "score_after": r["score_after"],
-                            "alt_tags_added": r.get("alt_tags_added", 0),
-                            "perf_issues": " | ".join(r.get("performance", {}).get("perf_issues", [])),
-                            "changes": ", ".join(r.get("changes_made", [])),
-                        }
-                        for r in results
-                    ])
-                    st.success("Completed. See summary below.")
-                    st.dataframe(df, use_container_width=True)
-                    st.download_button(
-                        "📥 Download fix report CSV",
-                        df.to_csv(index=False).encode(),
-                        "wp_autobot_fix_report.csv",
-                        "text/csv"
+        dry_run = st.checkbox("Dry run for legacy autobot (no changes)", value=True)
+        min_score = st.slider("Minimum SEO score to fix", 0, 100, 80, 5)
+        max_pages = st.slider("Max WordPress post pages to fetch", 1, 50, 10, 1)
+        per_page = st.slider("Posts per page (WordPress API)", 5, 50, 10, 5)
+        report_path = st.text_input("Legacy autobot report file", "seo_report.json")
+
+        only_from_audit = st.checkbox(
+            "Only target URLs that have issues in latest Technical Audit (status=200)",
+            value=False
+        )
+
+        audit_df = load_audit(selected_date) if only_from_audit else None
+
+        if st.button("🚀 Run Legacy WordPress SEO Auto-Optimizer", use_container_width=True):
+            with st.spinner("Running legacy WordPress SEO autobot… this may take a few minutes."):
+                try:
+                    results = []
+                    if only_from_audit and audit_df is not None and len(audit_df) > 0:
+                        target_urls = audit_df[
+                            (audit_df["status"].astype(str) == "200") &
+                            (audit_df["issues"].astype(str).str.len() > 0)
+                        ]["url"].tolist()
+                        st.write(f"Targeting {len(target_urls)} URLs from Technical Audit…")
+
+                        for url in target_urls:
+                            slug = url.rstrip("/").split("/")[-1]
+                            resp = safe_request(
+                                "get",
+                                f"{API_BASE}/posts",
+                                params={"slug": slug, "context": "edit"},
+                                headers=_auth_header(),
+                            )
+                            if resp.ok and resp.json():
+                                post = resp.json()[0]
+                                res = apply_seo_fixes(post, dry_run=dry_run, min_score_to_fix=min_score)
+                                if res:
+                                    results.append(res)
+                            time.sleep(REQUEST_DELAY)
+
+                        with open(report_path, "w", encoding="utf-8") as f:
+                            json.dump(results, f, indent=2, ensure_ascii=False)
+                    else:
+                        results = run_seo_optimizer(
+                            status="publish",
+                            per_page=per_page,
+                            max_pages=max_pages,
+                            dry_run=dry_run,
+                            min_score_to_fix=min_score,
+                            report_file=report_path,
+                        )
+
+                    if results:
+                        df = pd.DataFrame([
+                            {
+                                "id": r["id"],
+                                "title": r["title"],
+                                "score_before": r["score_before"],
+                                "score_after": r["score_after"],
+                                "alt_tags_added": r.get("alt_tags_added", 0),
+                                "perf_issues": " | ".join(r.get("performance", {}).get("perf_issues", [])),
+                                "changes": ", ".join(r.get("changes_made", [])),
+                            }
+                            for r in results
+                        ])
+                        st.success("Completed. See summary below.")
+                        st.dataframe(df, use_container_width=True)
+                        st.download_button(
+                            "📥 Download legacy fix report CSV",
+                            df.to_csv(index=False).encode(),
+                            "wp_autobot_fix_report.csv",
+                            "text/csv"
+                        )
+                    else:
+                        st.info("No posts were processed.")
+                except Exception as e:
+                    st.error(f"Error while running WordPress autobot: {e}")
+
+elif page == "✅ Fixed Issues":
+    st.markdown("# ✅ Fixed Issues (Reports)")
+    st.divider()
+
+    fix_dates = get_fix_report_dates()
+    if not fix_dates:
+        st.info("No fix-issues reports found in seo_reports/. Run the CSV fixer or the GitHub Action first.")
+    else:
+        selected_fix_date = st.selectbox("Fix report date", fix_dates, index=0)
+        fix_df = load_fix_issues(selected_fix_date)
+
+        if fix_df is None or len(fix_df) == 0:
+            st.warning("Selected fix report is empty.")
+        else:
+            st.markdown(
+                f"Showing **{len(fix_df)}** rows from "
+                f"`{DOMAIN}_fix_issues_{selected_fix_date}.csv`"
+            )
+
+            col1, col2 = st.columns(2)
+            with col1:
+                only_fixed = st.checkbox("Show only successfully fixed", value=True)
+            with col2:
+                url_search = st.text_input("Filter by URL contains")
+
+            df_view = fix_df.copy()
+
+            if "fixed" in df_view.columns and only_fixed:
+                df_view = df_view[df_view["fixed"] == True]
+
+            if url_search:
+                df_view = df_view[
+                    df_view["url"].astype(str).str.contains(url_search, case=False, na=False)
+                ]
+
+            if "changes" in df_view.columns:
+                df_view["changes"] = df_view["changes"].astype(str)
+
+            st.dataframe(df_view, use_container_width=True, height=500)
+
+            st.download_button(
+                "📥 Download Filtered Fixed Issues CSV",
+                df_view.to_csv(index=False).encode(),
+                f"{DOMAIN}_fixed_issues_view_{selected_fix_date}.csv",
+                "text/csv",
+            )
+
+            if "issues" in df_view.columns:
+                st.divider()
+                st.markdown("### 🔍 Most Frequent Audit Issues (for these rows)")
+                all_issue_fragments = []
+                for v in df_view["issues"].astype(str):
+                    for part in v.split(" | "):
+                        p = part.strip()
+                        if p:
+                            all_issue_fragments.append(p)
+                if all_issue_fragments:
+                    issue_counts = (
+                        pd.Series(all_issue_fragments)
+                        .value_counts()
+                        .head(10)
+                        .reset_index()
                     )
-                else:
-                    st.info("No posts were processed.")
-            except Exception as e:
-                st.error(f"Error while running WordPress autobot: {e}")
+                    issue_counts.columns = ["Issue (from audit)", "Count"]
+                    st.dataframe(issue_counts, use_container_width=True)
 
 else:
     st.info("Other pages (Growth Tracker, SERP, etc.) can be re-added as needed.")
