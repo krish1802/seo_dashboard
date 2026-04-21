@@ -1,0 +1,761 @@
+[
+  {
+    "url": "https://aifrontierdispatch.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (157) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (157) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (172) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (20) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/themes/newsophy/assets/fonts/css/fontello.css?ver=5.13.0",
+    "slug": "fontello.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/themes/newsophy/style.css?ver=1.0",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/themes/newsophy/assets/css/responsive.css?ver=1.0",
+    "slug": "responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/themes/newsophy/assets/css/interlace.css?ver=2.6",
+    "slug": "interlace.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/themes/newsophy/assets/css/amp.scss?ver=1.0",
+    "slug": "amp.scss",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/plugins/coblocks/dist/style-coblocks-extensions.css?ver=3.1.17",
+    "slug": "style-coblocks-extensions.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/plugins/coblocks/dist/style-coblocks-animation.css?ver=2677611078ee87eb3b1c",
+    "slug": "style-coblocks-animation.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-includes/css/buttons.min.css?ver=6.9.4",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-includes/css/dashicons.min.css?ver=6.9.4",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-includes/css/media-views.min.css?ver=6.9.4",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=6.9.4",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-includes/css/dist/components/style.min.css?ver=6.9.4",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/plugins/coblocks/includes/Dependencies/GoDaddy/Styles/build/latest.css?ver=2.0.2",
+    "slug": "latest.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/uploads/2024/12/cropped-NEW-YORK-30-32x32.png",
+    "slug": "cropped-NEW-YORK-30-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/uploads/2024/12/cropped-NEW-YORK-30-192x192.png",
+    "slug": "cropped-NEW-YORK-30-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/wp-content/uploads/2024/12/cropped-NEW-YORK-30-180x180.png",
+    "slug": "cropped-NEW-YORK-30-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/blogging/",
+    "slug": "blogging",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/business/",
+    "slug": "business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/city/",
+    "slug": "city",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/education/",
+    "slug": "education",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/family/",
+    "slug": "family",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/gadget/",
+    "slug": "gadget",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/guide/",
+    "slug": "guide",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/hudson-heinemann/",
+    "slug": "hudson-heinemann",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/hyacinth-heinemann/",
+    "slug": "hyacinth-heinemann",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/life/",
+    "slug": "life",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/michelle-marie-heinemann/",
+    "slug": "michelle-marie-heinemann",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/modern/",
+    "slug": "modern",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/money/",
+    "slug": "money",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/new/",
+    "slug": "new",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/new-york/",
+    "slug": "new-york",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/old-fashioned-mom-llc/",
+    "slug": "old-fashioned-mom-llc",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/photography/",
+    "slug": "photography",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/style/",
+    "slug": "style",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/time/",
+    "slug": "time",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/tips/",
+    "slug": "tips",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/wireless/",
+    "slug": "wireless",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/tag/world/",
+    "slug": "world",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/category/breaking-ai-news/",
+    "slug": "breaking-ai-news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/category/ai-research/",
+    "slug": "ai-research",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/category/ai-in-business/",
+    "slug": "ai-in-business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/category/robotics/",
+    "slug": "robotics",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/category/scholars/",
+    "slug": "scholars",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/category/opinions/",
+    "slug": "opinions",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (26) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/editorial-process/",
+    "slug": "editorial-process",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/04/a-new-resource-to-hook-you-up/",
+    "slug": "a-new-resource-to-hook-you-up",
+    "post_id": 1464,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/author/californianartisinal/",
+    "slug": "californianartisinal",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/04/new-skills-and-a-snazzy-new-trip/",
+    "slug": "new-skills-and-a-snazzy-new-trip",
+    "post_id": 23,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/03/how-to-create-dope-content/",
+    "slug": "how-to-create-dope-content",
+    "post_id": 38,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/03/tell-the-world-how-its-great/",
+    "slug": "tell-the-world-how-its-great",
+    "post_id": 34,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/01/things-to-do-in-new-york-this-summer/",
+    "slug": "things-to-do-in-new-york-this-summer",
+    "post_id": 159,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/01/whats-new-in-your-favourite-stores/",
+    "slug": "whats-new-in-your-favourite-stores",
+    "post_id": 158,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/01/a-few-things-about-artistry-and-innovation/",
+    "slug": "a-few-things-about-artistry-and-innovation",
+    "post_id": 84,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/01/why-it-might-work-for-you/",
+    "slug": "why-it-might-work-for-you",
+    "post_id": 85,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/01/which-gadgets-gonna-make-you-free/",
+    "slug": "which-gadgets-gonna-make-you-free",
+    "post_id": 61,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2023/01/experience-of-cutting-edge-design/",
+    "slug": "experience-of-cutting-edge-design",
+    "post_id": 60,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2026/04/empowering-businesses-financial-success-dr-josias-jean-pierre/",
+    "slug": "empowering-businesses-financial-success-dr-josias-jean-pierre",
+    "post_id": 2498,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (172) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2026/04/unlocking-investment-insights-closer-look-lorem-ipsum-expert/",
+    "slug": "unlocking-investment-insights-closer-look-lorem-ipsum-expert",
+    "post_id": 2298,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (98) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2026/04/exclusivepeekinsidethemindsof1111recordsmanagementteam/",
+    "slug": "exclusivepeekinsidethemindsof1111recordsmanagementteam",
+    "post_id": 2288,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (86) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2026/04/senior-sap-consultant-revolutionizes-supply-chain-manufacturing-innovative/",
+    "slug": "senior-sap-consultant-revolutionizes-supply-chain-manufacturing-innovative",
+    "post_id": 2278,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (138) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/category/business/",
+    "slug": "business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2026/04/maui-lolita-revolutionizing-fashion-exclusive-designs-bold-individualistic/",
+    "slug": "maui-lolita-revolutionizing-fashion-exclusive-designs-bold-individualistic",
+    "post_id": 2501,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (117) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2026/04/leading-dentist-dr-david-rosen-shares-insights-superior/",
+    "slug": "leading-dentist-dr-david-rosen-shares-insights-superior",
+    "post_id": 2319,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (920) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2026/04/ny-based-fashion-brand-sets-redefine-luxury-exclusive/",
+    "slug": "ny-based-fashion-brand-sets-redefine-luxury-exclusive",
+    "post_id": 2300,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (131) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2026/04/reshaping-future-industry-projections-personal-insights-exciting-news/",
+    "slug": "reshaping-future-industry-projections-personal-insights-exciting-news",
+    "post_id": 2292,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (113) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://aifrontierdispatch.com/2025/01/blockchain-security-meets-bitcoin-layer-2-true-i-o-and-orobit-join-forces-to-transform-real-world-asset-markets-3/",
+    "slug": "blockchain-security-meets-bitcoin-layer-2-true-i-o-and-orobit-join-forces-to-transform-real-world-asset-markets-3",
+    "post_id": 1845,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (135) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'blockchain-security-meets-bitcoin-layer-true-orobit-join'"
+    ]
+  }
+]
