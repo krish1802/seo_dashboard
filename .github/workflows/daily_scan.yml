@@ -1,16 +1,22 @@
-name: Daily SEO Scan
+name: Daily SEO Scan + Fix Issues
 
 on:
   schedule:
     - cron: '30 1 * * *'   # 7:00 AM IST every day
-  workflow_dispatch:         # manual trigger from GitHub UI
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  scan:
+  scan-and-fix:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    env:
+      WP_URL: ${{ secrets.WP_URL }}
+      WP_USER: ${{ secrets.WP_USER }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
 
     steps:
       - name: Checkout repo
@@ -22,10 +28,15 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests pandas
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas python-dotenv beautifulsoup4
 
-      - name: Run SEO crawl
+      - name: Run SEO audit crawl
         run: python crawl_script.py
+
+      - name: Run WordPress fix issues bot
+        run: python fix_issues.py
 
       - name: Commit and push results
         env:
@@ -35,5 +46,5 @@ jobs:
           git config user.email "seo-bot@github-actions"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git add seo_reports/
-          git diff --staged --quiet || git commit -m "🤖 Daily SEO scan $(date +'%Y-%m-%d')"
+          git diff --staged --quiet || git commit -m "🤖 Daily SEO scan + fixes $(date +'%Y-%m-%d')"
           git push
