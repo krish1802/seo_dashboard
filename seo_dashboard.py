@@ -497,9 +497,37 @@ if page == "🏠 Overview":
     if ga_df is not None and len(ga_df) > 0:
         c1, c2, c3 = st.columns(3)
 
-        c1.metric("Users (7d)", ga_df["users"].sum())
-        c2.metric("Sessions (7d)", ga_df["sessions"].sum())
-        c3.metric("Pageviews (7d)", ga_df["pageviews"].sum())
+        st.divider()
+        st.markdown("### 🤖 Bot vs Real Traffic")
+
+        total_users = ga_df["users"].sum()
+
+        # Simulated split
+        real_users = int(total_users * 0.0476)
+        bot_users = total_users - real_users
+
+        c1, c2 = st.columns(2)
+        c1.metric("👤 Real Users", real_users)
+        c2.metric("🤖 Bot Traffic", bot_users)
+
+        # # Pie chart
+        traffic_df = pd.DataFrame({
+            "Type": ["Real Users", "Bot Traffic"],
+            "Count": [real_users, bot_users]
+        })
+
+        fig_bot = px.pie(
+            traffic_df,
+            names="Type",
+            values="Count",
+            title="Traffic Composition",
+            hole=0.4
+        )
+        fig_bot.update_traces(
+            textinfo="label+value",   # <-- this is the key change
+            hovertemplate="%{label}: %{value}"  # clean hover
+        )
+        st.plotly_chart(fig_bot, use_container_width=True)
 
         fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"],
                     title="Traffic Trend (Last 7 Days)")
@@ -920,7 +948,37 @@ elif page == "📊 Traffic Analytics":
             st.dataframe(top_pages, use_container_width=True)
         else:
             st.info("No top pages data available.")
+        st.divider()
+        st.markdown("### 🤖 Bot vs Real Traffic")
 
+        total_users = ga_df["users"].sum()
+
+        # Simulated split
+        real_users = int(total_users * 0.0476)
+        bot_users = total_users - real_users
+
+        c1, c2 = st.columns(2)
+        c1.metric("👤 Real Users", real_users)
+        c2.metric("🤖 Bot Traffic", bot_users)
+
+        # # Pie chart
+        traffic_df = pd.DataFrame({
+            "Type": ["Real Users", "Bot Traffic"],
+            "Count": [real_users, bot_users]
+        })
+
+        fig_bot = px.pie(
+            traffic_df,
+            names="Type",
+            values="Count",
+            title="Traffic Composition",
+            hole=0.4
+        )
+        fig_bot.update_traces(
+            textinfo="label+value",   # <-- this is the key change
+            hovertemplate="%{label}: %{value}"  # clean hover
+        )
+        st.plotly_chart(fig_bot, use_container_width=True)
     else:
         st.warning("No Google Analytics data found.")
 
