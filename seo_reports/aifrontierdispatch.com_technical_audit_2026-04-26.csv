@@ -1,0 +1,2 @@
+url,status,load_time_s,title,title_length,meta_description,meta_desc_length,h1_count,canonical,noindex,images_missing_alt,has_og_tags,has_schema,issues
+https://aifrontierdispatch.com,500,0.13,,0,,0,0,,False,0,False,False,HTTP 500 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
