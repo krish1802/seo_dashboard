@@ -53,7 +53,7 @@ def get_ga4_client():
 # def get_ga4_client():
 #     return BetaAnalyticsDataClient.from_service_account_file(GA4_CREDENTIALS_PATH)
 
-SITEURL = "https://sanfranciscobriefing.com"
+SITE_URL = "https://sanfranciscobriefing.com"
 DOMAIN = "sanfranciscobriefing.com"
 OUTPUT_DIR = "seo_reports"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
