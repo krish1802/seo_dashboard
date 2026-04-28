@@ -78,7 +78,7 @@ CRAWL_HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; SEO-Audit-Bot/1.0)"}
 
 # WordPress credentials from .env
 WP_URL = os.getenv("WP_URL", "https://sanfranciscobriefing.com").rstrip("/")
-WP_USER = os.getenv("WP_USER", "texasfashioninsider")
+WP_USER = os.getenv("WP_USER", "testing")
 WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "")
 API_BASE = f"{WP_URL}/wp-json/wp/v2"
 
