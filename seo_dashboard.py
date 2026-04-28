@@ -1217,7 +1217,10 @@ elif page == "🤖 LLM Visibility":
 
     c1, c2 = st.columns([1, 1])
     with c1:
-        llm_max_pages = st.slider("Pages to scan for LLM visibility", 5, 100, 25, 5)
+        scan_all = st.checkbox("Scan ALL pages (no limit)", value=False)
+        llm_max_pages = 99999 if scan_all else st.slider(
+            "Pages to scan for LLM visibility", 5, 500, 25, 25
+        )
     with c2:
         run_llm_scan = st.button("🚀 Run LLM Visibility Scan", type="primary", use_container_width=True)
 
