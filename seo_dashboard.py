@@ -687,6 +687,78 @@ def trend_icon(new_val, old_val, higher_is_better=True):
 # FIX REPORT HELPERS (FOR ✅ Fixed Issues TAB)
 # ──────────────────────────────────────────────────────────────
 
+def crawl_site(start_url, max_pages=100, progress_bar=None, status_text=None):
+    visited, queue, results = set(), [start_url], []
+    parsed = urlparse(start_url)
+    base = f"{parsed.scheme}://{parsed.netloc}"
+
+    while queue and len(visited) < max_pages:
+        url = queue.pop(0)
+        if url in visited: continue
+        visited.add(url)
+        if progress_bar: progress_bar.progress(min(len(visited) / max_pages, 1.0))
+        if status_text: status_text.text(f"Crawling ({len(visited)}/{max_pages}): {url[:80]}")
+
+        try:
+            t0 = time.time()
+            resp = requests.get(url, headers=CRAWL_HEADERS, timeout=15, allow_redirects=True)
+            load_time = round(time.time() - t0, 2)
+        except Exception as e:
+            results.append({"url": url, "status": "ERROR", "load_time_s": None, "title": "", "title_length": 0,
+                            "meta_description": "", "meta_desc_length": 0, "h1_count": 0, "canonical": "",
+                            "noindex": False, "images_missing_alt": 0, "has_og_tags": False, "has_schema": False,
+                            "issues": f"Connection error: {e}"})
+            continue
+
+        status = resp.status_code
+        content = resp.text if status == 200 else ""
+
+        title_m = re.search(r"<title[^>]*>(.*?)</title>", content, re.I | re.S)
+        title_text = re.sub(r"<[^>]+>", "", title_m.group(1)).strip() if title_m else ""
+        meta_m = (re.search(r'<meta[^>]+name=["\'"]description["\'"][^>]+content=["\'"]([^"\']*)', content, re.I) or
+                  re.search(r'<meta[^>]+content=["\'"]([^"\']*)["\'"][^>]+name=["\'"]description["\'"]', content, re.I))
+        meta_text = meta_m.group(1).strip() if meta_m else ""
+        h1_count = len(re.findall(r"<h1[^>]*>", content, re.I))
+        canonical_m = re.search(r'<link[^>]+rel=["\'"]canonical["\'"][^>]+href=["\'"]([^"\']*)', content, re.I)
+        canonical_u = canonical_m.group(1).strip() if canonical_m else ""
+        noindex = bool(re.search(r'content=["\'"][^"\']*noindex', content, re.I))
+        img_missing = len(re.findall(r'<img(?![^>]*\balt\s*=)[^>]*/?>', content, re.I))
+        has_og = bool(re.search(r'property=["\'"]og:', content, re.I))
+        has_schema = bool(re.search(r'application/ld\+json', content, re.I))
+
+        if status == 200:
+            for link in re.findall(r'href=["\'"]([^"\'#?][^"\']*)["\'"]', content, re.I):
+                full = urljoin(base, link)
+                if full.startswith(base) and full not in visited:
+                    queue.append(full)
+
+        issues = []
+        if status >= 400: issues.append(f"HTTP {status}")
+        if not title_text: issues.append("Missing title")
+        elif len(title_text) < 30: issues.append(f"Title short ({len(title_text)})")
+        elif len(title_text) > 65: issues.append(f"Title long ({len(title_text)})")
+        if not meta_text: issues.append("Missing meta desc")
+        elif len(meta_text) < 70: issues.append(f"Meta short ({len(meta_text)})")
+        elif len(meta_text) > 160: issues.append(f"Meta long ({len(meta_text)})")
+        if h1_count == 0: issues.append("No H1")
+        elif h1_count > 1: issues.append(f"Multiple H1s ({h1_count})")
+        if load_time and load_time > 3.0: issues.append(f"Slow ({load_time}s)")
+        if noindex: issues.append("Noindexed")
+        if img_missing > 0: issues.append(f"{img_missing} img no alt")
+        if not has_og: issues.append("No OG tags")
+        if not has_schema: issues.append("No Schema")
+
+        results.append({
+            "url": url, "status": status, "load_time_s": load_time,
+            "title": title_text, "title_length": len(title_text),
+            "meta_description": meta_text, "meta_desc_length": len(meta_text),
+            "h1_count": h1_count, "canonical": canonical_u, "noindex": noindex,
+            "images_missing_alt": img_missing, "has_og_tags": has_og,
+            "has_schema": has_schema, "issues": " | ".join(issues)
+        })
+        time.sleep(0.3)
+    return results
+
 def get_fix_report_dates():
     dates = set()
     if os.path.exists(OUTPUT_DIR):
