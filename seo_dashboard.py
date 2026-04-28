@@ -79,7 +79,7 @@ CRAWL_HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; SEO-Audit-Bot/1.0)"}
 # WordPress credentials from .env
 WP_URL = os.getenv("WP_URL", "https://sanfranciscobriefing.com").rstrip("/")
 WP_USER = os.getenv("WP_USER", "testing")
-WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "")
+WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "sTz9 HbAF ROBO prvo SrI2 gJb7")
 API_BASE = f"{WP_URL}/wp-json/wp/v2"
 
 SEO_TITLE_MIN = 50
@@ -772,6 +772,291 @@ def load_fix_issues(date: str):
     path = f"{OUTPUT_DIR}/{DOMAIN}_fix_issues_{date}.csv"
     return pd.read_csv(path) if os.path.exists(path) else None
 
+
+
+# ──────────────────────────────────────────────────────────────
+# LLM / GPT VISIBILITY HELPERS
+# ──────────────────────────────────────────────────────────────
+
+LLM_BOT_SIGNATURES = {
+    "GPTBot": ["gptbot"],
+    "ChatGPT-User": ["chatgpt-user"],
+    "PerplexityBot": ["perplexitybot"],
+    "ClaudeBot": ["claudebot", "claude-web"],
+    "CCBot": ["ccbot"],
+    "Google-Extended": ["google-extended"],
+    "GoogleOther": ["googleother"],
+    "Amazonbot": ["amazonbot"],
+    "Bytespider": ["bytespider"],
+    "Meta-ExternalAgent": ["meta-externalagent"],
+    "OAI-SearchBot": ["oai-searchbot"],
+    "Applebot-Extended": ["applebot-extended"],
+}
+
+LLM_STOP_WORDS = SLUG_STOP_WORDS | {
+    "news", "briefing", "brief", "today", "update", "updates", "story", "stories",
+    "read", "guide", "local", "latest", "new", "post", "posts", "page"
+}
+
+
+def extract_page_text_features(html, url=""):
+    soup = BeautifulSoup(html or "", "html.parser")
+    title = clean_html_entities(soup.title.get_text(" ", strip=True)) if soup.title else ""
+    meta_tag = soup.find("meta", attrs={"name": re.compile(r"^description$", re.I)})
+    meta_desc = meta_tag.get("content", "").strip() if meta_tag else ""
+    h1s = [h.get_text(" ", strip=True) for h in soup.find_all("h1")][:3]
+    h2s = [h.get_text(" ", strip=True) for h in soup.find_all("h2")][:5]
+    paragraphs = [p.get_text(" ", strip=True) for p in soup.find_all("p") if p.get_text(" ", strip=True)]
+    first_paragraph = paragraphs[0] if paragraphs else ""
+    slug = url.rstrip("/").split("/")[-1] if url else ""
+    return {
+        "title": title,
+        "meta_description": meta_desc,
+        "h1": " | ".join(h1s),
+        "h2": " | ".join(h2s),
+        "first_paragraph": first_paragraph,
+        "slug": slug,
+        "body_text": " ".join(([title, meta_desc] + h1s + h2s + paragraphs[:6])).strip(),
+    }
+
+
+def infer_candidate_queries_from_text(text, max_queries=15):
+    clean = clean_html_entities((text or "").lower())
+    clean = re.sub(r"[^a-z0-9\s]", " ", clean)
+    words = [w for w in clean.split() if w and w not in LLM_STOP_WORDS and len(w) > 2]
+    if not words:
+        return []
+
+    freq = defaultdict(int)
+    for w in words:
+        freq[w] += 1
+
+    bigrams = []
+    for i in range(len(words) - 1):
+        a, b = words[i], words[i + 1]
+        if a != b:
+            bigrams.append(f"{a} {b}")
+
+    seen = set()
+    ranked = []
+
+    for phrase in sorted(freq, key=lambda x: (-freq[x], len(x))):
+        if phrase not in seen:
+            ranked.append(phrase)
+            seen.add(phrase)
+        if len(ranked) >= 5:
+            break
+
+    for phrase in bigrams:
+        if phrase not in seen:
+            ranked.append(phrase)
+            seen.add(phrase)
+        if len(ranked) >= 10:
+            break
+
+    prompts = []
+    for phrase in ranked:
+        prompts.extend([
+            phrase,
+            f"what is {phrase}",
+            f"{phrase} explained",
+        ])
+        if len(prompts) >= max_queries:
+            break
+
+    deduped = []
+    seen = set()
+    for p in prompts:
+        p = p.strip()
+        if p and p not in seen:
+            deduped.append(p)
+            seen.add(p)
+        if len(deduped) >= max_queries:
+            break
+    return deduped
+
+
+def score_llm_visibility_signal(record):
+    score = 0
+    if record.get("llms_txt_present"):
+        score += 15
+    if record.get("has_schema"):
+        score += 20
+    if record.get("has_og_tags"):
+        score += 10
+    if record.get("has_canonical"):
+        score += 10
+    if record.get("meta_description"):
+        score += 10
+    if record.get("h1"):
+        score += 10
+    if record.get("first_paragraph"):
+        score += 10
+    if len(record.get("candidate_queries", [])) >= 5:
+        score += 10
+    if record.get("title") and 30 <= len(record.get("title", "")) <= 65:
+        score += 5
+    if len(record.get("issues", [])) == 0:
+        score += 10
+    return min(100, score)
+
+
+def audit_llms_txt(site_url=SITE_URL):
+    target = urljoin(site_url.rstrip("/") + "/", "llms.txt")
+    try:
+        r = safe_request("get", target, timeout=10, headers=CRAWL_HEADERS, max_attempts=1)
+        return {
+            "url": target,
+            "present": bool(r.ok and r.text and r.text.strip()),
+            "status": r.status_code,
+            "preview": (r.text[:300].strip() if r.ok else "")
+        }
+    except Exception as e:
+        return {"url": target, "present": False, "status": "ERROR", "preview": str(e)}
+
+
+def audit_llm_visibility(start_url, max_pages=25, progress_bar=None, status_text=None):
+    visited, queue, results = set(), [start_url], []
+    parsed = urlparse(start_url)
+    base = f"{parsed.scheme}://{parsed.netloc}"
+    llms_txt = audit_llms_txt(start_url)
+
+    while queue and len(visited) < max_pages:
+        url = queue.pop(0)
+        if url in visited:
+            continue
+        visited.add(url)
+
+        if progress_bar:
+            progress_bar.progress(min(len(visited) / max_pages, 1.0))
+        if status_text:
+            status_text.text(f"LLM audit ({len(visited)}/{max_pages}): {url[:90]}")
+
+        try:
+            t0 = time.time()
+            resp = safe_request("get", url, timeout=15, headers=CRAWL_HEADERS)
+            load_time = round(time.time() - t0, 2)
+            html = resp.text if resp.ok else ""
+        except Exception as e:
+            results.append({
+                "url": url,
+                "status": "ERROR",
+                "load_time_s": None,
+                "llms_txt_present": llms_txt["present"],
+                "title": "",
+                "meta_description": "",
+                "h1": "",
+                "h2": "",
+                "first_paragraph": "",
+                "slug": url.rstrip("/").split("/")[-1],
+                "has_schema": False,
+                "has_og_tags": False,
+                "has_canonical": False,
+                "candidate_queries": [],
+                "primary_keyword": "",
+                "issues": f"Connection error: {e}",
+                "llm_visibility_score": 0,
+            })
+            continue
+
+        features = extract_page_text_features(html, url)
+        has_schema = bool(re.search(r'application/ld\+json', html, re.I))
+        has_og = bool(re.search(r'property=["\']og:', html, re.I))
+        has_canonical = bool(re.search(r'rel=["\']canonical["\']', html, re.I))
+        candidate_queries = infer_candidate_queries_from_text(
+            " ".join([
+                features.get("title", ""),
+                features.get("h1", ""),
+                features.get("h2", ""),
+                features.get("meta_description", ""),
+                features.get("first_paragraph", ""),
+                features.get("slug", "").replace("-", " "),
+            ])
+        )
+
+        issues = []
+        if not llms_txt["present"]:
+            issues.append("Missing llms.txt")
+        if not has_schema:
+            issues.append("Missing schema")
+        if not has_og:
+            issues.append("Missing OG tags")
+        if not has_canonical:
+            issues.append("Missing canonical")
+        if not features.get("meta_description"):
+            issues.append("Missing meta description")
+        if not features.get("h1"):
+            issues.append("Missing H1")
+        if not features.get("first_paragraph"):
+            issues.append("Missing intro paragraph")
+        if len(candidate_queries) < 3:
+            issues.append("Weak keyword/query signals")
+
+        row = {
+            "url": url,
+            "status": resp.status_code,
+            "load_time_s": load_time,
+            "llms_txt_present": llms_txt["present"],
+            "title": features.get("title", ""),
+            "meta_description": features.get("meta_description", ""),
+            "h1": features.get("h1", ""),
+            "h2": features.get("h2", ""),
+            "first_paragraph": features.get("first_paragraph", ""),
+            "slug": features.get("slug", ""),
+            "has_schema": has_schema,
+            "has_og_tags": has_og,
+            "has_canonical": has_canonical,
+            "candidate_queries": " | ".join(candidate_queries),
+            "primary_keyword": candidate_queries[0] if candidate_queries else "",
+            "issues": " | ".join(issues),
+        }
+        row["llm_visibility_score"] = score_llm_visibility_signal({
+            **row,
+            "candidate_queries": candidate_queries,
+            "issues": issues,
+        })
+        results.append(row)
+
+        if resp.status_code == 200:
+            for link in re.findall(r'href=["\']([^"\'#?][^"\']*)["\']', html, re.I):
+                full = urljoin(base, link)
+                if full.startswith(base) and full not in visited and full not in queue:
+                    queue.append(full)
+
+        time.sleep(0.3)
+
+    return results
+
+
+def detect_llm_bots_from_logs(log_text):
+    rows = []
+    if not log_text:
+        return pd.DataFrame(rows)
+
+    lines = [line.strip() for line in str(log_text).splitlines() if line.strip()]
+    for line in lines:
+        lower = line.lower()
+        matched = None
+        for bot_name, signatures in LLM_BOT_SIGNATURES.items():
+            if any(sig in lower for sig in signatures):
+                matched = bot_name
+                break
+        if matched:
+            rows.append({"bot": matched, "line": line[:500]})
+    return pd.DataFrame(rows)
+
+
+def save_llm_visibility_report(rows, report_date=None):
+    report_date = report_date or datetime.today().strftime("%Y-%m-%d")
+    path = f"{OUTPUT_DIR}/{DOMAIN}_llm_visibility_{report_date}.csv"
+    pd.DataFrame(rows).to_csv(path, index=False)
+    return path
+
+
+def load_llm_visibility(date):
+    path = f"{OUTPUT_DIR}/{DOMAIN}_llm_visibility_{date}.csv"
+    return pd.read_csv(path) if os.path.exists(path) else None
+
 # ──────────────────────────────────────────────────────────────
 # GA4 HELPERS
 # ──────────────────────────────────────────────────────────────
@@ -858,6 +1143,7 @@ with st.sidebar:
         "📊 Traffic Analytics",
         "📝 Content Analysis",
         "🔑 Keywords",
+        "🤖 LLM Visibility",
         "⚡ Run New Scan",
         "🛠️ Fix Issues",
         "✅ Fixed Issues",
@@ -920,6 +1206,75 @@ if page == "🔍 Technical Audit":
             st.dataframe(idf, use_container_width=True)
     else:
         st.warning("No data. Run a scan!")
+
+
+elif page == "🤖 LLM Visibility":
+    st.markdown("# 🤖 LLM Visibility")
+    st.caption("Estimate how clearly your pages can be interpreted and surfaced by GPTs/LLMs, and infer likely triggering queries.")
+    st.divider()
+
+    llm_df = load_llm_visibility(selected_date)
+
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        llm_max_pages = st.slider("Pages to scan for LLM visibility", 5, 100, 25, 5)
+    with c2:
+        run_llm_scan = st.button("🚀 Run LLM Visibility Scan", type="primary", use_container_width=True)
+
+    if run_llm_scan:
+        progress = st.progress(0)
+        status = st.empty()
+        with st.spinner("Auditing site for LLM discoverability…"):
+            rows = audit_llm_visibility(SITE_URL, max_pages=llm_max_pages, progress_bar=progress, status_text=status)
+            saved_path = save_llm_visibility_report(rows)
+            llm_df = pd.DataFrame(rows)
+        progress.empty()
+        status.empty()
+        st.success(f"LLM visibility scan completed. Report saved to {saved_path}")
+
+    if llm_df is not None and len(llm_df) > 0:
+        top = llm_df.sort_values("llm_visibility_score", ascending=False)
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Pages scanned", int(len(llm_df)))
+        m2.metric("Avg visibility score", round(pd.to_numeric(llm_df["llm_visibility_score"], errors="coerce").mean(), 1))
+        m3.metric("Pages with llms.txt support", int(pd.to_numeric(llm_df["llms_txt_present"], errors="coerce").fillna(0).astype(bool).sum()))
+        m4.metric("Pages with weak signals", int(llm_df["issues"].astype(str).str.contains("Weak keyword/query signals|Missing", na=False).sum()))
+
+        st.divider()
+        st.markdown("### Top pages for LLM recognition")
+        show_cols = [
+            c for c in [
+                "url", "llm_visibility_score", "primary_keyword", "candidate_queries",
+                "has_schema", "has_og_tags", "has_canonical", "llms_txt_present", "issues"
+            ] if c in top.columns
+        ]
+        st.dataframe(top[show_cols], use_container_width=True, height=500)
+        st.download_button(
+            "📥 Download LLM Visibility CSV",
+            top.to_csv(index=False).encode(),
+            f"{DOMAIN}_llm_visibility_{selected_date}.csv",
+            "text/csv"
+        )
+
+        st.divider()
+        st.markdown("### Likely LLM trigger keywords")
+        kw = top[["url", "primary_keyword", "candidate_queries"]].copy()
+        kw = kw[kw["primary_keyword"].astype(str).str.len() > 0]
+        st.dataframe(kw.head(20), use_container_width=True)
+
+        st.divider()
+        st.markdown("### AI crawler log parser")
+        log_text = st.text_area("Paste access logs or analytics export lines here to detect LLM bots", height=180)
+        if st.button("Parse LLM Bots From Logs", use_container_width=True):
+            bot_df = detect_llm_bots_from_logs(log_text)
+            if bot_df.empty:
+                st.info("No known LLM/AI bot signatures found in the pasted log text.")
+            else:
+                st.success(f"Detected {len(bot_df)} matching log entries.")
+                st.dataframe(bot_df, use_container_width=True, height=250)
+                st.dataframe(bot_df["bot"].value_counts().reset_index().rename(columns={"index": "bot", "bot": "count"}), use_container_width=True)
+    else:
+        st.info("No LLM visibility report found for this date yet. Run a scan first.")
 
 elif page == "🛠️ Fix Issues":
     st.markdown("# 🛠️ Fix SEO Issues (WordPress)")
