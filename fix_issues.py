@@ -31,11 +31,11 @@ from urllib3.util.retry import Retry
 
 # ── CONFIG ──────────────────────────────────────────────────────────────
 
-DOMAIN     = "aifrontierdispatch.com"
+DOMAIN     = "sanfranciscobriefing.com"
 OUTPUT_DIR = "seo_reports"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-WP_URL       = os.getenv("WP_URL", "https://aifrontierdispatch.com").rstrip("/")
+WP_URL       = os.getenv("WP_URL", "https://sanfranciscobriefing.com").rstrip("/")
 WP_USER      = os.getenv("WP_USER", "")
 WP_APP_PASS  = os.getenv("WP_APP_PASSWORD", "")
 API_BASE     = f"{WP_URL}/wp-json/wp/v2"

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 SEO Analytics Dashboard + WordPress SEO Auto-Optimizer
-For aifrontierdispatch.com
+For sanfranciscobriefing.com
 """
 
 import os
@@ -39,7 +39,7 @@ except ImportError:
 # CONFIG
 # ──────────────────────────────────────────────────────────────
 
-GA4_PROPERTY_ID = "532475459"
+GA4_PROPERTY_ID = "534913592"
 # GA4_CREDENTIALS_PATH = "ga4_credentials.json"
 
 from google.oauth2 import service_account
@@ -53,23 +53,32 @@ def get_ga4_client():
 # def get_ga4_client():
 #     return BetaAnalyticsDataClient.from_service_account_file(GA4_CREDENTIALS_PATH)
 
-SITE_URL = "https://aifrontierdispatch.com"
-DOMAIN = "aifrontierdispatch.com"
+SITEURL = "https://sanfranciscobriefing.com"
+DOMAIN = "sanfranciscobriefing.com"
 OUTPUT_DIR = "seo_reports"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-TRACKED_KEYWORDS = [
-    "AI news 2025", "artificial intelligence breakthroughs",
-    "AI business insights", "machine learning research",
-    "AI frontier news", "generative AI tools",
-    "AI startup news", "large language models news",
+TRACKEDKEYWORDS = [
+    "San Francisco news",
+    "San Francisco briefing",
+    "SF local news",
+    "Bay Area news",
+    "San Francisco politics",
+    "San Francisco business news",
+    "San Francisco events",
+    "San Francisco neighborhood news",
 ]
-COMPETITORS = ["techcrunch.com", "venturebeat.com", "wired.com"]
+
+COMPETITORS = [
+    "sfstandard.com",
+    "sfgate.com",
+    "kqed.org",
+]
 CRAWL_HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; SEO-Audit-Bot/1.0)"}
 
 # WordPress credentials from .env
-WP_URL = os.getenv("WP_URL", "https://aifrontierdispatch.com").rstrip("/")
-WP_USER = os.getenv("WP_USER", "californianartisinal")
+WP_URL = os.getenv("WP_URL", "https://sanfranciscobriefing.com").rstrip("/")
+WP_USER = os.getenv("WP_USER", "texasfashioninsider")
 WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "")
 API_BASE = f"{WP_URL}/wp-json/wp/v2"
 
@@ -748,8 +757,8 @@ def fetch_top_pages():
 # ──────────────────────────────────────────────────────────────
 
 st.set_page_config(
-    page_title="SEO Dashboard — AI Frontier Dispatch",
-    page_icon="📊",
+    page_title="SEO Dashboard | San Francisco Briefing",
+    page_icon="📈",
     layout="wide",
     initial_sidebar_state="expanded",
 )

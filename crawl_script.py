@@ -8,8 +8,8 @@ from datetime import datetime
 from urllib.parse import urljoin, urlparse
 from collections import defaultdict
 
-SITE_URL   = "https://aifrontierdispatch.com"
-DOMAIN     = "aifrontierdispatch.com"
+SITE_URL   = "https://sanfranciscobriefing.com"
+DOMAIN     = "sanfranciscobriefing.com"
 OUTPUT_DIR = "seo_reports"
 HEADERS    = {"User-Agent": "Mozilla/5.0 (compatible; SEO-Audit-Bot/1.0)"}
 os.makedirs(OUTPUT_DIR, exist_ok=True)

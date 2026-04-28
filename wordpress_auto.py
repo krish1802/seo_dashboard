@@ -43,8 +43,8 @@ except ImportError:
     pass
 
 # ── Config ──────────────────────────────────────────────────────────────────
-WP_URL      = os.getenv("WP_URL", "https://aifrontierdispatch.com").rstrip("/")
-WP_USER     = os.getenv("WP_USER", "californianartisinal")
+WP_URL      = os.getenv("WP_URL", "https://sanfranciscobriefing.com").rstrip("/")
+WP_USER     = os.getenv("WP_USER", "texasfashioninsider")
 WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "")
 API_BASE    = f"{WP_URL}/wp-json/wp/v2"
 
