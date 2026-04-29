@@ -94,8 +94,8 @@ CRAWL_HEADERS = {
 }
 
 WP_URL = os.getenv("WP_URL", SITE_URL).rstrip("/")
-WP_USER = os.getenv("WP_USER", "")
-WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "")
+WP_USER = os.getenv("WP_USER", "testing")
+WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "sTz9 HbAF ROBO prvo SrI2 gJb7")
 API_BASE = f"{WP_URL}/wp-json/wp/v2"
 
 BING_API_KEY = os.getenv("BING_API_KEY", "").strip()
