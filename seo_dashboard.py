@@ -23,7 +23,7 @@ from bs4 import BeautifulSoup
 import streamlit as st
 
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
-from google.analytics.data_v1beta.types import RunReportRequest
+from google.analytics.data_v1beta.types import RunReportRequest, FilterExpression, Filter, FilterExpressionList
 
 # Import CSV-driven fixer
 from fix_issues import fix_from_audit, latest_audit_csv  # from fix_issues.py
@@ -778,6 +778,20 @@ def load_fix_issues(date: str):
 # LLM / GPT VISIBILITY HELPERS
 # ──────────────────────────────────────────────────────────────
 
+LLM_REFERRER_REGEX = r"(chat\.openai\.com|chatgpt\.com|perplexity\.ai|claude\.ai|anthropic\.com)"
+LLM_SOURCE_REGEX = r"(chatgpt|openai|perplexity|claude|anthropic)"
+LLM_UTM_REGEX = r".*utm_source=(chatgpt|perplexity|claude).*"
+
+def classify_llm_source(source="", medium="", page_location="", referrer=""):
+    raw = " | ".join([str(source or ""), str(medium or ""), str(page_location or ""), str(referrer or "")]).lower()
+    if any(x in raw for x in ["perplexity.ai", "utm_source=perplexity", "source=perplexity", "perplexity"]):
+        return "Perplexity"
+    if any(x in raw for x in ["chat.openai.com", "chatgpt.com", "utm_source=chatgpt", "source=chatgpt", "openai", "chatgpt"]):
+        return "ChatGPT"
+    if any(x in raw for x in ["claude.ai", "anthropic.com", "utm_source=claude", "source=claude", "anthropic", "claude"]):
+        return "Claude"
+    return "Other LLM"
+
 LLM_BOT_SIGNATURES = {
     "GPTBot": ["gptbot"],
     "ChatGPT-User": ["chatgpt-user"],
@@ -1109,6 +1123,99 @@ def fetch_top_pages():
         st.error(f"Top Pages Error: {e}")
         return None
 
+
+def _build_llm_ga4_filter():
+    source_filter = FilterExpression(
+        filter=Filter(
+            field_name="sessionSource",
+            string_filter=Filter.StringFilter(
+                match_type=Filter.StringFilter.MatchType.FULL_REGEXP,
+                value=LLM_SOURCE_REGEX,
+            ),
+        )
+    )
+    referrer_filter = FilterExpression(
+        filter=Filter(
+            field_name="pageReferrer",
+            string_filter=Filter.StringFilter(
+                match_type=Filter.StringFilter.MatchType.FULL_REGEXP,
+                value=r".*" + LLM_REFERRER_REGEX + r".*",
+            ),
+        )
+    )
+    utm_filter = FilterExpression(
+        filter=Filter(
+            field_name="fullPageUrl",
+            string_filter=Filter.StringFilter(
+                match_type=Filter.StringFilter.MatchType.FULL_REGEXP,
+                value=LLM_UTM_REGEX,
+            ),
+        )
+    )
+    return FilterExpression(or_group=FilterExpressionList(expressions=[source_filter, referrer_filter, utm_filter]))
+
+
+def fetch_llm_traffic(days=7):
+    try:
+        client = get_ga4_client()
+        request = RunReportRequest(
+            property=f"properties/{GA4_PROPERTY_ID}",
+            dimensions=[
+                {"name": "sessionSource"},
+                {"name": "sessionMedium"},
+                {"name": "pagePath"},
+                {"name": "pageReferrer"},
+                {"name": "fullPageUrl"},
+            ],
+            metrics=[
+                {"name": "sessions"},
+                {"name": "activeUsers"},
+                {"name": "screenPageViews"},
+            ],
+            date_ranges=[{"start_date": f"{days}daysAgo", "end_date": "today"}],
+            dimension_filter=_build_llm_ga4_filter(),
+            limit=1000,
+        )
+        response = client.run_report(request)
+        rows = []
+        for row in response.rows:
+            source = row.dimension_values[0].value
+            medium = row.dimension_values[1].value
+            page_path = row.dimension_values[2].value
+            referrer = row.dimension_values[3].value
+            full_url = row.dimension_values[4].value
+            rows.append({
+                "llm": classify_llm_source(source, medium, full_url, referrer),
+                "source": source,
+                "medium": medium,
+                "page": page_path,
+                "referrer": referrer,
+                "landing_url": full_url,
+                "sessions": int(row.metric_values[0].value),
+                "users": int(row.metric_values[1].value),
+                "views": int(row.metric_values[2].value),
+            })
+        return pd.DataFrame(rows)
+    except Exception as e:
+        st.error(f"LLM Traffic Error: {e}")
+        return None
+
+
+def summarize_llm_traffic(df):
+    if df is None or len(df) == 0:
+        return None, None
+    summary = (
+        df.groupby("llm", as_index=False)[["sessions", "users", "views"]]
+          .sum()
+          .sort_values(["sessions", "views"], ascending=False)
+    )
+    pages = (
+        df.groupby(["llm", "page"], as_index=False)[["sessions", "users", "views"]]
+          .sum()
+          .sort_values(["sessions", "views"], ascending=False)
+    )
+    return summary, pages
+
 # ──────────────────────────────────────────────────────────────
 # STREAMLIT UI
 # ──────────────────────────────────────────────────────────────
@@ -1264,6 +1371,18 @@ elif page == "🤖 LLM Visibility":
         kw = top[["url", "primary_keyword", "candidate_queries"]].copy()
         kw = kw[kw["primary_keyword"].astype(str).str.len() > 0]
         st.dataframe(kw.head(20), use_container_width=True)
+
+        st.divider()
+        st.markdown("### Attributed LLM traffic from GA4")
+        llm_traffic_df = fetch_llm_traffic(30)
+        llm_traffic_summary, llm_traffic_pages = summarize_llm_traffic(llm_traffic_df)
+        if llm_traffic_summary is not None and len(llm_traffic_summary) > 0:
+            st.dataframe(llm_traffic_summary, use_container_width=True)
+            if llm_traffic_pages is not None and len(llm_traffic_pages) > 0:
+                st.markdown("#### Top landing pages from ChatGPT, Perplexity, and Claude")
+                st.dataframe(llm_traffic_pages.head(25), use_container_width=True, height=320)
+        else:
+            st.info("GA4 does not currently show attributable ChatGPT / Perplexity / Claude traffic for the last 30 days. Referrers may be missing, so UTMs are recommended.")
 
         st.divider()
         st.markdown("### AI crawler log parser")
