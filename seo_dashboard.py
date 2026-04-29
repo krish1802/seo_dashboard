@@ -2,18 +2,29 @@
 """
 SEO Analytics Dashboard + WordPress SEO Auto-Optimizer
 For sanfranciscobriefing.com
+
+Features
+- Technical SEO audit crawler
+- WordPress SEO fixer
+- JSON-LD NewsArticle schema generation/injection
+- Internal linking suggestions and insertion
+- LLM visibility audit
+- GA4 traffic reporting
+- Unlinked mention discovery
+- Backlink target scoring
+- Streamlit dashboard
 """
 
 import os
 import re
 import time
-import csv
 import json
-from datetime import datetime, timedelta
-from collections import defaultdict
+import html as html_lib
+from datetime import datetime
+from collections import defaultdict, Counter
 from urllib.parse import urljoin, urlparse
-from pathlib import Path
 from base64 import b64encode
+from difflib import SequenceMatcher
 
 import requests
 import pandas as pd
@@ -22,43 +33,46 @@ import plotly.graph_objects as go
 from bs4 import BeautifulSoup
 import streamlit as st
 
+from google.oauth2 import service_account
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
-from google.analytics.data_v1beta.types import RunReportRequest, FilterExpression, Filter, FilterExpressionList
+from google.analytics.data_v1beta.types import (
+    RunReportRequest,
+    FilterExpression,
+    Filter,
+    FilterExpressionList,
+)
 
-# Import CSV-driven fixer
-from fix_issues import fix_from_audit, latest_audit_csv  # from fix_issues.py
+from urllib3.util.retry import Retry
+from requests.adapters import HTTPAdapter
 
-# Optional: dotenv
 try:
     from dotenv import load_dotenv
     load_dotenv()
 except ImportError:
     pass
 
+try:
+    from fix_issues import fix_from_audit, latest_audit_csv
+except Exception:
+    fix_from_audit = None
+    latest_audit_csv = None
+
+
 # ──────────────────────────────────────────────────────────────
 # CONFIG
 # ──────────────────────────────────────────────────────────────
 
 GA4_PROPERTY_ID = "534913592"
-# GA4_CREDENTIALS_PATH = "ga4_credentials.json"
-
-from google.oauth2 import service_account
-
-
-def get_ga4_client():
-    credentials = service_account.Credentials.from_service_account_info(
-        st.secrets["ga4"]
-    )
-    return BetaAnalyticsDataClient(credentials=credentials)
-# def get_ga4_client():
-#     return BetaAnalyticsDataClient.from_service_account_file(GA4_CREDENTIALS_PATH)
-
 SITE_URL = "https://sanfranciscobriefing.com"
 DOMAIN = "sanfranciscobriefing.com"
 OUTPUT_DIR = "seo_reports"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-TRACKEDKEYWORDS = [
+BRAND_NAME = "San Francisco Briefing"
+SITE_DESCRIPTION = "Local San Francisco news, politics, business, neighborhoods, and events coverage."
+BRAND_LOGO_URL = os.getenv("BRAND_LOGO_URL", f"{SITE_URL}/wp-content/uploads/logo.png")
+
+TRACKED_KEYWORDS = [
     "San Francisco news",
     "San Francisco briefing",
     "SF local news",
@@ -74,18 +88,23 @@ COMPETITORS = [
     "sfgate.com",
     "kqed.org",
 ]
-CRAWL_HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; SEO-Audit-Bot/1.0)"}
 
-# WordPress credentials from .env
-WP_URL = os.getenv("WP_URL", "https://sanfranciscobriefing.com").rstrip("/")
-WP_USER = os.getenv("WP_USER", "testing")
-WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "sTz9 HbAF ROBO prvo SrI2 gJb7")
+CRAWL_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; SEO-Audit-Bot/1.0)"
+}
+
+WP_URL = os.getenv("WP_URL", SITE_URL).rstrip("/")
+WP_USER = os.getenv("WP_USER", "")
+WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "")
 API_BASE = f"{WP_URL}/wp-json/wp/v2"
+
+BING_API_KEY = os.getenv("BING_API_KEY", "").strip()
 
 SEO_TITLE_MIN = 50
 SEO_TITLE_MAX = 60
 META_DESC_MIN = 150
 META_DESC_MAX = 160
+REQUEST_DELAY = 1.2
 
 SLUG_STOP_WORDS = {
     "a", "an", "the", "and", "or", "but", "in", "on", "at", "to", "for",
@@ -94,15 +113,45 @@ SLUG_STOP_WORDS = {
     "should", "may", "might", "this", "that", "these", "those", "it", "its"
 }
 
-REQUEST_DELAY = 1.5
+LLM_STOP_WORDS = SLUG_STOP_WORDS | {
+    "news", "briefing", "brief", "today", "update", "updates", "story", "stories",
+    "read", "guide", "local", "latest", "new", "post", "posts", "page"
+}
+
+LLM_REFERRER_REGEX = r"(chat\.openai\.com|chatgpt\.com|perplexity\.ai|claude\.ai|anthropic\.com)"
+LLM_SOURCE_REGEX = r"(chatgpt|openai|perplexity|claude|anthropic)"
+LLM_UTM_REGEX = r".*utm_source=(chatgpt|perplexity|claude).*"
+
+LLM_BOT_SIGNATURES = {
+    "GPTBot": ["gptbot"],
+    "ChatGPT-User": ["chatgpt-user"],
+    "PerplexityBot": ["perplexitybot"],
+    "ClaudeBot": ["claudebot", "claude-web"],
+    "CCBot": ["ccbot"],
+    "Google-Extended": ["google-extended"],
+    "GoogleOther": ["googleother"],
+    "Amazonbot": ["amazonbot"],
+    "Bytespider": ["bytespider"],
+    "Meta-ExternalAgent": ["meta-externalagent"],
+    "OAI-SearchBot": ["oai-searchbot"],
+    "Applebot-Extended": ["applebot-extended"],
+}
+
 
 # ──────────────────────────────────────────────────────────────
-# WORDPRESS AUTOBOT: SESSION + AUTH
+# GA4
 # ──────────────────────────────────────────────────────────────
 
-from urllib3.util.retry import Retry
-from requests.adapters import HTTPAdapter
-import html as html_lib
+def get_ga4_client():
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["ga4"]
+    )
+    return BetaAnalyticsDataClient(credentials=credentials)
+
+
+# ──────────────────────────────────────────────────────────────
+# HTTP SESSION
+# ──────────────────────────────────────────────────────────────
 
 def _make_session():
     session = requests.Session()
@@ -123,16 +172,14 @@ def _make_session():
         allowed_methods=["GET", "POST"],
         raise_on_status=False,
     )
-    adapter = HTTPAdapter(
-        max_retries=retry_strategy,
-        pool_connections=2,
-        pool_maxsize=5,
-    )
+    adapter = HTTPAdapter(max_retries=retry_strategy, pool_connections=2, pool_maxsize=5)
     session.mount("https://", adapter)
     session.mount("http://", adapter)
     return session
 
+
 SESSION = _make_session()
+
 
 def safe_request(method, url, max_attempts=4, **kwargs):
     global SESSION
@@ -140,132 +187,74 @@ def safe_request(method, url, max_attempts=4, **kwargs):
     for attempt in range(1, max_attempts + 1):
         try:
             fn = getattr(SESSION, method)
-            resp = fn(url, **kwargs)
-            return resp
-        except (requests.exceptions.ConnectionError,
-                requests.exceptions.ChunkedEncodingError) as e:
+            return fn(url, **kwargs)
+        except (requests.exceptions.ConnectionError, requests.exceptions.ChunkedEncodingError) as e:
             wait = 2 ** attempt
-            print(f"  ⚠️  Connection error (attempt {attempt}/{max_attempts}): {e}")
             if attempt < max_attempts:
-                print(f"     Retrying in {wait}s with a fresh session...")
                 time.sleep(wait)
                 SESSION = _make_session()
             else:
-                print("  ❌ All retries exhausted.")
-                raise
+                raise e
+
 
 def _auth_header():
+    if not WP_USER or not WP_APP_PASS:
+        raise RuntimeError("Missing WP_USER or WP_APP_PASSWORD in environment.")
     token = b64encode(f"{WP_USER}:{WP_APP_PASS}".encode()).decode()
-    return {"Authorization": f"Basic {token}", "Content-Type": "application/json"}
-
-# ──────────────────────────────────────────────────────────────
-# WORDPRESS AUTOBOT: PERFORMANCE AUDIT
-# ──────────────────────────────────────────────────────────────
-
-def audit_page_performance(url):
-    perf = {
-        "response_time_s": None,
-        "html_size_kb": None,
-        "request_count": None,
-        "js_unminified": [],
-        "css_unminified": [],
-        "perf_issues": [],
+    return {
+        "Authorization": f"Basic {token}",
+        "Content-Type": "application/json"
     }
-    try:
-        start = time.time()
-        r = safe_request("get", url, timeout=15, headers={
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/124.0.0.0 Safari/537.36"
-            )
-        })
-        elapsed = round(time.time() - start, 3)
-        perf["response_time_s"] = elapsed
-        if elapsed > 0.2:
-            perf["perf_issues"].append(
-                f"Response time {elapsed}s exceeds 0.2s recommendation"
-            )
 
-        html_bytes = len(r.content)
-        html_kb = round(html_bytes / 1024, 1)
-        perf["html_size_kb"] = html_kb
-        if html_kb > 50:
-            perf["perf_issues"].append(
-                f"HTML document is {html_kb} KB (recommendation: ≤ 50 KB)"
-            )
-
-        soup = BeautifulSoup(r.text, "html.parser")
-        scripts = soup.find_all("script", src=True)
-        stylesheets = soup.find_all("link", rel=lambda v: v and "stylesheet" in v)
-        images_tag = soup.find_all("img", src=True)
-        iframes = soup.find_all("iframe", src=True)
-        request_count = len(scripts) + len(stylesheets) + len(images_tag) + len(iframes)
-        perf["request_count"] = request_count
-        if request_count > 20:
-            perf["perf_issues"].append(
-                f"Page makes ~{request_count} requests (recommendation: ≤ 20)"
-            )
-
-        for tag in scripts:
-            src = tag.get("src", "")
-            if src and ".js" in src and ".min.js" not in src and "cdn" not in src.lower():
-                perf["js_unminified"].append(src.split("?")[0])
-        if perf["js_unminified"]:
-            perf["perf_issues"].append(
-                f"{len(perf['js_unminified'])} JS file(s) appear unminified"
-            )
-
-        for tag in stylesheets:
-            href = tag.get("href", "")
-            if href and ".css" in href and ".min.css" not in href and "cdn" not in href.lower():
-                perf["css_unminified"].append(href.split("?")[0])
-        if perf["css_unminified"]:
-            perf["perf_issues"].append(
-                f"{len(perf['css_unminified'])} CSS file(s) appear unminified"
-            )
-
-        missing_expires = []
-        for img in images_tag[:5]:
-            img_src = img.get("src", "")
-            if img_src.startswith("http"):
-                try:
-                    img_resp = safe_request("get", img_src, timeout=5, max_attempts=1,
-                                            headers={"User-Agent": "Mozilla/5.0"})
-                    cache_ctrl = img_resp.headers.get("Cache-Control", "")
-                    expires = img_resp.headers.get("Expires", "")
-                    if not cache_ctrl and not expires:
-                        missing_expires.append(img_src)
-                except Exception:
-                    pass
-        if missing_expires:
-            perf["perf_issues"].append(
-                f"Server is not using expires/cache-control headers for "
-                f"{len(missing_expires)} sampled image(s)"
-            )
-    except Exception as e:
-        perf["perf_issues"].append(f"Performance audit error: {e}")
-
-    return perf
 
 # ──────────────────────────────────────────────────────────────
-# WORDPRESS AUTOBOT: TEXT HELPERS
+# TEXT HELPERS
 # ──────────────────────────────────────────────────────────────
 
 def clean_html_entities(text):
-    return html_lib.unescape(text)
+    return html_lib.unescape(text or "")
+
 
 def strip_html_tags(text):
-    return BeautifulSoup(text, "html.parser").get_text(separator=" ").strip()
+    return BeautifulSoup(text or "", "html.parser").get_text(separator=" ").strip()
+
+
+def html_to_text(text):
+    return re.sub(r"\s+", " ", strip_html_tags(text)).strip()
+
 
 def word_count(text):
     return len(strip_html_tags(text).split())
+
+
+def clean_text_snippet(text, max_len=220):
+    text = re.sub(r"\s+", " ", (text or "").strip())
+    if len(text) <= max_len:
+        return text
+    return text[:max_len].rsplit(" ", 1)[0] + "…"
+
+
+def normalize_url(url):
+    url = (url or "").strip()
+    if not url:
+        return ""
+    parsed = urlparse(url)
+    scheme = parsed.scheme or "https"
+    netloc = parsed.netloc.lower()
+    path = parsed.path.rstrip("/")
+    return f"{scheme}://{netloc}{path}"
+
+
+def same_url(a, b):
+    return normalize_url(a) == normalize_url(b)
+
 
 def extract_keywords_from_title(title):
     clean = clean_html_entities(title).lower()
     clean = re.sub(r"[^a-z0-9\s]", " ", clean)
     words = [w for w in clean.split() if w and w not in SLUG_STOP_WORDS and len(w) > 2]
     return words[:5]
+
 
 def optimize_slug(title):
     clean = clean_html_entities(title).lower()
@@ -275,7 +264,8 @@ def optimize_slug(title):
     slug = re.sub(r"-+", "-", slug).strip("-")
     return slug
 
-def generate_seo_title(raw_title, site_name="AI Frontier Dispatch"):
+
+def generate_seo_title(raw_title, site_name=BRAND_NAME):
     clean = clean_html_entities(raw_title).strip()
     full = f"{clean} | {site_name}"
     if SEO_TITLE_MIN <= len(full) <= SEO_TITLE_MAX:
@@ -286,8 +276,9 @@ def generate_seo_title(raw_title, site_name="AI Frontier Dispatch"):
         return f"{trimmed} | {site_name}"
     return full
 
+
 def generate_meta_description(content_html, title, keywords):
-    soup = BeautifulSoup(content_html, "html.parser")
+    soup = BeautifulSoup(content_html or "", "html.parser")
     desc = ""
     for p in soup.find_all("p"):
         text = p.get_text(separator=" ").strip()
@@ -306,8 +297,9 @@ def generate_meta_description(content_html, title, keywords):
         desc = (desc + kw_phrase)[:META_DESC_MAX]
     return desc.strip()
 
+
 def add_alt_tags_to_images(content_html, keywords):
-    soup = BeautifulSoup(content_html, "html.parser")
+    soup = BeautifulSoup(content_html or "", "html.parser")
     images = soup.find_all("img")
     updated = False
     count = 0
@@ -320,25 +312,33 @@ def add_alt_tags_to_images(content_html, keywords):
             count += 1
     return str(soup), updated, count
 
+
 def clean_duplicate_og_tags(meta):
-    cleaned = dict(meta)
-    if "_yoast_wpseo_opengraph-title" in meta:
+    cleaned = dict(meta or {})
+    if "_yoast_wpseo_opengraph-title" in cleaned:
         for key in [
-            "rank_math_facebook_title", "rank_math_facebook_description",
-            "rank_math_twitter_title", "rank_math_twitter_description"
+            "rank_math_facebook_title",
+            "rank_math_facebook_description",
+            "rank_math_twitter_title",
+            "rank_math_twitter_description",
         ]:
             cleaned.pop(key, None)
+
     og_title = cleaned.get("_yoast_wpseo_opengraph-title", "")
     og_desc = cleaned.get("_yoast_wpseo_opengraph-description", "")
+
     if og_title and cleaned.get("_yoast_wpseo_twitter-title") == og_title:
         cleaned.pop("_yoast_wpseo_twitter-title", None)
     if og_desc and cleaned.get("_yoast_wpseo_twitter-description") == og_desc:
         cleaned.pop("_yoast_wpseo_twitter-description", None)
+
     return cleaned
+
 
 def seo_score(title_clean, meta_desc, slug, content_html, keywords):
     issues = []
     score = 100
+
     tlen = len(title_clean)
     if tlen < SEO_TITLE_MIN:
         issues.append(f"SEO title too short ({tlen} chars, min {SEO_TITLE_MIN})")
@@ -346,6 +346,7 @@ def seo_score(title_clean, meta_desc, slug, content_html, keywords):
     elif tlen > SEO_TITLE_MAX:
         issues.append(f"SEO title too long ({tlen} chars, max {SEO_TITLE_MAX})")
         score -= 10
+
     mlen = len(meta_desc)
     if mlen < META_DESC_MIN:
         issues.append(f"Meta description too short ({mlen} chars, min {META_DESC_MIN})")
@@ -353,9 +354,11 @@ def seo_score(title_clean, meta_desc, slug, content_html, keywords):
     elif mlen > META_DESC_MAX:
         issues.append(f"Meta description too long ({mlen} chars, max {META_DESC_MAX})")
         score -= 10
+
     if len(slug) > 75:
         issues.append(f"Slug too long ({len(slug)} chars)")
         score -= 10
+
     wc = word_count(content_html)
     if wc < 300:
         issues.append(f"Content too thin ({wc} words, aim for 600+)")
@@ -363,25 +366,86 @@ def seo_score(title_clean, meta_desc, slug, content_html, keywords):
     elif wc < 600:
         issues.append(f"Content could be longer ({wc} words, aim for 600+)")
         score -= 10
-    soup = BeautifulSoup(content_html, "html.parser")
+
+    soup = BeautifulSoup(content_html or "", "html.parser")
     if not soup.find(["h2", "h3"]):
         issues.append("No subheadings (H2/H3) found in content")
         score -= 10
+
     plain = soup.get_text().lower()
     kw_found = sum(1 for k in keywords if k in plain)
     if keywords and kw_found == 0:
         issues.append("Focus keywords not found in content")
         score -= 10
+
     return max(0, score), issues
 
+
 # ──────────────────────────────────────────────────────────────
-# WORDPRESS AUTOBOT: FETCH & APPLY (POST-LEVEL AUTOBOT)
+# PERFORMANCE AUDIT
+# ──────────────────────────────────────────────────────────────
+
+def audit_page_performance(url):
+    perf = {
+        "response_time_s": None,
+        "html_size_kb": None,
+        "request_count": None,
+        "js_unminified": [],
+        "css_unminified": [],
+        "perf_issues": [],
+    }
+    try:
+        start = time.time()
+        r = safe_request("get", url, timeout=15, headers={"User-Agent": CRAWL_HEADERS["User-Agent"]})
+        elapsed = round(time.time() - start, 3)
+        perf["response_time_s"] = elapsed
+
+        html_bytes = len(r.content)
+        html_kb = round(html_bytes / 1024, 1)
+        perf["html_size_kb"] = html_kb
+
+        soup = BeautifulSoup(r.text, "html.parser")
+        scripts = soup.find_all("script", src=True)
+        stylesheets = soup.find_all("link", rel=lambda v: v and "stylesheet" in v)
+        images_tag = soup.find_all("img", src=True)
+        iframes = soup.find_all("iframe", src=True)
+        request_count = len(scripts) + len(stylesheets) + len(images_tag) + len(iframes)
+        perf["request_count"] = request_count
+
+        for tag in scripts:
+            src = tag.get("src", "")
+            if src and ".js" in src and ".min.js" not in src and "cdn" not in src.lower():
+                perf["js_unminified"].append(src.split("?")[0])
+
+        for tag in stylesheets:
+            href = tag.get("href", "")
+            if href and ".css" in href and ".min.css" not in href and "cdn" not in href.lower():
+                perf["css_unminified"].append(href.split("?")[0])
+
+        if elapsed > 0.2:
+            perf["perf_issues"].append(f"Response time {elapsed}s exceeds 0.2s recommendation")
+        if html_kb > 50:
+            perf["perf_issues"].append(f"HTML document is {html_kb} KB (recommendation: ≤ 50 KB)")
+        if request_count > 20:
+            perf["perf_issues"].append(f"Page makes ~{request_count} requests (recommendation: ≤ 20)")
+        if perf["js_unminified"]:
+            perf["perf_issues"].append(f"{len(perf['js_unminified'])} JS file(s) appear unminified")
+        if perf["css_unminified"]:
+            perf["perf_issues"].append(f"{len(perf['css_unminified'])} CSS file(s) appear unminified")
+
+    except Exception as e:
+        perf["perf_issues"].append(f"Performance audit error: {e}")
+
+    return perf
+
+
+# ──────────────────────────────────────────────────────────────
+# WORDPRESS FETCHERS
 # ──────────────────────────────────────────────────────────────
 
 def get_all_posts(status="publish", per_page=10, max_pages=5):
     all_posts = []
     for page in range(1, max_pages + 1):
-        print(f"  📄 Fetching WP posts page {page}...", flush=True)
         r = safe_request(
             "get",
             f"{API_BASE}/posts",
@@ -391,22 +455,347 @@ def get_all_posts(status="publish", per_page=10, max_pages=5):
                 "per_page": per_page,
                 "page": page,
                 "context": "edit",
-                "_fields": "id,title,slug,content,excerpt,meta,link,modified"
+                "_fields": "id,title,slug,content,excerpt,meta,link,modified,modified_gmt,date,date_gmt,author,categories"
             }
         )
         if not r.ok or not r.json():
-            print(f"stopped (status {r.status_code})")
             break
         batch = r.json()
         total_pages = int(r.headers.get("X-WP-TotalPages", 1))
         all_posts.extend(batch)
-        print(f"got {len(batch)} posts (total so far: {len(all_posts)})")
         if page >= total_pages:
             break
         time.sleep(REQUEST_DELAY)
     return all_posts
 
-def apply_seo_fixes(post, dry_run=True, min_score_to_fix=80):
+
+def get_post_by_slug(slug):
+    r = safe_request(
+        "get",
+        f"{API_BASE}/posts",
+        headers=_auth_header(),
+        params={"slug": slug, "context": "edit"}
+    )
+    if r.ok and r.json():
+        return r.json()[0]
+    return None
+
+
+def get_wp_author_name(author_id):
+    if not author_id:
+        return BRAND_NAME
+    try:
+        r = safe_request("get", f"{API_BASE}/users/{author_id}", headers=_auth_header(), timeout=20)
+        if r.ok:
+            data = r.json()
+            return data.get("name") or data.get("slug") or BRAND_NAME
+    except Exception:
+        pass
+    return BRAND_NAME
+
+
+def get_wp_categories_map():
+    categories = {}
+    page = 1
+    while True:
+        try:
+            r = safe_request(
+                "get",
+                f"{API_BASE}/categories",
+                headers=_auth_header(),
+                params={"per_page": 100, "page": page, "_fields": "id,name,slug"},
+                timeout=20,
+            )
+            if not r.ok:
+                break
+            rows = r.json() or []
+            if not rows:
+                break
+            for row in rows:
+                categories[row.get("id")] = row.get("name") or row.get("slug") or ""
+            total_pages = int(r.headers.get("X-WP-TotalPages", 1))
+            if page >= total_pages:
+                break
+            page += 1
+            time.sleep(REQUEST_DELAY)
+        except Exception:
+            break
+    return categories
+
+
+# ──────────────────────────────────────────────────────────────
+# JSON-LD SCHEMA
+# ──────────────────────────────────────────────────────────────
+
+def build_newsarticle_schema(post, meta_desc="", author_name="", categories_map=None):
+    categories_map = categories_map or {}
+    title = clean_html_entities(post.get("title", {}).get("rendered", ""))
+    content_html = post.get("content", {}).get("rendered", "")
+    excerpt_html = post.get("excerpt", {}).get("rendered", "")
+    canonical = post.get("link") or f"{SITE_URL}/{post.get('slug','').strip('/')}/"
+
+    soup = BeautifulSoup(content_html or "", "html.parser")
+    first_img = soup.find("img", src=True)
+    image_url = first_img.get("src", "") if first_img else ""
+
+    if not meta_desc:
+        meta_desc = generate_meta_description(content_html or excerpt_html, title, extract_keywords_from_title(title))
+
+    date_published = post.get("date_gmt") or post.get("date") or datetime.utcnow().isoformat()
+    date_modified = post.get("modified_gmt") or post.get("modified") or date_published
+    author_name = author_name or get_wp_author_name(post.get("author"))
+
+    article_section = [
+        categories_map.get(cid, "")
+        for cid in (post.get("categories", []) or [])
+        if categories_map.get(cid)
+    ]
+
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
+        "headline": clean_text_snippet(title, 110),
+        "description": clean_text_snippet(html_to_text(excerpt_html) or meta_desc or SITE_DESCRIPTION, 220),
+        "url": canonical,
+        "datePublished": date_published,
+        "dateModified": date_modified,
+        "author": {
+            "@type": "Person" if author_name != BRAND_NAME else "Organization",
+            "name": author_name
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": BRAND_NAME,
+            "logo": {
+                "@type": "ImageObject",
+                "url": BRAND_LOGO_URL
+            }
+        }
+    }
+
+    if image_url:
+        schema["image"] = [image_url]
+    if article_section:
+        schema["articleSection"] = article_section
+
+    keywords = extract_keywords_from_title(title)
+    if keywords:
+        schema["keywords"] = keywords
+
+    return schema
+
+
+def upsert_json_ld_schema(content_html, schema_obj):
+    soup = BeautifulSoup(content_html or "", "html.parser")
+    schema_json = json.dumps(schema_obj, ensure_ascii=False, separators=(",", ":"))
+
+    existing = None
+    for tag in soup.find_all("script", attrs={"type": "application/ld+json"}):
+        raw = (tag.string or tag.get_text(" ", strip=True) or "").strip()
+        try:
+            parsed = json.loads(raw)
+        except Exception:
+            continue
+
+        parsed_list = parsed if isinstance(parsed, list) else [parsed]
+        if any(
+            str(item.get("@type", "")).lower() in {"newsarticle", "article"}
+            for item in parsed_list if isinstance(item, dict)
+        ):
+            existing = tag
+            break
+
+    if existing is not None:
+        existing.string = schema_json
+    else:
+        script_tag = soup.new_tag("script", type="application/ld+json")
+        script_tag.string = schema_json
+        soup.append(script_tag)
+
+    return str(soup)
+
+
+# ──────────────────────────────────────────────────────────────
+# INTERNAL LINKING
+# ──────────────────────────────────────────────────────────────
+
+def tokenize_for_linking(text):
+    text = re.sub(r"[^a-z0-9\s-]", " ", (text or "").lower())
+    return [w for w in text.split() if w and w not in LLM_STOP_WORDS and len(w) > 2]
+
+
+def post_to_link_record(post, categories_map=None):
+    categories_map = categories_map or {}
+    title = clean_html_entities(post.get("title", {}).get("rendered", ""))
+    excerpt = html_to_text(post.get("excerpt", {}).get("rendered", ""))
+    link = post.get("link") or f"{SITE_URL}/{post.get('slug','').strip('/')}/"
+    slug = post.get("slug", "")
+    cat_names = [categories_map.get(cid, "") for cid in (post.get("categories", []) or []) if categories_map.get(cid)]
+    source_text = " ".join([title, excerpt, slug.replace("-", " "), " ".join(cat_names)])
+    return {
+        "id": post.get("id"),
+        "url": link,
+        "slug": slug,
+        "title": title,
+        "keywords": extract_keywords_from_title(title),
+        "tokens": tokenize_for_linking(source_text),
+        "categories": cat_names,
+        "content_html": post.get("content", {}).get("rendered", "")
+    }
+
+
+def suggest_internal_links_for_post(post, all_posts, categories_map=None, max_suggestions=5):
+    categories_map = categories_map or {}
+    current = post_to_link_record(post, categories_map)
+    current_tokens = set(current["tokens"])
+    suggestions = []
+
+    for candidate_post in all_posts:
+        if candidate_post.get("id") == post.get("id"):
+            continue
+        candidate = post_to_link_record(candidate_post, categories_map)
+
+        overlap = len(current_tokens.intersection(set(candidate["tokens"])))
+        title_sim = SequenceMatcher(None, current["title"].lower(), candidate["title"].lower()).ratio()
+        cat_overlap = len(set(current["categories"]).intersection(set(candidate["categories"])))
+        score = overlap * 3 + int(title_sim * 20) + cat_overlap * 5
+
+        anchor = " ".join(candidate["keywords"][:3]).strip() or candidate["title"]
+        if score > 6:
+            suggestions.append({
+                "target_id": candidate["id"],
+                "target_title": candidate["title"],
+                "target_url": candidate["url"],
+                "anchor_text": anchor[:80],
+                "score": score
+            })
+
+    suggestions = sorted(suggestions, key=lambda x: x["score"], reverse=True)
+    deduped = []
+    seen_urls = set()
+    for s in suggestions:
+        if s["target_url"] not in seen_urls:
+            deduped.append(s)
+            seen_urls.add(s["target_url"])
+        if len(deduped) >= max_suggestions:
+            break
+    return deduped
+
+
+def insert_internal_links(content_html, suggestions, max_links=3):
+    soup = BeautifulSoup(content_html or "", "html.parser")
+    paragraphs = soup.find_all("p")
+    inserted = 0
+
+    for suggestion in suggestions:
+        if inserted >= max_links:
+            break
+        anchor = suggestion["anchor_text"].strip()
+        target_url = suggestion["target_url"]
+
+        if not anchor or not target_url:
+            continue
+
+        for p in paragraphs:
+            p_html = str(p)
+            p_text = p.get_text(" ", strip=True)
+            if len(p_text) < 60:
+                continue
+            if target_url in p_html:
+                continue
+
+            anchor_regex = re.compile(rf"\b({re.escape(anchor)})\b", re.I)
+            if anchor_regex.search(p_text):
+                new_html = anchor_regex.sub(
+                    rf'<a href="{target_url}">\1</a>',
+                    p.decode_contents(),
+                    count=1
+                )
+                p.clear()
+                p.append(BeautifulSoup(new_html, "html.parser"))
+                inserted += 1
+                break
+
+    return str(soup), inserted
+
+
+# ──────────────────────────────────────────────────────────────
+# BACKLINK DISCOVERY
+# ──────────────────────────────────────────────────────────────
+
+def find_unlinked_mentions(query_brand=BRAND_NAME, domain=DOMAIN, count=20):
+    if not BING_API_KEY:
+        return []
+
+    endpoint = "https://api.bing.microsoft.com/v7.0/search"
+    query = f'"{query_brand}" -site:{domain}'
+    try:
+        r = safe_request(
+            "get",
+            endpoint,
+            headers={"Ocp-Apim-Subscription-Key": BING_API_KEY},
+            params={"q": query, "count": count, "textDecorations": False, "textFormat": "Raw"},
+            timeout=20,
+        )
+        if not r.ok:
+            return []
+
+        data = r.json()
+        values = data.get("webPages", {}).get("value", [])
+        rows = []
+        for item in values:
+            rows.append({
+                "name": item.get("name", ""),
+                "url": item.get("url", ""),
+                "snippet": item.get("snippet", ""),
+                "domain": urlparse(item.get("url", "")).netloc,
+                "brand_mentioned": query_brand.lower() in item.get("snippet", "").lower() or query_brand.lower() in item.get("name", "").lower(),
+            })
+        return rows
+    except Exception:
+        return []
+
+
+def score_backlink_targets(rows):
+    scored = []
+    for row in rows:
+        domain = row.get("domain", "")
+        snippet = (row.get("snippet", "") or "").lower()
+        url = row.get("url", "")
+        score = 0
+
+        if any(c in domain for c in [".org", ".edu", ".gov"]):
+            score += 25
+        if any(word in snippet for word in ["news", "report", "guide", "resource", "analysis", "coverage"]):
+            score += 20
+        if any(word in url.lower() for word in ["resources", "news", "blog", "local", "media"]):
+            score += 15
+        if row.get("brand_mentioned"):
+            score += 30
+        if domain and DOMAIN not in domain:
+            score += 10
+
+        row = dict(row)
+        row["pitch_score"] = min(score, 100)
+        scored.append(row)
+
+    return sorted(scored, key=lambda x: x["pitch_score"], reverse=True)
+
+
+# ──────────────────────────────────────────────────────────────
+# WORDPRESS FIXER
+# ──────────────────────────────────────────────────────────────
+
+def apply_seo_fixes(
+    post,
+    all_posts=None,
+    categories_map=None,
+    dry_run=True,
+    min_score_to_fix=80,
+    apply_schema=True,
+    apply_internal_links=False
+):
     pid = post["id"]
     raw_title = post["title"]["rendered"]
     slug = post["slug"]
@@ -418,7 +807,7 @@ def apply_seo_fixes(post, dry_run=True, min_score_to_fix=80):
 
     content_html, alt_updated, alt_count = add_alt_tags_to_images(content_html, keywords)
 
-    meta = post.get("meta", {})
+    meta = post.get("meta", {}) or {}
     meta = clean_duplicate_og_tags(meta)
 
     new_seo_title = generate_seo_title(clean_title)
@@ -441,6 +830,24 @@ def apply_seo_fixes(post, dry_run=True, min_score_to_fix=80):
     )
 
     perf = audit_page_performance(post_link)
+    internal_suggestions = []
+    internal_links_inserted = 0
+
+    if all_posts:
+        internal_suggestions = suggest_internal_links_for_post(post, all_posts, categories_map=categories_map, max_suggestions=5)
+
+    schema_obj = build_newsarticle_schema(
+        post,
+        meta_desc=new_meta_desc,
+        author_name=get_wp_author_name(post.get("author")),
+        categories_map=categories_map or {}
+    )
+
+    if apply_schema:
+        content_html = upsert_json_ld_schema(content_html, schema_obj)
+
+    if apply_internal_links and internal_suggestions:
+        content_html, internal_links_inserted = insert_internal_links(content_html, internal_suggestions, max_links=3)
 
     result = {
         "id": pid,
@@ -461,6 +868,9 @@ def apply_seo_fixes(post, dry_run=True, min_score_to_fix=80):
         "performance": perf,
         "changes_made": [],
         "dry_run": dry_run,
+        "internal_link_suggestions": internal_suggestions,
+        "internal_links_inserted": internal_links_inserted,
+        "schema_generated": bool(schema_obj),
     }
 
     if dry_run or score_before >= min_score_to_fix:
@@ -468,9 +878,14 @@ def apply_seo_fixes(post, dry_run=True, min_score_to_fix=80):
 
     changes = {}
 
-    if alt_updated:
+    if alt_updated or apply_schema or internal_links_inserted > 0:
         changes["content"] = content_html
-        result["changes_made"].append(f"Added ALT tags to {alt_count} image(s)")
+        if alt_updated:
+            result["changes_made"].append(f"Added ALT tags to {alt_count} image(s)")
+        if apply_schema:
+            result["changes_made"].append("Inserted/updated NewsArticle JSON-LD schema")
+        if internal_links_inserted > 0:
+            result["changes_made"].append(f"Inserted {internal_links_inserted} internal link(s)")
 
     if raw_title != clean_title:
         changes["title"] = clean_title
@@ -509,13 +924,12 @@ def apply_seo_fixes(post, dry_run=True, min_score_to_fix=80):
             json=changes
         )
         if r.ok:
-            result["changes_made"].append("✅ Saved to WordPress")
+            result["changes_made"].append("Saved to WordPress")
         else:
-            result["changes_made"].append(
-                f"❌ Save failed ({r.status_code}): {r.text[:200]}"
-            )
+            result["changes_made"].append(f"Save failed ({r.status_code}): {r.text[:200]}")
 
     return result
+
 
 def run_seo_optimizer(
     status="publish",
@@ -524,67 +938,37 @@ def run_seo_optimizer(
     dry_run=True,
     min_score_to_fix=80,
     report_file="seo_report.json",
+    apply_schema=True,
+    apply_internal_links=False,
 ):
-    print("=" * 60)
-    mode = "DRY RUN (audit only)" if dry_run else "LIVE (applying fixes)"
-    print(f"  WordPress SEO Optimizer — {mode}")
-    print(f"  Site  : {WP_URL}")
-    print(f"  Date  : {datetime.now().strftime('%Y-%m-%d %H:%M')}")
-    print("=" * 60)
-
-    print(f"\n📥 Fetching {status} posts from WordPress...")
     posts = get_all_posts(status=status, per_page=per_page, max_pages=max_pages)
-    print(f"\n✅ Loaded {len(posts)} posts\n")
-
     if not posts:
         return []
 
+    categories_map = get_wp_categories_map()
     report = []
-    needs_fix = 0
-    fixed = 0
 
-    for i, post in enumerate(posts, 1):
-        pid = post["id"]
-        title = clean_html_entities(post["title"]["rendered"])
-        print(f"[{i:>3}/{len(posts)}] ID {pid} — {title[:55]}")
-
-        result = apply_seo_fixes(post, dry_run=dry_run, min_score_to_fix=min_score)
-        score = result["score_before"]
-
-        if score < min_score_to_fix:
-            needs_fix += 1
-        print(f"        Score : {score}/100 | Words: {result['word_count']} | Issues: {len(result['issues'])}")
-        for issue in result["issues"]:
-            print(f"          • {issue}")
-
-        perf = result.get("performance", {})
-        if perf.get("perf_issues"):
-            print(f"        ⚡ Performance Issues:")
-            for pi in perf["perf_issues"]:
-                print(f"          • {pi}")
-        else:
-            if perf.get("response_time_s") is not None:
-                print(f"        ⚡ Perf OK — {perf['response_time_s']}s / {perf['html_size_kb']} KB / {perf['request_count']} requests")
-
-        if result.get("alt_tags_added", 0) > 0:
-            print(f"        🖼️  {result['alt_tags_added']} image(s) missing ALT attributes (fixed)")
-
-        if not dry_run and result["changes_made"]:
-            fixed += 1
-            print(f"        Applied: {', '.join(result['changes_made'])}")
-
+    for post in posts:
+        result = apply_seo_fixes(
+            post,
+            all_posts=posts,
+            categories_map=categories_map,
+            dry_run=dry_run,
+            min_score_to_fix=min_score_to_fix,
+            apply_schema=apply_schema,
+            apply_internal_links=apply_internal_links,
+        )
         report.append(result)
         time.sleep(REQUEST_DELAY)
-        print()
 
     with open(report_file, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
-    print(f"\n📄 Full report saved to: {report_file}")
 
     return report
 
+
 # ──────────────────────────────────────────────────────────────
-# ORIGINAL DASHBOARD HELPERS (AUDIT/SERP LOADERS)
+# REPORT FILE HELPERS
 # ──────────────────────────────────────────────────────────────
 
 def get_report_dates():
@@ -596,14 +980,39 @@ def get_report_dates():
                 dates.add(m.group(1))
     return sorted(dates, reverse=True)
 
+
 def load_csv(prefix, date):
     path = f"{OUTPUT_DIR}/{prefix}_{date}.csv"
     return pd.read_csv(path) if os.path.exists(path) else None
+
 
 def load_audit(date): return load_csv(f"{DOMAIN}_technical_audit", date)
 def load_serp(date): return load_csv("serp_tracking", date)
 def load_keywords(date): return load_csv(f"{DOMAIN}_page_keywords", date)
 def load_clusters(date): return load_csv(f"{DOMAIN}_keyword_clusters", date)
+def load_llm_visibility(date):
+    path = f"{OUTPUT_DIR}/{DOMAIN}_llm_visibility_{date}.csv"
+    return pd.read_csv(path) if os.path.exists(path) else None
+
+
+def get_fix_report_dates():
+    dates = set()
+    if os.path.exists(OUTPUT_DIR):
+        for f in os.listdir(OUTPUT_DIR):
+            m = re.search(rf"{re.escape(DOMAIN)}_fix_issues_(\d{{4}}-\d{{2}}-\d{{2}})\.csv", f)
+            if m:
+                dates.add(m.group(1))
+    return sorted(dates, reverse=True)
+
+
+def load_fix_issues(date):
+    path = f"{OUTPUT_DIR}/{DOMAIN}_fix_issues_{date}.csv"
+    return pd.read_csv(path) if os.path.exists(path) else None
+
+
+# ──────────────────────────────────────────────────────────────
+# SNAPSHOT / GROWTH HELPERS
+# ──────────────────────────────────────────────────────────────
 
 def compute_audit_snapshot(df):
     if df is None or len(df) == 0:
@@ -612,7 +1021,7 @@ def compute_audit_snapshot(df):
     broken = len(df[df["status"].astype(str).str.match(r"^[45E]")])
     with_issues = len(df[df["issues"].astype(str).str.len() > 0])
     clean = total - with_issues
-    avg_load = df["load_time_s"].dropna().mean()
+    avg_load = df["load_time_s"].dropna().mean() if "load_time_s" in df else None
     slow = len(df[df["load_time_s"].dropna() > 3.0]) if "load_time_s" in df else 0
     missing_title = len(df[df["title_length"] == 0]) if "title_length" in df else 0
     missing_meta = len(df[df["meta_desc_length"] == 0]) if "meta_desc_length" in df else 0
@@ -632,6 +1041,7 @@ def compute_audit_snapshot(df):
         "health_score": round((clean / total) * 100, 1) if total else 0,
     }
 
+
 def compute_serp_snapshot(df):
     if df is None or len(df) == 0:
         return None
@@ -644,6 +1054,7 @@ def compute_serp_snapshot(df):
         "not_ranked": int(pos.isna().sum()),
         "avg_position": round(pos.dropna().mean(), 1) if len(pos.dropna()) > 0 else None,
     }
+
 
 def load_all_snapshots():
     all_dates = get_report_dates()
@@ -661,30 +1072,9 @@ def load_all_snapshots():
     serp_df = pd.DataFrame(serp_rows).sort_values("date") if serp_rows else pd.DataFrame()
     return audit_df, serp_df
 
-def delta_str(new_val, old_val, higher_is_better=True, fmt="{:.0f}", suffix=""):
-    if old_val is None or new_val is None:
-        return "—", "kpi-delta-neu"
-    diff = new_val - old_val
-    if diff == 0:
-        return "No change", "kpi-delta-neu"
-    sign = "+" if diff > 0 else ""
-    label = f"{sign}{fmt.format(diff)}{suffix}"
-    if higher_is_better:
-        cls = "kpi-delta-pos" if diff > 0 else "kpi-delta-neg"
-    else:
-        cls = "kpi-delta-neg" if diff > 0 else "kpi-delta-pos"
-    return label, cls
-
-def trend_icon(new_val, old_val, higher_is_better=True):
-    if old_val is None or new_val is None or new_val == old_val:
-        return "→", "trend-flat", "FLAT"
-    improved = (new_val > old_val) == higher_is_better
-    if improved:
-        return "↑", "trend-up", "IMPROVED"
-    return "↓", "trend-down", "DECLINED"
 
 # ──────────────────────────────────────────────────────────────
-# FIX REPORT HELPERS (FOR ✅ Fixed Issues TAB)
+# SITE CRAWLER
 # ──────────────────────────────────────────────────────────────
 
 def crawl_site(start_url, max_pages=100, progress_bar=None, status_text=None):
@@ -694,20 +1084,26 @@ def crawl_site(start_url, max_pages=100, progress_bar=None, status_text=None):
 
     while queue and len(visited) < max_pages:
         url = queue.pop(0)
-        if url in visited: continue
+        if url in visited:
+            continue
         visited.add(url)
-        if progress_bar: progress_bar.progress(min(len(visited) / max_pages, 1.0))
-        if status_text: status_text.text(f"Crawling ({len(visited)}/{max_pages}): {url[:80]}")
+
+        if progress_bar:
+            progress_bar.progress(min(len(visited) / max_pages, 1.0))
+        if status_text:
+            status_text.text(f"Crawling ({len(visited)}/{max_pages}): {url[:90]}")
 
         try:
             t0 = time.time()
             resp = requests.get(url, headers=CRAWL_HEADERS, timeout=15, allow_redirects=True)
             load_time = round(time.time() - t0, 2)
         except Exception as e:
-            results.append({"url": url, "status": "ERROR", "load_time_s": None, "title": "", "title_length": 0,
-                            "meta_description": "", "meta_desc_length": 0, "h1_count": 0, "canonical": "",
-                            "noindex": False, "images_missing_alt": 0, "has_og_tags": False, "has_schema": False,
-                            "issues": f"Connection error: {e}"})
+            results.append({
+                "url": url, "status": "ERROR", "load_time_s": None, "title": "", "title_length": 0,
+                "meta_description": "", "meta_desc_length": 0, "h1_count": 0, "canonical": "",
+                "noindex": False, "images_missing_alt": 0, "has_og_tags": False, "has_schema": False,
+                "issues": f"Connection error: {e}"
+            })
             continue
 
         status = resp.status_code
@@ -715,38 +1111,54 @@ def crawl_site(start_url, max_pages=100, progress_bar=None, status_text=None):
 
         title_m = re.search(r"<title[^>]*>(.*?)</title>", content, re.I | re.S)
         title_text = re.sub(r"<[^>]+>", "", title_m.group(1)).strip() if title_m else ""
-        meta_m = (re.search(r'<meta[^>]+name=["\'"]description["\'"][^>]+content=["\'"]([^"\']*)', content, re.I) or
-                  re.search(r'<meta[^>]+content=["\'"]([^"\']*)["\'"][^>]+name=["\'"]description["\'"]', content, re.I))
+        meta_m = (
+            re.search(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']*)', content, re.I)
+            or re.search(r'<meta[^>]+content=["\']([^"\']*)["\'][^>]+name=["\']description["\']', content, re.I)
+        )
         meta_text = meta_m.group(1).strip() if meta_m else ""
         h1_count = len(re.findall(r"<h1[^>]*>", content, re.I))
-        canonical_m = re.search(r'<link[^>]+rel=["\'"]canonical["\'"][^>]+href=["\'"]([^"\']*)', content, re.I)
+        canonical_m = re.search(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']*)', content, re.I)
         canonical_u = canonical_m.group(1).strip() if canonical_m else ""
-        noindex = bool(re.search(r'content=["\'"][^"\']*noindex', content, re.I))
+        noindex = bool(re.search(r'content=["\'][^"\']*noindex', content, re.I))
         img_missing = len(re.findall(r'<img(?![^>]*\balt\s*=)[^>]*/?>', content, re.I))
-        has_og = bool(re.search(r'property=["\'"]og:', content, re.I))
+        has_og = bool(re.search(r'property=["\']og:', content, re.I))
         has_schema = bool(re.search(r'application/ld\+json', content, re.I))
 
         if status == 200:
-            for link in re.findall(r'href=["\'"]([^"\'#?][^"\']*)["\'"]', content, re.I):
+            for link in re.findall(r"""href=["']([^"'#?][^"']*)["']""", content, re.I):
                 full = urljoin(base, link)
-                if full.startswith(base) and full not in visited:
+                if full.startswith(base) and full not in visited and full not in queue:
                     queue.append(full)
 
         issues = []
-        if status >= 400: issues.append(f"HTTP {status}")
-        if not title_text: issues.append("Missing title")
-        elif len(title_text) < 30: issues.append(f"Title short ({len(title_text)})")
-        elif len(title_text) > 65: issues.append(f"Title long ({len(title_text)})")
-        if not meta_text: issues.append("Missing meta desc")
-        elif len(meta_text) < 70: issues.append(f"Meta short ({len(meta_text)})")
-        elif len(meta_text) > 160: issues.append(f"Meta long ({len(meta_text)})")
-        if h1_count == 0: issues.append("No H1")
-        elif h1_count > 1: issues.append(f"Multiple H1s ({h1_count})")
-        if load_time and load_time > 3.0: issues.append(f"Slow ({load_time}s)")
-        if noindex: issues.append("Noindexed")
-        if img_missing > 0: issues.append(f"{img_missing} img no alt")
-        if not has_og: issues.append("No OG tags")
-        if not has_schema: issues.append("No Schema")
+        if status >= 400:
+            issues.append(f"HTTP {status}")
+        if not title_text:
+            issues.append("Missing title")
+        elif len(title_text) < 30:
+            issues.append(f"Title short ({len(title_text)})")
+        elif len(title_text) > 65:
+            issues.append(f"Title long ({len(title_text)})")
+        if not meta_text:
+            issues.append("Missing meta desc")
+        elif len(meta_text) < 70:
+            issues.append(f"Meta short ({len(meta_text)})")
+        elif len(meta_text) > 160:
+            issues.append(f"Meta long ({len(meta_text)})")
+        if h1_count == 0:
+            issues.append("No H1")
+        elif h1_count > 1:
+            issues.append(f"Multiple H1s ({h1_count})")
+        if load_time and load_time > 3.0:
+            issues.append(f"Slow ({load_time}s)")
+        if noindex:
+            issues.append("Noindexed")
+        if img_missing > 0:
+            issues.append(f"{img_missing} img no alt")
+        if not has_og:
+            issues.append("No OG tags")
+        if not has_schema:
+            issues.append("No Schema")
 
         results.append({
             "url": url, "status": status, "load_time_s": load_time,
@@ -756,31 +1168,53 @@ def crawl_site(start_url, max_pages=100, progress_bar=None, status_text=None):
             "images_missing_alt": img_missing, "has_og_tags": has_og,
             "has_schema": has_schema, "issues": " | ".join(issues)
         })
-        time.sleep(0.3)
+        time.sleep(0.25)
+
     return results
 
-def get_fix_report_dates():
-    dates = set()
-    if os.path.exists(OUTPUT_DIR):
-        for f in os.listdir(OUTPUT_DIR):
-            m = re.search(rf"{re.escape(DOMAIN)}_fix_issues_(\d{{4}}-\d{{2}}-\d{{2}})\.csv", f)
-            if m:
-                dates.add(m.group(1))
-    return sorted(dates, reverse=True)
 
-def load_fix_issues(date: str):
-    path = f"{OUTPUT_DIR}/{DOMAIN}_fix_issues_{date}.csv"
-    return pd.read_csv(path) if os.path.exists(path) else None
+# ──────────────────────────────────────────────────────────────
+# CONTENT ANALYSIS
+# ──────────────────────────────────────────────────────────────
 
+def extract_page_keywords(url):
+    try:
+        r = safe_request("get", url, headers=CRAWL_HEADERS, timeout=15)
+        if not r.ok:
+            return {"url": url, "error": f"HTTP {r.status_code}"}
+
+        soup = BeautifulSoup(r.text, "html.parser")
+        title = clean_html_entities(soup.title.get_text(" ", strip=True)) if soup.title else ""
+        h1 = soup.find("h1").get_text(" ", strip=True) if soup.find("h1") else ""
+        h2s = " | ".join([h.get_text(" ", strip=True) for h in soup.find_all("h2")[:10]])
+
+        text = soup.get_text(" ", strip=True).lower()
+        text = re.sub(r"[^a-z0-9\s]", " ", text)
+        tokens = [w for w in text.split() if len(w) > 2 and w not in LLM_STOP_WORDS]
+
+        counts = Counter(tokens)
+        bigrams = Counter(
+            f"{tokens[i]} {tokens[i+1]}"
+            for i in range(len(tokens) - 1)
+            if tokens[i] != tokens[i+1]
+        )
+
+        return {
+            "url": url,
+            "title": title,
+            "h1": h1,
+            "h2s": h2s,
+            "top_words": counts.most_common(15),
+            "top_bigrams": bigrams.most_common(10),
+            "word_count": len(tokens),
+        }
+    except Exception as e:
+        return {"url": url, "error": str(e)}
 
 
 # ──────────────────────────────────────────────────────────────
-# LLM / GPT VISIBILITY HELPERS
+# LLM VISIBILITY
 # ──────────────────────────────────────────────────────────────
-
-LLM_REFERRER_REGEX = r"(chat\.openai\.com|chatgpt\.com|perplexity\.ai|claude\.ai|anthropic\.com)"
-LLM_SOURCE_REGEX = r"(chatgpt|openai|perplexity|claude|anthropic)"
-LLM_UTM_REGEX = r".*utm_source=(chatgpt|perplexity|claude).*"
 
 def classify_llm_source(source="", medium="", page_location="", referrer=""):
     raw = " | ".join([str(source or ""), str(medium or ""), str(page_location or ""), str(referrer or "")]).lower()
@@ -791,26 +1225,6 @@ def classify_llm_source(source="", medium="", page_location="", referrer=""):
     if any(x in raw for x in ["claude.ai", "anthropic.com", "utm_source=claude", "source=claude", "anthropic", "claude"]):
         return "Claude"
     return "Other LLM"
-
-LLM_BOT_SIGNATURES = {
-    "GPTBot": ["gptbot"],
-    "ChatGPT-User": ["chatgpt-user"],
-    "PerplexityBot": ["perplexitybot"],
-    "ClaudeBot": ["claudebot", "claude-web"],
-    "CCBot": ["ccbot"],
-    "Google-Extended": ["google-extended"],
-    "GoogleOther": ["googleother"],
-    "Amazonbot": ["amazonbot"],
-    "Bytespider": ["bytespider"],
-    "Meta-ExternalAgent": ["meta-externalagent"],
-    "OAI-SearchBot": ["oai-searchbot"],
-    "Applebot-Extended": ["applebot-extended"],
-}
-
-LLM_STOP_WORDS = SLUG_STOP_WORDS | {
-    "news", "briefing", "brief", "today", "update", "updates", "story", "stories",
-    "read", "guide", "local", "latest", "new", "post", "posts", "page"
-}
 
 
 def extract_page_text_features(html, url=""):
@@ -870,11 +1284,7 @@ def infer_candidate_queries_from_text(text, max_queries=15):
 
     prompts = []
     for phrase in ranked:
-        prompts.extend([
-            phrase,
-            f"what is {phrase}",
-            f"{phrase} explained",
-        ])
+        prompts.extend([phrase, f"what is {phrase}", f"{phrase} explained"])
         if len(prompts) >= max_queries:
             break
 
@@ -966,7 +1376,7 @@ def audit_llm_visibility(start_url, max_pages=25, progress_bar=None, status_text
                 "has_schema": False,
                 "has_og_tags": False,
                 "has_canonical": False,
-                "candidate_queries": [],
+                "candidate_queries": "",
                 "primary_keyword": "",
                 "issues": f"Connection error: {e}",
                 "llm_visibility_score": 0,
@@ -1032,12 +1442,12 @@ def audit_llm_visibility(start_url, max_pages=25, progress_bar=None, status_text
         results.append(row)
 
         if resp.status_code == 200:
-            for link in re.findall(r'href=["\']([^"\'#?][^"\']*)["\']', html, re.I):
+            for link in re.findall(r"""href=["']([^"'#?][^"']*)["']""", html, re.I):
                 full = urljoin(base, link)
                 if full.startswith(base) and full not in visited and full not in queue:
                     queue.append(full)
 
-        time.sleep(0.3)
+        time.sleep(0.25)
 
     return results
 
@@ -1066,10 +1476,6 @@ def save_llm_visibility_report(rows, report_date=None):
     pd.DataFrame(rows).to_csv(path, index=False)
     return path
 
-
-def load_llm_visibility(date):
-    path = f"{OUTPUT_DIR}/{DOMAIN}_llm_visibility_{date}.csv"
-    return pd.read_csv(path) if os.path.exists(path) else None
 
 # ──────────────────────────────────────────────────────────────
 # GA4 HELPERS
@@ -1101,6 +1507,7 @@ def fetch_ga4_data(days=7):
     except Exception as e:
         st.error(f"GA4 Error: {e}")
         return None
+
 
 def fetch_top_pages():
     try:
@@ -1216,6 +1623,7 @@ def summarize_llm_traffic(df):
     )
     return summary, pages
 
+
 # ──────────────────────────────────────────────────────────────
 # STREAMLIT UI
 # ──────────────────────────────────────────────────────────────
@@ -1251,6 +1659,7 @@ with st.sidebar:
         "📝 Content Analysis",
         "🔑 Keywords",
         "🤖 LLM Visibility",
+        "🔗 Backlink Tools",
         "⚡ Run New Scan",
         "🛠️ Fix Issues",
         "✅ Fixed Issues",
@@ -1261,17 +1670,144 @@ with st.sidebar:
     if not dates:
         st.info("No reports yet. Run a scan!")
     st.divider()
-    st.caption("SEO Automation Toolkit — Free Edition")
+    st.caption("SEO Automation Toolkit — Streamlit Edition")
+
 
 # ──────────────────────────────────────────────────────────────
 # PAGE ROUTING
 # ──────────────────────────────────────────────────────────────
 
+if page == "🏠 Overview":
+    st.markdown("# 🏠 SEO Performance Overview")
+    st.markdown(f"**{DOMAIN}** — Report for **{selected_date}**")
+    st.divider()
 
-if page == "🔍 Technical Audit":
+    audit_df = load_audit(selected_date)
+    serp_df = load_serp(selected_date)
+
+    if audit_df is not None:
+        total = len(audit_df)
+        broken = len(audit_df[audit_df["status"].astype(str).str.match(r"^[45E]")])
+        with_issues = len(audit_df[audit_df["issues"].astype(str).str.len() > 0])
+        clean = total - with_issues
+        avg_load = audit_df["load_time_s"].dropna().mean() if "load_time_s" in audit_df else None
+
+        c1, c2, c3, c4, c5 = st.columns(5)
+        c1.metric("Pages Crawled", total)
+        c2.metric("Clean Pages", clean, delta=f"{clean/max(total,1)*100:.0f}%")
+        c3.metric("Issues Found", with_issues)
+        c4.metric("Broken Pages", broken)
+        c5.metric("Avg Load Time", f"{avg_load:.2f}s" if pd.notna(avg_load) else "N/A")
+
+        st.divider()
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("### 📊 Issue Distribution")
+            issue_labels = []
+            for iss_str in audit_df["issues"].fillna(""):
+                for iss in str(iss_str).split(" | "):
+                    if iss.strip():
+                        issue_labels.append(iss.strip())
+            if issue_labels:
+                issue_counts = pd.Series(issue_labels).value_counts().head(10).reset_index()
+                issue_counts.columns = ["Issue", "Count"]
+                fig = px.pie(issue_counts, names="Issue", values="Count", hole=0.45)
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.success("No issues found.")
+
+        with col2:
+            st.markdown("### ⏱️ Load Times")
+            lt = audit_df["load_time_s"].dropna() if "load_time_s" in audit_df else pd.Series(dtype=float)
+            if len(lt) > 0:
+                fig = px.histogram(lt, nbins=20, labels={"value": "Load Time (s)"}, color_discrete_sequence=["#01696f"])
+                fig.add_vline(x=3.0, line_dash="dash", line_color="#da7101")
+                st.plotly_chart(fig, use_container_width=True)
+
+    if serp_df is not None and len(serp_df) > 0:
+        st.divider()
+        st.markdown("### 🏆 SERP Summary")
+        ss = serp_df[serp_df["site"] == DOMAIN] if "site" in serp_df.columns else serp_df
+        pos = pd.to_numeric(ss["our_position"], errors="coerce")
+        r1, r2, r3 = st.columns(3)
+        r1.metric("Top 3", int((pos <= 3).sum()))
+        r2.metric("Top 10", int((pos <= 10).sum()))
+        r3.metric("Not Ranked", int(pos.isna().sum()))
+
+    st.divider()
+    st.markdown("## 📊 Google Analytics (Live Traffic)")
+    ga_df = fetch_ga4_data()
+
+    if ga_df is not None and len(ga_df) > 0:
+        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"], title="Traffic Trend (Last 7 Days)")
+        st.plotly_chart(fig, use_container_width=True)
+
+        top_pages = fetch_top_pages()
+        st.markdown("## 🔥 Top Pages (Last 7 Days)")
+        if top_pages is not None and len(top_pages) > 0:
+            fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
+            fig.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig, use_container_width=True)
+            st.dataframe(top_pages, use_container_width=True)
+        else:
+            st.info("No GA4 top pages data available.")
+
+elif page == "📈 Growth Tracker":
+    st.markdown("# 📈 Growth Tracker")
+    st.markdown("Day-over-day and long-term trends across all scan history.")
+    st.divider()
+
+    all_dates = get_report_dates()
+    if len(all_dates) < 2:
+        st.info("You need at least 2 scans to track growth.")
+        st.stop()
+
+    audit_hist, serp_hist = load_all_snapshots()
+
+    col_a, col_b = st.columns(2)
+    with col_a:
+        date_new = st.selectbox("Compare (newer)", all_dates, index=0, key="d_new")
+    with col_b:
+        older_options = [d for d in all_dates if d < date_new]
+        date_old = st.selectbox("vs (older)", older_options, index=0, key="d_old") if older_options else None
+
+    if date_old is None:
+        st.warning("No older scan available.")
+        st.stop()
+
+    snap_new = compute_audit_snapshot(load_audit(date_new))
+    snap_old = compute_audit_snapshot(load_audit(date_old))
+    ssnap_new = compute_serp_snapshot(load_serp(date_new))
+    ssnap_old = compute_serp_snapshot(load_serp(date_old))
+
+    if snap_new and snap_old:
+        c1, c2, c3, c4, c5 = st.columns(5)
+        c1.metric("Health Score", snap_new["health_score"], delta=snap_new["health_score"] - snap_old["health_score"])
+        c2.metric("Pages", snap_new["total_pages"], delta=snap_new["total_pages"] - snap_old["total_pages"])
+        c3.metric("Issues", snap_new["pages_with_issues"], delta=snap_new["pages_with_issues"] - snap_old["pages_with_issues"])
+        c4.metric("Broken", snap_new["broken_pages"], delta=snap_new["broken_pages"] - snap_old["broken_pages"])
+        c5.metric("Avg Load", snap_new["avg_load_time"], delta=(snap_new["avg_load_time"] or 0) - (snap_old["avg_load_time"] or 0))
+
+    st.divider()
+
+    if not audit_hist.empty:
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=audit_hist["date"], y=audit_hist["health_score"], mode="lines+markers", name="Health Score"))
+        st.plotly_chart(fig, use_container_width=True)
+
+    if not serp_hist.empty:
+        fig = go.Figure()
+        for col in ["top3", "top10", "top20"]:
+            if col in serp_hist.columns:
+                fig.add_trace(go.Scatter(x=serp_hist["date"], y=serp_hist[col], mode="lines+markers", name=col))
+        st.plotly_chart(fig, use_container_width=True)
+
+elif page == "🔍 Technical Audit":
     st.markdown("# 🔍 Technical SEO Audit")
     st.divider()
     audit_df = load_audit(selected_date)
+
     if audit_df is not None:
         c1, c2, c3 = st.columns(3)
         with c1:
@@ -1297,664 +1833,16 @@ if page == "🔍 Technical Audit":
             "h1_count", "images_missing_alt", "has_og_tags", "has_schema", "issues"
         ] if c in df.columns]
         st.dataframe(df[cols], use_container_width=True, height=500)
-        st.download_button("📥 Download CSV", df.to_csv(index=False).encode(),
-                           f"audit_{selected_date}.csv", "text/csv")
 
-        st.divider()
-        st.markdown("### 🚨 Top Issues")
-        il = []
-        for _, row in df.iterrows():
-            for i in str(row.get("issues", "")).split(" | "):
-                if i.strip():
-                    il.append(i.strip())
-        if il:
-            idf = pd.Series(il).value_counts().head(10).reset_index()
-            idf.columns = ["Issue", "Count"]
-            st.dataframe(idf, use_container_width=True)
-    else:
-        st.warning("No data. Run a scan!")
-
-
-elif page == "🤖 LLM Visibility":
-    st.markdown("# 🤖 LLM Visibility")
-    st.caption("Estimate how clearly your pages can be interpreted and surfaced by GPTs/LLMs, and infer likely triggering queries.")
-    st.divider()
-
-    llm_df = load_llm_visibility(selected_date)
-
-    c1, c2 = st.columns([1, 1])
-    with c1:
-        scan_all = st.checkbox("Scan ALL pages (no limit)", value=False)
-        llm_max_pages = 99999 if scan_all else st.slider(
-            "Pages to scan for LLM visibility", 5, 500, 25, 25
-        )
-    with c2:
-        run_llm_scan = st.button("🚀 Run LLM Visibility Scan", type="primary", use_container_width=True)
-
-    if run_llm_scan:
-        progress = st.progress(0)
-        status = st.empty()
-        with st.spinner("Auditing site for LLM discoverability…"):
-            rows = audit_llm_visibility(SITE_URL, max_pages=llm_max_pages, progress_bar=progress, status_text=status)
-            saved_path = save_llm_visibility_report(rows)
-            llm_df = pd.DataFrame(rows)
-        progress.empty()
-        status.empty()
-        st.success(f"LLM visibility scan completed. Report saved to {saved_path}")
-
-    if llm_df is not None and len(llm_df) > 0:
-        top = llm_df.sort_values("llm_visibility_score", ascending=False)
-        m1, m2, m3, m4 = st.columns(4)
-        m1.metric("Pages scanned", int(len(llm_df)))
-        m2.metric("Avg visibility score", round(pd.to_numeric(llm_df["llm_visibility_score"], errors="coerce").mean(), 1))
-        m3.metric("Pages with llms.txt support", int(pd.to_numeric(llm_df["llms_txt_present"], errors="coerce").fillna(0).astype(bool).sum()))
-        m4.metric("Pages with weak signals", int(llm_df["issues"].astype(str).str.contains("Weak keyword/query signals|Missing", na=False).sum()))
-
-        st.divider()
-        st.markdown("### Top pages for LLM recognition")
-        show_cols = [
-            c for c in [
-                "url", "llm_visibility_score", "primary_keyword", "candidate_queries",
-                "has_schema", "has_og_tags", "has_canonical", "llms_txt_present", "issues"
-            ] if c in top.columns
-        ]
-        st.dataframe(top[show_cols], use_container_width=True, height=500)
         st.download_button(
-            "📥 Download LLM Visibility CSV",
-            top.to_csv(index=False).encode(),
-            f"{DOMAIN}_llm_visibility_{selected_date}.csv",
+            "📥 Download CSV",
+            df.to_csv(index=False).encode(),
+            f"audit_{selected_date}.csv",
             "text/csv"
         )
-
-        st.divider()
-        st.markdown("### Likely LLM trigger keywords")
-        kw = top[["url", "primary_keyword", "candidate_queries"]].copy()
-        kw = kw[kw["primary_keyword"].astype(str).str.len() > 0]
-        st.dataframe(kw.head(20), use_container_width=True)
-
-        st.divider()
-        st.markdown("### Attributed LLM traffic from GA4")
-        llm_traffic_df = fetch_llm_traffic(30)
-        llm_traffic_summary, llm_traffic_pages = summarize_llm_traffic(llm_traffic_df)
-        if llm_traffic_summary is not None and len(llm_traffic_summary) > 0:
-            st.dataframe(llm_traffic_summary, use_container_width=True)
-            if llm_traffic_pages is not None and len(llm_traffic_pages) > 0:
-                st.markdown("#### Top landing pages from ChatGPT, Perplexity, and Claude")
-                st.dataframe(llm_traffic_pages.head(25), use_container_width=True, height=320)
-        else:
-            st.info("GA4 does not currently show attributable ChatGPT / Perplexity / Claude traffic for the last 30 days. Referrers may be missing, so UTMs are recommended.")
-
-        st.divider()
-        st.markdown("### AI crawler log parser")
-        log_text = st.text_area("Paste access logs or analytics export lines here to detect LLM bots", height=180)
-        if st.button("Parse LLM Bots From Logs", use_container_width=True):
-            bot_df = detect_llm_bots_from_logs(log_text)
-            if bot_df.empty:
-                st.info("No known LLM/AI bot signatures found in the pasted log text.")
-            else:
-                st.success(f"Detected {len(bot_df)} matching log entries.")
-                st.dataframe(bot_df, use_container_width=True, height=250)
-                st.dataframe(bot_df["bot"].value_counts().reset_index().rename(columns={"index": "bot", "bot": "count"}), use_container_width=True)
     else:
-        st.info("No LLM visibility report found for this date yet. Run a scan first.")
+        st.warning("No technical audit data found.")
 
-elif page == "🛠️ Fix Issues":
-    st.markdown("# 🛠️ Fix SEO Issues (WordPress)")
-    st.markdown(
-        "This connects to your WordPress site via REST using credentials "
-        "and auto-fixes SEO issues. You can either:\n\n"
-        "- Run the CSV-driven fixer (latest Technical Audit CSV → WP fixes)\n"
-        "- Or run the original post-level autobot over all posts."
-    )
-    st.divider()
-
-    tab1, tab2 = st.tabs(["CSV-driven Fix (Recommended)", "Legacy Autobot"])
-
-    with tab1:
-        st.markdown("### CSV-driven Fix from Technical Audit")
-        st.write(
-            "Uses the latest Technical Audit CSV (`seo_reports/...technical_audit_YYYY-MM-DD.csv`), "
-            "maps URLs → WordPress posts, and fixes what it can (SEO title/meta, ALT text, slug)."
-        )
-        st.warning(
-            "Live changes:\n"
-            "- SEO titles & meta descriptions (Yoast + Rank Math)\n"
-            "- Image ALT attributes\n"
-            "- Slug cleanup\n\n"
-            "Make sure `WP_URL`, `WP_USER`, `WP_APP_PASSWORD` are set."
-        )
-
-        dry_run_csv = st.checkbox("Dry run (simulate only, no changes)", value=True)
-        if st.button("🚀 Run Fix Issues from Latest Audit", type="primary"):
-            with st.spinner("Running fix_from_audit against WordPress..."):
-                try:
-                    results = fix_from_audit(dry_run=dry_run_csv)
-                    if not results:
-                        st.info("No results returned (no audit or no applicable fixes).")
-                    else:
-                        df = pd.DataFrame(results)
-                        st.success(f"Completed. {df['fixed'].sum()} rows marked as fixed.")
-                        st.dataframe(df, use_container_width=True, height=500)
-                        st.download_button(
-                            "📥 Download Fix Report CSV",
-                            df.to_csv(index=False).encode(),
-                            "fix_issues_from_audit.csv",
-                            "text/csv",
-                        )
-                except Exception as e:
-                    st.error(f"Error while running CSV-driven fixer: {e}")
-
-    with tab2:
-        st.markdown("### Legacy WordPress SEO Autobot (Post-level)")
-        st.warning(
-            "**Live changes ahead**:\n\n"
-            "- Updates SEO titles and meta descriptions\n"
-            "- Cleans slugs\n"
-            "- Adds ALT attributes for images\n"
-            "- Normalizes Yoast / Rank Math meta\n\n"
-            "Make sure your `.env` has `WP_URL`, `WP_USER`, `WP_APP_PASSWORD`."
-        )
-
-        dry_run = st.checkbox("Dry run for legacy autobot (no changes)", value=True)
-        min_score = st.slider("Minimum SEO score to fix", 0, 100, 80, 5)
-        max_pages = st.slider("Max WordPress post pages to fetch", 1, 50, 10, 1)
-        per_page = st.slider("Posts per page (WordPress API)", 5, 50, 10, 5)
-        report_path = st.text_input("Legacy autobot report file", "seo_report.json")
-
-        only_from_audit = st.checkbox(
-            "Only target URLs that have issues in latest Technical Audit (status=200)",
-            value=False
-        )
-
-        audit_df = load_audit(selected_date) if only_from_audit else None
-
-        if st.button("🚀 Run Legacy WordPress SEO Auto-Optimizer", use_container_width=True):
-            with st.spinner("Running legacy WordPress SEO autobot… this may take a few minutes."):
-                try:
-                    results = []
-                    if only_from_audit and audit_df is not None and len(audit_df) > 0:
-                        target_urls = audit_df[
-                            (audit_df["status"].astype(str) == "200") &
-                            (audit_df["issues"].astype(str).str.len() > 0)
-                        ]["url"].tolist()
-                        st.write(f"Targeting {len(target_urls)} URLs from Technical Audit…")
-
-                        for url in target_urls:
-                            slug = url.rstrip("/").split("/")[-1]
-                            resp = safe_request(
-                                "get",
-                                f"{API_BASE}/posts",
-                                params={"slug": slug, "context": "edit"},
-                                headers=_auth_header(),
-                            )
-                            if resp.ok and resp.json():
-                                post = resp.json()[0]
-                                res = apply_seo_fixes(post, dry_run=dry_run, min_score_to_fix=min_score)
-                                if res:
-                                    results.append(res)
-                            time.sleep(REQUEST_DELAY)
-
-                        with open(report_path, "w", encoding="utf-8") as f:
-                            json.dump(results, f, indent=2, ensure_ascii=False)
-                    else:
-                        results = run_seo_optimizer(
-                            status="publish",
-                            per_page=per_page,
-                            max_pages=max_pages,
-                            dry_run=dry_run,
-                            min_score_to_fix=min_score,
-                            report_file=report_path,
-                        )
-
-                    if results:
-                        df = pd.DataFrame([
-                            {
-                                "id": r["id"],
-                                "title": r["title"],
-                                "score_before": r["score_before"],
-                                "score_after": r["score_after"],
-                                "alt_tags_added": r.get("alt_tags_added", 0),
-                                "perf_issues": " | ".join(r.get("performance", {}).get("perf_issues", [])),
-                                "changes": ", ".join(r.get("changes_made", [])),
-                            }
-                            for r in results
-                        ])
-                        st.success("Completed. See summary below.")
-                        st.dataframe(df, use_container_width=True)
-                        st.download_button(
-                            "📥 Download legacy fix report CSV",
-                            df.to_csv(index=False).encode(),
-                            "wp_autobot_fix_report.csv",
-                            "text/csv"
-                        )
-                    else:
-                        st.info("No posts were processed.")
-                except Exception as e:
-                    st.error(f"Error while running WordPress autobot: {e}")
-elif page == "🏠 Overview":
-    st.markdown("# 🏠 SEO Performance Overview")
-    st.markdown(f"**{DOMAIN}** — Report for **{selected_date}**")
-    st.divider()
-    audit_df = load_audit(selected_date)
-    serp_df  = load_serp(selected_date)
-
-    if audit_df is not None:
-        total       = len(audit_df)
-        broken      = len(audit_df[audit_df["status"].astype(str).str.match(r"^[45E]")])
-        with_issues = len(audit_df[audit_df["issues"].astype(str).str.len() > 0])
-        clean       = total - with_issues
-        avg_load    = audit_df["load_time_s"].dropna().mean()
-
-        c1, c2, c3, c4, c5 = st.columns(5)
-        c1.metric("Pages Crawled", total)
-        c2.metric("Clean Pages", clean, delta=f"{clean/max(total,1)*100:.0f}%")
-        c3.metric("Issues Found", with_issues, delta=f"-{with_issues}" if with_issues else "0", delta_color="inverse")
-        c4.metric("Broken Pages", broken, delta=f"-{broken}" if broken else "0", delta_color="inverse")
-        c5.metric("Avg Load Time", f"{avg_load:.2f}s" if pd.notna(avg_load) else "N/A")
-        st.divider()
-
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("### 📊 Issue Distribution")
-            if with_issues > 0:
-                cats = defaultdict(int)
-                for iss_str in audit_df["issues"].dropna():
-                    for iss in str(iss_str).split(" | "):
-                        iss = iss.strip()
-                        if not iss: continue
-                        il = iss.lower()
-                        if "title" in il: cats["Title Issues"] += 1
-                        elif "meta" in il: cats["Meta Description"] += 1
-                        elif "h1" in il: cats["H1 Issues"] += 1
-                        elif "slow" in il: cats["Slow Pages"] += 1
-                        elif "alt" in il: cats["Missing Alt"] += 1
-                        elif "og" in il: cats["Missing OG"] += 1
-                        elif "schema" in il: cats["Missing Schema"] += 1
-                        elif "http" in il: cats["HTTP Errors"] += 1
-                        else: cats["Other"] += 1
-                fig = px.pie(names=list(cats.keys()), values=list(cats.values()),
-                             color_discrete_sequence=px.colors.qualitative.Set2, hole=0.4)
-                fig.update_layout(margin=dict(t=20, b=20, l=20, r=20), height=350)
-                st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.success("No issues! 🎉")
-
-        with col2:
-            st.markdown("### ⏱️ Load Times")
-            lt = audit_df["load_time_s"].dropna()
-            if len(lt) > 0:
-                fig = px.histogram(lt, nbins=20, labels={"value": "Load Time (s)"},
-                                   color_discrete_sequence=["#01696f"])
-                fig.add_vline(x=3.0, line_dash="dash", line_color="#da7101",
-                              annotation_text="3s threshold")
-                fig.update_layout(margin=dict(t=20, b=20), height=350, showlegend=False)
-                st.plotly_chart(fig, use_container_width=True)
-
-        st.markdown("### 🔢 HTTP Status Codes")
-        sc = audit_df["status"].astype(str).value_counts().reset_index()
-        sc.columns = ["Status", "Count"]
-        fig = px.bar(sc, x="Status", y="Count", color_discrete_sequence=["#01696f"])
-        fig.update_layout(margin=dict(t=20, b=20), height=250)
-        st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.warning("No audit data. Run a scan from ⚡ Run New Scan.")
-
-    if serp_df is not None and len(serp_df) > 0:
-        st.divider()
-        st.markdown("### 🏆 SERP Summary")
-        ss = serp_df[serp_df["site"] == DOMAIN] if "site" in serp_df.columns else serp_df
-        if len(ss) > 0:
-            pos = pd.to_numeric(ss["our_position"], errors="coerce")
-            r1, r2, r3 = st.columns(3)
-            r1.metric("Top 3", int((pos <= 3).sum()))
-            r2.metric("Top 10", int((pos <= 10).sum()))
-            r3.metric("Not Ranked", int(pos.isna().sum()))
-    st.divider()
-    st.markdown("## 📊 Google Analytics (Live Traffic)")
-
-    ga_df = fetch_ga4_data()
-
-    if ga_df is not None and len(ga_df) > 0:
-        c1, c2, c3 = st.columns(3)
-
-        st.divider()
-        st.markdown("### 🤖 Bot vs Real Traffic")
-
-        total_users = ga_df["users"].sum()
-
-        # Simulated split
-        real_users = int(total_users * 0.0476)
-        bot_users = total_users - real_users
-
-        c1, c2 = st.columns(2)
-        c1.metric("👤 Real Users", real_users)
-        c2.metric("🤖 Bot Traffic", bot_users)
-
-        # # Pie chart
-        traffic_df = pd.DataFrame({
-            "Type": ["Real Users", "Bot Traffic"],
-            "Count": [real_users, bot_users]
-        })
-
-        fig_bot = px.pie(
-            traffic_df,
-            names="Type",
-            values="Count",
-            title="Traffic Composition",
-            hole=0.4
-        )
-        fig_bot.update_traces(
-            textinfo="label+value",   # <-- this is the key change
-            hovertemplate="%{label}: %{value}"  # clean hover
-        )
-        st.plotly_chart(fig_bot, use_container_width=True)
-
-        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"],
-                    title="Traffic Trend (Last 7 Days)")
-        st.plotly_chart(fig, use_container_width=True)
-    
-    st.divider()
-    st.markdown("## 🔥 Top Pages (Last 7 Days)")
-
-    top_pages = fetch_top_pages()
-
-    if top_pages is not None and len(top_pages) > 0:
-        fig = px.bar(top_pages, x="page", y="views",
-                    title="Top Performing Pages",
-                    color_discrete_sequence=["#01696f"])
-        fig.update_layout(xaxis_tickangle=-45, height=350)
-        st.plotly_chart(fig, use_container_width=True)
-
-        st.dataframe(top_pages, use_container_width=True)
-    else:
-        st.info("No GA4 top pages data available.")
-
-
-# ═══════════════════════════════════════
-# PAGE: GROWTH TRACKER  ← NEW
-# ═══════════════════════════════════════
-elif page == "📈 Growth Tracker":
-    st.markdown("# 📈 Growth Tracker")
-    st.markdown("Day-over-day and long-term trends across all scan history.")
-    st.divider()
-
-    all_dates = get_report_dates()
-
-    if len(all_dates) < 2:
-        st.info("📭 You need **at least 2 scans** to track growth. Run another scan from ⚡ Run New Scan!")
-        st.stop()
-
-    audit_hist, serp_hist = load_all_snapshots()
-
-    # ── Compare selector ──────────────────────────────────
-    col_a, col_b = st.columns(2)
-    with col_a:
-        date_new = st.selectbox("Compare (newer)", all_dates, index=0, key="d_new")
-    with col_b:
-        older_options = [d for d in all_dates if d < date_new]
-        date_old = st.selectbox("vs (older)", older_options, index=0, key="d_old") if older_options else None
-
-    if date_old is None:
-        st.warning("No older scan available for comparison.")
-        st.stop()
-
-    snap_new = compute_audit_snapshot(load_audit(date_new))
-    snap_old = compute_audit_snapshot(load_audit(date_old))
-    ssnap_new = compute_serp_snapshot(load_serp(date_new))
-    ssnap_old = compute_serp_snapshot(load_serp(date_old))
-
-    days_apart = (datetime.strptime(date_new, "%Y-%m-%d") - datetime.strptime(date_old, "%Y-%m-%d")).days
-
-    st.markdown(f"#### Comparing **{date_new}** vs **{date_old}** *(gap: {days_apart} day{'s' if days_apart!=1 else ''})*")
-    st.divider()
-
-    # ── KPI comparison cards ──────────────────────────────
-    if snap_new:
-        st.markdown("### 🏥 Site Health")
-        k1, k2, k3, k4, k5 = st.columns(5)
-
-        def render_kpi(col, label, new_val, old_val, higher_better=True, fmt="{:.0f}", suffix=""):
-            d_str, d_cls = delta_str(new_val, old_val, higher_better, fmt, suffix)
-            icon, badge_cls, badge_lbl = trend_icon(new_val, old_val, higher_better)
-            display = fmt.format(new_val) + suffix if new_val is not None else "—"
-            col.metric(label, display, delta=d_str if d_str != "—" else None,
-                       delta_color="normal" if higher_better else "inverse")
-
-        render_kpi(k1, "Total Pages",      snap_new["total_pages"],      snap_old and snap_old["total_pages"],      True,  "{:.0f}")
-        render_kpi(k2, "Health Score",     snap_new["health_score"],     snap_old and snap_old["health_score"],     True,  "{:.1f}", "%")
-        render_kpi(k3, "Pages w/ Issues",  snap_new["pages_with_issues"],snap_old and snap_old["pages_with_issues"],False, "{:.0f}")
-        render_kpi(k4, "Broken Pages",     snap_new["broken_pages"],     snap_old and snap_old["broken_pages"],     False, "{:.0f}")
-        render_kpi(k5, "Avg Load Time",    snap_new["avg_load_time"],    snap_old and snap_old["avg_load_time"],    False, "{:.2f}", "s")
-
-        st.divider()
-
-        # detailed issue comparison
-        st.markdown("### 🔬 Issue-by-Issue Change")
-        issue_fields = [
-            ("Missing Title",    "missing_title",    False),
-            ("Missing Meta",     "missing_meta",     False),
-            ("No Schema",        "no_schema",        False),
-            ("No OG Tags",       "no_og",            False),
-            ("Slow Pages (>3s)", "slow_pages",       False),
-        ]
-        cols = st.columns(len(issue_fields))
-        for col, (label, field, hb) in zip(cols, issue_fields):
-            nv = snap_new.get(field)
-            ov = snap_old.get(field) if snap_old else None
-            render_kpi(col, label, nv, ov, hb, "{:.0f}")
-
-    if ssnap_new:
-        st.divider()
-        st.markdown("### 🏆 SERP Rankings Change")
-        s1, s2, s3, s4, s5 = st.columns(5)
-        render_kpi(s1, "Top 3 Keywords",  ssnap_new["top3"],         ssnap_old and ssnap_old["top3"],         True,  "{:.0f}")
-        render_kpi(s2, "Top 10 Keywords", ssnap_new["top10"],        ssnap_old and ssnap_old["top10"],        True,  "{:.0f}")
-        render_kpi(s3, "Top 20 Keywords", ssnap_new["top20"],        ssnap_old and ssnap_old["top20"],        True,  "{:.0f}")
-        render_kpi(s4, "Not Ranked",      ssnap_new["not_ranked"],   ssnap_old and ssnap_old["not_ranked"],   False, "{:.0f}")
-        render_kpi(s5, "Avg Position",    ssnap_new["avg_position"], ssnap_old and ssnap_old["avg_position"], False, "{:.1f}")
-
-    st.divider()
-
-    # ── Historical trend charts ────────────────────────────
-    st.markdown("### 📊 Long-Term Trends (All Scans)")
-
-    if not audit_hist.empty:
-        tab1, tab2, tab3, tab4 = st.tabs(["Health Score", "Page Count & Issues", "Load Time", "SERP Positions"])
-
-        with tab1:
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(
-                x=audit_hist["date"], y=audit_hist["health_score"],
-                mode="lines+markers", name="Health Score %",
-                line=dict(color="#48bb78", width=2.5),
-                marker=dict(size=7, color="#48bb78"),
-                fill="tozeroy", fillcolor="rgba(72,187,120,0.08)"
-            ))
-            fig.update_layout(
-                yaxis=dict(title="Health Score (%)", range=[0, 105]),
-                xaxis=dict(title="Scan Date"),
-                height=360, margin=dict(t=20, b=40),
-                plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)"
-            )
-            fig.add_hrect(y0=90, y1=105, fillcolor="rgba(72,187,120,0.05)",
-                          line_width=0, annotation_text="Target ≥ 90%", annotation_position="top left")
-            st.plotly_chart(fig, use_container_width=True)
-
-        with tab2:
-            fig = go.Figure()
-            fig.add_trace(go.Bar(
-                x=audit_hist["date"], y=audit_hist["total_pages"],
-                name="Total Pages", marker_color="#4299e1", opacity=0.8
-            ))
-            fig.add_trace(go.Scatter(
-                x=audit_hist["date"], y=audit_hist["pages_with_issues"],
-                mode="lines+markers", name="Pages w/ Issues",
-                line=dict(color="#fc8181", width=2), marker=dict(size=6),
-                yaxis="y2"
-            ))
-            fig.update_layout(
-                yaxis=dict(title="Total Pages"),
-                yaxis2=dict(title="Issues", overlaying="y", side="right"),
-                height=360, margin=dict(t=20, b=40), legend=dict(orientation="h"),
-                plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)"
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-        with tab3:
-            fig = go.Figure()
-            fig.add_trace(go.Scatter(
-                x=audit_hist["date"], y=audit_hist["avg_load_time"],
-                mode="lines+markers", name="Avg Load Time (s)",
-                line=dict(color="#ed8936", width=2.5),
-                marker=dict(size=7),
-                fill="tozeroy", fillcolor="rgba(237,137,54,0.08)"
-            ))
-            fig.add_hrect(y0=0, y1=3.0, fillcolor="rgba(72,187,120,0.05)", line_width=0,
-                          annotation_text="Under 3s ✓", annotation_position="top left")
-            fig.add_hline(y=3.0, line_dash="dash", line_color="#fc8181",
-                          annotation_text="3s threshold")
-            fig.update_layout(
-                yaxis=dict(title="Seconds"),
-                height=360, margin=dict(t=20, b=40),
-                plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)"
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-        with tab4:
-            if not serp_hist.empty:
-                fig = go.Figure()
-                for col, color, name in [
-                    ("top3",  "#48bb78", "Top 3"),
-                    ("top10", "#4299e1", "Top 10"),
-                    ("top20", "#9f7aea", "Top 20"),
-                ]:
-                    if col in serp_hist.columns:
-                        fig.add_trace(go.Scatter(
-                            x=serp_hist["date"], y=serp_hist[col],
-                            mode="lines+markers", name=name,
-                            line=dict(color=color, width=2),
-                            marker=dict(size=6)
-                        ))
-                fig.update_layout(
-                    yaxis=dict(title="Keywords Count"),
-                    height=360, margin=dict(t=20, b=40), legend=dict(orientation="h"),
-                    plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)"
-                )
-                st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.info("No SERP data yet.")
-
-    st.divider()
-
-    # ── Per-keyword position history ──────────────────────
-    st.markdown("### 🔑 Keyword Position History")
-    all_kw_rows = []
-    for d in all_dates:
-        sdf = load_serp(d)
-        if sdf is not None:
-            for _, r in sdf.iterrows():
-                site_val = r.get("site", DOMAIN)
-                if str(site_val) == DOMAIN:
-                    p = pd.to_numeric(r.get("our_position"), errors="coerce")
-                    if pd.notna(p):
-                        all_kw_rows.append({"date": d, "keyword": r["keyword"], "position": p})
-
-    if all_kw_rows:
-        kw_df = pd.DataFrame(all_kw_rows)
-        selected_kw = st.multiselect(
-            "Filter keywords",
-            sorted(kw_df["keyword"].unique()),
-            default=list(kw_df["keyword"].unique())[:5]
-        )
-        if selected_kw:
-            filtered = kw_df[kw_df["keyword"].isin(selected_kw)]
-            fig = px.line(filtered, x="date", y="position", color="keyword",
-                          markers=True, color_discrete_sequence=px.colors.qualitative.Set2)
-            fig.update_layout(
-                yaxis=dict(autorange="reversed", title="Position (lower = better)"),
-                height=420, legend=dict(orientation="h"),
-                plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)"
-            )
-            fig.add_hrect(y0=1, y1=3, fillcolor="rgba(72,187,120,0.08)",
-                          line_width=0, annotation_text="Top 3", annotation_position="top right")
-            fig.add_hrect(y0=4, y1=10, fillcolor="rgba(66,153,225,0.05)",
-                          line_width=0, annotation_text="Top 10", annotation_position="top right")
-            st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.info("No keyword tracking data found yet.")
-
-    st.divider()
-
-    # ── Scan history log ──────────────────────────────────
-    st.markdown("### 🗓️ Scan History Log")
-    log_rows = []
-    for d in all_dates:
-        snap = compute_audit_snapshot(load_audit(d))
-        ssnap = compute_serp_snapshot(load_serp(d))
-        log_rows.append({
-            "Date": d,
-            "Pages": snap["total_pages"]   if snap else "—",
-            "Health %": snap["health_score"]  if snap else "—",
-            "Issues": snap["pages_with_issues"] if snap else "—",
-            "Broken": snap["broken_pages"]  if snap else "—",
-            "Avg Load (s)": snap["avg_load_time"] if snap else "—",
-            "Top 10 KWs": ssnap["top10"] if ssnap else "—",
-            "Avg SERP Pos": ssnap["avg_position"] if ssnap else "—",
-        })
-    log_df = pd.DataFrame(log_rows)
-    st.dataframe(log_df, use_container_width=True, hide_index=True)
-    st.download_button(
-        "📥 Export Growth History CSV",
-        log_df.to_csv(index=False).encode(),
-        "seo_growth_history.csv",
-        "text/csv"
-    )
-
-
-# ═══════════════════════════════════════
-# PAGE: TECHNICAL AUDIT
-# ═══════════════════════════════════════
-elif page == "🔍 Technical Audit":
-    st.markdown("# 🔍 Technical SEO Audit")
-    st.divider()
-    audit_df = load_audit(selected_date)
-    if audit_df is not None:
-        c1, c2, c3 = st.columns(3)
-        with c1: filt   = st.selectbox("Filter", ["All", "With Issues", "Clean"])
-        with c2: search = st.text_input("Search URL")
-        with c3: statuses = st.multiselect("Status", sorted(audit_df["status"].astype(str).unique()))
-
-        df = audit_df.copy()
-        if filt == "With Issues":  df = df[df["issues"].astype(str).str.len() > 0]
-        elif filt == "Clean":      df = df[(df["issues"].isna()) | (df["issues"].astype(str).str.len() == 0)]
-        if statuses: df = df[df["status"].astype(str).isin(statuses)]
-        if search:   df = df[df["url"].str.contains(search, case=False, na=False)]
-
-        st.markdown(f"**{len(df)} of {len(audit_df)} pages**")
-        cols = [c for c in ["url", "status", "load_time_s", "title_length", "meta_desc_length",
-                             "h1_count", "images_missing_alt", "has_og_tags", "has_schema", "issues"]
-                if c in df.columns]
-        st.dataframe(df[cols], use_container_width=True, height=500)
-        st.download_button("📥 Download CSV", df.to_csv(index=False).encode(),
-                           f"audit_{selected_date}.csv", "text/csv")
-
-        st.divider()
-        st.markdown("### 🚨 Top Issues")
-        il = []
-        for _, row in df.iterrows():
-            for i in str(row.get("issues", "")).split(" | "):
-                if i.strip(): il.append(i.strip())
-        if il:
-            idf = pd.Series(il).value_counts().head(10).reset_index()
-            idf.columns = ["Issue", "Count"]
-            st.dataframe(idf, use_container_width=True)
-    else:
-        st.warning("No data. Run a scan!")
-
-
-# ═══════════════════════════════════════
-# PAGE: SERP
-# ═══════════════════════════════════════
 elif page == "🏆 SERP Rankings":
     st.markdown("# 🏆 SERP Rankings")
     st.divider()
@@ -1965,36 +1853,37 @@ elif page == "🏆 SERP Rankings":
         cd["our_position"] = pd.to_numeric(cd["our_position"], errors="coerce")
         cd = cd.dropna()
         if len(cd) > 0:
-            fig = px.bar(cd, x="keyword", y="our_position", color="our_position",
-                         color_continuous_scale=["#437a22", "#da7101", "#a12c7b"], range_color=[1, 20])
-            fig.update_layout(yaxis=dict(autorange="reversed", title="Position"),
-                              xaxis_tickangle=-45, height=400)
+            fig = px.bar(cd, x="keyword", y="our_position", color="our_position", range_color=[1, 20])
+            fig.update_layout(yaxis=dict(autorange="reversed"), xaxis_tickangle=-45)
             st.plotly_chart(fig, use_container_width=True)
         st.dataframe(ss, use_container_width=True)
-
-        all_dates = get_report_dates()
-        if len(all_dates) > 1:
-            st.divider()
-            st.markdown("### 📈 Trends")
-            rows = []
-            for d in all_dates[:30]:
-                sdf = load_serp(d)
-                if sdf is not None:
-                    for _, r in sdf.iterrows():
-                        p = pd.to_numeric(r.get("our_position"), errors="coerce")
-                        if pd.notna(p):
-                            rows.append({"date": d, "keyword": r["keyword"], "position": p})
-            if rows:
-                fig = px.line(pd.DataFrame(rows), x="date", y="position", color="keyword", markers=True)
-                fig.update_layout(yaxis=dict(autorange="reversed"), height=400)
-                st.plotly_chart(fig, use_container_width=True)
     else:
-        st.warning("No SERP data.")
+        st.warning("No SERP data found.")
 
+elif page == "📊 Traffic Analytics":
+    st.markdown("# 📊 Traffic Analytics")
+    st.markdown("Live data from GA4")
+    st.divider()
 
-# ═══════════════════════════════════════
-# PAGE: CONTENT
-# ═══════════════════════════════════════
+    ga_df = fetch_ga4_data()
+    if ga_df is not None and len(ga_df) > 0:
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Users (7d)", ga_df["users"].sum())
+        c2.metric("Sessions (7d)", ga_df["sessions"].sum())
+        c3.metric("Pageviews (7d)", ga_df["pageviews"].sum())
+
+        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"])
+        st.plotly_chart(fig, use_container_width=True)
+
+        top_pages = fetch_top_pages()
+        if top_pages is not None and len(top_pages) > 0:
+            fig2 = px.bar(top_pages, x="page", y="views")
+            fig2.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig2, use_container_width=True)
+            st.dataframe(top_pages, use_container_width=True)
+    else:
+        st.warning("No Google Analytics data found.")
+
 elif page == "📝 Content Analysis":
     st.markdown("# 📝 Content Analysis")
     st.divider()
@@ -2004,116 +1893,139 @@ elif page == "📝 Content Analysis":
         c1.metric("Pages", len(kw_df))
         c2.metric("Avg Words", f"{kw_df['word_count'].mean():.0f}" if "word_count" in kw_df else "N/A")
         c3.metric("Total Words", f"{kw_df['word_count'].sum():,}" if "word_count" in kw_df else "N/A")
-        if "word_count" in kw_df.columns:
-            fig = px.bar(kw_df.head(20), x="url", y="word_count", color_discrete_sequence=["#01696f"])
-            fig.update_layout(xaxis_tickangle=-45, height=350, margin=dict(b=150))
-            st.plotly_chart(fig, use_container_width=True)
-        st.dataframe(kw_df, use_container_width=True, height=400)
+        st.dataframe(kw_df, use_container_width=True, height=450)
     else:
-        st.warning("No content data.")
+        st.warning("No content analysis data found.")
 
-
-# ═══════════════════════════════════════
-# PAGE: KEYWORDS
-# ═══════════════════════════════════════
 elif page == "🔑 Keywords":
     st.markdown("# 🔑 Keyword Clusters")
     st.divider()
     cl = load_clusters(selected_date)
     if cl is not None and len(cl) > 0:
-        fig = px.treemap(cl.head(15), path=["cluster"], values="keyword_count",
-                         color="keyword_count", color_continuous_scale="Teal")
-        fig.update_layout(height=400, margin=dict(t=20, b=20))
+        fig = px.treemap(cl.head(15), path=["cluster"], values="keyword_count", color="keyword_count")
         st.plotly_chart(fig, use_container_width=True)
         st.dataframe(cl, use_container_width=True)
     else:
-        st.warning("No keyword data.")
+        st.warning("No keyword cluster data found.")
 
-elif page == "📊 Traffic Analytics":
-    st.markdown("# 📊 Traffic Analytics")
-    st.markdown("Live data from Google Analytics (GA4)")
+elif page == "🤖 LLM Visibility":
+    st.markdown("# 🤖 LLM Visibility")
+    st.caption("Estimate how clearly your pages can be interpreted by GPTs and LLMs.")
     st.divider()
 
-    ga_df = fetch_ga4_data()
+    llm_df = load_llm_visibility(selected_date)
 
-    if ga_df is not None and len(ga_df) > 0:
-        # KPIs
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Users (7d)", ga_df["users"].sum())
-        c2.metric("Sessions (7d)", ga_df["sessions"].sum())
-        c3.metric("Pageviews (7d)", ga_df["pageviews"].sum())
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        scan_all = st.checkbox("Scan ALL pages (no limit)", value=False)
+        llm_max_pages = 99999 if scan_all else st.slider("Pages to scan", 5, 500, 25, 25)
+    with c2:
+        run_llm_scan = st.button("🚀 Run LLM Visibility Scan", type="primary", use_container_width=True)
 
-        st.divider()
+    if run_llm_scan:
+        progress = st.progress(0)
+        status = st.empty()
+        with st.spinner("Auditing LLM discoverability..."):
+            rows = audit_llm_visibility(SITE_URL, max_pages=llm_max_pages, progress_bar=progress, status_text=status)
+            saved_path = save_llm_visibility_report(rows)
+            llm_df = pd.DataFrame(rows)
+        progress.empty()
+        status.empty()
+        st.success(f"LLM visibility scan completed. Saved to {saved_path}")
 
-        # Traffic trend
-        st.markdown("### 📈 Traffic Trend")
-        fig = px.line(
-            ga_df,
-            x="date",
-            y=["users", "sessions", "pageviews"],
-        )
-        st.plotly_chart(fig, use_container_width=True)
+    if llm_df is not None and len(llm_df) > 0:
+        top = llm_df.sort_values("llm_visibility_score", ascending=False)
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Pages scanned", int(len(llm_df)))
+        m2.metric("Avg score", round(pd.to_numeric(llm_df["llm_visibility_score"], errors="coerce").mean(), 1))
+        m3.metric("Pages with llms.txt support", int(pd.to_numeric(llm_df["llms_txt_present"], errors="coerce").fillna(0).astype(bool).sum()))
+        m4.metric("Pages with weak signals", int(llm_df["issues"].astype(str).str.contains("Weak keyword/query signals|Missing", na=False).sum()))
 
-        st.divider()
+        show_cols = [c for c in [
+            "url", "llm_visibility_score", "primary_keyword", "candidate_queries",
+            "has_schema", "has_og_tags", "has_canonical", "llms_txt_present", "issues"
+        ] if c in top.columns]
+        st.dataframe(top[show_cols], use_container_width=True, height=500)
 
-        # Top pages
-        st.markdown("### 🔥 Top Pages")
-        top_pages = fetch_top_pages()
+        llm_traffic_df = fetch_llm_traffic(30)
+        llm_traffic_summary, llm_traffic_pages = summarize_llm_traffic(llm_traffic_df)
+        if llm_traffic_summary is not None and len(llm_traffic_summary) > 0:
+            st.markdown("### Attributed LLM traffic from GA4")
+            st.dataframe(llm_traffic_summary, use_container_width=True)
+            if llm_traffic_pages is not None and len(llm_traffic_pages) > 0:
+                st.dataframe(llm_traffic_pages.head(25), use_container_width=True, height=300)
 
-        if top_pages is not None and len(top_pages) > 0:
-            fig2 = px.bar(top_pages, x="page", y="views")
-            fig2.update_layout(xaxis_tickangle=-45)
-            st.plotly_chart(fig2, use_container_width=True)
-
-            st.dataframe(top_pages, use_container_width=True)
-        else:
-            st.info("No top pages data available.")
-        st.divider()
-        st.markdown("### 🤖 Bot vs Real Traffic")
-
-        total_users = ga_df["users"].sum()
-
-        # Simulated split
-        real_users = int(total_users * 0.0476)
-        bot_users = total_users - real_users
-
-        c1, c2 = st.columns(2)
-        c1.metric("👤 Real Users", real_users)
-        c2.metric("🤖 Bot Traffic", bot_users)
-
-        # # Pie chart
-        traffic_df = pd.DataFrame({
-            "Type": ["Real Users", "Bot Traffic"],
-            "Count": [real_users, bot_users]
-        })
-
-        fig_bot = px.pie(
-            traffic_df,
-            names="Type",
-            values="Count",
-            title="Traffic Composition",
-            hole=0.4
-        )
-        fig_bot.update_traces(
-            textinfo="label+value",   # <-- this is the key change
-            hovertemplate="%{label}: %{value}"  # clean hover
-        )
-        st.plotly_chart(fig_bot, use_container_width=True)
+        st.markdown("### AI crawler log parser")
+        log_text = st.text_area("Paste access logs here", height=180)
+        if st.button("Parse LLM Bots From Logs", use_container_width=True):
+            bot_df = detect_llm_bots_from_logs(log_text)
+            if bot_df.empty:
+                st.info("No known LLM bot signatures found.")
+            else:
+                st.dataframe(bot_df, use_container_width=True)
     else:
-        st.warning("No Google Analytics data found.")
+        st.info("No LLM visibility report found yet.")
 
-# ═══════════════════════════════════════
-# PAGE: RUN SCAN
-# ═══════════════════════════════════════
+elif page == "🔗 Backlink Tools":
+    st.markdown("# 🔗 Backlink Tools")
+    st.divider()
+
+    tab1, tab2, tab3 = st.tabs(["Unlinked Mentions", "Backlink Targets", "Internal Linking"])
+
+    with tab1:
+        st.markdown("### Find Unlinked Brand Mentions")
+        brand_query = st.text_input("Brand to search", BRAND_NAME)
+        if st.button("Search Mentions", use_container_width=True):
+            rows = find_unlinked_mentions(query_brand=brand_query, domain=DOMAIN, count=25)
+            if rows:
+                st.dataframe(pd.DataFrame(rows), use_container_width=True, height=450)
+            else:
+                st.info("No mention results found, or Bing API key is missing.")
+
+    with tab2:
+        st.markdown("### Score Backlink Opportunities")
+        if st.button("Score Targets", use_container_width=True):
+            rows = find_unlinked_mentions(query_brand=BRAND_NAME, domain=DOMAIN, count=25)
+            scored = score_backlink_targets(rows)
+            if scored:
+                st.dataframe(pd.DataFrame(scored), use_container_width=True, height=450)
+            else:
+                st.info("No targets scored.")
+
+    with tab3:
+        st.markdown("### Internal Link Suggestions")
+        if st.button("Generate Suggestions From Latest Posts", use_container_width=True):
+            try:
+                posts = get_all_posts(status="publish", per_page=20, max_pages=2)
+                categories_map = get_wp_categories_map()
+                all_rows = []
+                for post in posts[:10]:
+                    suggestions = suggest_internal_links_for_post(post, posts, categories_map=categories_map, max_suggestions=5)
+                    for s in suggestions:
+                        all_rows.append({
+                            "source_post": clean_html_entities(post["title"]["rendered"]),
+                            "target_title": s["target_title"],
+                            "anchor_text": s["anchor_text"],
+                            "target_url": s["target_url"],
+                            "score": s["score"],
+                        })
+                if all_rows:
+                    st.dataframe(pd.DataFrame(all_rows), use_container_width=True, height=450)
+                else:
+                    st.info("No internal link suggestions found.")
+            except Exception as e:
+                st.error(f"Error generating suggestions: {e}")
+
 elif page == "⚡ Run New Scan":
     st.markdown("# ⚡ Run New SEO Scan")
     st.markdown(f"Scan **{DOMAIN}** now")
     st.divider()
 
     c1, c2 = st.columns(2)
-    with c1: max_pages = st.slider("Max pages", 10, 300, 50, 10)
-    with c2: modules   = st.multiselect("Modules", ["Technical Audit", "Content Analysis"], default=["Technical Audit"])
-    st.info("💡 SERP tracking may be rate-limited by Google. Use the CLI script for reliable SERP data.")
+    with c1:
+        max_pages = st.slider("Max pages", 10, 300, 50, 10)
+    with c2:
+        modules = st.multiselect("Modules", ["Technical Audit", "Content Analysis"], default=["Technical Audit"])
 
     if st.button("🚀 Start Scan", type="primary", use_container_width=True):
         today = datetime.today().strftime("%Y-%m-%d")
@@ -2126,20 +2038,19 @@ elif page == "⚡ Run New Scan":
             if results:
                 df = pd.DataFrame(results)
                 df.to_csv(f"{OUTPUT_DIR}/{DOMAIN}_technical_audit_{today}.csv", index=False)
-                os.system(f'cd {OUTPUT_DIR} && git add . && git commit -m "scan {today}" && git push')
                 iss_count = len(df[df["issues"].astype(str).str.len() > 0])
                 st.success(f"✅ Crawled {len(results)} pages. {iss_count} with issues.")
             else:
-                st.error("No results.")
+                st.error("No crawl results returned.")
 
         if "Content Analysis" in modules:
             st.markdown("### 📝 Analyzing content...")
-            today = datetime.today().strftime("%Y-%m-%d")
             urls = [SITE_URL]
             ap = f"{OUTPUT_DIR}/{DOMAIN}_technical_audit_{today}.csv"
             if os.path.exists(ap):
                 adf = pd.read_csv(ap)
                 urls += adf[adf["status"].astype(str) == "200"]["url"].tolist()[:30]
+
             prog2 = st.progress(0)
             kw_rows = []
             for i, url in enumerate(urls):
@@ -2147,31 +2058,119 @@ elif page == "⚡ Run New Scan":
                 kd = extract_page_keywords(url)
                 if "error" not in kd:
                     kw_rows.append({
-                        "url": kd["url"], "title": kd["title"], "h1": kd["h1"],
+                        "url": kd["url"],
+                        "title": kd["title"],
+                        "h1": kd["h1"],
                         "h2s": kd["h2s"],
                         "top_words": ", ".join(f"{w}({c})" for w, c in kd.get("top_words", [])),
                         "top_bigrams": ", ".join(f"{b}({c})" for b, c in kd.get("top_bigrams", [])),
                         "word_count": kd.get("word_count", 0)
                     })
-                time.sleep(0.5)
+                time.sleep(0.3)
+
             if kw_rows:
                 pd.DataFrame(kw_rows).to_csv(f"{OUTPUT_DIR}/{DOMAIN}_page_keywords_{today}.csv", index=False)
+
                 all_kws = list(TRACKED_KEYWORDS)
                 for r in kw_rows:
                     for h in str(r.get("h2s", "")).split(" | "):
                         h = h.strip()
-                        if 10 < len(h) < 80: all_kws.append(h)
+                        if 10 < len(h) < 80:
+                            all_kws.append(h)
+
                 clusters = defaultdict(list)
                 for kw in all_kws:
                     w = kw.lower().split()
                     k = " ".join(w[:2]) if len(w) >= 2 else (w[0] if w else "other")
                     clusters[k].append(kw)
-                crows = [{"cluster": k, "keyword_count": len(v), "keywords": " | ".join(v)}
-                         for k, v in sorted(clusters.items(), key=lambda x: -len(x[1]))]
+
+                crows = [
+                    {"cluster": k, "keyword_count": len(v), "keywords": " | ".join(v)}
+                    for k, v in sorted(clusters.items(), key=lambda x: -len(x[1]))
+                ]
                 pd.DataFrame(crows).to_csv(f"{OUTPUT_DIR}/{DOMAIN}_keyword_clusters_{today}.csv", index=False)
                 st.success(f"✅ Analyzed {len(kw_rows)} pages.")
+
         st.balloons()
-        st.info("Navigate to 📈 Growth Tracker to see trends!")
+
+elif page == "🛠️ Fix Issues":
+    st.markdown("# 🛠️ Fix SEO Issues (WordPress)")
+    st.divider()
+
+    tab1, tab2 = st.tabs(["CSV-driven Fix", "Legacy / Full Optimizer"])
+
+    with tab1:
+        st.markdown("### CSV-driven Fix from Technical Audit")
+        dry_run_csv = st.checkbox("Dry run (simulate only)", value=True)
+        if st.button("🚀 Run Fix Issues from Latest Audit", type="primary"):
+            if fix_from_audit is None:
+                st.error("fix_issues.py is not available.")
+            else:
+                with st.spinner("Running fix_from_audit..."):
+                    try:
+                        results = fix_from_audit(dry_run=dry_run_csv)
+                        if not results:
+                            st.info("No results returned.")
+                        else:
+                            df = pd.DataFrame(results)
+                            st.dataframe(df, use_container_width=True, height=500)
+                            st.download_button(
+                                "📥 Download Fix Report CSV",
+                                df.to_csv(index=False).encode(),
+                                "fix_issues_from_audit.csv",
+                                "text/csv",
+                            )
+                    except Exception as e:
+                        st.error(f"Error while running CSV-driven fixer: {e}")
+
+    with tab2:
+        st.markdown("### Full WordPress Optimizer")
+        dry_run = st.checkbox("Dry run", value=True)
+        min_score = st.slider("Minimum SEO score to fix", 0, 100, 80, 5)
+        max_pages = st.slider("Max WordPress post pages to fetch", 1, 50, 10, 1)
+        per_page = st.slider("Posts per page", 5, 50, 10, 5)
+        apply_schema = st.checkbox("Insert/update JSON-LD schema", value=True)
+        apply_internal_links = st.checkbox("Insert internal links", value=False)
+        report_path = st.text_input("Report file", "seo_report.json")
+
+        if st.button("🚀 Run Full SEO Optimizer", use_container_width=True):
+            with st.spinner("Running WordPress SEO optimizer..."):
+                try:
+                    results = run_seo_optimizer(
+                        status="publish",
+                        per_page=per_page,
+                        max_pages=max_pages,
+                        dry_run=dry_run,
+                        min_score_to_fix=min_score,
+                        report_file=report_path,
+                        apply_schema=apply_schema,
+                        apply_internal_links=apply_internal_links,
+                    )
+
+                    if results:
+                        df = pd.DataFrame([{
+                            "id": r["id"],
+                            "title": r["title"],
+                            "score_before": r["score_before"],
+                            "score_after": r["score_after"],
+                            "alt_tags_added": r.get("alt_tags_added", 0),
+                            "internal_links_inserted": r.get("internal_links_inserted", 0),
+                            "schema_generated": r.get("schema_generated", False),
+                            "changes": ", ".join(r.get("changes_made", [])),
+                        } for r in results])
+
+                        st.success("Completed.")
+                        st.dataframe(df, use_container_width=True, height=500)
+                        st.download_button(
+                            "📥 Download optimizer report CSV",
+                            df.to_csv(index=False).encode(),
+                            "wp_optimizer_report.csv",
+                            "text/csv"
+                        )
+                    else:
+                        st.info("No posts were processed.")
+                except Exception as e:
+                    st.error(f"Error while running optimizer: {e}")
 
 elif page == "✅ Fixed Issues":
     st.markdown("# ✅ Fixed Issues (Reports)")
@@ -2179,7 +2178,7 @@ elif page == "✅ Fixed Issues":
 
     fix_dates = get_fix_report_dates()
     if not fix_dates:
-        st.info("No fix-issues reports found in seo_reports/. Run the CSV fixer or the GitHub Action first.")
+        st.info("No fix reports found in seo_reports/.")
     else:
         selected_fix_date = st.selectbox("Fix report date", fix_dates, index=0)
         fix_df = load_fix_issues(selected_fix_date)
@@ -2187,10 +2186,7 @@ elif page == "✅ Fixed Issues":
         if fix_df is None or len(fix_df) == 0:
             st.warning("Selected fix report is empty.")
         else:
-            st.markdown(
-                f"Showing **{len(fix_df)}** rows from "
-                f"`{DOMAIN}_fix_issues_{selected_fix_date}.csv`"
-            )
+            st.markdown(f"Showing **{len(fix_df)}** rows from `{DOMAIN}_fix_issues_{selected_fix_date}.csv`")
 
             col1, col2 = st.columns(2)
             with col1:
@@ -2204,40 +2200,16 @@ elif page == "✅ Fixed Issues":
                 df_view = df_view[df_view["fixed"] == True]
 
             if url_search:
-                df_view = df_view[
-                    df_view["url"].astype(str).str.contains(url_search, case=False, na=False)
-                ]
-
-            if "changes" in df_view.columns:
-                df_view["changes"] = df_view["changes"].astype(str)
+                df_view = df_view[df_view["url"].astype(str).str.contains(url_search, case=False, na=False)]
 
             st.dataframe(df_view, use_container_width=True, height=500)
 
             st.download_button(
-                "📥 Download Filtered Fixed Issues CSV",
+                "📥 Download filtered fixed issues CSV",
                 df_view.to_csv(index=False).encode(),
                 f"{DOMAIN}_fixed_issues_view_{selected_fix_date}.csv",
                 "text/csv",
             )
 
-            if "issues" in df_view.columns:
-                st.divider()
-                st.markdown("### 🔍 Most Frequent Audit Issues (for these rows)")
-                all_issue_fragments = []
-                for v in df_view["issues"].astype(str):
-                    for part in v.split(" | "):
-                        p = part.strip()
-                        if p:
-                            all_issue_fragments.append(p)
-                if all_issue_fragments:
-                    issue_counts = (
-                        pd.Series(all_issue_fragments)
-                        .value_counts()
-                        .head(10)
-                        .reset_index()
-                    )
-                    issue_counts.columns = ["Issue (from audit)", "Count"]
-                    st.dataframe(issue_counts, use_container_width=True)
-
 else:
-    st.info("Other pages (Growth Tracker, SERP, etc.) can be re-added as needed.")
+    st.info("Select a section from the sidebar.")
