@@ -1024,7 +1024,7 @@ def fetch_traffic_by_source(days=30):
     SOURCES_OF_INTEREST = [
         "google", "bing", "yahoo", "duckduckgo", "baidu",
         "chatgpt", "openai", "perplexity", "claude", "anthropic",
-        "gemini", "copilot", "you.com", "cloud"
+        "gemini", "copilot", "you.com"
     ]
     try:
         client = get_ga4_client()
@@ -1774,63 +1774,6 @@ def _show_download(df, label, filename):
         )
 
 
-def build_required_source_traffic(source_df):
-    """Always return Yahoo, Bing, ChatGPT, Anthropic, and Cloud traffic rows.
-
-    If GA4 has no matching rows for a source, that source is shown with zero traffic.
-    """
-    required_sources = [
-        {
-            "traffic_source": "Yahoo",
-            "match_terms": ["yahoo"],
-        },
-        {
-            "traffic_source": "Bing",
-            "match_terms": ["bing"],
-        },
-        {
-            "traffic_source": "ChatGPT",
-            "match_terms": ["chatgpt", "openai"],
-        },
-        {
-            "traffic_source": "Anthropic",
-            "match_terms": ["anthropic", "claude"],
-        },
-        {
-            "traffic_source": "Cloud",
-            "match_terms": ["cloud"],
-        },
-    ]
-
-    rows = []
-    if source_df is None or len(source_df) == 0:
-        source_df = pd.DataFrame(columns=["source", "sessions", "users", "pageviews"])
-
-    source_copy = source_df.copy()
-    if "source" not in source_copy.columns:
-        source_copy["source"] = ""
-    for metric in ["sessions", "users", "pageviews"]:
-        if metric not in source_copy.columns:
-            source_copy[metric] = 0
-        source_copy[metric] = pd.to_numeric(source_copy[metric], errors="coerce").fillna(0).astype(int)
-
-    source_copy["_source_match"] = source_copy["source"].astype(str).str.lower()
-
-    for item in required_sources:
-        mask = source_copy["_source_match"].apply(
-            lambda value: any(term in value for term in item["match_terms"])
-        )
-        matched = source_copy[mask]
-        rows.append({
-            "Traffic Source": item["traffic_source"],
-            "Sessions": int(matched["sessions"].sum()) if len(matched) else 0,
-            "Users": int(matched["users"].sum()) if len(matched) else 0,
-            "Pageviews": int(matched["pageviews"].sum()) if len(matched) else 0,
-        })
-
-    return pd.DataFrame(rows)
-
-
 dates = get_report_dates()
 selected_date = dates[0] if dates else datetime.today().strftime("%Y-%m-%d")
 
@@ -1969,73 +1912,15 @@ with traffic_col:
     else:
         st.info("No GA4 traffic data is available. Check GA4 credentials and property access.")
 
-with topcol:
+with top_col:
     top_pages = fetch_top_pages()
-    if safe_df(top_pages):
+    if _safe_df(top_pages):
         fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"], title="Top Pages, Last 7 Days")
         fig.update_layout(xaxis_tickangle=-45)
         st.plotly_chart(fig, use_container_width=True)
         st.dataframe(top_pages, use_container_width=True, height=260)
     else:
         st.info("No GA4 top-page data is available.")
-st.divider()
-
-top_pages = fetch_top_pages()
-st.markdown("## 🧪 Click farm results, today")
-
-cf_df = load_clickfarm_today()
-
-if cf_df is None or len(cf_df) == 0:
-    st.info("No click farm CSV found for today in seo_reports/.")
-else:
-    cf_df["engine"] = cf_df["engine"].astype(str)
-    cf_df["clicks"] = pd.to_numeric(cf_df["clicks"], errors="coerce").fillna(0).astype(int)
-
-    total_clicks = int(cf_df["clicks"].sum())
-    top_engine = cf_df.sort_values("clicks", ascending=False).iloc[0]
-
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Total bot clicks today", f"{total_clicks:,}")
-    c2.metric("Engines tested", f"{len(cf_df):,}")
-    c3.metric("Top engine", f"{top_engine['engine']} ({top_engine['clicks']} clicks)")
-
-    fig_cf = px.bar(
-        cf_df,
-        x="engine",
-        y="clicks",
-        text="clicks",
-        labels={"engine": "Engine", "clicks": "Clicks"},
-        title="Click farm results, today",
-        color="engine",
-    )
-    fig_cf.update_traces(textposition="outside")
-    fig_cf.update_layout(xaxis_title="Engine", yaxis_title="Clicks")
-    st.plotly_chart(fig_cf, use_container_width=True)
-
-    st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250)
-
-st.markdown("## 🔥 Top Pages (Last 7 Days)")
-if top_pages is not None and len(top_pages) > 0:
-    fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
-    fig.update_layout(xaxis_tickangle=-45)
-    st.plotly_chart(fig, use_container_width=True)
-    st.dataframe(top_pages, use_container_width=True)
-else:
-    st.info("No GA4 top pages data available.")
-
-st.markdown("### Required Source Traffic")
-source_df = fetch_traffic_by_source(days=30)
-required_source_df = build_required_source_traffic(source_df)
-src_cols = st.columns(5)
-for idx, row in required_source_df.iterrows():
-    src_cols[idx].metric(
-        row["Traffic Source"],
-        f'{int(row["Sessions"]):,} sessions',
-        delta=f'{int(row["Users"]):,} users',
-    )
-
-st.dataframe(required_source_df, use_container_width=True, height=220)
-st.caption("Yahoo, Bing, ChatGPT, Anthropic, and Cloud are always shown here. Missing GA4 traffic is displayed as zero.")
 
 st.divider()
 
