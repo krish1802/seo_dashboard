@@ -1982,7 +1982,7 @@ elif page == "📊 Traffic Analytics":
         fig = px.bar(
             top_sources,
             x="source",
-            y="sessions",
+            y="users",
             color="source_type",
             text="sessions",
             color_discrete_map={
@@ -2006,7 +2006,7 @@ elif page == "📊 Traffic Analytics":
             st.markdown("### 🔍 Search Engine Traffic")
             se = src_df[src_df["source_type"] == "Search Engine"].copy()
             if len(se) > 0:
-                fig2 = px.pie(se, names="source", values="sessions", hole=0.45,
+                fig2 = px.pie(se, names="source", values="users", hole=0.45,
                               title="Search Engine Share")
                 st.plotly_chart(fig2, use_container_width=True)
                 st.dataframe(
