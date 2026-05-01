@@ -1968,86 +1968,95 @@ elif page == "📊 Traffic Analytics":
     else:
         st.warning("No Google Analytics data found.")
 
-    st.divider()
+        st.divider()
     st.markdown("## 🔎 Traffic from selected websites")
-    st.caption("Google, Bing, Yahoo, ChatGPT, Claude, and Anthropic.")
+    st.caption(
+        "Disclaimer: This section shows GA4-detected traffic only for these websites: "
+        "Google, Bing, Yahoo, ChatGPT, Claude, and Anthropic. "
+        "If a website has no detected traffic in the selected date range, it will appear with 0 values."
+    )
 
     src_df = fetch_traffic_by_source(days=days_choice)
 
-    if src_df is not None and len(src_df) > 0:
-        wanted_sources = ["google", "bing", "yahoo", "chatgpt", "claude", "anthropic"]
+    wanted_sources = ["google", "bing", "yahoo", "chatgpt", "claude", "anthropic"]
+    base_df = pd.DataFrame({"source": wanted_sources})
 
+    if src_df is not None and len(src_df) > 0:
         filtered_df = src_df[
             src_df["source"].astype(str).str.lower().isin(wanted_sources)
         ].copy()
 
         if len(filtered_df) > 0:
+            filtered_df["source"] = filtered_df["source"].astype(str).str.lower()
             filtered_df = (
-                filtered_df.groupby("source", as_index=False)[
-                    ["users", "sessions", "pageviews"]
-                ]
+                filtered_df.groupby("source", as_index=False)[["users", "sessions", "pageviews"]]
                 .sum()
-                .sort_values("users", ascending=False)
-            )
-
-            c1, c2, c3 = st.columns(3)
-            c1.metric("Selected Source Users", f"{filtered_df['users'].sum():,}")
-            c2.metric("Selected Source Sessions", f"{filtered_df['sessions'].sum():,}")
-            c3.metric("Selected Source Pageviews", f"{filtered_df['pageviews'].sum():,}")
-
-            fig_sources = px.bar(
-                filtered_df,
-                x="source",
-                y="users",
-                text="users",
-                color="source",
-                title="Users from selected websites",
-                labels={"source": "Website", "users": "Users"},
-                color_discrete_map={
-                    "google": "#4285F4",
-                    "bing": "#008373",
-                    "yahoo": "#6001D2",
-                    "chatgpt": "#10A37F",
-                    "claude": "#D97706",
-                    "anthropic": "#A16207",
-                    "Google": "#4285F4",
-                    "Bing": "#008373",
-                    "Yahoo": "#6001D2",
-                    "ChatGPT": "#10A37F",
-                    "Claude": "#D97706",
-                    "Anthropic": "#A16207",
-                },
-            )
-            fig_sources.update_traces(textposition="outside")
-            fig_sources.update_layout(xaxis_title="Website", yaxis_title="Users")
-            st.plotly_chart(fig_sources, use_container_width=True)
-
-            st.dataframe(
-                filtered_df[["source", "users", "sessions", "pageviews"]].reset_index(drop=True),
-                use_container_width=True,
-                height=300,
-            )
-
-            st.download_button(
-                "📥 Download filtered source report CSV",
-                filtered_df.to_csv(index=False).encode(),
-                f"selected_traffic_sources_{days_choice}d.csv",
-                "text/csv",
             )
         else:
-            st.info("no traffic from these websites")
+            filtered_df = pd.DataFrame(columns=["source", "users", "sessions", "pageviews"])
+
+        selected_sites_df = base_df.merge(filtered_df, on="source", how="left").fillna(0)
+
     else:
-        st.info("no traffic from these websites")
+        selected_sites_df = base_df.copy()
+        selected_sites_df["users"] = 0
+        selected_sites_df["sessions"] = 0
+        selected_sites_df["pageviews"] = 0
 
-    st.divider()
-    top_pages = fetch_top_pages()
-    if top_pages is not None and len(top_pages) > 0:
-        st.markdown("## 🔥 Top Pages")
-        fig4 = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
-        fig4.update_layout(xaxis_tickangle=-45)
-        st.plotly_chart(fig4, use_container_width=True)
-        st.dataframe(top_pages, use_container_width=True)
+    selected_sites_df["users"] = selected_sites_df["users"].astype(int)
+    selected_sites_df["sessions"] = selected_sites_df["sessions"].astype(int)
+    selected_sites_df["pageviews"] = selected_sites_df["pageviews"].astype(int)
 
+    total_selected_users = int(selected_sites_df["users"].sum())
+    total_selected_sessions = int(selected_sites_df["sessions"].sum())
+    total_selected_pageviews = int(selected_sites_df["pageviews"].sum())
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Selected Source Users", f"{total_selected_users:,}")
+    c2.metric("Selected Source Sessions", f"{total_selected_sessions:,}")
+    c3.metric("Selected Source Pageviews", f"{total_selected_pageviews:,}")
+
+    zero_traffic_sites = selected_sites_df[selected_sites_df["users"] == 0]["source"].tolist()
+
+    if total_selected_users == 0 and total_selected_sessions == 0 and total_selected_pageviews == 0:
+        st.info("No traffic detected from the selected websites in this date range.")
+
+    if zero_traffic_sites:
+        st.warning("Websites with 0 traffic: " + ", ".join(zero_traffic_sites))
+
+    fig_sources = px.bar(
+        selected_sites_df,
+        x="source",
+        y="users",
+        text="users",
+        color="source",
+        title="Users from selected websites",
+        labels={"source": "Website", "users": "Users"},
+        color_discrete_map={
+            "google": "#4285F4",
+            "bing": "#008373",
+            "yahoo": "#6001D2",
+            "chatgpt": "#10A37F",
+            "claude": "#D97706",
+            "anthropic": "#A16207",
+        },
+    )
+    fig_sources.update_traces(textposition="outside")
+    fig_sources.update_layout(xaxis_title="Website", yaxis_title="Users")
+    st.plotly_chart(fig_sources, use_container_width=True)
+
+    st.dataframe(
+        selected_sites_df.reset_index(drop=True),
+        use_container_width=True,
+        height=280,
+    )
+
+    st.download_button(
+        "📥 Download selected website traffic CSV",
+        selected_sites_df.to_csv(index=False).encode(),
+        f"selected_website_traffic_{days_choice}d.csv",
+        "text/csv",
+    )
 elif page == "📝 Content Analysis":
     st.markdown("# 📝 Content Analysis")
     st.divider()
