@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 SEO Analytics Dashboard + WordPress SEO Auto-Optimizer
@@ -95,7 +96,7 @@ CRAWL_HEADERS = {
 
 WP_URL = os.getenv("WP_URL", SITE_URL).rstrip("/")
 WP_USER = os.getenv("WP_USER", "testing")
-WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "").strip()
+WP_APP_PASS = os.getenv("WP_APP_PASSWORD", "sTz9 HbAF ROBO prvo SrI2 gJb7")
 API_BASE = f"{WP_URL}/wp-json/wp/v2"
 
 BING_API_KEY = os.getenv("BING_API_KEY", "").strip()
@@ -1707,364 +1708,648 @@ def summarize_llm_traffic(df):
     )
     return summary, pages
 
+
 # ──────────────────────────────────────────────────────────────
-# STREAMLIT UI — ONE PAGE REPORT
+# STREAMLIT UI
 # ──────────────────────────────────────────────────────────────
 
 st.set_page_config(
-    page_title="SEO One-Page Report | San Francisco Briefing",
+    page_title="SEO Dashboard | San Francisco Briefing",
     page_icon="📈",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
     html, body, .stApp { font-family: 'DM Sans', sans-serif; }
-    .main .block-container { padding-top: 1.5rem; max-width: 1320px; }
-    .report-date {
-        color: #64748b;
-        font-size: 0.95rem;
-        font-weight: 600;
-        margin-bottom: 0.3rem;
-    }
-    .hero {
-        padding: 1.1rem 1.25rem;
-        border: 1px solid #e2e8f0;
-        border-radius: 18px;
-        background: linear-gradient(135deg, #f8fafc 0%, #eefdfa 100%);
-        margin-bottom: 1.2rem;
-    }
-    .hero h1 { margin: 0; line-height: 1.15; }
-    .hero p { color: #475569; margin-top: 0.5rem; margin-bottom: 0; }
-    .section-card {
-        border: 1px solid #e2e8f0;
-        border-radius: 16px;
-        padding: 1rem;
-        background: #ffffff;
-        margin-bottom: 1rem;
-    }
-    .small-note {
-        color: #64748b;
-        font-size: 0.9rem;
-    }
-    div[data-testid="stMetric"] {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        padding: 0.8rem;
-        border-radius: 14px;
-    }
+    div[data-testid="stSidebar"] { background: #0f1117; }
+    div[data-testid="stSidebar"] * { color: #e2e8f0 !important; }
+    div[data-testid="stSidebar"] .stRadio label { color: #e2e8f0 !important; }
+    div[data-testid="stSidebar"] hr { border-color: #2d3748; }
 </style>
 """, unsafe_allow_html=True)
 
-
-def _safe_df(df):
-    return df is not None and hasattr(df, "__len__") and len(df) > 0
-
-
-def _show_download(df, label, filename):
-    if _safe_df(df):
-        st.download_button(
-            label,
-            df.to_csv(index=False).encode(),
-            filename,
-            "text/csv",
-            use_container_width=True,
-        )
-
-
-dates = get_report_dates()
-selected_date = dates[0] if dates else datetime.today().strftime("%Y-%m-%d")
-
 with st.sidebar:
-    st.markdown("## Report Controls")
+    st.markdown("## 📊 SEO Dashboard")
     st.markdown(f"**Site:** `{DOMAIN}`")
-    if dates:
-        selected_date = st.selectbox("Report Date", dates, index=0)
-    else:
-        st.info("No saved reports found. Use Run New Scan below to generate reports.")
     st.divider()
-    st.caption("One-page SEO dashboard")
+    page = st.radio("Navigate", [
+        "🏠 Overview",
+        "📈 Growth Tracker",
+        "🔍 Technical Audit",
+        "🏆 SERP Rankings",
+        "📊 Traffic Analytics",
+        "📝 Content Analysis",
+        "🔑 Keywords",
+        "🤖 LLM Visibility",
+        "🔗 Backlink Tools",
+        "⚡ Run New Scan",
+        "🛠️ Fix Issues",
+        "✅ Fixed Issues",
+    ], label_visibility="collapsed")
+    st.divider()
+    dates = get_report_dates()
+    selected_date = st.selectbox("Report Date", dates, index=0) if dates else datetime.today().strftime("%Y-%m-%d")
+    if not dates:
+        st.info("No reports yet. Run a scan!")
+    st.divider()
+    st.caption("SEO Automation Toolkit — Streamlit Edition")
 
-st.markdown(f'<div class="report-date">Report Date: {selected_date}</div>', unsafe_allow_html=True)
-st.markdown(f"""
-<div class="hero">
-    <h1>SEO One-Page Report</h1>
-    <p><strong>{DOMAIN}</strong> — technical health, rankings, traffic, content, LLM visibility, backlinks, and fixes in one continuous dashboard.</p>
-</div>
-""", unsafe_allow_html=True)
 
-audit_df = load_audit(selected_date)
-serp_df = load_serp(selected_date)
-keywords_df = load_keywords(selected_date)
-clusters_df = load_clusters(selected_date)
-llm_df = load_llm_visibility(selected_date)
+# ──────────────────────────────────────────────────────────────
+# PAGE ROUTING
+# ──────────────────────────────────────────────────────────────
 
-st.markdown("## Executive Snapshot")
+if page == "🏠 Overview":
+    st.markdown("# 🏠 SEO Performance Overview")
+    st.markdown(f"**{DOMAIN}** — Report for **{selected_date}**")
+    st.divider()
 
-if _safe_df(audit_df):
-    total_pages = len(audit_df)
-    broken_pages = len(audit_df[audit_df["status"].astype(str).str.match(r"^[45E]")]) if "status" in audit_df else 0
-    pages_with_issues = len(audit_df[audit_df["issues"].astype(str).str.len() > 0]) if "issues" in audit_df else 0
-    clean_pages = total_pages - pages_with_issues
-    avg_load = audit_df["load_time_s"].dropna().mean() if "load_time_s" in audit_df else None
-else:
-    total_pages = broken_pages = pages_with_issues = clean_pages = 0
-    avg_load = None
+    audit_df = load_audit(selected_date)
+    serp_df = load_serp(selected_date)
 
-if _safe_df(serp_df) and "our_position" in serp_df:
-    serp_site_df = serp_df[serp_df["site"] == DOMAIN] if "site" in serp_df else serp_df
-    pos = pd.to_numeric(serp_site_df["our_position"], errors="coerce")
-    top_3 = int((pos <= 3).sum())
-    top_10 = int((pos <= 10).sum())
-    not_ranked = int(pos.isna().sum())
-else:
-    top_3 = top_10 = not_ranked = 0
+    if audit_df is not None:
+        total = len(audit_df)
+        broken = len(audit_df[audit_df["status"].astype(str).str.match(r"^[45E]")])
+        with_issues = len(audit_df[audit_df["issues"].astype(str).str.len() > 0])
+        clean = total - with_issues
+        avg_load = audit_df["load_time_s"].dropna().mean() if "load_time_s" in audit_df else None
 
-c1, c2, c3, c4, c5, c6 = st.columns(6)
-c1.metric("Pages Crawled", f"{total_pages:,}")
-c2.metric("Clean Pages", f"{clean_pages:,}")
-c3.metric("Issues Found", f"{pages_with_issues:,}")
-c4.metric("Broken Pages", f"{broken_pages:,}")
-c5.metric("Avg Load Time", f"{avg_load:.2f}s" if pd.notna(avg_load) else "N/A")
-c6.metric("Top 10 Keywords", f"{top_10:,}")
+        c1, c2, c3, c4, c5 = st.columns(5)
+        c1.metric("Pages Crawled", total)
+        c2.metric("Clean Pages", clean, delta=f"{clean/max(total,1)*100:.0f}%")
+        c3.metric("Issues Found", with_issues)
+        c4.metric("Broken Pages", broken)
+        c5.metric("Avg Load Time", f"{avg_load:.2f}s" if pd.notna(avg_load) else "N/A")
 
-st.divider()
+        st.divider()
 
-left, right = st.columns(2)
-
-with left:
-    st.markdown("## Technical SEO")
-    if _safe_df(audit_df):
-        if "issues" in audit_df:
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("### 📊 Issue Distribution")
             issue_labels = []
-            for issue_string in audit_df["issues"].fillna(""):
-                for issue in str(issue_string).split(" | "):
-                    if issue.strip():
-                        issue_labels.append(issue.strip())
-
+            for iss_str in audit_df["issues"].fillna(""):
+                for iss in str(iss_str).split(" | "):
+                    if iss.strip():
+                        issue_labels.append(iss.strip())
             if issue_labels:
                 issue_counts = pd.Series(issue_labels).value_counts().head(10).reset_index()
                 issue_counts.columns = ["Issue", "Count"]
-                fig = px.pie(issue_counts, names="Issue", values="Count", hole=0.45, title="Top Issue Distribution")
+                fig = px.pie(issue_counts, names="Issue", values="Count", hole=0.45)
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.success("No technical issues found in the selected audit.")
+                st.success("No issues found.")
 
-        if "load_time_s" in audit_df:
-            load_times = audit_df["load_time_s"].dropna()
-            if len(load_times) > 0:
-                fig = px.histogram(
-                    load_times,
-                    nbins=20,
-                    labels={"value": "Load Time (s)"},
-                    color_discrete_sequence=["#01696f"],
-                    title="Page Load Time Distribution",
-                )
+        with col2:
+            st.markdown("### ⏱️ Load Times")
+            lt = audit_df["load_time_s"].dropna() if "load_time_s" in audit_df else pd.Series(dtype=float)
+            if len(lt) > 0:
+                fig = px.histogram(lt, nbins=20, labels={"value": "Load Time (s)"}, color_discrete_sequence=["#01696f"])
                 fig.add_vline(x=3.0, line_dash="dash", line_color="#da7101")
                 st.plotly_chart(fig, use_container_width=True)
 
-        st.dataframe(audit_df.head(25), use_container_width=True, height=320)
-        _show_download(audit_df, "Download Technical Audit CSV", f"{DOMAIN}_technical_audit_{selected_date}.csv")
-    else:
-        st.info("No technical audit data is available for this report date.")
+    if serp_df is not None and len(serp_df) > 0:
+        st.divider()
+        st.markdown("### 🏆 SERP Summary")
+        ss = serp_df[serp_df["site"] == DOMAIN] if "site" in serp_df.columns else serp_df
+        pos = pd.to_numeric(ss["our_position"], errors="coerce")
+        r1, r2, r3 = st.columns(3)
+        r1.metric("Top 3", int((pos <= 3).sum()))
+        r2.metric("Top 10", int((pos <= 10).sum()))
+        r3.metric("Not Ranked", int(pos.isna().sum()))
 
-with right:
-    st.markdown("## SERP Rankings")
-    if _safe_df(serp_df):
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Top 3", f"{top_3:,}")
-        c2.metric("Top 10", f"{top_10:,}")
-        c3.metric("Not Ranked", f"{not_ranked:,}")
+    st.divider()
+    st.markdown("## 📊 Google Analytics (Live Traffic)")
+    ga_df = fetch_ga4_data()
 
-        if "keyword" in serp_df and "our_position" in serp_df:
-            chart_df = serp_df.copy()
-            chart_df["our_position"] = pd.to_numeric(chart_df["our_position"], errors="coerce")
-            chart_df = chart_df.dropna(subset=["our_position"]).sort_values("our_position").head(20)
-            if len(chart_df) > 0:
-                fig = px.bar(
-                    chart_df,
-                    x="keyword",
-                    y="our_position",
-                    color_discrete_sequence=["#01696f"],
-                    title="Best Ranking Keywords",
-                )
-                fig.update_layout(xaxis_tickangle=-45, yaxis_autorange="reversed")
-                st.plotly_chart(fig, use_container_width=True)
-
-        st.dataframe(serp_df.head(25), use_container_width=True, height=320)
-        _show_download(serp_df, "Download SERP CSV", f"serp_tracking_{selected_date}.csv")
-    else:
-        st.info("No SERP ranking data is available for this report date.")
-
-st.divider()
-
-st.markdown("## Traffic Analytics")
-ga_df = fetch_ga4_data()
-traffic_col, top_col = st.columns(2)
-
-with traffic_col:
-    if _safe_df(ga_df):
-        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"], title="Traffic Trend, Last 7 Days")
+    if ga_df is not None and len(ga_df) > 0:
+        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"], title="Traffic Trend (Last 7 Days)")
         st.plotly_chart(fig, use_container_width=True)
-        st.dataframe(ga_df, use_container_width=True, height=260)
-    else:
-        st.info("No GA4 traffic data is available. Check GA4 credentials and property access.")
 
-with top_col:
-    top_pages = fetch_top_pages()
-    if _safe_df(top_pages):
-        fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"], title="Top Pages, Last 7 Days")
-        fig.update_layout(xaxis_tickangle=-45)
-        st.plotly_chart(fig, use_container_width=True)
-        st.dataframe(top_pages, use_container_width=True, height=260)
-    else:
-        st.info("No GA4 top-page data is available.")
+        top_pages = fetch_top_pages()
+        st.divider()
+        st.markdown("## 🧪 Click farm results, today")
 
-st.divider()
+        cf_df = load_clickfarm_today()
 
-st.markdown("## Content and Keywords")
-content_col, keyword_col = st.columns(2)
-
-with content_col:
-    if _safe_df(keywords_df):
-        st.markdown("### Page Keywords")
-        st.dataframe(keywords_df.head(30), use_container_width=True, height=360)
-        _show_download(keywords_df, "Download Page Keywords CSV", f"{DOMAIN}_page_keywords_{selected_date}.csv")
-    else:
-        st.info("No page keyword data is available for this report date.")
-
-with keyword_col:
-    if _safe_df(clusters_df):
-        st.markdown("### Keyword Clusters")
-        st.dataframe(clusters_df.head(30), use_container_width=True, height=360)
-        _show_download(clusters_df, "Download Keyword Clusters CSV", f"{DOMAIN}_keyword_clusters_{selected_date}.csv")
-    else:
-        st.info("No keyword cluster data is available for this report date.")
-
-st.divider()
-
-st.markdown("## LLM Visibility")
-llm_left, llm_right = st.columns([2, 1])
-
-with llm_left:
-    if _safe_df(llm_df):
-        numeric_cols = [col for col in ["llm_visibility_score", "answerability_score", "entity_score"] if col in llm_df.columns]
-        if numeric_cols:
-            score_df = llm_df.copy()
-            for col in numeric_cols:
-                score_df[col] = pd.to_numeric(score_df[col], errors="coerce")
-            plot_df = score_df.head(20)
-            fig = px.bar(plot_df, x=plot_df.index.astype(str), y=numeric_cols, title="LLM Visibility Signals")
-            st.plotly_chart(fig, use_container_width=True)
-
-        st.dataframe(llm_df.head(30), use_container_width=True, height=360)
-        _show_download(llm_df, "Download LLM Visibility CSV", f"{DOMAIN}_llm_visibility_{selected_date}.csv")
-    else:
-        st.info("No LLM visibility report is available for this report date.")
-
-with llm_right:
-    st.markdown("### Live LLM Traffic")
-    llm_traffic = fetch_llm_traffic()
-    llm_summary = summarize_llm_traffic(llm_traffic)
-    if llm_summary:
-        st.metric("LLM Users", f"{llm_summary.get('users', 0):,}")
-        st.metric("LLM Sessions", f"{llm_summary.get('sessions', 0):,}")
-        st.metric("LLM Pageviews", f"{llm_summary.get('pageviews', 0):,}")
-    else:
-        st.info("No LLM referral traffic detected or GA4 data unavailable.")
-
-st.divider()
-
-st.markdown("## Backlink Opportunities")
-backlink_query = st.text_input("Brand mention search query", value=BRAND_NAME)
-if st.button("Find Unlinked Mentions", use_container_width=True):
-    with st.spinner("Searching for unlinked mentions..."):
-        mentions = find_unlinked_mentions(backlink_query, DOMAIN)
-        if mentions:
-            backlink_df = pd.DataFrame(score_backlink_targets(mentions))
-            st.dataframe(backlink_df, use_container_width=True, height=360)
-            _show_download(backlink_df, "Download Backlink Targets CSV", f"{DOMAIN}_backlink_targets_{selected_date}.csv")
+        if cf_df is None or len(cf_df) == 0:
+            st.info("No click farm CSV found for today in seo_reports/.")
         else:
-            st.info("No unlinked mentions found or Bing API key is missing.")
+            # Ensure correct dtypes
+            cf_df["engine"] = cf_df["engine"].astype(str)
+            cf_df["clicks"] = pd.to_numeric(cf_df["clicks"], errors="coerce").fillna(0).astype(int)
 
-st.divider()
+            total_clicks = int(cf_df["clicks"].sum())
+            top_engine = cf_df.sort_values("clicks", ascending=False).iloc[0]
 
-st.markdown("## Run New Scan")
-scan_col1, scan_col2, scan_col3 = st.columns(3)
-with scan_col1:
-    scan_pages = st.slider("Max pages to crawl", 10, 500, 100, 10)
-with scan_col2:
-    scan_llm_pages = st.slider("Max pages for LLM audit", 5, 100, 25, 5)
-with scan_col3:
-    run_llm_scan = st.checkbox("Include LLM visibility scan", value=True)
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Total bot clicks today", f"{total_clicks:,}")
+            c2.metric("Engines tested", f"{len(cf_df):,}")
+            c3.metric("Top engine", f"{top_engine['engine']} ({top_engine['clicks']} clicks)")
 
-if st.button("Run One-Page SEO Scan", type="primary", use_container_width=True):
-    progress = st.progress(0)
-    status = st.empty()
-    report_date = datetime.today().strftime("%Y-%m-%d")
+            fig_cf = px.bar(
+                cf_df,
+                x="engine",
+                y="clicks",
+                text="clicks",
+                labels={"engine": "Engine", "clicks": "Clicks"},
+                title="Click farm results, today",
+                color="engine",
+            )
+            fig_cf.update_traces(textposition="outside")
+            fig_cf.update_layout(xaxis_title="Engine", yaxis_title="Clicks")
+            st.plotly_chart(fig_cf, use_container_width=True)
 
-    with st.spinner("Running technical audit..."):
-        audit_rows = crawl_site(SITE_URL, max_pages=scan_pages, progress_bar=progress, status_text=status)
-        if audit_rows:
-            audit_out = pd.DataFrame(audit_rows)
-            audit_path = os.path.join(OUTPUT_DIR, f"{DOMAIN}_technical_audit_{report_date}.csv")
-            audit_out.to_csv(audit_path, index=False)
-            st.success(f"Technical audit saved: {audit_path}")
-            st.dataframe(audit_out, use_container_width=True, height=300)
+            st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250)
+        st.markdown("## 🔥 Top Pages (Last 7 Days)")
+        if top_pages is not None and len(top_pages) > 0:
+            fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
+            fig.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig, use_container_width=True)
+            st.dataframe(top_pages, use_container_width=True)
+        else:
+            st.info("No GA4 top pages data available.")
+            # ── Click farm results, today ──
+        
+
+elif page == "📈 Growth Tracker":
+    st.markdown("# 📈 Growth Tracker")
+    st.markdown("Day-over-day and long-term trends across all scan history.")
+    st.divider()
+
+    all_dates = get_report_dates()
+    if len(all_dates) < 2:
+        st.info("You need at least 2 scans to track growth.")
+        st.stop()
+
+    audit_hist, serp_hist = load_all_snapshots()
+
+    col_a, col_b = st.columns(2)
+    with col_a:
+        date_new = st.selectbox("Compare (newer)", all_dates, index=0, key="d_new")
+    with col_b:
+        older_options = [d for d in all_dates if d < date_new]
+        date_old = st.selectbox("vs (older)", older_options, index=0, key="d_old") if older_options else None
+
+    if date_old is None:
+        st.warning("No older scan available.")
+        st.stop()
+
+    snap_new = compute_audit_snapshot(load_audit(date_new))
+    snap_old = compute_audit_snapshot(load_audit(date_old))
+    ssnap_new = compute_serp_snapshot(load_serp(date_new))
+    ssnap_old = compute_serp_snapshot(load_serp(date_old))
+
+    if snap_new and snap_old:
+        c1, c2, c3, c4, c5 = st.columns(5)
+        c1.metric("Health Score", snap_new["health_score"], delta=snap_new["health_score"] - snap_old["health_score"])
+        c2.metric("Pages", snap_new["total_pages"], delta=snap_new["total_pages"] - snap_old["total_pages"])
+        c3.metric("Issues", snap_new["pages_with_issues"], delta=snap_new["pages_with_issues"] - snap_old["pages_with_issues"])
+        c4.metric("Broken", snap_new["broken_pages"], delta=snap_new["broken_pages"] - snap_old["broken_pages"])
+        c5.metric("Avg Load", snap_new["avg_load_time"], delta=(snap_new["avg_load_time"] or 0) - (snap_old["avg_load_time"] or 0))
+
+    st.divider()
+
+    if not audit_hist.empty:
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=audit_hist["date"], y=audit_hist["health_score"], mode="lines+markers", name="Health Score"))
+        st.plotly_chart(fig, use_container_width=True)
+
+    if not serp_hist.empty:
+        fig = go.Figure()
+        for col in ["top3", "top10", "top20"]:
+            if col in serp_hist.columns:
+                fig.add_trace(go.Scatter(x=serp_hist["date"], y=serp_hist[col], mode="lines+markers", name=col))
+        st.plotly_chart(fig, use_container_width=True)
+
+elif page == "🔍 Technical Audit":
+    st.markdown("# 🔍 Technical SEO Audit")
+    st.divider()
+    audit_df = load_audit(selected_date)
+
+    if audit_df is not None:
+        c1, c2, c3 = st.columns(3)
+        with c1:
+            filt = st.selectbox("Filter", ["All", "With Issues", "Clean"])
+        with c2:
+            search = st.text_input("Search URL")
+        with c3:
+            statuses = st.multiselect("Status", sorted(audit_df["status"].astype(str).unique()))
+
+        df = audit_df.copy()
+        if filt == "With Issues":
+            df = df[df["issues"].astype(str).str.len() > 0]
+        elif filt == "Clean":
+            df = df[(df["issues"].isna()) | (df["issues"].astype(str).str.len() == 0)]
+        if statuses:
+            df = df[df["status"].astype(str).isin(statuses)]
+        if search:
+            df = df[df["url"].str.contains(search, case=False, na=False)]
+
+        st.markdown(f"**{len(df)} of {len(audit_df)} pages**")
+        cols = [c for c in [
+            "url", "status", "load_time_s", "title_length", "meta_desc_length",
+            "h1_count", "images_missing_alt", "has_og_tags", "has_schema", "issues"
+        ] if c in df.columns]
+        st.dataframe(df[cols], use_container_width=True, height=500)
+
+        st.download_button(
+            "📥 Download CSV",
+            df.to_csv(index=False).encode(),
+            f"audit_{selected_date}.csv",
+            "text/csv"
+        )
+    else:
+        st.warning("No technical audit data found.")
+
+elif page == "🏆 SERP Rankings":
+    st.markdown("# 🏆 SERP Rankings")
+    st.divider()
+    serp_df = load_serp(selected_date)
+    if serp_df is not None and len(serp_df) > 0:
+        ss = serp_df[serp_df["site"] == DOMAIN] if "site" in serp_df.columns else serp_df
+        cd = ss[["keyword", "our_position"]].copy()
+        cd["our_position"] = pd.to_numeric(cd["our_position"], errors="coerce")
+        cd = cd.dropna()
+        if len(cd) > 0:
+            fig = px.bar(cd, x="keyword", y="our_position", color="our_position", range_color=[1, 20])
+            fig.update_layout(yaxis=dict(autorange="reversed"), xaxis_tickangle=-45)
+            st.plotly_chart(fig, use_container_width=True)
+        st.dataframe(ss, use_container_width=True)
+    else:
+        st.warning("No SERP data found.")
+elif page == "📊 Traffic Analytics":
+    st.markdown("# 📊 Traffic Analytics")
+    st.markdown("Live data from GA4")
+    st.divider()
+
+    days_choice = st.selectbox(
+        "Date range",
+        [7, 14, 30, 60, 90],
+        index=2,
+        format_func=lambda d: f"Last {d} days"
+    )
+
+    ga_df = fetch_ga4_data(days=days_choice)
+    if ga_df is not None and len(ga_df) > 0:
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Users", f"{ga_df['users'].sum():,}")
+        c2.metric("Sessions", f"{ga_df['sessions'].sum():,}")
+        c3.metric("Pageviews", f"{ga_df['pageviews'].sum():,}")
+
+        fig = px.line(
+            ga_df,
+            x="date",
+            y="users",
+            title=f"Traffic Trend (Last {days_choice} Days)",
+            labels={"date": "Date", "users": "Users"},
+        )
+        fig.update_layout(xaxis_title="Date", yaxis_title="Users")
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.warning("No Google Analytics data found.")
+
+        st.divider()
+    st.markdown("## 🔎 Traffic from selected websites")
+    st.caption(
+        "Disclaimer: This section shows GA4-detected traffic only for these websites: "
+        "Google, Bing, Yahoo, ChatGPT, Claude, and Anthropic. "
+        "If a website has no detected traffic in the selected date range, it will appear with 0 values."
+    )
+
+    src_df = fetch_traffic_by_source(days=days_choice)
+
+    wanted_sources = ["google", "bing", "yahoo", "chatgpt", "claude", "anthropic"]
+    base_df = pd.DataFrame({"source": wanted_sources})
+
+    if src_df is not None and len(src_df) > 0:
+        filtered_df = src_df[
+            src_df["source"].astype(str).str.lower().isin(wanted_sources)
+        ].copy()
+
+        if len(filtered_df) > 0:
+            filtered_df["source"] = filtered_df["source"].astype(str).str.lower()
+            filtered_df = (
+                filtered_df.groupby("source", as_index=False)[["users", "sessions", "pageviews"]]
+                .sum()
+            )
+        else:
+            filtered_df = pd.DataFrame(columns=["source", "users", "sessions", "pageviews"])
+
+        selected_sites_df = base_df.merge(filtered_df, on="source", how="left").fillna(0)
+
+    else:
+        selected_sites_df = base_df.copy()
+        selected_sites_df["users"] = 0
+        selected_sites_df["sessions"] = 0
+        selected_sites_df["pageviews"] = 0
+
+    selected_sites_df["users"] = selected_sites_df["users"].astype(int)
+    selected_sites_df["sessions"] = selected_sites_df["sessions"].astype(int)
+    selected_sites_df["pageviews"] = selected_sites_df["pageviews"].astype(int)
+
+    total_selected_users = int(selected_sites_df["users"].sum())
+    total_selected_sessions = int(selected_sites_df["sessions"].sum())
+    total_selected_pageviews = int(selected_sites_df["pageviews"].sum())
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Selected Source Users", f"{total_selected_users:,}")
+    c2.metric("Selected Source Sessions", f"{total_selected_sessions:,}")
+    c3.metric("Selected Source Pageviews", f"{total_selected_pageviews:,}")
+
+    zero_traffic_sites = selected_sites_df[selected_sites_df["users"] == 0]["source"].tolist()
+
+    if total_selected_users == 0 and total_selected_sessions == 0 and total_selected_pageviews == 0:
+        st.info("No traffic detected from the selected websites in this date range.")
+
+    if zero_traffic_sites:
+        st.warning("Websites with 0 organic traffic: " + ", ".join(zero_traffic_sites))
+
+    fig_sources = px.bar(
+        selected_sites_df,
+        x="source",
+        y="users",
+        text="users",
+        color="source",
+        title="Users from selected websites",
+        labels={"source": "Website", "users": "Users"},
+        color_discrete_map={
+            "google": "#4285F4",
+            "bing": "#008373",
+            "yahoo": "#6001D2",
+            "chatgpt": "#10A37F",
+            "claude": "#D97706",
+            "anthropic": "#A16207",
+        },
+    )
+    fig_sources.update_traces(textposition="outside")
+    fig_sources.update_layout(xaxis_title="Website", yaxis_title="Users")
+    st.plotly_chart(fig_sources, use_container_width=True)
+
+    st.dataframe(
+        selected_sites_df.reset_index(drop=True),
+        use_container_width=True,
+        height=280,
+    )
+
+    st.download_button(
+        "📥 Download selected website traffic CSV",
+        selected_sites_df.to_csv(index=False).encode(),
+        f"selected_website_traffic_{days_choice}d.csv",
+        "text/csv",
+    )
+elif page == "📝 Content Analysis":
+    st.markdown("# 📝 Content Analysis")
+    st.divider()
+    kw_df = load_keywords(selected_date)
+    if kw_df is not None and len(kw_df) > 0:
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Pages", len(kw_df))
+        c2.metric("Avg Words", f"{kw_df['word_count'].mean():.0f}" if "word_count" in kw_df else "N/A")
+        c3.metric("Total Words", f"{kw_df['word_count'].sum():,}" if "word_count" in kw_df else "N/A")
+        st.dataframe(kw_df, use_container_width=True, height=450)
+    else:
+        st.warning("No content analysis data found.")
+
+elif page == "🔑 Keywords":
+    st.markdown("# 🔑 Keyword Clusters")
+    st.divider()
+    cl = load_clusters(selected_date)
+    if cl is not None and len(cl) > 0:
+        fig = px.treemap(cl.head(15), path=["cluster"], values="keyword_count", color="keyword_count")
+        st.plotly_chart(fig, use_container_width=True)
+        st.dataframe(cl, use_container_width=True)
+    else:
+        st.warning("No keyword cluster data found.")
+
+elif page == "🤖 LLM Visibility":
+    st.markdown("# 🤖 LLM Visibility")
+    st.caption("Estimate how clearly your pages can be interpreted by GPTs and LLMs.")
+    st.divider()
+
+    llm_df = load_llm_visibility(selected_date)
+
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        scan_all = st.checkbox("Scan ALL pages (no limit)", value=False)
+        llm_max_pages = 99999 if scan_all else st.slider("Pages to scan", 5, 500, 25, 25)
+    with c2:
+        run_llm_scan = st.button("🚀 Run LLM Visibility Scan", type="primary", use_container_width=True)
 
     if run_llm_scan:
-        with st.spinner("Running LLM visibility audit..."):
-            llm_rows = audit_llm_visibility(SITE_URL, max_pages=scan_llm_pages, progress_bar=progress, status_text=status)
-            if llm_rows:
-                llm_path = save_llm_visibility_report(llm_rows, report_date)
-                st.success(f"LLM visibility report saved: {llm_path}")
-                st.dataframe(pd.DataFrame(llm_rows), use_container_width=True, height=300)
+        progress = st.progress(0)
+        status = st.empty()
+        with st.spinner("Auditing LLM discoverability..."):
+            rows = audit_llm_visibility(SITE_URL, max_pages=llm_max_pages, progress_bar=progress, status_text=status)
+            saved_path = save_llm_visibility_report(rows)
+            llm_df = pd.DataFrame(rows)
+        progress.empty()
+        status.empty()
+        st.success(f"LLM visibility scan completed. Saved to {saved_path}")
 
-    progress.progress(100)
-    status.success("Scan complete. Refresh the app to select the new report date.")
+    if llm_df is not None and len(llm_df) > 0:
+        top = llm_df.sort_values("llm_visibility_score", ascending=False)
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Pages scanned", int(len(llm_df)))
+        m2.metric("Avg score", round(pd.to_numeric(llm_df["llm_visibility_score"], errors="coerce").mean(), 1))
+        m3.metric("Pages with llms.txt support", int(pd.to_numeric(llm_df["llms_txt_present"], errors="coerce").fillna(0).astype(bool).sum()))
+        m4.metric("Pages with weak signals", int(llm_df["issues"].astype(str).str.contains("Weak keyword/query signals|Missing", na=False).sum()))
 
-st.divider()
+        show_cols = [c for c in [
+            "url", "llm_visibility_score", "primary_keyword", "candidate_queries",
+            "has_schema", "has_og_tags", "has_canonical", "llms_txt_present", "issues"
+        ] if c in top.columns]
+        st.dataframe(top[show_cols], use_container_width=True, height=500)
 
-st.markdown("## Fix Issues")
-fix_tab1, fix_tab2, fix_tab3 = st.tabs(["CSV-driven Fix", "Full WordPress Optimizer", "Fixed Issues"])
+        llm_traffic_df = fetch_llm_traffic(30)
+        llm_traffic_summary, llm_traffic_pages = summarize_llm_traffic(llm_traffic_df)
+        if llm_traffic_summary is not None and len(llm_traffic_summary) > 0:
+            st.markdown("### Attributed LLM traffic from GA4")
+            st.dataframe(llm_traffic_summary, use_container_width=True)
+            if llm_traffic_pages is not None and len(llm_traffic_pages) > 0:
+                st.dataframe(llm_traffic_pages.head(25), use_container_width=True, height=300)
 
-with fix_tab1:
-    st.markdown("### CSV-driven Fix from Latest Technical Audit")
-    dry_run_csv = st.checkbox("Dry run for CSV-driven fix", value=True)
-    if st.button("Run Fix Issues from Latest Audit", use_container_width=True):
-        if fix_from_audit is None:
-            st.error("fix_issues.py is not available.")
-        elif not WP_APP_PASS:
-            st.error("WP_APP_PASSWORD is not set. Add it as an environment variable before running write actions.")
-        else:
-            with st.spinner("Running fix_from_audit..."):
-                try:
-                    results = fix_from_audit(dry_run=dry_run_csv)
-                    if results:
-                        fix_df = pd.DataFrame(results)
-                        st.dataframe(fix_df, use_container_width=True, height=420)
-                        _show_download(fix_df, "Download Fix Report CSV", "fix_issues_from_audit.csv")
-                    else:
-                        st.info("No results returned.")
-                except Exception as exc:
-                    st.error(f"Error while running CSV-driven fixer: {exc}")
+        st.markdown("### AI crawler log parser")
+        log_text = st.text_area("Paste access logs here", height=180)
+        if st.button("Parse LLM Bots From Logs", use_container_width=True):
+            bot_df = detect_llm_bots_from_logs(log_text)
+            if bot_df.empty:
+                st.info("No known LLM bot signatures found.")
+            else:
+                st.dataframe(bot_df, use_container_width=True)
+    else:
+        st.info("No LLM visibility report found yet.")
 
-with fix_tab2:
-    st.markdown("### Full WordPress Optimizer")
-    dry_run = st.checkbox("Dry run for full optimizer", value=True)
-    min_score = st.slider("Minimum SEO score to fix", 0, 100, 80, 5)
-    max_pages = st.slider("Max WordPress post pages to fetch", 1, 50, 10, 1)
-    per_page = st.slider("Posts per page", 5, 50, 10, 5)
-    apply_schema = st.checkbox("Insert/update JSON-LD schema", value=True)
-    apply_internal_links = st.checkbox("Insert internal links", value=False)
-    report_path = st.text_input("Optimizer report file", "seo_report.json")
+elif page == "🔗 Backlink Tools":
+    st.markdown("# 🔗 Backlink Tools")
+    st.divider()
 
-    if st.button("Run Full SEO Optimizer", use_container_width=True):
-        if not WP_APP_PASS:
-            st.error("WP_APP_PASSWORD is not set. Add it as an environment variable before running WordPress optimizer actions.")
-        else:
+    tab1, tab2, tab3 = st.tabs(["Unlinked Mentions", "Backlink Targets", "Internal Linking"])
+
+    with tab1:
+        st.markdown("### Find Unlinked Brand Mentions")
+        brand_query = st.text_input("Brand to search", BRAND_NAME)
+        if st.button("Search Mentions", use_container_width=True):
+            rows = find_unlinked_mentions(query_brand=brand_query, domain=DOMAIN, count=25)
+            if rows:
+                st.dataframe(pd.DataFrame(rows), use_container_width=True, height=450)
+            else:
+                st.info("No mention results found, or Bing API key is missing.")
+
+    with tab2:
+        st.markdown("### Score Backlink Opportunities")
+        if st.button("Score Targets", use_container_width=True):
+            rows = find_unlinked_mentions(query_brand=BRAND_NAME, domain=DOMAIN, count=25)
+            scored = score_backlink_targets(rows)
+            if scored:
+                st.dataframe(pd.DataFrame(scored), use_container_width=True, height=450)
+            else:
+                st.info("No targets scored.")
+
+    with tab3:
+        st.markdown("### Internal Link Suggestions")
+        if st.button("Generate Suggestions From Latest Posts", use_container_width=True):
+            try:
+                posts = get_all_posts(status="publish", per_page=20, max_pages=2)
+                categories_map = get_wp_categories_map()
+                all_rows = []
+                for post in posts[:10]:
+                    suggestions = suggest_internal_links_for_post(post, posts, categories_map=categories_map, max_suggestions=5)
+                    for s in suggestions:
+                        all_rows.append({
+                            "source_post": clean_html_entities(post["title"]["rendered"]),
+                            "target_title": s["target_title"],
+                            "anchor_text": s["anchor_text"],
+                            "target_url": s["target_url"],
+                            "score": s["score"],
+                        })
+                if all_rows:
+                    st.dataframe(pd.DataFrame(all_rows), use_container_width=True, height=450)
+                else:
+                    st.info("No internal link suggestions found.")
+            except Exception as e:
+                st.error(f"Error generating suggestions: {e}")
+
+elif page == "⚡ Run New Scan":
+    st.markdown("# ⚡ Run New SEO Scan")
+    st.markdown(f"Scan **{DOMAIN}** now")
+    st.divider()
+
+    c1, c2 = st.columns(2)
+    with c1:
+        max_pages = st.slider("Max pages", 10, 300, 50, 10)
+    with c2:
+        modules = st.multiselect("Modules", ["Technical Audit", "Content Analysis"], default=["Technical Audit"])
+
+    if st.button("🚀 Start Scan", type="primary", use_container_width=True):
+        today = datetime.today().strftime("%Y-%m-%d")
+
+        if "Technical Audit" in modules:
+            st.markdown("### 🔍 Crawling...")
+            prog = st.progress(0)
+            stat = st.empty()
+            results = crawl_site(SITE_URL, max_pages, prog, stat)
+            if results:
+                df = pd.DataFrame(results)
+                df.to_csv(f"{OUTPUT_DIR}/{DOMAIN}_technical_audit_{today}.csv", index=False)
+                iss_count = len(df[df["issues"].astype(str).str.len() > 0])
+                st.success(f"✅ Crawled {len(results)} pages. {iss_count} with issues.")
+            else:
+                st.error("No crawl results returned.")
+
+        if "Content Analysis" in modules:
+            st.markdown("### 📝 Analyzing content...")
+            urls = [SITE_URL]
+            ap = f"{OUTPUT_DIR}/{DOMAIN}_technical_audit_{today}.csv"
+            if os.path.exists(ap):
+                adf = pd.read_csv(ap)
+                urls += adf[adf["status"].astype(str) == "200"]["url"].tolist()[:30]
+
+            prog2 = st.progress(0)
+            kw_rows = []
+            for i, url in enumerate(urls):
+                prog2.progress((i + 1) / len(urls))
+                kd = extract_page_keywords(url)
+                if "error" not in kd:
+                    kw_rows.append({
+                        "url": kd["url"],
+                        "title": kd["title"],
+                        "h1": kd["h1"],
+                        "h2s": kd["h2s"],
+                        "top_words": ", ".join(f"{w}({c})" for w, c in kd.get("top_words", [])),
+                        "top_bigrams": ", ".join(f"{b}({c})" for b, c in kd.get("top_bigrams", [])),
+                        "word_count": kd.get("word_count", 0)
+                    })
+                time.sleep(0.3)
+
+            if kw_rows:
+                pd.DataFrame(kw_rows).to_csv(f"{OUTPUT_DIR}/{DOMAIN}_page_keywords_{today}.csv", index=False)
+
+                all_kws = list(TRACKED_KEYWORDS)
+                for r in kw_rows:
+                    for h in str(r.get("h2s", "")).split(" | "):
+                        h = h.strip()
+                        if 10 < len(h) < 80:
+                            all_kws.append(h)
+
+                clusters = defaultdict(list)
+                for kw in all_kws:
+                    w = kw.lower().split()
+                    k = " ".join(w[:2]) if len(w) >= 2 else (w[0] if w else "other")
+                    clusters[k].append(kw)
+
+                crows = [
+                    {"cluster": k, "keyword_count": len(v), "keywords": " | ".join(v)}
+                    for k, v in sorted(clusters.items(), key=lambda x: -len(x[1]))
+                ]
+                pd.DataFrame(crows).to_csv(f"{OUTPUT_DIR}/{DOMAIN}_keyword_clusters_{today}.csv", index=False)
+                st.success(f"✅ Analyzed {len(kw_rows)} pages.")
+
+        st.balloons()
+
+elif page == "🛠️ Fix Issues":
+    st.markdown("# 🛠️ Fix SEO Issues (WordPress)")
+    st.divider()
+
+    tab1, tab2 = st.tabs(["CSV-driven Fix", "Legacy / Full Optimizer"])
+
+    with tab1:
+        st.markdown("### CSV-driven Fix from Technical Audit")
+        dry_run_csv = st.checkbox("Dry run (simulate only)", value=True)
+        if st.button("🚀 Run Fix Issues from Latest Audit", type="primary"):
+            if fix_from_audit is None:
+                st.error("fix_issues.py is not available.")
+            else:
+                with st.spinner("Running fix_from_audit..."):
+                    try:
+                        results = fix_from_audit(dry_run=dry_run_csv)
+                        if not results:
+                            st.info("No results returned.")
+                        else:
+                            df = pd.DataFrame(results)
+                            st.dataframe(df, use_container_width=True, height=500)
+                            st.download_button(
+                                "📥 Download Fix Report CSV",
+                                df.to_csv(index=False).encode(),
+                                "fix_issues_from_audit.csv",
+                                "text/csv",
+                            )
+                    except Exception as e:
+                        st.error(f"Error while running CSV-driven fixer: {e}")
+
+    with tab2:
+        st.markdown("### Full WordPress Optimizer")
+        dry_run = st.checkbox("Dry run", value=True)
+        min_score = st.slider("Minimum SEO score to fix", 0, 100, 80, 5)
+        max_pages = st.slider("Max WordPress post pages to fetch", 1, 50, 10, 1)
+        per_page = st.slider("Posts per page", 5, 50, 10, 5)
+        apply_schema = st.checkbox("Insert/update JSON-LD schema", value=True)
+        apply_internal_links = st.checkbox("Insert internal links", value=False)
+        report_path = st.text_input("Report file", "seo_report.json")
+
+        if st.button("🚀 Run Full SEO Optimizer", use_container_width=True):
             with st.spinner("Running WordPress SEO optimizer..."):
                 try:
                     results = run_seo_optimizer(
@@ -2079,27 +2364,34 @@ with fix_tab2:
                     )
 
                     if results:
-                        optimizer_df = pd.DataFrame([{
-                            "id": row["id"],
-                            "title": row["title"],
-                            "score_before": row["score_before"],
-                            "score_after": row["score_after"],
-                            "alt_tags_added": row.get("alt_tags_added", 0),
-                            "internal_links_inserted": row.get("internal_links_inserted", 0),
-                            "schema_generated": row.get("schema_generated", False),
-                            "changes": ", ".join(row.get("changes_made", [])),
-                        } for row in results])
+                        df = pd.DataFrame([{
+                            "id": r["id"],
+                            "title": r["title"],
+                            "score_before": r["score_before"],
+                            "score_after": r["score_after"],
+                            "alt_tags_added": r.get("alt_tags_added", 0),
+                            "internal_links_inserted": r.get("internal_links_inserted", 0),
+                            "schema_generated": r.get("schema_generated", False),
+                            "changes": ", ".join(r.get("changes_made", [])),
+                        } for r in results])
 
-                        st.success("Optimizer completed.")
-                        st.dataframe(optimizer_df, use_container_width=True, height=420)
-                        _show_download(optimizer_df, "Download Optimizer Report CSV", "wp_optimizer_report.csv")
+                        st.success("Completed.")
+                        st.dataframe(df, use_container_width=True, height=500)
+                        st.download_button(
+                            "📥 Download optimizer report CSV",
+                            df.to_csv(index=False).encode(),
+                            "wp_optimizer_report.csv",
+                            "text/csv"
+                        )
                     else:
                         st.info("No posts were processed.")
-                except Exception as exc:
-                    st.error(f"Error while running optimizer: {exc}")
+                except Exception as e:
+                    st.error(f"Error while running optimizer: {e}")
 
-with fix_tab3:
-    st.markdown("### Fixed Issue Reports")
+elif page == "✅ Fixed Issues":
+    st.markdown("# ✅ Fixed Issues (Reports)")
+    st.divider()
+
     fix_dates = get_fix_report_dates()
     if not fix_dates:
         st.info("No fix reports found in seo_reports/.")
@@ -2107,17 +2399,33 @@ with fix_tab3:
         selected_fix_date = st.selectbox("Fix report date", fix_dates, index=0)
         fix_df = load_fix_issues(selected_fix_date)
 
-        if not _safe_df(fix_df):
+        if fix_df is None or len(fix_df) == 0:
             st.warning("Selected fix report is empty.")
         else:
-            only_fixed = st.checkbox("Show only successfully fixed", value=True)
-            url_search = st.text_input("Filter fixed report by URL contains")
+            st.markdown(f"Showing **{len(fix_df)}** rows from `{DOMAIN}_fix_issues_{selected_fix_date}.csv`")
+
+            col1, col2 = st.columns(2)
+            with col1:
+                only_fixed = st.checkbox("Show only successfully fixed", value=True)
+            with col2:
+                url_search = st.text_input("Filter by URL contains")
 
             df_view = fix_df.copy()
+
             if "fixed" in df_view.columns and only_fixed:
                 df_view = df_view[df_view["fixed"] == True]
+
             if url_search:
                 df_view = df_view[df_view["url"].astype(str).str.contains(url_search, case=False, na=False)]
 
-            st.dataframe(df_view, use_container_width=True, height=420)
-            _show_download(df_view, "Download Filtered Fixed Issues CSV", f"{DOMAIN}_fixed_issues_view_{selected_fix_date}.csv")
+            st.dataframe(df_view, use_container_width=True, height=500)
+
+            st.download_button(
+                "📥 Download filtered fixed issues CSV",
+                df_view.to_csv(index=False).encode(),
+                f"{DOMAIN}_fixed_issues_view_{selected_fix_date}.csv",
+                "text/csv",
+            )
+
+else:
+    st.info("Select a section from the sidebar.")
