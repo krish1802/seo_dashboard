@@ -1,0 +1,722 @@
+[
+  {
+    "url": "https://sanfranciscobriefing.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (120) | No H1 | Slow (3.23s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (120) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (135) | No H1 | Slow (3.26s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (22) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/uploads/blocksy/css/global.css?ver=95941",
+    "slug": "global.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/coblocks/dist/style-coblocks-extensions.css?ver=3.1.17",
+    "slug": "style-coblocks-extensions.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/coblocks/dist/style-coblocks-animation.css?ver=2677611078ee87eb3b1c",
+    "slug": "style-coblocks-animation.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0",
+    "slug": "all.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-includes/css/buttons.min.css?ver=6.9.4",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-includes/css/dashicons.min.css?ver=6.9.4",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-includes/css/media-views.min.css?ver=6.9.4",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=6.9.4",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-includes/css/dist/components/style.min.css?ver=6.9.4",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/coblocks/includes/Dependencies/GoDaddy/Styles/build/latest.css?ver=2.0.2",
+    "slug": "latest.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/kirki/assets/css/kirki.min.css?ver=6.0.2",
+    "slug": "kirki.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/themes/blocksy/static/bundle/main.min.css?ver=2.1.38",
+    "slug": "main.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/themes/blocksy/static/bundle/sidebar.min.css?ver=2.1.38",
+    "slug": "sidebar.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/themes/blocksy/static/bundle/cf-7.min.css?ver=2.1.38",
+    "slug": "cf-7.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/themes/blocksy/static/bundle/stackable.min.css?ver=2.1.38",
+    "slug": "stackable.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/themes/blocksy/static/bundle/wpforms.min.css?ver=2.1.38",
+    "slug": "wpforms.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/plugins/blocksy-companion/framework/extensions/trending/static/bundle/main.min.css?ver=2.1.38",
+    "slug": "main.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | Slow (3.57s) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/themes/blocksy/static/bundle/no-scripts.min.css",
+    "slug": "no-scripts.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/uploads/2026/04/cropped-1920-32x32.png",
+    "slug": "cropped-1920-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/uploads/2026/04/cropped-1920-192x192.png",
+    "slug": "cropped-1920-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/uploads/2026/04/cropped-1920-180x180.png",
+    "slug": "cropped-1920-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/themes/blocksy/static/bundle/entries.min.css?ver=2.1.38",
+    "slug": "entries.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/wp-content/themes/blocksy/static/bundle/pagination.min.css?ver=2.1.38",
+    "slug": "pagination.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/newyorkinfocus/",
+    "slug": "newyorkinfocus",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.41s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/local-news-highlights/",
+    "slug": "local-news-highlights",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.08s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/opinion-pieces/",
+    "slug": "opinion-pieces",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.19s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/feature-stories/",
+    "slug": "feature-stories",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.06s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/editorial-process/",
+    "slug": "editorial-process",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/breakingheadlines/",
+    "slug": "breakingheadlines",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (5.06s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/about-us/",
+    "slug": "about-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Slow (3.76s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/narrow-width/",
+    "slug": "narrow-width",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/default-width/",
+    "slug": "default-width",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/right-sidebar/",
+    "slug": "right-sidebar",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.06s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/left-sidebar/",
+    "slug": "left-sidebar",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/contact/",
+    "slug": "contact",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.05s) | 4 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/about/",
+    "slug": "about",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.02s) | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/accessibility-statement/",
+    "slug": "accessibility-statement",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/3029-2/",
+    "slug": "3029-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/columns-block/",
+    "slug": "columns-block",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/cookies-policy/",
+    "slug": "cookies-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (28) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/image-gallery-block/",
+    "slug": "image-gallery-block",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 1 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/privacy-policy/",
+    "slug": "privacy-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.38s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/quote-block/",
+    "slug": "quote-block",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/table-block/",
+    "slug": "table-block",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/1888-2/",
+    "slug": "1888-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (204) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/author/texasfashioninsider/",
+    "slug": "texasfashioninsider",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.15s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/san-francisco-briefing-exclusive-brian-ferdinand-building-life/",
+    "slug": "san-francisco-briefing-exclusive-brian-ferdinand-building-life",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (108) | Missing meta desc | Slow (3.05s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/long-island-roofing-costs-2025-homeowner-essential-guide/",
+    "slug": "long-island-roofing-costs-2025-homeowner-essential-guide",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (89) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/neutron-labs-calls-out-apple-unfair-app-store/",
+    "slug": "neutron-labs-calls-out-apple-unfair-app-store",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (98) | Missing meta desc | Slow (3.08s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/how-to-repair-a-leaky-roof/",
+    "slug": "how-to-repair-a-leaky-roof",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/navigating-roof-insurance-claims-texas-guide-deductibles-depreciation/",
+    "slug": "navigating-roof-insurance-claims-texas-guide-deductibles-depreciation",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (107) | Missing meta desc | Slow (6.09s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/dr-steinbrech-announces-2024-top-male-celebrity-influences/",
+    "slug": "dr-steinbrech-announces-2024-top-male-celebrity-influences",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (105) | Missing meta desc | Slow (4.12s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/pinnacle-artistry-danilo-bonazza-global-leader-mosaic-art/",
+    "slug": "pinnacle-artistry-danilo-bonazza-global-leader-mosaic-art",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (99) | Missing meta desc | Slow (3.81s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/top-recording-artist-kunal-khirsagar-launches-new-nightclub/",
+    "slug": "top-recording-artist-kunal-khirsagar-launches-new-nightclub",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (145) | Missing meta desc | Slow (3.01s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/bollywood-star-jasmine-kapoor-bridging-cultures-hollywood-beyond/",
+    "slug": "bollywood-star-jasmine-kapoor-bridging-cultures-hollywood-beyond",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (146) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/page/3/",
+    "slug": "3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (135) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/page/4/",
+    "slug": "4",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (135) | No H1 | Slow (3.57s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/page/16/",
+    "slug": "16",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (136) | No H1 | Slow (3.23s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/5-rules-to-be-more-of-a-go-getter/",
+    "slug": "5-rules-to-be-more-of-a-go-getter",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.31s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/experience-of-cutting-edge-design/",
+    "slug": "experience-of-cutting-edge-design",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.09s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/which-gadgets-gonna-make-you-free/",
+    "slug": "which-gadgets-gonna-make-you-free",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.12s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/why-it-might-work-for-you/",
+    "slug": "why-it-might-work-for-you",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/few-things-about-artistry-innovation/",
+    "slug": "few-things-about-artistry-innovation",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (67) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/art-design/",
+    "slug": "art-design",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Slow (3.05s)",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/nature/",
+    "slug": "nature",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/people/",
+    "slug": "people",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://sanfranciscobriefing.com/category/travel/",
+    "slug": "travel",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  }
+]
