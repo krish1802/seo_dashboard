@@ -1713,70 +1713,52 @@ def summarize_llm_traffic(df):
 # STREAMLIT UI
 # ──────────────────────────────────────────────────────────────
 
-# ──────────────────────────────────────────────────────────────
-# STREAMLIT UI
-# ──────────────────────────────────────────────────────────────
-
 st.set_page_config(
     page_title="SEO Dashboard | San Francisco Briefing",
     page_icon="📈",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
     html, body, .stApp { font-family: 'DM Sans', sans-serif; }
-    /* Hide sidebar entirely */
-    div[data-testid="stSidebar"] { display: none !important; }
-    section[data-testid="stSidebar"] { display: none !important; }
-    /* Section headings */
-    .seo-section-anchor {
-        scroll-margin-top: 80px;
-        padding-top: 1.5rem;
-    }
+    div[data-testid="stSidebar"] { background: #0f1117; }
+    div[data-testid="stSidebar"] * { color: #e2e8f0 !important; }
+    div[data-testid="stSidebar"] .stRadio label { color: #e2e8f0 !important; }
+    div[data-testid="stSidebar"] hr { border-color: #2d3748; }
 </style>
 """, unsafe_allow_html=True)
 
-
-# ──────────────────────────────────────────────────────────────
-# TOP HEADER
-# ──────────────────────────────────────────────────────────────
-
-st.markdown("# 📊 SEO Dashboard")
-st.markdown(f"**Site:** `{DOMAIN}`")
-
-dates = get_report_dates()
-header_cols = st.columns([3, 1])
-with header_cols[1]:
-    selected_date = st.selectbox(
-        "Report Date",
-        dates,
-        index=0,
-    ) if dates else datetime.today().strftime("%Y-%m-%d")
-if not dates:
-    st.info("No reports yet. Run a scan!")
-
-st.caption("SEO Automation Toolkit — Streamlit Edition")
-st.divider()
-
-
-st.markdown("""
-<div style="margin-bottom: 1rem; font-size: 0.95rem;">
-<strong>Jump to:</strong> <a href="#overview">🏠 Overview</a> &nbsp;·&nbsp; <a href="#growth">📈 Growth Tracker</a> &nbsp;·&nbsp; <a href="#audit">🔍 Technical Audit</a> &nbsp;·&nbsp; <a href="#traffic">📊 Traffic Analytics</a> &nbsp;·&nbsp; <a href="#content">📝 Content Analysis</a> &nbsp;·&nbsp; <a href="#keywords">🔑 Keywords</a> &nbsp;·&nbsp; <a href="#backlinks">🔗 Backlink Tools (Suggestion)</a> &nbsp;·&nbsp; <a href="#fixed">✅ Fixed Issues</a>
-</div>
-""", unsafe_allow_html=True)
-
-st.divider()
+with st.sidebar:
+    st.markdown("## 📊 SEO Dashboard")
+    st.markdown(f"**Site:** `{DOMAIN}`")
+    st.divider()
+    page = st.radio("Navigate", [
+        "🏠 Overview",
+        "📈 Growth Tracker",
+        "🔍 Technical Audit",
+        "📊 Traffic Analytics",
+        "📝 Content Analysis",
+        "🔑 Keywords",
+        "🔗 Backlink Tools ( Suggestion )",
+        "✅ Fixed Issues",
+    ], label_visibility="collapsed")
+    st.divider()
+    dates = get_report_dates()
+    selected_date = st.selectbox("Report Date", dates, index=0) if dates else datetime.today().strftime("%Y-%m-%d")
+    if not dates:
+        st.info("No reports yet. Run a scan!")
+    st.divider()
+    st.caption("SEO Automation Toolkit — Streamlit Edition")
 
 
 # ──────────────────────────────────────────────────────────────
-# 🏠 Overview
+# PAGE ROUTING
 # ──────────────────────────────────────────────────────────────
-st.markdown('<div id="overview" class="seo-section-anchor"></div>', unsafe_allow_html=True)
 
-def _render_overview():
+if page == "🏠 Overview":
     st.markdown("# 🏠 SEO Performance Overview")
     st.markdown(f"**{DOMAIN}** — Report for **{selected_date}**")
     st.divider()
@@ -1886,20 +1868,9 @@ def _render_overview():
         else:
             st.info("No GA4 top pages data available.")
             # ── Click farm results, today ──
+        
 
-
-
-_render_overview()
-
-st.divider()
-
-
-# ──────────────────────────────────────────────────────────────
-# 📈 Growth Tracker
-# ──────────────────────────────────────────────────────────────
-st.markdown('<div id="growth" class="seo-section-anchor"></div>', unsafe_allow_html=True)
-
-def _render_growth():
+elif page == "📈 Growth Tracker":
     st.markdown("# 📈 Growth Tracker")
     st.markdown("Day-over-day and long-term trends across all scan history.")
     st.divider()
@@ -1907,7 +1878,7 @@ def _render_growth():
     all_dates = get_report_dates()
     if len(all_dates) < 2:
         st.info("You need at least 2 scans to track growth.")
-        return
+        st.stop()
 
     audit_hist, serp_hist = load_all_snapshots()
 
@@ -1920,7 +1891,7 @@ def _render_growth():
 
     if date_old is None:
         st.warning("No older scan available.")
-        return
+        st.stop()
 
     snap_new = compute_audit_snapshot(load_audit(date_new))
     snap_old = compute_audit_snapshot(load_audit(date_old))
@@ -1949,18 +1920,7 @@ def _render_growth():
                 fig.add_trace(go.Scatter(x=serp_hist["date"], y=serp_hist[col], mode="lines+markers", name=col))
         st.plotly_chart(fig, use_container_width=True)
 
-
-_render_growth()
-
-st.divider()
-
-
-# ──────────────────────────────────────────────────────────────
-# 🔍 Technical Audit
-# ──────────────────────────────────────────────────────────────
-st.markdown('<div id="audit" class="seo-section-anchor"></div>', unsafe_allow_html=True)
-
-def _render_audit():
+elif page == "🔍 Technical Audit":
     st.markdown("# 🔍 Technical SEO Audit")
     st.divider()
     audit_df = load_audit(selected_date)
@@ -2000,18 +1960,23 @@ def _render_audit():
     else:
         st.warning("No technical audit data found.")
 
-
-_render_audit()
-
-st.divider()
-
-
-# ──────────────────────────────────────────────────────────────
-# 📊 Traffic Analytics
-# ──────────────────────────────────────────────────────────────
-st.markdown('<div id="traffic" class="seo-section-anchor"></div>', unsafe_allow_html=True)
-
-def _render_traffic():
+elif page == "🏆 SERP Rankings":
+    st.markdown("# 🏆 SERP Rankings")
+    st.divider()
+    serp_df = load_serp(selected_date)
+    if serp_df is not None and len(serp_df) > 0:
+        ss = serp_df[serp_df["site"] == DOMAIN] if "site" in serp_df.columns else serp_df
+        cd = ss[["keyword", "our_position"]].copy()
+        cd["our_position"] = pd.to_numeric(cd["our_position"], errors="coerce")
+        cd = cd.dropna()
+        if len(cd) > 0:
+            fig = px.bar(cd, x="keyword", y="our_position", color="our_position", range_color=[1, 20])
+            fig.update_layout(yaxis=dict(autorange="reversed"), xaxis_tickangle=-45)
+            st.plotly_chart(fig, use_container_width=True)
+        st.dataframe(ss, use_container_width=True)
+    else:
+        st.warning("No SERP data found.")
+elif page == "📊 Traffic Analytics":
     st.markdown("# 📊 Traffic Analytics")
     st.markdown("Live data from GA4")
     st.divider()
@@ -2154,18 +2119,7 @@ def _render_traffic():
         f"selected_website_traffic_{days_choice}d.csv",
         "text/csv",
     )
-
-_render_traffic()
-
-st.divider()
-
-
-# ──────────────────────────────────────────────────────────────
-# 📝 Content Analysis
-# ──────────────────────────────────────────────────────────────
-st.markdown('<div id="content" class="seo-section-anchor"></div>', unsafe_allow_html=True)
-
-def _render_content():
+elif page == "📝 Content Analysis":
     st.markdown("# 📝 Content Analysis")
     st.divider()
     kw_df = load_keywords(selected_date)
@@ -2178,18 +2132,7 @@ def _render_content():
     else:
         st.warning("No content analysis data found.")
 
-
-_render_content()
-
-st.divider()
-
-
-# ──────────────────────────────────────────────────────────────
-# 🔑 Keywords
-# ──────────────────────────────────────────────────────────────
-st.markdown('<div id="keywords" class="seo-section-anchor"></div>', unsafe_allow_html=True)
-
-def _render_keywords():
+elif page == "🔑 Keywords":
     st.markdown("# 🔑 Keyword Clusters")
     st.divider()
     cl = load_clusters(selected_date)
@@ -2200,18 +2143,65 @@ def _render_keywords():
     else:
         st.warning("No keyword cluster data found.")
 
+elif page == "🤖 LLM Visibility":
+    st.markdown("# 🤖 LLM Visibility")
+    st.caption("Estimate how clearly your pages can be interpreted by GPTs and LLMs.")
+    st.divider()
 
-_render_keywords()
+    llm_df = load_llm_visibility(selected_date)
 
-st.divider()
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        scan_all = st.checkbox("Scan ALL pages (no limit)", value=False)
+        llm_max_pages = 99999 if scan_all else st.slider("Pages to scan", 5, 500, 25, 25)
+    with c2:
+        run_llm_scan = st.button("🚀 Run LLM Visibility Scan", type="primary", use_container_width=True)
 
+    if run_llm_scan:
+        progress = st.progress(0)
+        status = st.empty()
+        with st.spinner("Auditing LLM discoverability..."):
+            rows = audit_llm_visibility(SITE_URL, max_pages=llm_max_pages, progress_bar=progress, status_text=status)
+            saved_path = save_llm_visibility_report(rows)
+            llm_df = pd.DataFrame(rows)
+        progress.empty()
+        status.empty()
+        st.success(f"LLM visibility scan completed. Saved to {saved_path}")
 
-# ──────────────────────────────────────────────────────────────
-# 🔗 Backlink Tools (Suggestion)
-# ──────────────────────────────────────────────────────────────
-st.markdown('<div id="backlinks" class="seo-section-anchor"></div>', unsafe_allow_html=True)
+    if llm_df is not None and len(llm_df) > 0:
+        top = llm_df.sort_values("llm_visibility_score", ascending=False)
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Pages scanned", int(len(llm_df)))
+        m2.metric("Avg score", round(pd.to_numeric(llm_df["llm_visibility_score"], errors="coerce").mean(), 1))
+        m3.metric("Pages with llms.txt support", int(pd.to_numeric(llm_df["llms_txt_present"], errors="coerce").fillna(0).astype(bool).sum()))
+        m4.metric("Pages with weak signals", int(llm_df["issues"].astype(str).str.contains("Weak keyword/query signals|Missing", na=False).sum()))
 
-def _render_backlinks():
+        show_cols = [c for c in [
+            "url", "llm_visibility_score", "primary_keyword", "candidate_queries",
+            "has_schema", "has_og_tags", "has_canonical", "llms_txt_present", "issues"
+        ] if c in top.columns]
+        st.dataframe(top[show_cols], use_container_width=True, height=500)
+
+        llm_traffic_df = fetch_llm_traffic(30)
+        llm_traffic_summary, llm_traffic_pages = summarize_llm_traffic(llm_traffic_df)
+        if llm_traffic_summary is not None and len(llm_traffic_summary) > 0:
+            st.markdown("### Attributed LLM traffic from GA4")
+            st.dataframe(llm_traffic_summary, use_container_width=True)
+            if llm_traffic_pages is not None and len(llm_traffic_pages) > 0:
+                st.dataframe(llm_traffic_pages.head(25), use_container_width=True, height=300)
+
+        st.markdown("### AI crawler log parser")
+        log_text = st.text_area("Paste access logs here", height=180)
+        if st.button("Parse LLM Bots From Logs", use_container_width=True):
+            bot_df = detect_llm_bots_from_logs(log_text)
+            if bot_df.empty:
+                st.info("No known LLM bot signatures found.")
+            else:
+                st.dataframe(bot_df, use_container_width=True)
+    else:
+        st.info("No LLM visibility report found yet.")
+
+elif page == "🔗 Backlink Tools":
     st.markdown("# 🔗 Backlink Tools")
     st.divider()
 
@@ -2261,18 +2251,163 @@ def _render_backlinks():
             except Exception as e:
                 st.error(f"Error generating suggestions: {e}")
 
+elif page == "⚡ Run New Scan":
+    st.markdown("# ⚡ Run New SEO Scan")
+    st.markdown(f"Scan **{DOMAIN}** now")
+    st.divider()
 
-_render_backlinks()
+    c1, c2 = st.columns(2)
+    with c1:
+        max_pages = st.slider("Max pages", 10, 300, 50, 10)
+    with c2:
+        modules = st.multiselect("Modules", ["Technical Audit", "Content Analysis"], default=["Technical Audit"])
 
-st.divider()
+    if st.button("🚀 Start Scan", type="primary", use_container_width=True):
+        today = datetime.today().strftime("%Y-%m-%d")
 
+        if "Technical Audit" in modules:
+            st.markdown("### 🔍 Crawling...")
+            prog = st.progress(0)
+            stat = st.empty()
+            results = crawl_site(SITE_URL, max_pages, prog, stat)
+            if results:
+                df = pd.DataFrame(results)
+                df.to_csv(f"{OUTPUT_DIR}/{DOMAIN}_technical_audit_{today}.csv", index=False)
+                iss_count = len(df[df["issues"].astype(str).str.len() > 0])
+                st.success(f"✅ Crawled {len(results)} pages. {iss_count} with issues.")
+            else:
+                st.error("No crawl results returned.")
 
-# ──────────────────────────────────────────────────────────────
-# ✅ Fixed Issues
-# ──────────────────────────────────────────────────────────────
-st.markdown('<div id="fixed" class="seo-section-anchor"></div>', unsafe_allow_html=True)
+        if "Content Analysis" in modules:
+            st.markdown("### 📝 Analyzing content...")
+            urls = [SITE_URL]
+            ap = f"{OUTPUT_DIR}/{DOMAIN}_technical_audit_{today}.csv"
+            if os.path.exists(ap):
+                adf = pd.read_csv(ap)
+                urls += adf[adf["status"].astype(str) == "200"]["url"].tolist()[:30]
 
-def _render_fixed():
+            prog2 = st.progress(0)
+            kw_rows = []
+            for i, url in enumerate(urls):
+                prog2.progress((i + 1) / len(urls))
+                kd = extract_page_keywords(url)
+                if "error" not in kd:
+                    kw_rows.append({
+                        "url": kd["url"],
+                        "title": kd["title"],
+                        "h1": kd["h1"],
+                        "h2s": kd["h2s"],
+                        "top_words": ", ".join(f"{w}({c})" for w, c in kd.get("top_words", [])),
+                        "top_bigrams": ", ".join(f"{b}({c})" for b, c in kd.get("top_bigrams", [])),
+                        "word_count": kd.get("word_count", 0)
+                    })
+                time.sleep(0.3)
+
+            if kw_rows:
+                pd.DataFrame(kw_rows).to_csv(f"{OUTPUT_DIR}/{DOMAIN}_page_keywords_{today}.csv", index=False)
+
+                all_kws = list(TRACKED_KEYWORDS)
+                for r in kw_rows:
+                    for h in str(r.get("h2s", "")).split(" | "):
+                        h = h.strip()
+                        if 10 < len(h) < 80:
+                            all_kws.append(h)
+
+                clusters = defaultdict(list)
+                for kw in all_kws:
+                    w = kw.lower().split()
+                    k = " ".join(w[:2]) if len(w) >= 2 else (w[0] if w else "other")
+                    clusters[k].append(kw)
+
+                crows = [
+                    {"cluster": k, "keyword_count": len(v), "keywords": " | ".join(v)}
+                    for k, v in sorted(clusters.items(), key=lambda x: -len(x[1]))
+                ]
+                pd.DataFrame(crows).to_csv(f"{OUTPUT_DIR}/{DOMAIN}_keyword_clusters_{today}.csv", index=False)
+                st.success(f"✅ Analyzed {len(kw_rows)} pages.")
+
+        st.balloons()
+
+elif page == "🛠️ Fix Issues":
+    st.markdown("# 🛠️ Fix SEO Issues (WordPress)")
+    st.divider()
+
+    tab1, tab2 = st.tabs(["CSV-driven Fix", "Legacy / Full Optimizer"])
+
+    with tab1:
+        st.markdown("### CSV-driven Fix from Technical Audit")
+        dry_run_csv = st.checkbox("Dry run (simulate only)", value=True)
+        if st.button("🚀 Run Fix Issues from Latest Audit", type="primary"):
+            if fix_from_audit is None:
+                st.error("fix_issues.py is not available.")
+            else:
+                with st.spinner("Running fix_from_audit..."):
+                    try:
+                        results = fix_from_audit(dry_run=dry_run_csv)
+                        if not results:
+                            st.info("No results returned.")
+                        else:
+                            df = pd.DataFrame(results)
+                            st.dataframe(df, use_container_width=True, height=500)
+                            st.download_button(
+                                "📥 Download Fix Report CSV",
+                                df.to_csv(index=False).encode(),
+                                "fix_issues_from_audit.csv",
+                                "text/csv",
+                            )
+                    except Exception as e:
+                        st.error(f"Error while running CSV-driven fixer: {e}")
+
+    with tab2:
+        st.markdown("### Full WordPress Optimizer")
+        dry_run = st.checkbox("Dry run", value=True)
+        min_score = st.slider("Minimum SEO score to fix", 0, 100, 80, 5)
+        max_pages = st.slider("Max WordPress post pages to fetch", 1, 50, 10, 1)
+        per_page = st.slider("Posts per page", 5, 50, 10, 5)
+        apply_schema = st.checkbox("Insert/update JSON-LD schema", value=True)
+        apply_internal_links = st.checkbox("Insert internal links", value=False)
+        report_path = st.text_input("Report file", "seo_report.json")
+
+        if st.button("🚀 Run Full SEO Optimizer", use_container_width=True):
+            with st.spinner("Running WordPress SEO optimizer..."):
+                try:
+                    results = run_seo_optimizer(
+                        status="publish",
+                        per_page=per_page,
+                        max_pages=max_pages,
+                        dry_run=dry_run,
+                        min_score_to_fix=min_score,
+                        report_file=report_path,
+                        apply_schema=apply_schema,
+                        apply_internal_links=apply_internal_links,
+                    )
+
+                    if results:
+                        df = pd.DataFrame([{
+                            "id": r["id"],
+                            "title": r["title"],
+                            "score_before": r["score_before"],
+                            "score_after": r["score_after"],
+                            "alt_tags_added": r.get("alt_tags_added", 0),
+                            "internal_links_inserted": r.get("internal_links_inserted", 0),
+                            "schema_generated": r.get("schema_generated", False),
+                            "changes": ", ".join(r.get("changes_made", [])),
+                        } for r in results])
+
+                        st.success("Completed.")
+                        st.dataframe(df, use_container_width=True, height=500)
+                        st.download_button(
+                            "📥 Download optimizer report CSV",
+                            df.to_csv(index=False).encode(),
+                            "wp_optimizer_report.csv",
+                            "text/csv"
+                        )
+                    else:
+                        st.info("No posts were processed.")
+                except Exception as e:
+                    st.error(f"Error while running optimizer: {e}")
+
+elif page == "✅ Fixed Issues":
     st.markdown("# ✅ Fixed Issues (Reports)")
     st.divider()
 
@@ -2311,8 +2446,5 @@ def _render_fixed():
                 "text/csv",
             )
 
-
-_render_fixed()
-
-st.divider()
-
+else:
+    st.info("Select a section from the sidebar.")
