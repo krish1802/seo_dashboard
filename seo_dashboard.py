@@ -1994,30 +1994,53 @@ elif page == "📊 Traffic Analytics":
 
     ga_df = fetch_ga4_data(days=days_choice)
     if ga_df is not None and len(ga_df) > 0:
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Users", f"{ga_df['users'].sum():,}")
-        c2.metric("Sessions", f"{ga_df['sessions'].sum():,}")
-        c3.metric("Pageviews", f"{ga_df['pageviews'].sum():,}")
-
-        fig = px.line(
-            ga_df,
-            x="date",
-            y="users",
-            title=f"Traffic Trend (Last {days_choice} Days)",
-            labels={"date": "Date", "users": "Users"},
-        )
-        fig.update_layout(xaxis_title="Date", yaxis_title="Users")
+        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"], title="Traffic Trend (Last 7 Days)")
         st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.warning("No Google Analytics data found.")
 
+        top_pages = fetch_top_pages()
         st.divider()
-    st.markdown("## 🔎 Traffic from selected websites")
-    st.caption(
-        "Disclaimer: This section shows GA4-detected traffic only for these websites: "
-        "Google, Bing, Yahoo, ChatGPT, Claude, and Anthropic. "
-        "If a website has no detected traffic in the selected date range, it will appear with 0 values."
-    )
+        st.markdown("## 🧪 Click farm results, today")
+
+        cf_df = load_clickfarm_today()
+
+        if cf_df is None or len(cf_df) == 0:
+            st.info("No click farm CSV found for today in seo_reports/.")
+        else:
+            # Ensure correct dtypes
+            cf_df["engine"] = cf_df["engine"].astype(str)
+            cf_df["clicks"] = pd.to_numeric(cf_df["clicks"], errors="coerce").fillna(0).astype(int)
+
+            total_clicks = int(cf_df["clicks"].sum())
+            top_engine = cf_df.sort_values("clicks", ascending=False).iloc[0]
+
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Total bot clicks today", f"{total_clicks:,}")
+            c2.metric("Engines tested", f"{len(cf_df):,}")
+            c3.metric("Top engine", f"{top_engine['engine']} ({top_engine['clicks']} clicks)")
+
+            fig_cf = px.bar(
+                cf_df,
+                x="engine",
+                y="clicks",
+                text="clicks",
+                labels={"engine": "Engine", "clicks": "Clicks"},
+                title="Click farm results, today",
+                color="engine",
+            )
+            fig_cf.update_traces(textposition="outside")
+            fig_cf.update_layout(xaxis_title="Engine", yaxis_title="Clicks")
+            st.plotly_chart(fig_cf, use_container_width=True)
+
+            st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250)
+        st.markdown("## 🔥 Top Pages (Last 7 Days)")
+        if top_pages is not None and len(top_pages) > 0:
+            fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
+            fig.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig, use_container_width=True)
+            st.dataframe(top_pages, use_container_width=True)
+        else:
+            st.info("No GA4 top pages data available.")
+            # ── Click farm results, today ──
 
     src_df = fetch_traffic_by_source(days=days_choice)
 
