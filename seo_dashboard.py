@@ -1937,13 +1937,17 @@ elif page == "🏆 SERP Rankings":
         st.dataframe(ss, use_container_width=True)
     else:
         st.warning("No SERP data found.")
-
 elif page == "📊 Traffic Analytics":
     st.markdown("# 📊 Traffic Analytics")
     st.markdown("Live data from GA4")
     st.divider()
 
-    days_choice = st.selectbox("Date range", [7, 14, 30, 60, 90], index=2, format_func=lambda d: f"Last {d} days")
+    days_choice = st.selectbox(
+        "Date range",
+        [7, 14, 30, 60, 90],
+        index=2,
+        format_func=lambda d: f"Last {d} days"
+    )
 
     ga_df = fetch_ga4_data(days=days_choice)
     if ga_df is not None and len(ga_df) > 0:
@@ -1951,108 +1955,90 @@ elif page == "📊 Traffic Analytics":
         c1.metric("Users", f"{ga_df['users'].sum():,}")
         c2.metric("Sessions", f"{ga_df['sessions'].sum():,}")
         c3.metric("Pageviews", f"{ga_df['pageviews'].sum():,}")
-        fig = px.line(ga_df, x="date", y="users",
-                      title=f"Traffic Trend (Last {days_choice} Days)")
+
+        fig = px.line(
+            ga_df,
+            x="date",
+            y="users",
+            title=f"Traffic Trend (Last {days_choice} Days)",
+            labels={"date": "Date", "users": "Users"},
+        )
+        fig.update_layout(xaxis_title="Date", yaxis_title="Users")
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.warning("No Google Analytics data found.")
 
     st.divider()
-    st.markdown("## 🔎 Traffic by Source")
-    st.caption("Search engines, AI referrers, and direct traffic — side by side.")
+    st.markdown("## 🔎 Traffic from selected websites")
+    st.caption("Google, Bing, Yahoo, ChatGPT, Claude, and Anthropic.")
 
     src_df = fetch_traffic_by_source(days=days_choice)
 
     if src_df is not None and len(src_df) > 0:
-        # ── Summary KPI row by type ──
-        type_summary = (
-            src_df.groupby("source_type", as_index=False)[["sessions", "users", "pageviews"]]
-            .sum()
-            .sort_values("sessions", ascending=False)
-        )
+        wanted_sources = ["google", "bing", "yahoo", "chatgpt", "claude", "anthropic"]
 
-        cols = st.columns(len(type_summary))
-        for col, (_, row) in zip(cols, type_summary.iterrows()):
-            col.metric(row["source_type"], f"{row['sessions']:,} sessions", f"{row['users']:,} users")
+        filtered_df = src_df[
+            src_df["source"].astype(str).str.lower().isin(wanted_sources)
+        ].copy()
 
-        st.divider()
+        if len(filtered_df) > 0:
+            filtered_df = (
+                filtered_df.groupby("source", as_index=False)[
+                    ["users", "sessions", "pageviews"]
+                ]
+                .sum()
+                .sort_values("users", ascending=False)
+            )
 
-        # ── Grouped bar chart: sessions per source, coloured by type ──
-        top_sources = src_df.head(20).copy()
-        fig = px.bar(
-            top_sources,
-            x="source",
-            y="users",
-            color="source_type",
-            text="sessions",
-            color_discrete_map={
-                "Search Engine": "#01696f",
-                "AI / LLM":      "#da7101",
-                "Referral / Social": "#6b50c8",
-                "Direct":        "#888780",
-                "Other":         "#b4b2a9",
-            },
-            labels={"source": "Source", "sessions": "Sessions", "source_type": "Type"},
-            title="Sessions by Source (top 20)",
-        )
-        fig.update_traces(textposition="outside")
-        fig.update_layout(xaxis_tickangle=-40, uniformtext_minsize=9)
-        st.plotly_chart(fig, use_container_width=True)
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Selected Source Users", f"{filtered_df['users'].sum():,}")
+            c2.metric("Selected Source Sessions", f"{filtered_df['sessions'].sum():,}")
+            c3.metric("Selected Source Pageviews", f"{filtered_df['pageviews'].sum():,}")
 
-        # ── Search engines vs AI breakdown ──
-        col_se, col_ai = st.columns(2)
+            fig_sources = px.bar(
+                filtered_df,
+                x="source",
+                y="users",
+                text="users",
+                color="source",
+                title="Users from selected websites",
+                labels={"source": "Website", "users": "Users"},
+                color_discrete_map={
+                    "google": "#4285F4",
+                    "bing": "#008373",
+                    "yahoo": "#6001D2",
+                    "chatgpt": "#10A37F",
+                    "claude": "#D97706",
+                    "anthropic": "#A16207",
+                    "Google": "#4285F4",
+                    "Bing": "#008373",
+                    "Yahoo": "#6001D2",
+                    "ChatGPT": "#10A37F",
+                    "Claude": "#D97706",
+                    "Anthropic": "#A16207",
+                },
+            )
+            fig_sources.update_traces(textposition="outside")
+            fig_sources.update_layout(xaxis_title="Website", yaxis_title="Users")
+            st.plotly_chart(fig_sources, use_container_width=True)
 
-        with col_se:
-            st.markdown("### 🔍 Search Engine Traffic")
-            se = src_df[src_df["source_type"] == "Search Engine"].copy()
-            if len(se) > 0:
-                fig2 = px.pie(se, names="source", values="users", hole=0.45,
-                              title="Search Engine Share")
-                st.plotly_chart(fig2, use_container_width=True)
-                st.dataframe(
-                    se[["source", "medium", "sessions", "users", "pageviews",
-                        "bounce_rate_pct", "avg_session_duration_s"]],
-                    use_container_width=True
-                )
-            else:
-                st.info("No search engine traffic in this period.")
+            st.dataframe(
+                filtered_df[["source", "users", "sessions", "pageviews"]].reset_index(drop=True),
+                use_container_width=True,
+                height=300,
+            )
 
-        with col_ai:
-            st.markdown("### 🤖 AI / LLM Referral Traffic")
-            ai = src_df[src_df["source_type"] == "AI / LLM"].copy()
-            if len(ai) > 0:
-                fig3 = px.pie(ai, names="source", values="sessions", hole=0.45,
-                              color_discrete_sequence=px.colors.sequential.Oranges_r,
-                              title="AI Referrer Share")
-                st.plotly_chart(fig3, use_container_width=True)
-                st.dataframe(
-                    ai[["source", "medium", "sessions", "users", "pageviews",
-                        "bounce_rate_pct", "avg_session_duration_s"]],
-                    use_container_width=True
-                )
-            else:
-                st.info("No AI referral traffic detected in this period.")
-
-        st.divider()
-        st.markdown("### 📋 Full Source Breakdown")
-        st.dataframe(
-            src_df[["source", "medium", "channel", "source_type", "sessions",
-                    "users", "pageviews", "bounce_rate_pct", "avg_session_duration_s"]]
-            .reset_index(drop=True),
-            use_container_width=True,
-            height=400,
-        )
-
-        st.download_button(
-            "📥 Download source report CSV",
-            src_df.to_csv(index=False).encode(),
-            f"traffic_by_source_{days_choice}d.csv",
-            "text/csv",
-        )
+            st.download_button(
+                "📥 Download filtered source report CSV",
+                filtered_df.to_csv(index=False).encode(),
+                f"selected_traffic_sources_{days_choice}d.csv",
+                "text/csv",
+            )
+        else:
+            st.info("no traffic from these websites")
     else:
-        st.info("No referral source data returned. Check GA4 permissions or try a wider date range.")
+        st.info("no traffic from these websites")
 
-    # ── Top pages (existing) ──
     st.divider()
     top_pages = fetch_top_pages()
     if top_pages is not None and len(top_pages) > 0:
