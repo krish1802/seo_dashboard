@@ -1969,15 +1969,59 @@ with traffic_col:
     else:
         st.info("No GA4 traffic data is available. Check GA4 credentials and property access.")
 
-with top_col:
+with topcol:
     top_pages = fetch_top_pages()
-    if _safe_df(top_pages):
+    if safe_df(top_pages):
         fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"], title="Top Pages, Last 7 Days")
         fig.update_layout(xaxis_tickangle=-45)
         st.plotly_chart(fig, use_container_width=True)
         st.dataframe(top_pages, use_container_width=True, height=260)
     else:
         st.info("No GA4 top-page data is available.")
+st.divider()
+
+top_pages = fetch_top_pages()
+st.markdown("## 🧪 Click farm results, today")
+
+cf_df = load_clickfarm_today()
+
+if cf_df is None or len(cf_df) == 0:
+    st.info("No click farm CSV found for today in seo_reports/.")
+else:
+    cf_df["engine"] = cf_df["engine"].astype(str)
+    cf_df["clicks"] = pd.to_numeric(cf_df["clicks"], errors="coerce").fillna(0).astype(int)
+
+    total_clicks = int(cf_df["clicks"].sum())
+    top_engine = cf_df.sort_values("clicks", ascending=False).iloc[0]
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Total bot clicks today", f"{total_clicks:,}")
+    c2.metric("Engines tested", f"{len(cf_df):,}")
+    c3.metric("Top engine", f"{top_engine['engine']} ({top_engine['clicks']} clicks)")
+
+    fig_cf = px.bar(
+        cf_df,
+        x="engine",
+        y="clicks",
+        text="clicks",
+        labels={"engine": "Engine", "clicks": "Clicks"},
+        title="Click farm results, today",
+        color="engine",
+    )
+    fig_cf.update_traces(textposition="outside")
+    fig_cf.update_layout(xaxis_title="Engine", yaxis_title="Clicks")
+    st.plotly_chart(fig_cf, use_container_width=True)
+
+    st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250)
+
+st.markdown("## 🔥 Top Pages (Last 7 Days)")
+if top_pages is not None and len(top_pages) > 0:
+    fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
+    fig.update_layout(xaxis_tickangle=-45)
+    st.plotly_chart(fig, use_container_width=True)
+    st.dataframe(top_pages, use_container_width=True)
+else:
+    st.info("No GA4 top pages data available.")
 
 st.markdown("### Required Source Traffic")
 source_df = fetch_traffic_by_source(days=30)
@@ -1992,52 +2036,6 @@ for idx, row in required_source_df.iterrows():
 
 st.dataframe(required_source_df, use_container_width=True, height=220)
 st.caption("Yahoo, Bing, ChatGPT, Anthropic, and Cloud are always shown here. Missing GA4 traffic is displayed as zero.")
-
-st.divider()
-
-st.markdown("## Click Farm Results Today")
-clickfarm_df = load_clickfarm_today()
-
-if clickfarm_df is None or len(clickfarm_df) == 0:
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Total Bot Clicks Today", "0")
-    c2.metric("Engines Tested", "0")
-    c3.metric("Top Engine", "N/A")
-    st.info("No click farm CSV found for today in seo_reports/.")
-else:
-    clickfarm_df = clickfarm_df.copy()
-    if "engine" not in clickfarm_df.columns:
-        clickfarm_df["engine"] = "Unknown"
-    if "clicks" not in clickfarm_df.columns:
-        clickfarm_df["clicks"] = 0
-
-    clickfarm_df["engine"] = clickfarm_df["engine"].astype(str)
-    clickfarm_df["clicks"] = pd.to_numeric(clickfarm_df["clicks"], errors="coerce").fillna(0).astype(int)
-
-    total_clicks = int(clickfarm_df["clicks"].sum())
-    engines_tested = int(len(clickfarm_df))
-    top_engine = clickfarm_df.sort_values("clicks", ascending=False).iloc[0]
-
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Total Bot Clicks Today", f"{total_clicks:,}")
-    c2.metric("Engines Tested", f"{engines_tested:,}")
-    c3.metric("Top Engine", f"{top_engine['engine']} ({int(top_engine['clicks']):,} clicks)")
-
-    fig_cf = px.bar(
-        clickfarm_df,
-        x="engine",
-        y="clicks",
-        text="clicks",
-        labels={"engine": "Engine", "clicks": "Clicks"},
-        title="Click Farm Results Today",
-        color="engine",
-    )
-    fig_cf.update_traces(textposition="outside")
-    fig_cf.update_layout(xaxis_title="Engine", yaxis_title="Clicks")
-    st.plotly_chart(fig_cf, use_container_width=True)
-
-    st.dataframe(clickfarm_df.reset_index(drop=True), use_container_width=True, height=260)
-    _show_download(clickfarm_df, "Download Click Farm CSV", f"{DOMAIN}_clickfarm_today_{selected_date}.csv")
 
 st.divider()
 
