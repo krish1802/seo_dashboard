@@ -1828,15 +1828,6 @@ if page == "🏠 Overview":
         st.plotly_chart(fig, use_container_width=True)
 
         top_pages = fetch_top_pages()
-        st.markdown("## 🔥 Top Pages (Last 7 Days)")
-        if top_pages is not None and len(top_pages) > 0:
-            fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
-            fig.update_layout(xaxis_tickangle=-45)
-            st.plotly_chart(fig, use_container_width=True)
-            st.dataframe(top_pages, use_container_width=True)
-        else:
-            st.info("No GA4 top pages data available.")
-            # ── Click farm results, today ──
         st.divider()
         st.markdown("## 🧪 Click farm results, today")
 
@@ -1871,6 +1862,16 @@ if page == "🏠 Overview":
             st.plotly_chart(fig_cf, use_container_width=True)
 
             st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250)
+        st.markdown("## 🔥 Top Pages (Last 7 Days)")
+        if top_pages is not None and len(top_pages) > 0:
+            fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
+            fig.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig, use_container_width=True)
+            st.dataframe(top_pages, use_container_width=True)
+        else:
+            st.info("No GA4 top pages data available.")
+            # ── Click farm results, today ──
+        
 
 elif page == "📈 Growth Tracker":
     st.markdown("# 📈 Growth Tracker")
