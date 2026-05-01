@@ -1825,7 +1825,7 @@ if page == "🏠 Overview":
     ga_df = fetch_ga4_data()
 
     if ga_df is not None and len(ga_df) > 0:
-        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"], title="Traffic Trend (Last 7 Days)")
+        fig = px.line(ga_df, x="date", y="users", title="Traffic Trend (Last 7 Days)")
         st.plotly_chart(fig, use_container_width=True)
 
         top_pages = fetch_top_pages()
