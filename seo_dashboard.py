@@ -1743,9 +1743,7 @@ with st.sidebar:
         "📝 Content Analysis",
         "🔑 Keywords",
         "🤖 LLM Visibility",
-        "🔗 Backlink Tools",
-        "⚡ Run New Scan",
-        "🛠️ Fix Issues",
+        "🔗 Backlink Tools ( Suggestion )",
         "✅ Fixed Issues",
     ], label_visibility="collapsed")
     st.divider()
