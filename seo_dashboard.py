@@ -2022,7 +2022,7 @@ elif page == "📊 Traffic Analytics":
         st.info("No traffic detected from the selected websites in this date range.")
 
     if zero_traffic_sites:
-        st.warning("Websites with 0 traffic: " + ", ".join(zero_traffic_sites))
+        st.warning("Websites with 0 organic traffic: " + ", ".join(zero_traffic_sites))
 
     fig_sources = px.bar(
         selected_sites_df,
