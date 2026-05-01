@@ -1739,7 +1739,6 @@ with st.sidebar:
         "🏠 Overview",
         "📈 Growth Tracker",
         "🔍 Technical Audit",
-        "🏆 SERP Rankings",
         "📊 Traffic Analytics",
         "📝 Content Analysis",
         "🔑 Keywords",
