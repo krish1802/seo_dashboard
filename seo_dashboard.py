@@ -1742,7 +1742,6 @@ with st.sidebar:
         "📊 Traffic Analytics",
         "📝 Content Analysis",
         "🔑 Keywords",
-        "🤖 LLM Visibility",
         "🔗 Backlink Tools ( Suggestion )",
         "✅ Fixed Issues",
     ], label_visibility="collapsed")
