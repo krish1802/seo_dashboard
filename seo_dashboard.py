@@ -384,6 +384,12 @@ def seo_score(title_clean, meta_desc, slug, content_html, keywords):
 # ──────────────────────────────────────────────────────────────
 # PERFORMANCE AUDIT
 # ──────────────────────────────────────────────────────────────
+def load_clickfarm_today():
+    today = datetime.today().strftime("%Y-%m-%d")
+    path = os.path.join(OUTPUT_DIR, f"traffic_generated_{today}.csv")
+    if os.path.exists(path):
+        return pd.read_csv(path)
+    return None
 
 def audit_page_performance(url):
     perf = {
@@ -1830,6 +1836,41 @@ if page == "🏠 Overview":
             st.dataframe(top_pages, use_container_width=True)
         else:
             st.info("No GA4 top pages data available.")
+            # ── Click farm results, today ──
+        st.divider()
+        st.markdown("## 🧪 Click farm results, today")
+
+        cf_df = load_clickfarm_today()
+
+        if cf_df is None or len(cf_df) == 0:
+            st.info("No click farm CSV found for today in seo_reports/.")
+        else:
+            # Ensure correct dtypes
+            cf_df["engine"] = cf_df["engine"].astype(str)
+            cf_df["clicks"] = pd.to_numeric(cf_df["clicks"], errors="coerce").fillna(0).astype(int)
+
+            total_clicks = int(cf_df["clicks"].sum())
+            top_engine = cf_df.sort_values("clicks", ascending=False).iloc[0]
+
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Total bot clicks today", f"{total_clicks:,}")
+            c2.metric("Engines tested", f"{len(cf_df):,}")
+            c3.metric("Top engine", f"{top_engine['engine']} ({top_engine['clicks']} clicks)")
+
+            fig_cf = px.bar(
+                cf_df,
+                x="engine",
+                y="clicks",
+                text="clicks",
+                labels={"engine": "Engine", "clicks": "Clicks"},
+                title="Click farm results, today",
+                color="engine",
+            )
+            fig_cf.update_traces(textposition="outside")
+            fig_cf.update_layout(xaxis_title="Engine", yaxis_title="Clicks")
+            st.plotly_chart(fig_cf, use_container_width=True)
+
+            st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250)
 
 elif page == "📈 Growth Tracker":
     st.markdown("# 📈 Growth Tracker")
