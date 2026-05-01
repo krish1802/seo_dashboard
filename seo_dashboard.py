@@ -1013,7 +1013,83 @@ def load_fix_issues(date):
 # ──────────────────────────────────────────────────────────────
 # SNAPSHOT / GROWTH HELPERS
 # ──────────────────────────────────────────────────────────────
+def fetch_traffic_by_source(days=30):
+    """Fetch sessions grouped by sessionSource + sessionMedium for search engines and LLMs."""
+    SOURCES_OF_INTEREST = [
+        "google", "bing", "yahoo", "duckduckgo", "baidu",
+        "chatgpt", "openai", "perplexity", "claude", "anthropic",
+        "gemini", "copilot", "you.com"
+    ]
+    try:
+        client = get_ga4_client()
+        request = RunReportRequest(
+            property=f"properties/{GA4_PROPERTY_ID}",
+            dimensions=[
+                {"name": "sessionSource"},
+                {"name": "sessionMedium"},
+                {"name": "sessionDefaultChannelGroup"},
+            ],
+            metrics=[
+                {"name": "sessions"},
+                {"name": "activeUsers"},
+                {"name": "screenPageViews"},
+                {"name": "bounceRate"},
+                {"name": "averageSessionDuration"},
+            ],
+            date_ranges=[{"start_date": f"{days}daysAgo", "end_date": "today"}],
+            limit=500,
+        )
+        response = client.run_report(request)
+        rows = []
+        for row in response.rows:
+            source = row.dimension_values[0].value.lower()
+            medium = row.dimension_values[1].value.lower()
+            channel = row.dimension_values[2].value
+            sessions = int(row.metric_values[0].value)
+            users = int(row.metric_values[1].value)
+            views = int(row.metric_values[2].value)
+            bounce = round(float(row.metric_values[3].value) * 100, 1)
+            avg_dur = round(float(row.metric_values[4].value), 1)
 
+            # Classify source type
+            if any(s in source for s in ["chatgpt", "openai", "perplexity", "claude", "anthropic", "gemini", "copilot"]):
+                source_type = "AI / LLM"
+            elif medium in ["organic", "cpc", "paid"]:
+                source_type = "Search Engine"
+            elif medium in ["referral", "social"]:
+                source_type = "Referral / Social"
+            elif medium == "(none)" and source == "(direct)":
+                source_type = "Direct"
+            else:
+                source_type = "Other"
+
+            rows.append({
+                "source": row.dimension_values[0].value,
+                "medium": row.dimension_values[1].value,
+                "channel": channel,
+                "source_type": source_type,
+                "sessions": sessions,
+                "users": users,
+                "pageviews": views,
+                "bounce_rate_pct": bounce,
+                "avg_session_duration_s": avg_dur,
+            })
+
+        df = pd.DataFrame(rows)
+        if len(df) == 0:
+            return df
+
+        # Filter to sources of interest + any organic/LLM traffic
+        mask = (
+            df["source"].str.lower().apply(lambda s: any(x in s for x in SOURCES_OF_INTEREST))
+            | df["medium"].str.lower().isin(["organic", "cpc"])
+            | (df["source_type"] == "AI / LLM")
+        )
+        return df[mask].sort_values("sessions", ascending=False)
+    except Exception as e:
+        st.error(f"Referral source fetch error: {e}")
+        return None
+    
 def compute_audit_snapshot(df):
     if df is None or len(df) == 0:
         return None
@@ -1497,8 +1573,10 @@ def fetch_ga4_data(days=7):
         response = client.run_report(request)
         data = []
         for row in response.rows:
+            raw_date = row.dimension_values[0].value  # format: YYYYMMDD
+            formatted_date = datetime.strptime(raw_date, "%Y%m%d").strftime("%d/%m/%Y")
             data.append({
-                "date": row.dimension_values[0].value,
+                "date": formatted_date,
                 "users": int(row.metric_values[0].value),
                 "sessions": int(row.metric_values[1].value),
                 "pageviews": int(row.metric_values[2].value),
@@ -1865,24 +1943,124 @@ elif page == "📊 Traffic Analytics":
     st.markdown("Live data from GA4")
     st.divider()
 
-    ga_df = fetch_ga4_data()
+    days_choice = st.selectbox("Date range", [7, 14, 30, 60, 90], index=2, format_func=lambda d: f"Last {d} days")
+
+    ga_df = fetch_ga4_data(days=days_choice)
     if ga_df is not None and len(ga_df) > 0:
         c1, c2, c3 = st.columns(3)
-        c1.metric("Users (7d)", ga_df["users"].sum())
-        c2.metric("Sessions (7d)", ga_df["sessions"].sum())
-        c3.metric("Pageviews (7d)", ga_df["pageviews"].sum())
-
-        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"])
+        c1.metric("Users", f"{ga_df['users'].sum():,}")
+        c2.metric("Sessions", f"{ga_df['sessions'].sum():,}")
+        c3.metric("Pageviews", f"{ga_df['pageviews'].sum():,}")
+        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"],
+                      title=f"Traffic Trend (Last {days_choice} Days)")
         st.plotly_chart(fig, use_container_width=True)
-
-        top_pages = fetch_top_pages()
-        if top_pages is not None and len(top_pages) > 0:
-            fig2 = px.bar(top_pages, x="page", y="views")
-            fig2.update_layout(xaxis_tickangle=-45)
-            st.plotly_chart(fig2, use_container_width=True)
-            st.dataframe(top_pages, use_container_width=True)
     else:
         st.warning("No Google Analytics data found.")
+
+    st.divider()
+    st.markdown("## 🔎 Traffic by Source")
+    st.caption("Search engines, AI referrers, and direct traffic — side by side.")
+
+    src_df = fetch_traffic_by_source(days=days_choice)
+
+    if src_df is not None and len(src_df) > 0:
+        # ── Summary KPI row by type ──
+        type_summary = (
+            src_df.groupby("source_type", as_index=False)[["sessions", "users", "pageviews"]]
+            .sum()
+            .sort_values("sessions", ascending=False)
+        )
+
+        cols = st.columns(len(type_summary))
+        for col, (_, row) in zip(cols, type_summary.iterrows()):
+            col.metric(row["source_type"], f"{row['sessions']:,} sessions", f"{row['users']:,} users")
+
+        st.divider()
+
+        # ── Grouped bar chart: sessions per source, coloured by type ──
+        top_sources = src_df.head(20).copy()
+        fig = px.bar(
+            top_sources,
+            x="source",
+            y="sessions",
+            color="source_type",
+            text="sessions",
+            color_discrete_map={
+                "Search Engine": "#01696f",
+                "AI / LLM":      "#da7101",
+                "Referral / Social": "#6b50c8",
+                "Direct":        "#888780",
+                "Other":         "#b4b2a9",
+            },
+            labels={"source": "Source", "sessions": "Sessions", "source_type": "Type"},
+            title="Sessions by Source (top 20)",
+        )
+        fig.update_traces(textposition="outside")
+        fig.update_layout(xaxis_tickangle=-40, uniformtext_minsize=9)
+        st.plotly_chart(fig, use_container_width=True)
+
+        # ── Search engines vs AI breakdown ──
+        col_se, col_ai = st.columns(2)
+
+        with col_se:
+            st.markdown("### 🔍 Search Engine Traffic")
+            se = src_df[src_df["source_type"] == "Search Engine"].copy()
+            if len(se) > 0:
+                fig2 = px.pie(se, names="source", values="sessions", hole=0.45,
+                              title="Search Engine Share")
+                st.plotly_chart(fig2, use_container_width=True)
+                st.dataframe(
+                    se[["source", "medium", "sessions", "users", "pageviews",
+                        "bounce_rate_pct", "avg_session_duration_s"]],
+                    use_container_width=True
+                )
+            else:
+                st.info("No search engine traffic in this period.")
+
+        with col_ai:
+            st.markdown("### 🤖 AI / LLM Referral Traffic")
+            ai = src_df[src_df["source_type"] == "AI / LLM"].copy()
+            if len(ai) > 0:
+                fig3 = px.pie(ai, names="source", values="sessions", hole=0.45,
+                              color_discrete_sequence=px.colors.sequential.Oranges_r,
+                              title="AI Referrer Share")
+                st.plotly_chart(fig3, use_container_width=True)
+                st.dataframe(
+                    ai[["source", "medium", "sessions", "users", "pageviews",
+                        "bounce_rate_pct", "avg_session_duration_s"]],
+                    use_container_width=True
+                )
+            else:
+                st.info("No AI referral traffic detected in this period.")
+
+        st.divider()
+        st.markdown("### 📋 Full Source Breakdown")
+        st.dataframe(
+            src_df[["source", "medium", "channel", "source_type", "sessions",
+                    "users", "pageviews", "bounce_rate_pct", "avg_session_duration_s"]]
+            .reset_index(drop=True),
+            use_container_width=True,
+            height=400,
+        )
+
+        st.download_button(
+            "📥 Download source report CSV",
+            src_df.to_csv(index=False).encode(),
+            f"traffic_by_source_{days_choice}d.csv",
+            "text/csv",
+        )
+    else:
+        st.info("No referral source data returned. Check GA4 permissions or try a wider date range.")
+
+    # ── Top pages (existing) ──
+    st.divider()
+    top_pages = fetch_top_pages()
+    if top_pages is not None and len(top_pages) > 0:
+        st.markdown("## 🔥 Top Pages")
+        fig4 = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
+        fig4.update_layout(xaxis_tickangle=-45)
+        st.plotly_chart(fig4, use_container_width=True)
+        st.dataframe(top_pages, use_container_width=True)
 
 elif page == "📝 Content Analysis":
     st.markdown("# 📝 Content Analysis")
