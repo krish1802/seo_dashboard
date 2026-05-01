@@ -1951,7 +1951,7 @@ elif page == "📊 Traffic Analytics":
         c1.metric("Users", f"{ga_df['users'].sum():,}")
         c2.metric("Sessions", f"{ga_df['sessions'].sum():,}")
         c3.metric("Pageviews", f"{ga_df['pageviews'].sum():,}")
-        fig = px.line(ga_df, x="date", y=["users", "sessions", "pageviews"],
+        fig = px.line(ga_df, x="date", y=["users"],
                       title=f"Traffic Trend (Last {days_choice} Days)")
         st.plotly_chart(fig, use_container_width=True)
     else:
