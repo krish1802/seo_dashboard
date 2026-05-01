@@ -1713,52 +1713,70 @@ def summarize_llm_traffic(df):
 # STREAMLIT UI
 # ──────────────────────────────────────────────────────────────
 
+# ──────────────────────────────────────────────────────────────
+# STREAMLIT UI
+# ──────────────────────────────────────────────────────────────
+
 st.set_page_config(
     page_title="SEO Dashboard | San Francisco Briefing",
     page_icon="📈",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
     html, body, .stApp { font-family: 'DM Sans', sans-serif; }
-    div[data-testid="stSidebar"] { background: #0f1117; }
-    div[data-testid="stSidebar"] * { color: #e2e8f0 !important; }
-    div[data-testid="stSidebar"] .stRadio label { color: #e2e8f0 !important; }
-    div[data-testid="stSidebar"] hr { border-color: #2d3748; }
+    /* Hide sidebar entirely */
+    div[data-testid="stSidebar"] { display: none !important; }
+    section[data-testid="stSidebar"] { display: none !important; }
+    /* Section headings */
+    .seo-section-anchor {
+        scroll-margin-top: 80px;
+        padding-top: 1.5rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-with st.sidebar:
-    st.markdown("## 📊 SEO Dashboard")
-    st.markdown(f"**Site:** `{DOMAIN}`")
-    st.divider()
-    page = st.radio("Navigate", [
-        "🏠 Overview",
-        "📈 Growth Tracker",
-        "🔍 Technical Audit",
-        "📊 Traffic Analytics",
-        "📝 Content Analysis",
-        "🔑 Keywords",
-        "🔗 Backlink Tools ( Suggestion )",
-        "✅ Fixed Issues",
-    ], label_visibility="collapsed")
-    st.divider()
-    dates = get_report_dates()
-    selected_date = st.selectbox("Report Date", dates, index=0) if dates else datetime.today().strftime("%Y-%m-%d")
-    if not dates:
-        st.info("No reports yet. Run a scan!")
-    st.divider()
-    st.caption("SEO Automation Toolkit — Streamlit Edition")
+
+# ──────────────────────────────────────────────────────────────
+# TOP HEADER
+# ──────────────────────────────────────────────────────────────
+
+st.markdown("# 📊 SEO Dashboard")
+st.markdown(f"**Site:** `{DOMAIN}`")
+
+dates = get_report_dates()
+header_cols = st.columns([3, 1])
+with header_cols[1]:
+    selected_date = st.selectbox(
+        "Report Date",
+        dates,
+        index=0,
+    ) if dates else datetime.today().strftime("%Y-%m-%d")
+if not dates:
+    st.info("No reports yet. Run a scan!")
+
+st.caption("SEO Automation Toolkit — Streamlit Edition")
+st.divider()
+
+
+st.markdown("""
+<div style="margin-bottom: 1rem; font-size: 0.95rem;">
+<strong>Jump to:</strong> <a href="#overview">🏠 Overview</a> &nbsp;·&nbsp; <a href="#growth">📈 Growth Tracker</a> &nbsp;·&nbsp; <a href="#audit">🔍 Technical Audit</a> &nbsp;·&nbsp; <a href="#traffic">📊 Traffic Analytics</a> &nbsp;·&nbsp; <a href="#content">📝 Content Analysis</a> &nbsp;·&nbsp; <a href="#keywords">🔑 Keywords</a> &nbsp;·&nbsp; <a href="#backlinks">🔗 Backlink Tools (Suggestion)</a> &nbsp;·&nbsp; <a href="#fixed">✅ Fixed Issues</a>
+</div>
+""", unsafe_allow_html=True)
+
+st.divider()
 
 
 # ──────────────────────────────────────────────────────────────
-# PAGE ROUTING
+# 🏠 Overview
 # ──────────────────────────────────────────────────────────────
+st.markdown('<div id="overview" class="seo-section-anchor"></div>', unsafe_allow_html=True)
 
-if page == "🏠 Overview":
+def _render_overview():
     st.markdown("# 🏠 SEO Performance Overview")
     st.markdown(f"**{DOMAIN}** — Report for **{selected_date}**")
     st.divider()
@@ -1794,7 +1812,7 @@ if page == "🏠 Overview":
                 issue_counts = pd.Series(issue_labels).value_counts().head(10).reset_index()
                 issue_counts.columns = ["Issue", "Count"]
                 fig = px.pie(issue_counts, names="Issue", values="Count", hole=0.45)
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="overview_plotly_chart_1")
             else:
                 st.success("No issues found.")
 
@@ -1804,7 +1822,7 @@ if page == "🏠 Overview":
             if len(lt) > 0:
                 fig = px.histogram(lt, nbins=20, labels={"value": "Load Time (s)"}, color_discrete_sequence=["#01696f"])
                 fig.add_vline(x=3.0, line_dash="dash", line_color="#da7101")
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key="overview_plotly_chart_2")
 
     if serp_df is not None and len(serp_df) > 0:
         st.divider()
@@ -1822,7 +1840,7 @@ if page == "🏠 Overview":
 
     if ga_df is not None and len(ga_df) > 0:
         fig = px.line(ga_df, x="date", y="users", title="Traffic Trend (Last 7 Days)")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="overview_plotly_chart_3")
 
         top_pages = fetch_top_pages()
         st.divider()
@@ -1856,21 +1874,32 @@ if page == "🏠 Overview":
             )
             fig_cf.update_traces(textposition="outside")
             fig_cf.update_layout(xaxis_title="Engine", yaxis_title="Clicks")
-            st.plotly_chart(fig_cf, use_container_width=True)
+            st.plotly_chart(fig_cf, use_container_width=True, key="overview_plotly_chart_4")
 
-            st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250)
+            st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250, key="overview_dataframe_5")
         st.markdown("## 🔥 Top Pages (Last 7 Days)")
         if top_pages is not None and len(top_pages) > 0:
             fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
             fig.update_layout(xaxis_tickangle=-45)
-            st.plotly_chart(fig, use_container_width=True)
-            st.dataframe(top_pages, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=True, key="overview_plotly_chart_6")
+            st.dataframe(top_pages, use_container_width=True, key="overview_dataframe_7")
         else:
             st.info("No GA4 top pages data available.")
             # ── Click farm results, today ──
-        
 
-elif page == "📈 Growth Tracker":
+
+
+_render_overview()
+
+st.divider()
+
+
+# ──────────────────────────────────────────────────────────────
+# 📈 Growth Tracker
+# ──────────────────────────────────────────────────────────────
+st.markdown('<div id="growth" class="seo-section-anchor"></div>', unsafe_allow_html=True)
+
+def _render_growth():
     st.markdown("# 📈 Growth Tracker")
     st.markdown("Day-over-day and long-term trends across all scan history.")
     st.divider()
@@ -1878,7 +1907,7 @@ elif page == "📈 Growth Tracker":
     all_dates = get_report_dates()
     if len(all_dates) < 2:
         st.info("You need at least 2 scans to track growth.")
-        st.stop()
+        return
 
     audit_hist, serp_hist = load_all_snapshots()
 
@@ -1891,7 +1920,7 @@ elif page == "📈 Growth Tracker":
 
     if date_old is None:
         st.warning("No older scan available.")
-        st.stop()
+        return
 
     snap_new = compute_audit_snapshot(load_audit(date_new))
     snap_old = compute_audit_snapshot(load_audit(date_old))
@@ -1911,16 +1940,27 @@ elif page == "📈 Growth Tracker":
     if not audit_hist.empty:
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=audit_hist["date"], y=audit_hist["health_score"], mode="lines+markers", name="Health Score"))
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="growth_plotly_chart_1")
 
     if not serp_hist.empty:
         fig = go.Figure()
         for col in ["top3", "top10", "top20"]:
             if col in serp_hist.columns:
                 fig.add_trace(go.Scatter(x=serp_hist["date"], y=serp_hist[col], mode="lines+markers", name=col))
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="growth_plotly_chart_2")
 
-elif page == "🔍 Technical Audit":
+
+_render_growth()
+
+st.divider()
+
+
+# ──────────────────────────────────────────────────────────────
+# 🔍 Technical Audit
+# ──────────────────────────────────────────────────────────────
+st.markdown('<div id="audit" class="seo-section-anchor"></div>', unsafe_allow_html=True)
+
+def _render_audit():
     st.markdown("# 🔍 Technical SEO Audit")
     st.divider()
     audit_df = load_audit(selected_date)
@@ -1928,11 +1968,11 @@ elif page == "🔍 Technical Audit":
     if audit_df is not None:
         c1, c2, c3 = st.columns(3)
         with c1:
-            filt = st.selectbox("Filter", ["All", "With Issues", "Clean"])
+            filt = st.selectbox("Filter", ["All", "With Issues", "Clean"], key="audit_selectbox_1")
         with c2:
-            search = st.text_input("Search URL")
+            search = st.text_input("Search URL", key="audit_text_input_2")
         with c3:
-            statuses = st.multiselect("Status", sorted(audit_df["status"].astype(str).unique()))
+            statuses = st.multiselect("Status", sorted(audit_df["status"].astype(str).unique()), key="audit_multiselect_3")
 
         df = audit_df.copy()
         if filt == "With Issues":
@@ -1949,34 +1989,30 @@ elif page == "🔍 Technical Audit":
             "url", "status", "load_time_s", "title_length", "meta_desc_length",
             "h1_count", "images_missing_alt", "has_og_tags", "has_schema", "issues"
         ] if c in df.columns]
-        st.dataframe(df[cols], use_container_width=True, height=500)
+        st.dataframe(df[cols], use_container_width=True, height=500, key="audit_dataframe_4")
 
         st.download_button(
             "📥 Download CSV",
             df.to_csv(index=False).encode(),
             f"audit_{selected_date}.csv",
-            "text/csv"
+            "text/csv",
+            key="audit_download_button_5",
         )
     else:
         st.warning("No technical audit data found.")
 
-elif page == "🏆 SERP Rankings":
-    st.markdown("# 🏆 SERP Rankings")
-    st.divider()
-    serp_df = load_serp(selected_date)
-    if serp_df is not None and len(serp_df) > 0:
-        ss = serp_df[serp_df["site"] == DOMAIN] if "site" in serp_df.columns else serp_df
-        cd = ss[["keyword", "our_position"]].copy()
-        cd["our_position"] = pd.to_numeric(cd["our_position"], errors="coerce")
-        cd = cd.dropna()
-        if len(cd) > 0:
-            fig = px.bar(cd, x="keyword", y="our_position", color="our_position", range_color=[1, 20])
-            fig.update_layout(yaxis=dict(autorange="reversed"), xaxis_tickangle=-45)
-            st.plotly_chart(fig, use_container_width=True)
-        st.dataframe(ss, use_container_width=True)
-    else:
-        st.warning("No SERP data found.")
-elif page == "📊 Traffic Analytics":
+
+_render_audit()
+
+st.divider()
+
+
+# ──────────────────────────────────────────────────────────────
+# 📊 Traffic Analytics
+# ──────────────────────────────────────────────────────────────
+st.markdown('<div id="traffic" class="seo-section-anchor"></div>', unsafe_allow_html=True)
+
+def _render_traffic():
     st.markdown("# 📊 Traffic Analytics")
     st.markdown("Live data from GA4")
     st.divider()
@@ -1985,13 +2021,14 @@ elif page == "📊 Traffic Analytics":
         "Date range",
         [7, 14, 30, 60, 90],
         index=2,
-        format_func=lambda d: f"Last {d} days"
+        format_func=lambda d: f"Last {d} days",
+        key="traffic_selectbox_1",
     )
 
     ga_df = fetch_ga4_data(days=days_choice)
     if ga_df is not None and len(ga_df) > 0:
         fig = px.line(ga_df, x="date", y="users", title="Traffic Trend (Last 7 Days)")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="traffic_plotly_chart_2")
 
         top_pages = fetch_top_pages()
         st.divider()
@@ -2025,15 +2062,15 @@ elif page == "📊 Traffic Analytics":
             )
             fig_cf.update_traces(textposition="outside")
             fig_cf.update_layout(xaxis_title="Engine", yaxis_title="Clicks")
-            st.plotly_chart(fig_cf, use_container_width=True)
+            st.plotly_chart(fig_cf, use_container_width=True, key="traffic_plotly_chart_3")
 
-            st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250)
+            st.dataframe(cf_df.reset_index(drop=True), use_container_width=True, height=250, key="traffic_dataframe_4")
         st.markdown("## 🔥 Top Pages (Last 7 Days)")
         if top_pages is not None and len(top_pages) > 0:
             fig = px.bar(top_pages, x="page", y="views", color_discrete_sequence=["#01696f"])
             fig.update_layout(xaxis_tickangle=-45)
-            st.plotly_chart(fig, use_container_width=True)
-            st.dataframe(top_pages, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=True, key="traffic_plotly_chart_5")
+            st.dataframe(top_pages, use_container_width=True, key="traffic_dataframe_6")
         else:
             st.info("No GA4 top pages data available.")
             # ── Click farm results, today ──
@@ -2105,12 +2142,13 @@ elif page == "📊 Traffic Analytics":
     )
     fig_sources.update_traces(textposition="outside")
     fig_sources.update_layout(xaxis_title="Website", yaxis_title="Users")
-    st.plotly_chart(fig_sources, use_container_width=True)
+    st.plotly_chart(fig_sources, use_container_width=True, key="traffic_plotly_chart_7")
 
     st.dataframe(
         selected_sites_df.reset_index(drop=True),
         use_container_width=True,
         height=280,
+        key="traffic_dataframe_8",
     )
 
     st.download_button(
@@ -2118,8 +2156,20 @@ elif page == "📊 Traffic Analytics":
         selected_sites_df.to_csv(index=False).encode(),
         f"selected_website_traffic_{days_choice}d.csv",
         "text/csv",
+        key="traffic_download_button_9",
     )
-elif page == "📝 Content Analysis":
+
+_render_traffic()
+
+st.divider()
+
+
+# ──────────────────────────────────────────────────────────────
+# 📝 Content Analysis
+# ──────────────────────────────────────────────────────────────
+st.markdown('<div id="content" class="seo-section-anchor"></div>', unsafe_allow_html=True)
+
+def _render_content():
     st.markdown("# 📝 Content Analysis")
     st.divider()
     kw_df = load_keywords(selected_date)
@@ -2128,80 +2178,44 @@ elif page == "📝 Content Analysis":
         c1.metric("Pages", len(kw_df))
         c2.metric("Avg Words", f"{kw_df['word_count'].mean():.0f}" if "word_count" in kw_df else "N/A")
         c3.metric("Total Words", f"{kw_df['word_count'].sum():,}" if "word_count" in kw_df else "N/A")
-        st.dataframe(kw_df, use_container_width=True, height=450)
+        st.dataframe(kw_df, use_container_width=True, height=450, key="content_dataframe_1")
     else:
         st.warning("No content analysis data found.")
 
-elif page == "🔑 Keywords":
+
+_render_content()
+
+st.divider()
+
+
+# ──────────────────────────────────────────────────────────────
+# 🔑 Keywords
+# ──────────────────────────────────────────────────────────────
+st.markdown('<div id="keywords" class="seo-section-anchor"></div>', unsafe_allow_html=True)
+
+def _render_keywords():
     st.markdown("# 🔑 Keyword Clusters")
     st.divider()
     cl = load_clusters(selected_date)
     if cl is not None and len(cl) > 0:
         fig = px.treemap(cl.head(15), path=["cluster"], values="keyword_count", color="keyword_count")
-        st.plotly_chart(fig, use_container_width=True)
-        st.dataframe(cl, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="keywords_plotly_chart_1")
+        st.dataframe(cl, use_container_width=True, key="keywords_dataframe_2")
     else:
         st.warning("No keyword cluster data found.")
 
-elif page == "🤖 LLM Visibility":
-    st.markdown("# 🤖 LLM Visibility")
-    st.caption("Estimate how clearly your pages can be interpreted by GPTs and LLMs.")
-    st.divider()
 
-    llm_df = load_llm_visibility(selected_date)
+_render_keywords()
 
-    c1, c2 = st.columns([1, 1])
-    with c1:
-        scan_all = st.checkbox("Scan ALL pages (no limit)", value=False)
-        llm_max_pages = 99999 if scan_all else st.slider("Pages to scan", 5, 500, 25, 25)
-    with c2:
-        run_llm_scan = st.button("🚀 Run LLM Visibility Scan", type="primary", use_container_width=True)
+st.divider()
 
-    if run_llm_scan:
-        progress = st.progress(0)
-        status = st.empty()
-        with st.spinner("Auditing LLM discoverability..."):
-            rows = audit_llm_visibility(SITE_URL, max_pages=llm_max_pages, progress_bar=progress, status_text=status)
-            saved_path = save_llm_visibility_report(rows)
-            llm_df = pd.DataFrame(rows)
-        progress.empty()
-        status.empty()
-        st.success(f"LLM visibility scan completed. Saved to {saved_path}")
 
-    if llm_df is not None and len(llm_df) > 0:
-        top = llm_df.sort_values("llm_visibility_score", ascending=False)
-        m1, m2, m3, m4 = st.columns(4)
-        m1.metric("Pages scanned", int(len(llm_df)))
-        m2.metric("Avg score", round(pd.to_numeric(llm_df["llm_visibility_score"], errors="coerce").mean(), 1))
-        m3.metric("Pages with llms.txt support", int(pd.to_numeric(llm_df["llms_txt_present"], errors="coerce").fillna(0).astype(bool).sum()))
-        m4.metric("Pages with weak signals", int(llm_df["issues"].astype(str).str.contains("Weak keyword/query signals|Missing", na=False).sum()))
+# ──────────────────────────────────────────────────────────────
+# 🔗 Backlink Tools (Suggestion)
+# ──────────────────────────────────────────────────────────────
+st.markdown('<div id="backlinks" class="seo-section-anchor"></div>', unsafe_allow_html=True)
 
-        show_cols = [c for c in [
-            "url", "llm_visibility_score", "primary_keyword", "candidate_queries",
-            "has_schema", "has_og_tags", "has_canonical", "llms_txt_present", "issues"
-        ] if c in top.columns]
-        st.dataframe(top[show_cols], use_container_width=True, height=500)
-
-        llm_traffic_df = fetch_llm_traffic(30)
-        llm_traffic_summary, llm_traffic_pages = summarize_llm_traffic(llm_traffic_df)
-        if llm_traffic_summary is not None and len(llm_traffic_summary) > 0:
-            st.markdown("### Attributed LLM traffic from GA4")
-            st.dataframe(llm_traffic_summary, use_container_width=True)
-            if llm_traffic_pages is not None and len(llm_traffic_pages) > 0:
-                st.dataframe(llm_traffic_pages.head(25), use_container_width=True, height=300)
-
-        st.markdown("### AI crawler log parser")
-        log_text = st.text_area("Paste access logs here", height=180)
-        if st.button("Parse LLM Bots From Logs", use_container_width=True):
-            bot_df = detect_llm_bots_from_logs(log_text)
-            if bot_df.empty:
-                st.info("No known LLM bot signatures found.")
-            else:
-                st.dataframe(bot_df, use_container_width=True)
-    else:
-        st.info("No LLM visibility report found yet.")
-
-elif page == "🔗 Backlink Tools":
+def _render_backlinks():
     st.markdown("# 🔗 Backlink Tools")
     st.divider()
 
@@ -2209,11 +2223,11 @@ elif page == "🔗 Backlink Tools":
 
     with tab1:
         st.markdown("### Find Unlinked Brand Mentions")
-        brand_query = st.text_input("Brand to search", BRAND_NAME)
+        brand_query = st.text_input("Brand to search", BRAND_NAME, key="backlinks_text_input_1")
         if st.button("Search Mentions", use_container_width=True):
             rows = find_unlinked_mentions(query_brand=brand_query, domain=DOMAIN, count=25)
             if rows:
-                st.dataframe(pd.DataFrame(rows), use_container_width=True, height=450)
+                st.dataframe(pd.DataFrame(rows), use_container_width=True, height=450, key="backlinks_dataframe_2")
             else:
                 st.info("No mention results found, or Bing API key is missing.")
 
@@ -2223,7 +2237,7 @@ elif page == "🔗 Backlink Tools":
             rows = find_unlinked_mentions(query_brand=BRAND_NAME, domain=DOMAIN, count=25)
             scored = score_backlink_targets(rows)
             if scored:
-                st.dataframe(pd.DataFrame(scored), use_container_width=True, height=450)
+                st.dataframe(pd.DataFrame(scored), use_container_width=True, height=450, key="backlinks_dataframe_3")
             else:
                 st.info("No targets scored.")
 
@@ -2245,169 +2259,24 @@ elif page == "🔗 Backlink Tools":
                             "score": s["score"],
                         })
                 if all_rows:
-                    st.dataframe(pd.DataFrame(all_rows), use_container_width=True, height=450)
+                    st.dataframe(pd.DataFrame(all_rows), use_container_width=True, height=450, key="backlinks_dataframe_4")
                 else:
                     st.info("No internal link suggestions found.")
             except Exception as e:
                 st.error(f"Error generating suggestions: {e}")
 
-elif page == "⚡ Run New Scan":
-    st.markdown("# ⚡ Run New SEO Scan")
-    st.markdown(f"Scan **{DOMAIN}** now")
-    st.divider()
 
-    c1, c2 = st.columns(2)
-    with c1:
-        max_pages = st.slider("Max pages", 10, 300, 50, 10)
-    with c2:
-        modules = st.multiselect("Modules", ["Technical Audit", "Content Analysis"], default=["Technical Audit"])
+_render_backlinks()
 
-    if st.button("🚀 Start Scan", type="primary", use_container_width=True):
-        today = datetime.today().strftime("%Y-%m-%d")
+st.divider()
 
-        if "Technical Audit" in modules:
-            st.markdown("### 🔍 Crawling...")
-            prog = st.progress(0)
-            stat = st.empty()
-            results = crawl_site(SITE_URL, max_pages, prog, stat)
-            if results:
-                df = pd.DataFrame(results)
-                df.to_csv(f"{OUTPUT_DIR}/{DOMAIN}_technical_audit_{today}.csv", index=False)
-                iss_count = len(df[df["issues"].astype(str).str.len() > 0])
-                st.success(f"✅ Crawled {len(results)} pages. {iss_count} with issues.")
-            else:
-                st.error("No crawl results returned.")
 
-        if "Content Analysis" in modules:
-            st.markdown("### 📝 Analyzing content...")
-            urls = [SITE_URL]
-            ap = f"{OUTPUT_DIR}/{DOMAIN}_technical_audit_{today}.csv"
-            if os.path.exists(ap):
-                adf = pd.read_csv(ap)
-                urls += adf[adf["status"].astype(str) == "200"]["url"].tolist()[:30]
+# ──────────────────────────────────────────────────────────────
+# ✅ Fixed Issues
+# ──────────────────────────────────────────────────────────────
+st.markdown('<div id="fixed" class="seo-section-anchor"></div>', unsafe_allow_html=True)
 
-            prog2 = st.progress(0)
-            kw_rows = []
-            for i, url in enumerate(urls):
-                prog2.progress((i + 1) / len(urls))
-                kd = extract_page_keywords(url)
-                if "error" not in kd:
-                    kw_rows.append({
-                        "url": kd["url"],
-                        "title": kd["title"],
-                        "h1": kd["h1"],
-                        "h2s": kd["h2s"],
-                        "top_words": ", ".join(f"{w}({c})" for w, c in kd.get("top_words", [])),
-                        "top_bigrams": ", ".join(f"{b}({c})" for b, c in kd.get("top_bigrams", [])),
-                        "word_count": kd.get("word_count", 0)
-                    })
-                time.sleep(0.3)
-
-            if kw_rows:
-                pd.DataFrame(kw_rows).to_csv(f"{OUTPUT_DIR}/{DOMAIN}_page_keywords_{today}.csv", index=False)
-
-                all_kws = list(TRACKED_KEYWORDS)
-                for r in kw_rows:
-                    for h in str(r.get("h2s", "")).split(" | "):
-                        h = h.strip()
-                        if 10 < len(h) < 80:
-                            all_kws.append(h)
-
-                clusters = defaultdict(list)
-                for kw in all_kws:
-                    w = kw.lower().split()
-                    k = " ".join(w[:2]) if len(w) >= 2 else (w[0] if w else "other")
-                    clusters[k].append(kw)
-
-                crows = [
-                    {"cluster": k, "keyword_count": len(v), "keywords": " | ".join(v)}
-                    for k, v in sorted(clusters.items(), key=lambda x: -len(x[1]))
-                ]
-                pd.DataFrame(crows).to_csv(f"{OUTPUT_DIR}/{DOMAIN}_keyword_clusters_{today}.csv", index=False)
-                st.success(f"✅ Analyzed {len(kw_rows)} pages.")
-
-        st.balloons()
-
-elif page == "🛠️ Fix Issues":
-    st.markdown("# 🛠️ Fix SEO Issues (WordPress)")
-    st.divider()
-
-    tab1, tab2 = st.tabs(["CSV-driven Fix", "Legacy / Full Optimizer"])
-
-    with tab1:
-        st.markdown("### CSV-driven Fix from Technical Audit")
-        dry_run_csv = st.checkbox("Dry run (simulate only)", value=True)
-        if st.button("🚀 Run Fix Issues from Latest Audit", type="primary"):
-            if fix_from_audit is None:
-                st.error("fix_issues.py is not available.")
-            else:
-                with st.spinner("Running fix_from_audit..."):
-                    try:
-                        results = fix_from_audit(dry_run=dry_run_csv)
-                        if not results:
-                            st.info("No results returned.")
-                        else:
-                            df = pd.DataFrame(results)
-                            st.dataframe(df, use_container_width=True, height=500)
-                            st.download_button(
-                                "📥 Download Fix Report CSV",
-                                df.to_csv(index=False).encode(),
-                                "fix_issues_from_audit.csv",
-                                "text/csv",
-                            )
-                    except Exception as e:
-                        st.error(f"Error while running CSV-driven fixer: {e}")
-
-    with tab2:
-        st.markdown("### Full WordPress Optimizer")
-        dry_run = st.checkbox("Dry run", value=True)
-        min_score = st.slider("Minimum SEO score to fix", 0, 100, 80, 5)
-        max_pages = st.slider("Max WordPress post pages to fetch", 1, 50, 10, 1)
-        per_page = st.slider("Posts per page", 5, 50, 10, 5)
-        apply_schema = st.checkbox("Insert/update JSON-LD schema", value=True)
-        apply_internal_links = st.checkbox("Insert internal links", value=False)
-        report_path = st.text_input("Report file", "seo_report.json")
-
-        if st.button("🚀 Run Full SEO Optimizer", use_container_width=True):
-            with st.spinner("Running WordPress SEO optimizer..."):
-                try:
-                    results = run_seo_optimizer(
-                        status="publish",
-                        per_page=per_page,
-                        max_pages=max_pages,
-                        dry_run=dry_run,
-                        min_score_to_fix=min_score,
-                        report_file=report_path,
-                        apply_schema=apply_schema,
-                        apply_internal_links=apply_internal_links,
-                    )
-
-                    if results:
-                        df = pd.DataFrame([{
-                            "id": r["id"],
-                            "title": r["title"],
-                            "score_before": r["score_before"],
-                            "score_after": r["score_after"],
-                            "alt_tags_added": r.get("alt_tags_added", 0),
-                            "internal_links_inserted": r.get("internal_links_inserted", 0),
-                            "schema_generated": r.get("schema_generated", False),
-                            "changes": ", ".join(r.get("changes_made", [])),
-                        } for r in results])
-
-                        st.success("Completed.")
-                        st.dataframe(df, use_container_width=True, height=500)
-                        st.download_button(
-                            "📥 Download optimizer report CSV",
-                            df.to_csv(index=False).encode(),
-                            "wp_optimizer_report.csv",
-                            "text/csv"
-                        )
-                    else:
-                        st.info("No posts were processed.")
-                except Exception as e:
-                    st.error(f"Error while running optimizer: {e}")
-
-elif page == "✅ Fixed Issues":
+def _render_fixed():
     st.markdown("# ✅ Fixed Issues (Reports)")
     st.divider()
 
@@ -2415,7 +2284,7 @@ elif page == "✅ Fixed Issues":
     if not fix_dates:
         st.info("No fix reports found in seo_reports/.")
     else:
-        selected_fix_date = st.selectbox("Fix report date", fix_dates, index=0)
+        selected_fix_date = st.selectbox("Fix report date", fix_dates, index=0, key="fixed_selectbox_1")
         fix_df = load_fix_issues(selected_fix_date)
 
         if fix_df is None or len(fix_df) == 0:
@@ -2425,9 +2294,9 @@ elif page == "✅ Fixed Issues":
 
             col1, col2 = st.columns(2)
             with col1:
-                only_fixed = st.checkbox("Show only successfully fixed", value=True)
+                only_fixed = st.checkbox("Show only successfully fixed", value=True, key="fixed_checkbox_2")
             with col2:
-                url_search = st.text_input("Filter by URL contains")
+                url_search = st.text_input("Filter by URL contains", key="fixed_text_input_3")
 
             df_view = fix_df.copy()
 
@@ -2437,14 +2306,18 @@ elif page == "✅ Fixed Issues":
             if url_search:
                 df_view = df_view[df_view["url"].astype(str).str.contains(url_search, case=False, na=False)]
 
-            st.dataframe(df_view, use_container_width=True, height=500)
+            st.dataframe(df_view, use_container_width=True, height=500, key="fixed_dataframe_4")
 
             st.download_button(
                 "📥 Download filtered fixed issues CSV",
                 df_view.to_csv(index=False).encode(),
                 f"{DOMAIN}_fixed_issues_view_{selected_fix_date}.csv",
                 "text/csv",
+                key="fixed_download_button_5",
             )
 
-else:
-    st.info("Select a section from the sidebar.")
+
+_render_fixed()
+
+st.divider()
+
