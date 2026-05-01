@@ -476,6 +476,104 @@ def get_all_posts(status="publish", per_page=10, max_pages=5):
     return all_posts
 
 
+def fetch_latest_posts(n=30):
+    """
+    Fetch the latest N published posts from the public WP REST API.
+
+    Works for ANY published post — including ones created by ContentFuze AI,
+    Yoast/Rank Math, manual editors, or any other plugin — because they all
+    end up as standard WP posts. No auth required for published content; we
+    use ?_embed to also pull the author name and featured image in a single
+    round trip.
+    """
+    posts = []
+    remaining = n
+    page = 1
+    per_page = min(n, 100)  # WP caps per_page at 100
+    while remaining > 0 and page <= 10:
+        r = safe_request(
+            "get",
+            f"{API_BASE}/posts",
+            params={
+                "status": "publish",
+                "per_page": min(per_page, remaining),
+                "page": page,
+                "_embed": "author,wp:featuredmedia,wp:term",
+                "orderby": "date",
+                "order": "desc",
+            },
+        )
+        if not r.ok or not r.json():
+            break
+        batch = r.json()
+        posts.extend(batch)
+        remaining -= len(batch)
+        total_pages = int(r.headers.get("X-WP-TotalPages", 1))
+        if page >= total_pages:
+            break
+        page += 1
+        time.sleep(REQUEST_DELAY)
+    return posts[:n]
+
+
+def summarize_latest_posts(posts):
+    """
+    Turn raw WP REST objects into a flat list of dicts ready for a Streamlit table.
+    """
+    rows = []
+    for p in posts:
+        title = clean_html_entities((p.get("title") or {}).get("rendered", ""))
+        link = p.get("link", "")
+        date_str = (p.get("date_gmt") or p.get("date") or "")[:10]
+        modified_str = (p.get("modified_gmt") or p.get("modified") or "")[:10]
+
+        # Author from _embedded
+        author = ""
+        embedded = p.get("_embedded") or {}
+        authors = embedded.get("author") or []
+        if authors and isinstance(authors, list):
+            author = authors[0].get("name", "") or ""
+
+        # Categories from wp:term
+        cats = []
+        for term_group in (embedded.get("wp:term") or []):
+            for term in term_group:
+                if term.get("taxonomy") == "category":
+                    cats.append(term.get("name", ""))
+        category_str = ", ".join(c for c in cats if c)
+
+        # Word count from raw HTML content (strip tags)
+        raw_html = ((p.get("content") or {}).get("rendered")) or ""
+        text_only = re.sub(r"<[^>]+>", " ", raw_html)
+        text_only = html_lib.unescape(text_only)
+        word_count = len(re.findall(r"\w+", text_only))
+
+        # Featured image
+        featured = ""
+        media = embedded.get("wp:featuredmedia") or []
+        if media and isinstance(media, list):
+            featured = media[0].get("source_url", "") or ""
+
+        # Excerpt
+        excerpt_html = ((p.get("excerpt") or {}).get("rendered")) or ""
+        excerpt = clean_html_entities(re.sub(r"<[^>]+>", " ", excerpt_html)).strip()
+        if len(excerpt) > 220:
+            excerpt = excerpt[:217].rstrip() + "…"
+
+        rows.append({
+            "title": title,
+            "url": link,
+            "author": author,
+            "category": category_str,
+            "published": date_str,
+            "modified": modified_str,
+            "word_count": word_count,
+            "excerpt": excerpt,
+            "featured_image": featured,
+        })
+    return rows
+
+
 def get_post_by_slug(slug):
     r = safe_request(
         "get",
@@ -1764,7 +1862,7 @@ st.divider()
 
 st.markdown("""
 <div style="margin-bottom: 1rem; font-size: 0.95rem;">
-<strong>Jump to:</strong> <a href="#overview">🏠 Overview</a> &nbsp;·&nbsp; <a href="#growth">📈 Growth Tracker</a> &nbsp;·&nbsp; <a href="#audit">🔍 Technical Audit</a> &nbsp;·&nbsp; <a href="#traffic">📊 Traffic Analytics</a> &nbsp;·&nbsp; <a href="#content">📝 Content Analysis</a> &nbsp;·&nbsp; <a href="#keywords">🔑 Keywords</a> &nbsp;·&nbsp; <a href="#backlinks">🔗 Backlink Tools (Suggestion)</a> &nbsp;·&nbsp; <a href="#fixed">✅ Fixed Issues</a>
+<strong>Jump to:</strong> <a href="#overview">🏠 Overview</a> &nbsp;·&nbsp; <a href="#growth">📈 Growth Tracker</a> &nbsp;·&nbsp; <a href="#audit">🔍 Technical Audit</a> &nbsp;·&nbsp; <a href="#traffic">📊 Traffic Analytics</a> &nbsp;·&nbsp; <a href="#content">📝 Content Analysis</a> &nbsp;·&nbsp; <a href="#keywords">🔑 Keywords</a> &nbsp;·&nbsp; <a href="#backlinks">🔗 Backlink Tools (Suggestion)</a> &nbsp;·&nbsp; <a href="#fixed">✅ Fixed Issues</a> &nbsp;·&nbsp; <a href="#latest_posts">📰 Latest Posts</a>
 </div>
 """, unsafe_allow_html=True)
 
@@ -2320,4 +2418,102 @@ def _render_fixed():
 _render_fixed()
 
 st.divider()
+
+
+# ──────────────────────────────────────────────────────────────
+# 📰 Latest Posts
+# ──────────────────────────────────────────────────────────────
+st.markdown('<div id="latest_posts" class="seo-section-anchor"></div>', unsafe_allow_html=True)
+
+def _render_latest_posts():
+    st.markdown("# 📰 Latest Posts")
+    st.caption(f"Most recent published posts pulled live from `{DOMAIN}` (any source — ContentFuze AI, manual, plugins).")
+    st.divider()
+
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        n_posts = st.slider("How many posts to fetch", 5, 60, 30, 5, key="latest_posts_slider_count")
+    with c2:
+        view_mode = st.radio(
+            "View mode",
+            ["Cards", "Table"],
+            horizontal=True,
+            key="latest_posts_radio_view",
+        )
+
+    try:
+        with st.spinner(f"Fetching latest {n_posts} posts from {DOMAIN}…"):
+            raw_posts = fetch_latest_posts(n=n_posts)
+            rows = summarize_latest_posts(raw_posts)
+    except Exception as e:
+        st.error(f"Could not fetch posts from WordPress: {e}")
+        return
+
+    if not rows:
+        st.info("No posts returned. Check that the site is publicly reachable and the WP REST API is enabled at /wp-json/wp/v2/posts.")
+        return
+
+    posts_df = pd.DataFrame(rows)
+
+    # Top metrics
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Posts fetched", len(posts_df))
+    m2.metric("Avg word count", f"{posts_df['word_count'].mean():.0f}" if len(posts_df) else "0")
+    m3.metric("Total words", f"{int(posts_df['word_count'].sum()):,}")
+    if posts_df["published"].notna().any():
+        m4.metric("Newest post", posts_df["published"].max())
+    else:
+        m4.metric("Newest post", "N/A")
+
+    if view_mode == "Cards":
+        # 3-column card grid
+        cols_per_row = 3
+        for i in range(0, len(posts_df), cols_per_row):
+            cols = st.columns(cols_per_row)
+            for j, col in enumerate(cols):
+                if i + j >= len(posts_df):
+                    break
+                row = posts_df.iloc[i + j]
+                with col:
+                    if row["featured_image"]:
+                        try:
+                            st.image(row["featured_image"], use_container_width=True)
+                        except Exception:
+                            pass
+                    st.markdown(f"**[{row['title']}]({row['url']})**")
+                    meta_bits = []
+                    if row["published"]:
+                        meta_bits.append(f"📅 {row['published']}")
+                    if row["author"]:
+                        meta_bits.append(f"✍️ {row['author']}")
+                    if row["word_count"]:
+                        meta_bits.append(f"📝 {row['word_count']} words")
+                    if meta_bits:
+                        st.caption(" · ".join(meta_bits))
+                    if row["category"]:
+                        st.caption(f"🏷️ {row['category']}")
+                    if row["excerpt"]:
+                        st.write(row["excerpt"])
+    else:
+        display_df = posts_df[["published", "title", "author", "category", "word_count", "url"]].copy()
+        display_df.columns = ["Published", "Title", "Author", "Category", "Words", "URL"]
+        st.dataframe(
+            display_df,
+            use_container_width=True,
+            height=520,
+            column_config={
+                "URL": st.column_config.LinkColumn("URL", display_text="Open ↗"),
+            },
+            key="latest_posts_dataframe_main",
+        )
+
+    st.download_button(
+        "📥 Download latest posts CSV",
+        posts_df.to_csv(index=False).encode(),
+        f"{DOMAIN}_latest_posts.csv",
+        "text/csv",
+        key="latest_posts_download_csv",
+    )
+
+_render_latest_posts()
 
