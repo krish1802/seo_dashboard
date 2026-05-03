@@ -1,0 +1,659 @@
+[
+  {
+    "url": "https://nyartisinal.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (155) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (155) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (170) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-includes/css/dist/block-library/style.min.css?ver=6.9.4",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0",
+    "slug": "all.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-includes/css/buttons.min.css?ver=6.9.4",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-includes/css/dashicons.min.css?ver=6.9.4",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-includes/css/media-views.min.css?ver=6.9.4",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=1.0.6",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/plugins/kirki/assets/css/kirki.min.css?ver=6.0.3",
+    "slug": "kirki.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/themes/london-influencer/style.css?ver=1777808223",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/uploads/2024/11/cropped-Doctors-Daily-14-32x32.png",
+    "slug": "cropped-Doctors-Daily-14-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/uploads/2024/11/cropped-Doctors-Daily-14-192x192.png",
+    "slug": "cropped-Doctors-Daily-14-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/uploads/2024/11/cropped-Doctors-Daily-14-180x180.png",
+    "slug": "cropped-Doctors-Daily-14-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/category/newyorkinfocus/",
+    "slug": "newyorkinfocus",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/category/local-news-highlights/",
+    "slug": "local-news-highlights",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/category/opinion-pieces/",
+    "slug": "opinion-pieces",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/category/feature-stories/",
+    "slug": "feature-stories",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/category/breakingheadlines/",
+    "slug": "breakingheadlines",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/editorial-process/",
+    "slug": "editorial-process",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/about-us/",
+    "slug": "about-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (23) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/become-a-contributor/",
+    "slug": "become-a-contributor",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/shazir-mucklai-appointed-as-ceo-of-ny-artisinal/",
+    "slug": "shazir-mucklai-appointed-as-ceo-of-ny-artisinal",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/largest-us-egg-seller-reports-soaring-profits-amid-price-fixing-inquiry/",
+    "slug": "largest-us-egg-seller-reports-soaring-profits-amid-price-fixing-inquiry",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (86) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/segway-recalls-220000-of-its-scooters-due-to-a-fall-hazard-that-has-resulted-in/",
+    "slug": "segway-recalls-220000-of-its-scooters-due-to-a-fall-hazard-that-has-resulted-in",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (95) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/new-york-style-in-rogersville/",
+    "slug": "new-york-style-in-rogersville",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/breaking-news-real-time-updates-on-the-us-stock-market-performance/",
+    "slug": "breaking-news-real-time-updates-on-the-us-stock-market-performance",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (82) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/us-stock-market-report-stay-updated-with-the-latest-trends-and-performance/",
+    "slug": "us-stock-market-report-stay-updated-with-the-latest-trends-and-performance",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (90) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/empowering-high-functioning-leaders-to-navigate-anxiety-and-achieve-business-success/",
+    "slug": "empowering-high-functioning-leaders-to-navigate-anxiety-and-achieve-business-success",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (99) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/national-fitness-studio-franchise-ready-to-expand-across-the-nation-seeking-investors-and-entrepreneurs/",
+    "slug": "national-fitness-studio-franchise-ready-to-expand-across-the-nation-seeking-investors-and-entrepreneurs",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (120) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/grill-in-style-with-premium-wagyu-beef-the-meatery-sets-the-standard-for-meat-lovers-nationwide/",
+    "slug": "grill-in-style-with-premium-wagyu-beef-the-meatery-sets-the-standard-for-meat-lovers-nationwide",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (111) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/revolutionizing-real-estate-boxabl-builds-affordable-and-quality-housing-with-legos-inspired-system-captivating-investors-and-customers/",
+    "slug": "revolutionizing-real-estate-boxabl-builds-affordable-and-quality-housing-with-legos-inspired-system-captivating-investors-and-customers",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (152) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/transforming-the-creative-and-media-landscape-a-look-into-future-success-and-innovation/",
+    "slug": "transforming-the-creative-and-media-landscape-a-look-into-future-success-and-innovation",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (103) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/new-skills-and-a-snazzy-new-trip/",
+    "slug": "new-skills-and-a-snazzy-new-trip",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/how-to-create-dope-content/",
+    "slug": "how-to-create-dope-content",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/experience-of-cutting-edge-design/",
+    "slug": "experience-of-cutting-edge-design",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/from-russia-to-the-us-meet-the-entrepreneur-revolutionizing-transport-and-brokerage-services-in-b2c-market/",
+    "slug": "from-russia-to-the-us-meet-the-entrepreneur-revolutionizing-transport-and-brokerage-services-in-b2c-market",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (122) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/filmmaker-and-vfx-artist-shreyans-zaveri-making-waves-with-environmental-conservation-films-and-global-impact/",
+    "slug": "filmmaker-and-vfx-artist-shreyans-zaveri-making-waves-with-environmental-conservation-films-and-global-impact",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (124) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/lionheart-therapy-solutions-empowering-men-in-leadership-to-conquer-anxiety-and-achieve-success/",
+    "slug": "lionheart-therapy-solutions-empowering-men-in-leadership-to-conquer-anxiety-and-achieve-success",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (111) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/leading-men-to-success-anxiety-coach-and-bestselling-author-empowers-high-functioning-leaders-for-growth/",
+    "slug": "leading-men-to-success-anxiety-coach-and-bestselling-author-empowers-high-functioning-leaders-for-growth",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (120) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/revolutionizing-dental-care-in-la-enhancing-smiles-with-advanced-technology-and-personalized-service/",
+    "slug": "revolutionizing-dental-care-in-la-enhancing-smiles-with-advanced-technology-and-personalized-service",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (116) | Missing meta desc | 1 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/style/",
+    "slug": "style",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/life/",
+    "slug": "life",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/city/",
+    "slug": "city",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/modern/",
+    "slug": "modern",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/time/",
+    "slug": "time",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/gadget/",
+    "slug": "gadget",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/new/",
+    "slug": "new",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/wireless/",
+    "slug": "wireless",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/guide/",
+    "slug": "guide",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/new-york/",
+    "slug": "new-york",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/tag/photography/",
+    "slug": "photography",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/accessibility-statement/",
+    "slug": "accessibility-statement",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (18) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/cookies-policy/",
+    "slug": "cookies-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (29) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/subscribe/",
+    "slug": "subscribe",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (24) | Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-admin/upload.php?mode=list",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-admin/upload.php?mode=grid",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/themes/london-influencer/style.css?ver=1777808224",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/is-bitcoin-stuck-in-the-past-how-its-quietly-becoming-a-programmable-blockchain-powerhouse-2/",
+    "slug": "is-bitcoin-stuck-in-the-past-how-its-quietly-becoming-a-programmable-blockchain-powerhouse-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (106) | Missing meta desc | 2 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/legal-rebuttals-to-ciara-longs-coverage-of-luxurban/",
+    "slug": "legal-rebuttals-to-ciara-longs-coverage-of-luxurban",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (66) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/hyundai-announces-a-20-billion-investment-in-the-united-states/",
+    "slug": "hyundai-announces-a-20-billion-investment-in-the-united-states",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (78) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/with-home-prices-and-mortgage-rates-high-many-families-find-the-american-dream-out-of-reach/",
+    "slug": "with-home-prices-and-mortgage-rates-high-many-families-find-the-american-dream-out-of-reach",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (107) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/page/3/",
+    "slug": "3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (170) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/wp-content/themes/london-influencer/style.css?ver=1777808226",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://nyartisinal.com/revolutionizing-fertility-treatment-innovations-from-a-leading-expert-in-reproductive-health-for-women-trying-to-conceive/",
+    "slug": "revolutionizing-fertility-treatment-innovations-from-a-leading-expert-in-reproductive-health-for-women-trying-to-conceive",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (137) | Missing meta desc",
+    "changes": []
+  }
+]

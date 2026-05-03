@@ -1,0 +1,677 @@
+[
+  {
+    "url": "https://b2bmoversdaily.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (25) | Missing meta desc | Multiple H1s (2) | 1 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (25) | Missing meta desc | Multiple H1s (2) | 1 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0",
+    "slug": "all.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-includes/css/buttons.min.css?ver=6.9.4",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-includes/css/dashicons.min.css?ver=6.9.4",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-includes/css/media-views.min.css?ver=6.9.4",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=1.0.6",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-content/plugins/kirki/assets/css/kirki.min.css?ver=6.0.3",
+    "slug": "kirki.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-content/themes/b2b-movers-daily/style.css?ver=6.9.4",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/pages/2567",
+    "slug": "2567",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-content/uploads/2024/03/cropped-DALL·E-2024-03-18-17.42.50-A-logo-for-B2B-Movers-Daily-emphasizing-the-concept-of-business-to-business-services-and-the-dynamic-nature-of-daily-updates.-The-design-should-fea-32x32.webp",
+    "slug": "cropped-DALL·E-2024-03-18-17.42.50-A-logo-for-B2B-Movers-Daily-emphasizing-the-concept-of-business-to-business-services-and-the-dynamic-nature-of-daily-updates.-The-design-should-fea-32x32.webp",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-content/uploads/2024/03/cropped-DALL·E-2024-03-18-17.42.50-A-logo-for-B2B-Movers-Daily-emphasizing-the-concept-of-business-to-business-services-and-the-dynamic-nature-of-daily-updates.-The-design-should-fea-192x192.webp",
+    "slug": "cropped-DALL·E-2024-03-18-17.42.50-A-logo-for-B2B-Movers-Daily-emphasizing-the-concept-of-business-to-business-services-and-the-dynamic-nature-of-daily-updates.-The-design-should-fea-192x192.webp",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-content/uploads/2024/03/cropped-DALL·E-2024-03-18-17.42.50-A-logo-for-B2B-Movers-Daily-emphasizing-the-concept-of-business-to-business-services-and-the-dynamic-nature-of-daily-updates.-The-design-should-fea-180x180.webp",
+    "slug": "cropped-DALL·E-2024-03-18-17.42.50-A-logo-for-B2B-Movers-Daily-emphasizing-the-concept-of-business-to-business-services-and-the-dynamic-nature-of-daily-updates.-The-design-should-fea-180x180.webp",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/industry-news/",
+    "slug": "industry-news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/market-insights/",
+    "slug": "market-insights",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/leadership-strategy/",
+    "slug": "leadership-strategy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/technology-innovation/",
+    "slug": "technology-innovation",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/about-us-2/",
+    "slug": "about-us-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (27) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (22) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/national-fitness-studio-franchise-ready-expand-across/",
+    "slug": "national-fitness-studio-franchise-ready-expand-across",
+    "post_id": 3343,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (124) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://b2bmoversdaily.com/revolutionizing-beauty-industry-eco-friendly-eyelash/",
+    "slug": "revolutionizing-beauty-industry-eco-friendly-eyelash",
+    "post_id": 3342,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (144) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://b2bmoversdaily.com/top-business-manager-michelle-richburg-provides-bespoke/",
+    "slug": "top-business-manager-michelle-richburg-provides-bespoke",
+    "post_id": 3341,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (158) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://b2bmoversdaily.com/suite-expertise-tech-startups-accelerating-growth/",
+    "slug": "suite-expertise-tech-startups-accelerating-growth",
+    "post_id": 3340,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (151) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://b2bmoversdaily.com/experience-of-cutting-edge-traveling/",
+    "slug": "experience-of-cutting-edge-traveling",
+    "post_id": 60,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://b2bmoversdaily.com/which-gadgets-gonna-make-you-free/",
+    "slug": "which-gadgets-gonna-make-you-free",
+    "post_id": 61,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://b2bmoversdaily.com/why-it-might-work-for-you/",
+    "slug": "why-it-might-work-for-you",
+    "post_id": 85,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://b2bmoversdaily.com/about",
+    "slug": "about",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (27) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/contact-us",
+    "slug": "contact-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (29) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/faq",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (22) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-admin/upload.php?mode=list",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-admin/upload.php?mode=grid",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/industry-news/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/industry-news/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/categories/7",
+    "slug": "7",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/market-insights/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/market-insights/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/categories/6",
+    "slug": "6",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/leadership-strategy/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/categories/8",
+    "slug": "8",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/technology-innovation/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (69) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/category/technology-innovation/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/categories/4",
+    "slug": "4",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Fabout-us-2%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Fabout-us-2%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-includes/blocks/heading/style.min.css?ver=6.9.4",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-includes/blocks/paragraph/style.min.css?ver=6.9.4",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/pages/1591",
+    "slug": "1591",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/?p=1591",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (27) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Ffaq%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Ffaq%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/pages/1593",
+    "slug": "1593",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/?p=1593",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (22) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/national-fitness-studio-franchise-ready-expand-across/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (72) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Fnational-fitness-studio-franchise-ready-expand-across%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Fnational-fitness-studio-franchise-ready-expand-across%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/posts/3343",
+    "slug": "3343",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/?p=3343",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (124) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/revolutionizing-beauty-industry-eco-friendly-eyelash/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (73) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Frevolutionizing-beauty-industry-eco-friendly-eyelash%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Frevolutionizing-beauty-industry-eco-friendly-eyelash%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/wp/v2/posts/3342",
+    "slug": "3342",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/?p=3342",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (144) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/top-business-manager-michelle-richburg-provides-bespoke/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (71) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Ftop-business-manager-michelle-richburg-provides-bespoke%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://b2bmoversdaily.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fb2bmoversdaily.com%2Ftop-business-manager-michelle-richburg-provides-bespoke%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  }
+]

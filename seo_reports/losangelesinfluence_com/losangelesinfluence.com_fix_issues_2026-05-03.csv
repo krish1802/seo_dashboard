@@ -1,0 +1,80 @@
+url,slug,post_id,fixed,reason,issues,changes
+https://losangelesinfluence.com,,,False,No matching WP post,Title long (106) | Multiple H1s (5),[]
+https://losangelesinfluence.com/,,,False,No matching WP post,Title long (106) | Multiple H1s (5),[]
+https://losangelesinfluence.com/page/2/,2,,False,No matching WP post,Title long (121) | Multiple H1s (5),[]
+https://losangelesinfluence.com/feed/,feed,,False,No matching WP post,Title short (21) | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/comments/feed/,feed,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/themes/newsophy/assets/fonts/css/fontello.css?ver=5.13.0,fontello.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/themes/newsophy/style.css?ver=1.0,style.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/themes/newsophy/assets/css/responsive.css?ver=1.0,responsive.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/themes/newsophy/assets/css/interlace.css?ver=2.6,interlace.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/themes/newsophy/assets/css/amp.scss?ver=1.0,amp.scss,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0,co-author-public.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5,styles.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-includes/css/buttons.min.css?ver=6.9.4,buttons.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-includes/css/dashicons.min.css?ver=6.9.4,dashicons.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17,mediaelementplayer-legacy.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4,wp-mediaelement.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-includes/css/media-views.min.css?ver=6.9.4,media-views.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8,imgareaselect.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=1.0.6,frontend.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/plugins/kirki/assets/css/kirki.min.css?ver=6.0.3,kirki.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-json/,wp-json,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/xmlrpc.php?rsd,xmlrpc.php,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/uploads/2024/12/cropped-NEW-YORK-44-32x32.png,cropped-NEW-YORK-44-32x32.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/uploads/2024/12/cropped-NEW-YORK-44-192x192.png,cropped-NEW-YORK-44-192x192.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/wp-content/uploads/2024/12/cropped-NEW-YORK-44-180x180.png,cropped-NEW-YORK-44-180x180.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://losangelesinfluence.com/tag/blogging/,blogging,,False,No matching WP post,Missing meta desc | 9 img no alt,[]
+https://losangelesinfluence.com/tag/city/,city,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/gadget/,gadget,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/guide/,guide,,False,No matching WP post,Missing meta desc | 9 img no alt,[]
+https://losangelesinfluence.com/tag/life/,life,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/modern/,modern,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/money/,money,,False,No matching WP post,Missing meta desc | 9 img no alt,[]
+https://losangelesinfluence.com/tag/new/,new,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/news/,news,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/new-york/,new-york,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/photography/,photography,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/style/,style,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/time/,time,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/wireless/,wireless,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/tag/world/,world,,False,No matching WP post,Missing meta desc | 9 img no alt,[]
+https://losangelesinfluence.com/category/localnews/,localnews,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/category/entertainmentandmedia/,entertainmentandmedia,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/category/business/,business,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/category/foodanddining/,foodanddining,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/category/artsculture/,artsculture,,False,No matching WP post,Missing meta desc | 10 img no alt,[]
+https://losangelesinfluence.com/editorial-process/,editorial-process,,False,No matching WP post,Missing meta desc,[]
+https://losangelesinfluence.com/faq/,faq,,False,No matching WP post,Title short (27) | Missing meta desc,[]
+https://losangelesinfluence.com/about-us/,about-us,,False,No matching WP post,Missing meta desc,[]
+https://losangelesinfluence.com/contact-us/,contact-us,,False,No matching WP post,Missing meta desc,[]
+https://losangelesinfluence.com/innovative-influence-how-los-angeles-shapes-modern-art/,innovative-influence-how-los-angeles-shapes-modern-art,3069.0,True,,Title long (100) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/category/brian-ferdinand-helix-alpha/,brian-ferdinand-helix-alpha,,False,No matching WP post,Title long (81) | Missing meta desc,[]
+https://losangelesinfluence.com/city-dreams-influence-los-angeles-modern-art-design/,city-dreams-influence-los-angeles-modern-art-design,3068.0,True,,Title long (103) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/city-angels-how-los-angeles-shaped-hollywood-celebrity/,city-angels-how-los-angeles-shaped-hollywood-celebrity,3064.0,True,,Title long (94) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/echoes-past-tracing-los-angeles-impact-music-industry/,echoes-past-tracing-los-angeles-impact-music-industry,3058.0,True,,Title long (98) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/fashionable-fusion-uncovering-los-angeles-cultural-influence-trends/,fashionable-fusion-uncovering-los-angeles-cultural-influence-trends,3056.0,True,,Title long (105) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/worldwide-impact-la-urban-development-influence/,worldwide-impact-la-urban-development-influence,3057.0,True,,Title long (85) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/autobongs-revolutionizing-online-headshop-experience-ai-education-fair/,autobongs-revolutionizing-online-headshop-experience-ai-education-fair,2278.0,True,,Title long (135) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/men-anxiety-coaching-expert-dr-ken-martz-offers/,men-anxiety-coaching-expert-dr-ken-martz-offers,2275.0,True,,Title long (196) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/unlock-your-creativity-underworld-diverse-entertainment-ecosystem-distribution/,unlock-your-creativity-underworld-diverse-entertainment-ecosystem-distribution,2273.0,True,,Title long (128) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/brewing-hope-quality-veteran-owned-coffee-company-donates/,brewing-hope-quality-veteran-owned-coffee-company-donates,3012.0,True,,Title long (125) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/innovative-gourmet-cookie-brand-takes-industry-storm-over/,innovative-gourmet-cookie-brand-takes-industry-storm-over,3003.0,True,,Title long (108) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/award-winning-filmmaker-author-shines-spotlight-environmental-conservation/,award-winning-filmmaker-author-shines-spotlight-environmental-conservation,2282.0,True,,Title long (161) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/empowering-veterans-coffee-lovers-mission-reduce-suicide-rates/,empowering-veterans-coffee-lovers-mission-reduce-suicide-rates,2277.0,True,,Title long (111) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/revolutionizing-creative-media-industry-tbd-cutting-edge-solutions/,revolutionizing-creative-media-industry-tbd-cutting-edge-solutions,2258.0,True,,Title long (130) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/empowering-future-professionals-los-angeles-based-academy-offers/,empowering-future-professionals-los-angeles-based-academy-offers,2255.0,True,,Title long (180) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/expert-dei-leader-transforming-workplaces-innovative-hr-strategies/,expert-dei-leader-transforming-workplaces-innovative-hr-strategies,3022.0,True,,Title long (117) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/unlock-your-creative-potential-exclusive-29-month-package/,unlock-your-creative-potential-exclusive-29-month-package,2268.0,True,,Title long (133) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/new-study-reveals-surprising-insights-minnesota-unique-healthcare/,new-study-reveals-surprising-insights-minnesota-unique-healthcare,2267.0,True,,Title long (106) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/unlocking-emotions-micah-bravery-inspiring-journey-through-mental/,unlocking-emotions-micah-bravery-inspiring-journey-through-mental,2243.0,True,,Title long (119) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/headline-cutting-edge-technology-redefining-real-estate-strategies/,headline-cutting-edge-technology-redefining-real-estate-strategies,3024.0,True,,Title long (928) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/revolutionizing-online-fashion-shopping-ai-powered-virtual-try/,revolutionizing-online-fashion-shopping-ai-powered-virtual-try,2274.0,True,,Title long (164) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/questions-answers-tbd-unveils-insider-secrets-achieving-success/,questions-answers-tbd-unveils-insider-secrets-achieving-success,2272.0,True,,Title long (108) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/california-athlete-dominates-retail-commerce-technology-sectors-unmatched/,california-athlete-dominates-retail-commerce-technology-sectors-unmatched,2270.0,True,,Title long (122) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/empowerment-through-excellence-journey-employment-defense-litigator-mitesh/,empowerment-through-excellence-journey-employment-defense-litigator-mitesh,3005.0,True,,Title long (120) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/trystyle-sets-new-standard-fashion-tech-ai-driven/,trystyle-sets-new-standard-fashion-tech-ai-driven,3001.0,True,,Title long (109) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/unlocking-dubai-potential-insights-industry-experts-exclusively-you/,unlocking-dubai-potential-insights-industry-experts-exclusively-you,2269.0,True,,Title long (108) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://losangelesinfluence.com/accessibility-policy/,accessibility-policy,,False,No matching WP post,Missing meta desc,[]
+https://losangelesinfluence.com/privacy-policy-2/,privacy-policy-2,,False,No matching WP post,Missing meta desc,[]
+https://losangelesinfluence.com/cookies-policy/,cookies-policy,,False,No matching WP post,Missing meta desc,[]

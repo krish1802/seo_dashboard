@@ -1,0 +1,751 @@
+[
+  {
+    "url": "https://newyorkdailydigest.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (28) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (28) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (21) | Missing meta desc | Multiple H1s (2) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/style.css?ver=6.9.4",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/styles/newsource-addons.css?ver=6.9.4",
+    "slug": "newsource-addons.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/styles/fontawesome.css?ver=6.9.4",
+    "slug": "fontawesome.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/style-mobile.css?ver=6.9.4",
+    "slug": "style-mobile.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.0.3",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/elementor/css/post-7.css?ver=1777808441",
+    "slug": "post-7.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5",
+    "slug": "swiper.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=4.0.3",
+    "slug": "e-swiper.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.0.3",
+    "slug": "widget-heading.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.0.3",
+    "slug": "widget-image.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/elementor/css/post-6820.css?ver=1777808441",
+    "slug": "post-6820.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/elementor/css/base-desktop.css?ver=69f73439e2a70",
+    "slug": "base-desktop.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/wp/v2/pages/6820",
+    "slug": "6820",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/2026/04/cropped-favicon-n-32x32.png",
+    "slug": "cropped-favicon-n-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/2026/04/cropped-favicon-n-192x192.png",
+    "slug": "cropped-favicon-n-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/2026/04/cropped-favicon-n-180x180.png",
+    "slug": "cropped-favicon-n-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/about/",
+    "slug": "about",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta long (321) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/contact/",
+    "slug": "contact",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta long (177) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (28) | Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/us-economy-wont-gain-traction-until-2026/",
+    "slug": "us-economy-wont-gain-traction-until-2026",
+    "post_id": 1043,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (94)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/no-stimulus-package-for-investors/",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (112)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/economics/",
+    "slug": "economics",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/featured/",
+    "slug": "featured",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (55) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (55) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/politics/",
+    "slug": "politics",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/credit-scores-hit-a-record-high/",
+    "slug": "credit-scores-hit-a-record-high",
+    "post_id": 4339,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (92)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/staffs-picks/",
+    "slug": "staffs-picks",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (55) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/cows-can-solve-the-climate-crisis/",
+    "slug": "cows-can-solve-the-climate-crisis",
+    "post_id": 314,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (105)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/lifestyle/",
+    "slug": "lifestyle",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (55) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/video/",
+    "slug": "video",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (55) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/designer-artist-archive-access/",
+    "slug": "designer-artist-archive-access",
+    "post_id": 366,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (118) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/photo/",
+    "slug": "photo",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (55) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/uk-wind-power-homes-2030/",
+    "slug": "uk-wind-power-homes-2030",
+    "post_id": 364,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (85) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/china-heavy-industry-decline/",
+    "slug": "china-heavy-industry-decline",
+    "post_id": 40,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (88)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/businesses-closed-during-pandemic/",
+    "slug": "businesses-closed-during-pandemic",
+    "post_id": 233,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (124)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/social-distancing-sensors-office/",
+    "slug": "social-distancing-sensors-office",
+    "post_id": 4607,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (81)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/daryline-johnson-story/",
+    "slug": "daryline-johnson-story",
+    "post_id": 362,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (79)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/smart-business-recovery/",
+    "slug": "smart-business-recovery",
+    "post_id": 4736,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (100)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/nature/",
+    "slug": "nature",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (55) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/",
+    "slug": "05",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2018/09/",
+    "slug": "09",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/uncategorized/",
+    "slug": "uncategorized",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/live-in-old-town/",
+    "slug": "live-in-old-town",
+    "post_id": 82,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (80)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/daryline-johnson-story/#comment-8",
+    "slug": "daryline-johnson-story",
+    "post_id": 362,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (79)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/no-stimulus-package-for-investors/#comment-4",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (112)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fabout%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fabout%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.0.3",
+    "slug": "widget-social-icons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=4.0.3",
+    "slug": "apple-webkit.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/elementor/css/post-6402.css?ver=1777808443",
+    "slug": "post-6402.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/wp/v2/pages/6402",
+    "slug": "6402",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/?p=6402",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta long (321) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fcontact%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fcontact%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/elementor/css/post-6539.css?ver=1777808443",
+    "slug": "post-6539.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/wp/v2/pages/6539",
+    "slug": "6539",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/?p=6539",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta long (177) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/news/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-includes/css/dist/block-library/style.min.css?ver=6.9.4",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/daryline-johnson-story/#comment-11",
+    "slug": "daryline-johnson-story",
+    "post_id": 362,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (79)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/daryline-johnson-story/#comment-10",
+    "slug": "daryline-johnson-story",
+    "post_id": 362,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (79)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/no-stimulus-package-for-investors/#comment-7",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (112)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/no-stimulus-package-for-investors/#comment-6",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (112)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/no-stimulus-package-for-investors/#comment-5",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (112)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/monsterinsights_note_category/blog-post/",
+    "slug": "blog-post",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (28) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/us-economy-wont-gain-traction-until-2026/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (83) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fus-economy-wont-gain-traction-until-2026%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fus-economy-wont-gain-traction-until-2026%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/wp/v2/posts/1043",
+    "slug": "1043",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/?p=1043",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (94)",
+    "changes": []
+  }
+]
