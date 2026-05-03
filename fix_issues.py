@@ -1,18 +1,27 @@
 #!/usr/bin/env python3
 """
-Fix issues based on latest technical audit CSV.
+Fix issues based on latest technical audit CSVs — multi-site.
 
-- Reads latest seo_reports/<DOMAIN>_technical_audit_YYYY-MM-DD.csv
-- For each URL with issues and status=200:
-    * Resolves WP post via slug
-    * Fixes:
-        - SEO title (Yoast + Rank Math meta)
-        - Meta description (Yoast + Rank Math meta)
-        - Missing image alt attributes
-        - Slug cleanup (shorter, keyword-based)
-- Writes CSV + JSON report in seo_reports/
+For each registered site:
+  - Reads latest seo_reports/<slug>/<DOMAIN>_technical_audit_YYYY-MM-DD.csv
+  - For each URL with issues and status=200:
+      * Resolves WP post via slug
+      * Fixes:
+          - SEO title (Yoast + Rank Math meta)
+          - Meta description (Yoast + Rank Math meta)
+          - Missing image alt attributes
+          - Slug cleanup (shorter, keyword-based)
+  - Writes CSV + JSON report to seo_reports/<slug>/
+
+CLI:
+    python fix_issues.py                 # all sites, live
+    python fix_issues.py --dry-run       # all sites, no writes
+    python fix_issues.py --site sanfranciscobriefing.com
 """
 
+from __future__ import annotations
+
+import argparse
 import os
 import re
 import time
@@ -22,6 +31,7 @@ import html
 from datetime import datetime
 from base64 import b64encode
 from urllib.parse import urlparse
+from typing import Optional
 
 import requests
 import pandas as pd
@@ -29,33 +39,27 @@ from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+from sites_config import Site, SITES, get_site
+
+
 # ── CONFIG ──────────────────────────────────────────────────────────────
-
-DOMAIN     = "sanfranciscobriefing.com"
-OUTPUT_DIR = "seo_reports"
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-WP_URL       = os.getenv("WP_URL", "https://sanfranciscobriefing.com").rstrip("/")
-WP_USER      = os.getenv("WP_USER", "")
-WP_APP_PASS  = os.getenv("WP_APP_PASSWORD", "")
-API_BASE     = f"{WP_URL}/wp-json/wp/v2"
 
 REQUEST_DELAY   = 1.0
 SEO_TITLE_MIN   = 50
 SEO_TITLE_MAX   = 60
-META_DESC_MIN   = 150
-META_DESC_MAX   = 160
+META_DESC_MIN   = 120
+META_DESC_MAX   = 155
 
 SLUG_STOP_WORDS = {
     "a","an","the","and","or","but","in","on","at","to","for",
     "of","with","by","from","is","was","are","were","be","been",
     "has","have","had","do","does","did","will","would","could",
-    "should","may","might","this","that","these","those","it","its"
+    "should","may","might","this","that","these","those","it","its",
 }
 
 # ── HTTP SESSION WITH RETRIES ───────────────────────────────────────────
 
-def _make_session():
+def _make_session() -> requests.Session:
     s = requests.Session()
     s.headers.update({
         "User-Agent": (
@@ -78,9 +82,11 @@ def _make_session():
     s.mount("http://", adapter)
     return s
 
+
 SESSION = _make_session()
 
-def safe_request(method, url, max_attempts=4, **kwargs):
+
+def safe_request(method, url, max_attempts: int = 4, **kwargs):
     global SESSION
     kwargs.setdefault("timeout", 30)
     for attempt in range(1, max_attempts + 1):
@@ -97,29 +103,35 @@ def safe_request(method, url, max_attempts=4, **kwargs):
             else:
                 raise
 
-def _auth_header():
-    token = b64encode(f"{WP_USER}:{WP_APP_PASS}".encode()).decode()
+
+def _auth_header(site: Site) -> dict:
+    token = b64encode(f"{site.wp_user}:{site.wp_app_pass}".encode()).decode()
     return {
         "Authorization": f"Basic {token}",
         "Content-Type": "application/json",
     }
+
 
 # ── TEXT UTILITIES ──────────────────────────────────────────────────────
 
 def clean_html_entities(text: str) -> str:
     return html.unescape(text or "")
 
+
 def strip_html_tags(text: str) -> str:
     return BeautifulSoup(text or "", "html.parser").get_text(separator=" ").strip()
 
+
 def word_count(text: str) -> int:
     return len(strip_html_tags(text).split())
+
 
 def extract_keywords_from_title(title: str):
     clean = clean_html_entities(title).lower()
     clean = re.sub(r"[^a-z0-9\s]", " ", clean)
     words = [w for w in clean.split() if w and w not in SLUG_STOP_WORDS and len(w) > 2]
     return words[:5]
+
 
 def optimize_slug_from_title(title: str) -> str:
     clean = clean_html_entities(title).lower()
@@ -129,18 +141,38 @@ def optimize_slug_from_title(title: str) -> str:
     slug = re.sub(r"-+", "-", slug).strip("-")
     return slug
 
-def generate_seo_title(raw_title: str, site_name="AI Frontier Dispatch") -> str:
-    clean = clean_html_entities(raw_title).strip()
-    full  = f"{clean} | {site_name}"
-    if SEO_TITLE_MIN <= len(full) <= SEO_TITLE_MAX:
-        return full
-    if len(full) > SEO_TITLE_MAX:
-        max_content = SEO_TITLE_MAX - len(f" | {site_name}")
-        trimmed = clean[:max_content].rsplit(" ", 1)[0]
-        return f"{trimmed} | {site_name}"
-    return full
 
-def generate_meta_description(content_html: str, title: str, keywords):
+def _short_brand(brand_name: str) -> str:
+    """Initials fallback, e.g. 'San Francisco Briefing' -> 'SFB'."""
+    parts = re.findall(r"[A-Za-z]+", brand_name)
+    if not parts:
+        return brand_name
+    if len(parts) == 1:
+        return parts[0][:4].upper()
+    return "".join(p[0] for p in parts).upper()[:5]
+
+
+def generate_seo_title(raw_title: str, site_name: str) -> str:
+    """SEO title within 50–60 chars; favors content over branding when tight."""
+    clean = clean_html_entities(raw_title).strip()
+
+    full_with_brand = f"{clean} - {site_name}"
+    if SEO_TITLE_MIN <= len(full_with_brand) <= SEO_TITLE_MAX:
+        return full_with_brand
+
+    if len(full_with_brand) > SEO_TITLE_MAX:
+        short = _short_brand(site_name)
+        full_with_short = f"{clean} - {short}"
+        if len(full_with_short) <= SEO_TITLE_MAX:
+            return full_with_short
+        max_length = SEO_TITLE_MAX
+        trimmed = clean[:max_length].rsplit(" ", 1)[0].rstrip(".,!?;:")
+        return trimmed
+
+    return full_with_brand
+
+
+def generate_meta_description(content_html: str, title: str, keywords) -> str:
     soup = BeautifulSoup(content_html or "", "html.parser")
     desc = ""
     for p in soup.find_all("p"):
@@ -160,6 +192,7 @@ def generate_meta_description(content_html: str, title: str, keywords):
         desc = (desc + kw_phrase)[:META_DESC_MAX]
     return desc.strip()
 
+
 def add_alt_tags_to_images(content_html: str, keywords):
     soup = BeautifulSoup(content_html or "", "html.parser")
     images = soup.find_all("img")
@@ -174,21 +207,23 @@ def add_alt_tags_to_images(content_html: str, keywords):
             count += 1
     return str(soup), updated, count
 
-# ── WP HELPERS ───────────────────────────────────────────────────────────
+
+# ── WP HELPERS (per-site) ───────────────────────────────────────────────
 
 def slug_from_url(url: str) -> str:
     path = urlparse(url).path
     parts = [p for p in path.split("/") if p]
     return parts[-1] if parts else ""
 
-def get_post_by_slug(slug: str):
+
+def get_post_by_slug(site: Site, slug: str):
     if not slug:
         return None
     r = safe_request(
         "get",
-        f"{API_BASE}/posts",
+        f"{site.api_base}/posts",
         params={"slug": slug, "context": "edit"},
-        headers=_auth_header(),
+        headers=_auth_header(site),
     )
     if r and r.ok:
         data = r.json()
@@ -196,62 +231,73 @@ def get_post_by_slug(slug: str):
             return data[0]
     return None
 
-def update_post(post_id: int, payload: dict):
-    r = safe_request(
+
+def update_post(site: Site, post_id: int, payload: dict):
+    return safe_request(
         "post",
-        f"{API_BASE}/posts/{post_id}",
-        headers=_auth_header(),
+        f"{site.api_base}/posts/{post_id}",
+        headers=_auth_header(site),
         json=payload,
     )
-    return r
 
-# ── AUDIT CSV LOADER ─────────────────────────────────────────────────────
 
-def latest_audit_csv() -> str | None:
-    pattern = os.path.join(
-        OUTPUT_DIR,
-        f"{DOMAIN}_technical_audit_*.csv"
-    )
-    files = sorted(glob.glob(pattern))
-    return files[-1] if files else None
+# ── AUDIT CSV LOADER (per-site) ─────────────────────────────────────────
 
-# ── CORE FIXER LOGIC (USED BY CLI & STREAMLIT) ──────────────────────────
+def latest_audit_csv(site: Site, base_output: str = "seo_reports") -> Optional[str]:
+    """Find the latest technical-audit CSV for a site.
 
-def fix_from_audit(dry_run: bool = False):
+    Looks first inside the per-site folder (seo_reports/<slug>/) and falls
+    back to the legacy flat layout (seo_reports/) for backwards compat.
     """
-    Returns a list[dict] results; each dict contains:
+    candidates: list[str] = []
+    per_site_dir = os.path.join(base_output, site.slug)
+    candidates += glob.glob(os.path.join(per_site_dir, f"{site.domain}_technical_audit_*.csv"))
+    candidates += glob.glob(os.path.join(base_output, f"{site.domain}_technical_audit_*.csv"))
+    if not candidates:
+        return None
+    return sorted(candidates)[-1]
+
+
+# ── CORE FIXER LOGIC (per-site) ─────────────────────────────────────────
+
+def fix_from_audit(
+    site: Site | str,
+    dry_run: bool = False,
+    base_output: str = "seo_reports",
+) -> list[dict]:
+    """Run the SEO fixer against a single site using its latest audit CSV.
+
+    Returns list[dict] results; each contains:
       url, slug, post_id, fixed (bool), reason, issues, changes (list[str])
     """
-    csv_path = latest_audit_csv()
+    if isinstance(site, str):
+        site = get_site(site)
+
+    output_dir = site.output_dir(base_output)
+    csv_path = latest_audit_csv(site, base_output)
     if not csv_path:
-        print("❌ No technical audit CSV found in seo_reports/")
+        print(f"❌ [{site.domain}] No technical audit CSV found.")
         return []
 
-    print(f"📄 Using audit file: {csv_path}")
+    print(f"\n📄 [{site.domain}] Using audit file: {csv_path}")
     df = pd.read_csv(csv_path)
     df["issues"] = df["issues"].astype(str).fillna("")
-
     df = df[(df["status"].astype(str) == "200") & (df["issues"].str.len() > 0)]
 
-    results = []
+    results: list[dict] = []
     for _, row in df.iterrows():
         url = row["url"]
         issue_str = row["issues"]
-        print(f"\n🔧 Fixing based on audit for URL: {url}")
+        print(f"\n🔧 [{site.domain}] Fixing: {url}")
         print(f"   Issues: {issue_str}")
 
         slug = slug_from_url(url)
-        post = get_post_by_slug(slug)
+        post = get_post_by_slug(site, slug)
         if not post:
-            print("   ⚠️ No matching post found for slug:", slug)
+            print(f"   ⚠️ No matching post for slug: {slug}")
             results.append({
-                "url": url,
-                "slug": slug,
-                "post_id": None,
-                "fixed": False,
-                "reason": "No matching WP post",
-                "issues": issue_str,
-                "changes": [],
+                "url": url, "slug": slug, "post_id": None, "fixed": False,
+                "reason": "No matching WP post", "issues": issue_str, "changes": [],
             })
             continue
 
@@ -260,30 +306,26 @@ def fix_from_audit(dry_run: bool = False):
         wp_content = post["content"]["rendered"]
         meta = post.get("meta", {}) or {}
 
-        changes = {}
-        changes_meta = {}
-        changes_made = []
+        changes: dict = {}
+        changes_meta: dict = {}
+        changes_made: list[str] = []
 
         clean_title = clean_html_entities(wp_title)
         keywords = extract_keywords_from_title(clean_title)
 
-        # Title related issues
         if ("Missing title" in issue_str or
-            "Title short" in issue_str or
-            "Title long"  in issue_str):
-
-            new_title = generate_seo_title(clean_title)
+            "Title short"  in issue_str or
+            "Title long"   in issue_str):
+            new_title = generate_seo_title(clean_title, site.brand_name)
             old_yoast_title = meta.get("_yoast_wpseo_title", "")
             if new_title != old_yoast_title:
                 changes_meta["_yoast_wpseo_title"] = new_title
                 changes_meta["rank_math_title"]   = new_title
                 changes_made.append("Updated SEO title (Yoast/RankMath)")
 
-        # Meta description issues
         if ("Missing meta desc" in issue_str or
             "Meta short"        in issue_str or
             "Meta long"         in issue_str):
-
             new_desc = generate_meta_description(wp_content, clean_title, keywords)
             old_yoast_desc = meta.get("_yoast_wpseo_metadesc", "")
             if new_desc != old_yoast_desc:
@@ -291,14 +333,12 @@ def fix_from_audit(dry_run: bool = False):
                 changes_meta["rank_math_description"]  = new_desc
                 changes_made.append("Updated meta description (Yoast/RankMath)")
 
-        # Image alt issues
         if "img no alt" in issue_str:
             new_content, alt_updated, alt_count = add_alt_tags_to_images(wp_content, keywords)
             if alt_updated:
                 changes["content"] = new_content
                 changes_made.append(f"Added ALT tags to {alt_count} image(s)")
 
-        # Slug cleanup (heuristic using title/URL issues)
         if "Title long" in issue_str or "Slug" in issue_str:
             new_slug = optimize_slug_from_title(clean_title)
             if new_slug and new_slug != post["slug"] and len(new_slug) < len(post["slug"]):
@@ -306,37 +346,27 @@ def fix_from_audit(dry_run: bool = False):
                 changes_made.append(f"Slug cleaned to '{new_slug}'")
 
         if changes_meta:
-            # merge into existing meta so we don't drop fields
             merged_meta = dict(meta)
             merged_meta.update(changes_meta)
             changes["meta"] = merged_meta
 
         if not changes:
-            print("   ℹ️ Nothing to change for this post (based on mappable issues).")
+            print("   ℹ️ Nothing to change.")
             results.append({
-                "url": url,
-                "slug": slug,
-                "post_id": pid,
-                "fixed": False,
+                "url": url, "slug": slug, "post_id": pid, "fixed": False,
                 "reason": "No applicable fix for listed issues",
-                "issues": issue_str,
-                "changes": [],
+                "issues": issue_str, "changes": [],
             })
             continue
 
         if dry_run:
             print("   🧪 DRY RUN — would apply:", ", ".join(changes_made))
             results.append({
-                "url": url,
-                "slug": slug,
-                "post_id": pid,
-                "fixed": False,
-                "reason": "dry-run",
-                "issues": issue_str,
-                "changes": changes_made,
+                "url": url, "slug": slug, "post_id": pid, "fixed": False,
+                "reason": "dry-run", "issues": issue_str, "changes": changes_made,
             })
         else:
-            resp = update_post(pid, changes)
+            resp = update_post(site, pid, changes)
             if resp and resp.ok:
                 print("   ✅ Applied:", ", ".join(changes_made))
                 fixed = True
@@ -347,28 +377,55 @@ def fix_from_audit(dry_run: bool = False):
                 fixed = False
                 reason = f"Save failed ({status})"
             results.append({
-                "url": url,
-                "slug": slug,
-                "post_id": pid,
-                "fixed": fixed,
-                "reason": reason,
-                "issues": issue_str,
-                "changes": changes_made,
+                "url": url, "slug": slug, "post_id": pid, "fixed": fixed,
+                "reason": reason, "issues": issue_str, "changes": changes_made,
             })
 
         time.sleep(REQUEST_DELAY)
 
     today = datetime.today().strftime("%Y-%m-%d")
     rep_df = pd.DataFrame(results)
-    csv_out  = os.path.join(OUTPUT_DIR, f"{DOMAIN}_fix_issues_{today}.csv")
-    json_out = os.path.join(OUTPUT_DIR, f"{DOMAIN}_fix_issues_{today}.json")
-    rep_df.to_csv(csv_out, index=False)
+    csv_out  = os.path.join(output_dir, f"{site.domain}_fix_issues_{today}.csv")
+    json_out = os.path.join(output_dir, f"{site.domain}_fix_issues_{today}.json")
+    if not rep_df.empty:
+        rep_df.to_csv(csv_out, index=False)
     with open(json_out, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
-    print(f"\n📄 Fix report saved → {csv_out}")
+    print(f"📄 [{site.domain}] Fix report → {csv_out}")
     return results
 
 
+def fix_all_sites(dry_run: bool = False, base_output: str = "seo_reports") -> dict[str, list[dict]]:
+    """Run fix_from_audit for every registered site. Returns {domain: results}."""
+    summary: dict[str, list[dict]] = {}
+    for site in SITES:
+        try:
+            summary[site.domain] = fix_from_audit(site, dry_run=dry_run, base_output=base_output)
+        except Exception as e:
+            print(f"❌ [{site.domain}] Fixer crashed: {e}")
+            summary[site.domain] = []
+    return summary
+
+
+# ── CLI ─────────────────────────────────────────────────────────────────
+
+def _main() -> None:
+    ap = argparse.ArgumentParser(description="WordPress SEO auto-fixer (multi-site)")
+    ap.add_argument("--site", help="Run for one domain only (e.g. sanfranciscobriefing.com)")
+    ap.add_argument("--dry-run", action="store_true", help="Plan changes; don't write to WP")
+    ap.add_argument("--output", default="seo_reports", help="Reports base directory")
+    args = ap.parse_args()
+
+    print("🚀 Running CSV-driven Fix Issues (multi-site)...")
+    if args.site:
+        fix_from_audit(get_site(args.site), dry_run=args.dry_run, base_output=args.output)
+    else:
+        results = fix_all_sites(dry_run=args.dry_run, base_output=args.output)
+        print("\n──────── SUMMARY ────────")
+        for domain, rows in results.items():
+            ok = sum(1 for r in rows if r.get("fixed"))
+            print(f"  {domain:35s}  attempts={len(rows):4d}  fixed={ok}")
+
+
 if __name__ == "__main__":
-    print("🚀 Running CSV-driven Fix Issues (based on latest technical audit)...")
-    fix_from_audit(dry_run=False)
+    _main()
