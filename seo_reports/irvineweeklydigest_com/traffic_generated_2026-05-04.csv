@@ -1,7 +1,10 @@
-date,site,engine,clicks
-2026-05-04,irvineweeklydigest.com,google.com,1
-2026-05-04,irvineweeklydigest.com,yahoo.com,0
-2026-05-04,irvineweeklydigest.com,bing.com,0
+date,run_timestamp,site,engine,clicks
+2026-05-04,,irvineweeklydigest.com,google.com,1
+2026-05-04,,irvineweeklydigest.com,yahoo.com,0
+2026-05-04,,irvineweeklydigest.com,bing.com,0
 2026-05-04,2026-05-04T11:06:59Z,irvineweeklydigest.com,google.com,1
 2026-05-04,2026-05-04T11:06:59Z,irvineweeklydigest.com,yahoo.com,0
 2026-05-04,2026-05-04T11:06:59Z,irvineweeklydigest.com,bing.com,0
+2026-05-04,2026-05-04T13:55:19Z,irvineweeklydigest.com,google.com,1
+2026-05-04,2026-05-04T13:55:19Z,irvineweeklydigest.com,yahoo.com,0
+2026-05-04,2026-05-04T13:55:19Z,irvineweeklydigest.com,bing.com,0

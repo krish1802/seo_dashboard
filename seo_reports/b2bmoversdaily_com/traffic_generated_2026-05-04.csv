@@ -1,7 +1,10 @@
-date,site,engine,clicks
-2026-05-04,b2bmoversdaily.com,google.com,7
-2026-05-04,b2bmoversdaily.com,yahoo.com,0
-2026-05-04,b2bmoversdaily.com,bing.com,0
+date,run_timestamp,site,engine,clicks
+2026-05-04,,b2bmoversdaily.com,google.com,7
+2026-05-04,,b2bmoversdaily.com,yahoo.com,0
+2026-05-04,,b2bmoversdaily.com,bing.com,0
 2026-05-04,2026-05-04T11:08:15Z,b2bmoversdaily.com,google.com,7
 2026-05-04,2026-05-04T11:08:15Z,b2bmoversdaily.com,yahoo.com,0
 2026-05-04,2026-05-04T11:08:15Z,b2bmoversdaily.com,bing.com,0
+2026-05-04,2026-05-04T13:56:34Z,b2bmoversdaily.com,google.com,7
+2026-05-04,2026-05-04T13:56:34Z,b2bmoversdaily.com,yahoo.com,0
+2026-05-04,2026-05-04T13:56:34Z,b2bmoversdaily.com,bing.com,0

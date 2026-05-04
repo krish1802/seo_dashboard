@@ -1,7 +1,10 @@
-date,site,engine,clicks
-2026-05-04,nyartisinal.com,google.com,1
-2026-05-04,nyartisinal.com,yahoo.com,0
-2026-05-04,nyartisinal.com,bing.com,0
+date,run_timestamp,site,engine,clicks
+2026-05-04,,nyartisinal.com,google.com,1
+2026-05-04,,nyartisinal.com,yahoo.com,0
+2026-05-04,,nyartisinal.com,bing.com,0
 2026-05-04,2026-05-04T11:11:19Z,nyartisinal.com,google.com,1
 2026-05-04,2026-05-04T11:11:19Z,nyartisinal.com,yahoo.com,0
 2026-05-04,2026-05-04T11:11:19Z,nyartisinal.com,bing.com,0
+2026-05-04,2026-05-04T13:59:37Z,nyartisinal.com,google.com,1
+2026-05-04,2026-05-04T13:59:37Z,nyartisinal.com,yahoo.com,0
+2026-05-04,2026-05-04T13:59:37Z,nyartisinal.com,bing.com,0
