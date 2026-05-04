@@ -1108,13 +1108,17 @@ def _render_all_sites():
     df = pd.DataFrame(rollup_rows)
 
     # Top KPIs
-    k1, k2, k3, k4, k5 = st.columns(5)
-    k1.metric("Sites managed", len(SITES))
-    k2.metric("Pages crawled (total)", int(df["Pages crawled"].fillna(0).sum()))
-    k3.metric("Issues (total)", int(df["Issues"].fillna(0).sum()))
-    k4.metric(f"Users ({days}d, total)", f"{int(df[f'Users ({days}d)'].fillna(0).sum()):,}")
+    total_users = int(df[f"Users ({days}d)"].fillna(0).sum())
+    total_clicks = int(df["Bot clicks (today)"].fillna(0).sum())
     healthy_sites = int((df["Health %"].fillna(0) >= 90).sum())
-    k5.metric("Sites ≥ 90% health", f"{healthy_sites}/{len(SITES)}")
+
+    k1, k2, k3, k4, k5, k6 = st.columns(6)
+    k1.metric("Sites managed", len(SITES))
+    k2.metric(f"Total users ({days}d)", f"{total_users:,}")
+    k3.metric("Total bot clicks (today)", f"{total_clicks:,}")
+    k4.metric("Pages crawled (total)", int(df["Pages crawled"].fillna(0).sum()))
+    k5.metric("Issues (total)", int(df["Issues"].fillna(0).sum()))
+    k6.metric("Sites ≥ 90% health", f"{healthy_sites}/{len(SITES)}")
 
     st.divider()
 
@@ -1133,15 +1137,26 @@ def _render_all_sites():
             st.info("No GA4 data available across sites (check `[ga4]` secret and property IDs).")
 
     with cols[1]:
-        st.markdown("### 🩺 Site health")
-        if df["Pages crawled"].sum() > 0:
-            fig = px.bar(df.sort_values("Health %", ascending=False),
-                         x="Site", y="Health %", color="Health %",
-                         color_continuous_scale="RdYlGn", range_color=[0, 100])
-            fig.update_layout(xaxis_tickangle=-30)
-            st.plotly_chart(fig, use_container_width=True, key="all_sites_health")
+        st.markdown("### 🤖 Bot clicks by site (today)")
+        cf_plot = df[["Site", "Bot clicks (today)"]].rename(columns={"Bot clicks (today)": "Clicks"})
+        if cf_plot["Clicks"].sum() > 0:
+            fig_cf = px.bar(cf_plot.sort_values("Clicks", ascending=False),
+                            x="Site", y="Clicks", color="Site",
+                            title="Click-farm clicks generated today")
+            fig_cf.update_layout(showlegend=False, xaxis_tickangle=-30)
+            st.plotly_chart(fig_cf, use_container_width=True, key="all_sites_clicks")
         else:
-            st.info("No audits found yet. Run `python crawl_script.py` to populate.")
+            st.info("No bot clicks logged today. Run `python bypass.py` to populate.")
+
+    st.markdown("### 🩺 Site health")
+    if df["Pages crawled"].sum() > 0:
+        fig = px.bar(df.sort_values("Health %", ascending=False),
+                     x="Site", y="Health %", color="Health %",
+                     color_continuous_scale="RdYlGn", range_color=[0, 100])
+        fig.update_layout(xaxis_tickangle=-30)
+        st.plotly_chart(fig, use_container_width=True, key="all_sites_health")
+    else:
+        st.info("No audits found yet. Run `python crawl_script.py` to populate.")
 
     st.divider()
     st.markdown("### 📋 Comparison table")
