@@ -87,6 +87,7 @@ def save_daily_clicks(site: Site, results: dict, base_output: str = "seo_reports
     today = datetime.utcnow().strftime("%Y-%m-%d")
     out_dir = Path(site.output_dir(base_output))
     path = out_dir / f"traffic_generated_{today}.csv"
+    out_dir.mkdir(parents=True, exist_ok=True)
     file_exists = path.exists()
     with path.open("a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
@@ -94,6 +95,7 @@ def save_daily_clicks(site: Site, results: dict, base_output: str = "seo_reports
             writer.writerow(["date", "site", "engine", "clicks"])
         for engine, clicks in results.items():
             writer.writerow([today, site.domain, engine, clicks])
+        f.flush()
     return path
 
 
@@ -106,11 +108,11 @@ def run_site(site: Site, page, engines: list[str]) -> dict:
             print(f"  ▶ [{site.domain}] running {engine} ...")
             daily[engine] = run_for_engine(page, engine, site.domain)
             print(f"    {engine}: {daily[engine]} clicks")
-        except Exception as e:
+        except Exception as exc:
             daily[engine] = 0
-            print(f"    {engine}: error ({e}), recorded 0")
+            print(f"    {engine}: error ({type(exc).__name__}: {exc}), recorded 0")
     out = save_daily_clicks(site, daily)
-    print(f"  💾 [{site.domain}] saved → {out}")
+    print(f"  💾 [{site.domain}] saved → {out.resolve()}")
     return daily
 
 
@@ -133,8 +135,8 @@ def run_all(engines: list[str] = DEFAULT_ENGINES, only_site: str | None = None) 
                 print(f"\n=== {site.domain} ===")
                 try:
                     overall[site.domain] = run_site(site, page, engines)
-                except Exception as e:
-                    print(f"❌ [{site.domain}] failed: {e}")
+                except Exception as exc:
+                    print(f"❌ [{site.domain}] failed: {type(exc).__name__}: {exc}")
                     overall[site.domain] = {e_: 0 for e_ in engines}
 
             browser.close()
