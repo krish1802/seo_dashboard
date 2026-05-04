@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import os
 import re
+import csv
 import time
 import json
 import html as html_lib
@@ -401,11 +402,55 @@ def _find_csv(prefix_with_date: str, domain: str | None = None) -> str | None:
     return None
 
 
+def _read_clickfarm_csv(path: str) -> pd.DataFrame | None:
+    """Robust reader for traffic_generated_*.csv.
+
+    Files written by older versions of bypass.py have 4 columns
+    (date, site, engine, clicks); newer versions add a 5th (run_timestamp).
+    If a single file has a mix of both — because new rows were appended to
+    an old file — pandas fails with ParserError. Read line-by-line, classify
+    each row by column count, and merge into one DataFrame.
+    """
+    try:
+        # Skip the header line if present, then dispatch by column count.
+        with open(path, "r", encoding="utf-8", errors="replace", newline="") as f:
+            reader = csv.reader(f)
+            old_rows, new_rows = [], []
+            for raw in reader:
+                if not raw or raw[0].strip().lower() == "date":
+                    continue
+                if len(raw) == 4:
+                    old_rows.append(raw)
+                elif len(raw) >= 5:
+                    # Take exactly 5 columns; ignore any trailing junk.
+                    new_rows.append(raw[:5])
+                # rows with <4 columns are malformed; ignore.
+        frames = []
+        if old_rows:
+            frames.append(pd.DataFrame(
+                old_rows,
+                columns=["date", "site", "engine", "clicks"],
+            ))
+        if new_rows:
+            frames.append(pd.DataFrame(
+                new_rows,
+                columns=["date", "run_timestamp", "site", "engine", "clicks"],
+            ))
+        if not frames:
+            return None
+        df = pd.concat(frames, ignore_index=True)
+        # Coerce clicks to int so .sum() doesn't string-concat.
+        df["clicks"] = pd.to_numeric(df["clicks"], errors="coerce").fillna(0).astype(int)
+        return df
+    except Exception:
+        return None
+
+
 def load_clickfarm_today(domain: str | None = None):
     today = datetime.today().strftime("%Y-%m-%d")
     path = _find_csv(f"traffic_generated_{today}", domain)
     if path:
-        return pd.read_csv(path)
+        return _read_clickfarm_csv(path)
     return None
 
 
@@ -421,13 +466,12 @@ def load_clickfarm_window(domain: str | None = None, days: int = 7):
         path = _find_csv(f"traffic_generated_{d}", domain)
         if not path:
             continue
-        try:
-            frame = pd.read_csv(path)
-            if "date" not in frame.columns:
-                frame["date"] = d
-            frames.append(frame)
-        except Exception:
+        frame = _read_clickfarm_csv(path)
+        if frame is None or frame.empty:
             continue
+        if "date" not in frame.columns:
+            frame["date"] = d
+        frames.append(frame)
     if not frames:
         return None
     return pd.concat(frames, ignore_index=True)

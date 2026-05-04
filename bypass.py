@@ -82,12 +82,20 @@ def run_for_engine(page, engine: str, domain: str) -> int:
 
 # ── PERSISTENCE ─────────────────────────────────────────────────────────
 
+_NEW_HEADER = ["date", "run_timestamp", "site", "engine", "clicks"]
+
+
 def save_daily_clicks(site: Site, results: dict, base_output: str = "seo_reports") -> Path:
     """Append this run's per-engine totals to the per-site daily CSV.
 
     Each cron run appends one row per engine, so the daily total is the SUM
     of every row for that date. The `run_timestamp` column lets you tell
     individual runs apart for auditing.
+
+    Schema-safety: if the existing daily file uses the old 4-column schema
+    (date,site,engine,clicks), we DO NOT append 5-column rows to it (that
+    breaks pandas.read_csv). Instead, the old file is rewritten in-place
+    with the new schema (run_timestamp = '' for legacy rows) before append.
     """
     now = datetime.utcnow()
     today = now.strftime("%Y-%m-%d")
@@ -95,15 +103,59 @@ def save_daily_clicks(site: Site, results: dict, base_output: str = "seo_reports
     out_dir = Path(site.output_dir(base_output))
     path = out_dir / f"traffic_generated_{today}.csv"
     out_dir.mkdir(parents=True, exist_ok=True)
-    file_exists = path.exists()
+
+    _ensure_new_schema(path)
+
+    file_exists = path.exists() and path.stat().st_size > 0
     with path.open("a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         if not file_exists:
-            writer.writerow(["date", "run_timestamp", "site", "engine", "clicks"])
+            writer.writerow(_NEW_HEADER)
         for engine, clicks in results.items():
             writer.writerow([today, run_ts, site.domain, engine, clicks])
         f.flush()
     return path
+
+
+def _ensure_new_schema(path: Path) -> None:
+    """Migrate a legacy 4-column CSV to the 5-column schema in place.
+
+    No-op if the file doesn't exist, is empty, or already has the new header.
+    """
+    if not path.exists() or path.stat().st_size == 0:
+        return
+    try:
+        with path.open("r", newline="", encoding="utf-8") as f:
+            reader = csv.reader(f)
+            rows = list(reader)
+        if not rows:
+            return
+        header = [c.strip().lower() for c in rows[0]]
+        if header == _NEW_HEADER:
+            return  # already migrated
+        # Build a new file: header + each row padded to the new shape.
+        new_rows = [_NEW_HEADER]
+        for row in rows:
+            stripped = [c.strip() for c in row]
+            # Skip duplicate / legacy headers anywhere in the file.
+            if [c.lower() for c in stripped] in (["date", "site", "engine", "clicks"], _NEW_HEADER):
+                continue
+            if len(stripped) == 4:
+                # date, site, engine, clicks  ->  date, '', site, engine, clicks
+                new_rows.append([stripped[0], "", stripped[1], stripped[2], stripped[3]])
+            elif len(stripped) >= 5:
+                new_rows.append(stripped[:5])
+            # rows with <4 cols are dropped (malformed).
+        with path.open("w", newline="", encoding="utf-8") as f:
+            csv.writer(f).writerows(new_rows)
+    except Exception as e:
+        # If migration fails, rename the bad file aside so the next run starts fresh.
+        backup = path.with_suffix(path.suffix + ".broken")
+        try:
+            path.rename(backup)
+            print(f"⚠️  could not migrate {path.name} ({e}); moved to {backup.name}")
+        except Exception:
+            pass
 
 
 # ── PER-SITE FLOW ───────────────────────────────────────────────────────
