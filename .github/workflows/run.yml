@@ -3,26 +3,84 @@ name: Run Playwright Script
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */3 * * *'
+    - cron: "0 */3 * * *"
+
+# Required so the job can push the generated CSV files back to the repo
+permissions:
+  contents: write
+
+concurrency:
+  group: run-bypass
+  cancel-in-progress: false
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          # full history so we can push commits back
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+          cache: "pip"
 
       - name: Install dependencies
         run: |
-          pip install playwright
-          pip install seleniumbase
+          pip install playwright seleniumbase
           playwright install --with-deps
 
       - name: Run script
         run: python bypass.py
+
+      - name: Show generated files (debug)
+        if: always()
+        run: |
+          echo "── seo_reports tree ──"
+          ls -laR seo_reports || echo "no seo_reports dir"
+
+      - name: Upload CSVs as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: traffic-generated-${{ github.run_id }}
+          path: seo_reports/**/traffic_generated_*.csv
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Commit & push CSVs back to repo
+        if: success()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Stage every generated CSV (handles new dirs + updates)
+          git add -A "seo_reports/"
+
+          if git diff --cached --quiet; then
+            echo "No CSV changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore(bypass): scheduled run $(date -u +'%Y-%m-%d %H:%M UTC')"
+
+          # Pull-rebase in case another scheduled run pushed in the meantime,
+          # then push. Retry up to 3 times to ride out races.
+          for attempt in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              echo "Pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "Push failed, retrying ($attempt/3)..."
+            sleep 5
+          done
+          echo "Push failed after 3 attempts"
+          exit 1
