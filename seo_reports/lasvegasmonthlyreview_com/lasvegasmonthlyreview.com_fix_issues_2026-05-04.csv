@@ -1,0 +1,74 @@
+url,slug,post_id,fixed,reason,issues,changes
+https://lasvegasmonthlyreview.com,,,False,No matching WP post,Title long (167),[]
+https://lasvegasmonthlyreview.com/,,,False,No matching WP post,Title long (167),[]
+https://lasvegasmonthlyreview.com/page/2/,2,,False,No matching WP post,Title long (181),[]
+https://lasvegasmonthlyreview.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0,co-author-public.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5,styles.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0,all.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-includes/css/buttons.min.css?ver=6.9.4,buttons.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-includes/css/dashicons.min.css?ver=6.9.4,dashicons.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17,mediaelementplayer-legacy.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4,wp-mediaelement.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-includes/css/media-views.min.css?ver=6.9.4,media-views.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8,imgareaselect.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=6.9.4,frontend.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-content/plugins/kirki/assets/css/kirki.min.css?ver=6.0.3,kirki.min.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-content/themes/las-vegas-monthly/style.css?ver=6.9.4,style.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-json/,wp-json,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/xmlrpc.php?rsd,xmlrpc.php,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-content/uploads/2024/12/cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-32x32.png,cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-32x32.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-content/uploads/2024/12/cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-192x192.png,cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-192x192.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-content/uploads/2024/12/cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-180x180.png,cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-180x180.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/category/newyorkinfocus/,newyorkinfocus,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/category/local-news-highlights/,local-news-highlights,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/category/opinion-pieces/,opinion-pieces,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/category/feature-stories/,feature-stories,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/category/breakingheadlines/,breakingheadlines,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/about-us/,about-us,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/transforming-creative-media-landscape-look-into/,transforming-creative-media-landscape-look-into,2021.0,True,,Title long (115) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/filmmaker-vfx-artist-shreyans-zaveri-making-waves/,filmmaker-vfx-artist-shreyans-zaveri-making-waves,2020.0,True,,Title long (136) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/serial-entrepreneur-milan-kordestani-shaping-future/,serial-entrepreneur-milan-kordestani-shaping-future,2019.0,True,,Title long (135) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/award-winning-filmmaker-author-shines-spotlight/,award-winning-filmmaker-author-shines-spotlight,1914.0,True,,Title long (164) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/milan-kordestani-innovator-entrepreneur-leader/,milan-kordestani-innovator-entrepreneur-leader,1913.0,True,,Title long (178) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/unlock-your-creativity-underworld-diverse/,unlock-your-creativity-underworld-diverse,1912.0,True,,Title long (131) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/category/trends/,trends,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/accessibility-statement/,accessibility-statement,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/faq/,faq,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/cookies-policy/,cookies-policy,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/editorial-process/,editorial-process,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/wp-admin/upload.php?mode=list,upload.php,,False,No matching WP post,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-admin/upload.php?mode=grid,upload.php,,False,No matching WP post,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/page/3/,3,,False,No matching WP post,Title long (181),[]
+https://lasvegasmonthlyreview.com/category/newyorkinfocus/page/2/,2,,False,No matching WP post,Title long (67) | Missing meta desc,[]
+https://lasvegasmonthlyreview.com/category/newyorkinfocus/feed/,feed,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-json/wp/v2/categories/8,8,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/revolutionizing-startup-creation-inside-reno/,revolutionizing-startup-creation-inside-reno,1910.0,True,,Title long (133) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/empowering-confidence-how-swimwear-brand-became-global/,empowering-confidence-how-swimwear-brand-became-global,1886.0,True,,Title long (182) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/limited-edition-gadgets-your-everyday-live/,limited-edition-gadgets-your-everyday-live,418.0,True,,Title long (75) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/day-new-gadget-better-than/,day-new-gadget-better-than,417.0,True,,Title long (86) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/innovative-way-reduce-your-bounce-rate/,innovative-way-reduce-your-bounce-rate,247.0,True,,Title long (68) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/how-the-new-tech-can-change-you/,how-the-new-tech-can-change-you,234.0,True,,Missing meta desc,['Updated meta description (Yoast/RankMath)']
+https://lasvegasmonthlyreview.com/how-to-take-the-perfect-street-shot/,how-to-take-the-perfect-street-shot,163.0,True,,Missing meta desc,['Updated meta description (Yoast/RankMath)']
+https://lasvegasmonthlyreview.com/everything-you-need-to-know-about-this/,everything-you-need-to-know-about-this,157.0,True,,Missing meta desc,['Updated meta description (Yoast/RankMath)']
+https://lasvegasmonthlyreview.com/think-outside-the-box/,think-outside-the-box,82.0,True,,Missing meta desc,['Updated meta description (Yoast/RankMath)']
+https://lasvegasmonthlyreview.com/category/local-news-highlights/page/2/,2,,False,No matching WP post,Title long (70) | Missing meta desc,[]
+https://lasvegasmonthlyreview.com/category/local-news-highlights/feed/,feed,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-json/wp/v2/categories/7,7,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/social-architect-milan-kordestani-building-impact-driven/,social-architect-milan-kordestani-building-impact-driven,1889.0,True,,Title long (168) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/transform-your-creative-media-presence-our/,transform-your-creative-media-presence-our,1888.0,True,,Title long (109) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/revolutionizing-creative-media-industry-glimpse/,revolutionizing-creative-media-industry-glimpse,1887.0,True,,Title long (110) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/new-skills-and-a-snazzy-new-trip/,new-skills-and-a-snazzy-new-trip,23.0,True,,Missing meta desc,['Updated meta description (Yoast/RankMath)']
+https://lasvegasmonthlyreview.com/top-benifits-sport-fitness-2023/,top-benifits-sport-fitness-2023,250.0,True,,Title long (72) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/surprising-power-of-positive-thinking-2/,surprising-power-of-positive-thinking-2,244.0,True,,Missing meta desc,['Updated meta description (Yoast/RankMath)']
+https://lasvegasmonthlyreview.com/things-to-do-in-barcelona-this-summer/,things-to-do-in-barcelona-this-summer,237.0,True,,Missing meta desc,['Updated meta description (Yoast/RankMath)']
+https://lasvegasmonthlyreview.com/how-to-style-the-perfect-look/,how-to-style-the-perfect-look,236.0,True,,Missing meta desc,['Updated meta description (Yoast/RankMath)']
+https://lasvegasmonthlyreview.com/meet-25-things-you-ll-absolutely-love/,meet-25-things-you-ll-absolutely-love,231.0,True,,Title long (68) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/category/opinion-pieces/page/2/,2,,False,No matching WP post,Missing meta desc,[]
+https://lasvegasmonthlyreview.com/category/opinion-pieces/feed/,feed,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/wp-json/wp/v2/categories/5,5,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://lasvegasmonthlyreview.com/revolutionizing-cinematic-storytelling-meet-visionary/,revolutionizing-cinematic-storytelling-meet-visionary,1908.0,True,,Title long (162) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/bollywood-hollywood-jasmine-kapoor/,bollywood-hollywood-jasmine-kapoor,1905.0,True,,Title long (153) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/best-fashion-influencers-follow-year/,best-fashion-influencers-follow-year,419.0,True,,Title long (75) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/winter-whites-how-make-them-luxe/,winter-whites-how-make-them-luxe,416.0,True,,Title long (66) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/highlights-year-collections/,highlights-year-collections,248.0,True,,Title long (71) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://lasvegasmonthlyreview.com/warning-extremely-big-spoilers-ahead-not-only-you/,warning-extremely-big-spoilers-ahead-not-only-you,425.0,True,,Title long (81) | Missing meta desc,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"

@@ -1,0 +1,2 @@
+url,status,load_time_s,title,title_length,meta_description,meta_desc_length,h1_count,canonical,noindex,images_missing_alt,has_og_tags,has_schema,issues
+https://thenewyorkentrepreneur.com,200,0.72,The New York Entrepreneur,25,,0,1,,False,0,False,True,Title short (25) | Missing meta desc | No OG tags

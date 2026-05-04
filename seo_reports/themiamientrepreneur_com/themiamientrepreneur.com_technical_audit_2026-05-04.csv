@@ -1,0 +1,81 @@
+url,status,load_time_s,title,title_length,meta_description,meta_desc_length,h1_count,canonical,noindex,images_missing_alt,has_og_tags,has_schema,issues
+https://themiamientrepreneur.com,200,1.03,home - The Miami Entrepreneur,29,,0,2,https://themiamientrepreneur.com/,False,0,True,True,Title short (29) | Missing meta desc | Multiple H1s (2)
+https://themiamientrepreneur.com/,200,0.94,home - The Miami Entrepreneur,29,,0,2,https://themiamientrepreneur.com/,False,0,True,True,Title short (29) | Missing meta desc | Multiple H1s (2)
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2F,200,0.74,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2F&#038;format=xml,200,0.75,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0,200,0.21,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5,200,0.17,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0,200,0.33,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-includes/css/buttons.min.css?ver=6.9.4,200,0.25,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-includes/css/dashicons.min.css?ver=6.9.4,200,0.23,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17,200,0.18,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-includes/css/media-views.min.css?ver=6.9.4,200,0.22,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=6.9.4,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-includes/css/dist/components/style.min.css?ver=6.9.4,200,0.26,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/plugins/coblocks/includes/Dependencies/GoDaddy/Styles/build/latest.css?ver=2.0.2,200,0.19,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/plugins/kirki/assets/css/kirki.min.css?ver=6.0.3,200,0.22,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/themes/miami-entrepreneur/style.css?ver=6.9.4,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/,200,0.98,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/pages/2319,200,0.68,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/xmlrpc.php?rsd,200,0.6,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/uploads/2024/12/cropped-23-32x32.png,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/uploads/2024/12/cropped-23-192x192.png,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/uploads/2024/12/cropped-23-180x180.png,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/category/startup-success-stories/,200,0.83,Startup Success Stories Archives - The Miami Entrepreneur,57,,0,1,https://themiamientrepreneur.com/category/startup-success-stories/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/category/funding-and-investment/,200,0.87,Funding and Investment Archives - The Miami Entrepreneur,56,,0,1,https://themiamientrepreneur.com/category/funding-and-investment/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/category/business-strategy-and-growth/,200,0.91,Business Strategy and Growth Archives - The Miami Entrepreneur,62,,0,1,https://themiamientrepreneur.com/category/business-strategy-and-growth/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/category/local-resources-and-networking/,200,0.99,Local Resources and Networking Archives - The Miami Entrepreneur,64,,0,1,https://themiamientrepreneur.com/category/local-resources-and-networking/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/category/innovation-and-trends/,200,0.92,Innovation and Trends Archives - The Miami Entrepreneur,55,,0,1,https://themiamientrepreneur.com/category/innovation-and-trends/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/faq/,200,0.95,FAQ - The Miami Entrepreneur,28,,0,1,https://themiamientrepreneur.com/faq/,False,0,True,True,Title short (28) | Missing meta desc
+https://themiamientrepreneur.com/about-us/,200,0.92,About Us - The Miami Entrepreneur,33,,0,1,https://themiamientrepreneur.com/about-us/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/accessibility-statement/,200,0.93,Accessibility Statement - The Miami Entrepreneur,48,,0,1,https://themiamientrepreneur.com/accessibility-statement/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/cookies-policy/,200,0.9,Cookies Policy - The Miami Entrepreneur,39,,0,1,https://themiamientrepreneur.com/cookies-policy/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/editorial-process/,200,1.05,Editorial process - The Miami Entrepreneur,42,,0,1,https://themiamientrepreneur.com/editorial-process/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/wp-admin/upload.php?mode=list,200,1.55,Log In &lsaquo; The Miami Entrepreneur &#8212; WordPress,56,,0,2,,True,0,False,False,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-admin/upload.php?mode=grid,200,1.34,Log In &lsaquo; The Miami Entrepreneur &#8212; WordPress,56,,0,2,,True,0,False,False,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema
+https://themiamientrepreneur.com/{{ data.authorLink }},404,1.29,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/{{ data.uploadedToLink }},404,1.31,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/{{ data.originalImageURL }},404,1.27,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/{{ data.link }},404,1.23,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/{{ data.editLink }},404,1.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/{{ data.url }},404,1.42,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/{{ data.editLink }}&amp;image-editor,404,0.65,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/category/startup-success-stories/feed/,200,0.67,Startup Success Stories Archives - The Miami Entrepreneur,57,,0,0,,False,0,False,False,Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/plugins/coblocks/dist/style-coblocks-extensions.css?ver=3.1.17,200,0.19,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-content/plugins/coblocks/dist/style-coblocks-animation.css?ver=2677611078ee87eb3b1c,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/categories/56,200,0.77,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/category/funding-and-investment/feed/,200,1.1,Funding and Investment Archives - The Miami Entrepreneur,56,,0,0,,False,0,False,False,Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/categories/57,200,0.73,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/category/business-strategy-and-growth/feed/,200,1.06,Business Strategy and Growth Archives - The Miami Entrepreneur,62,,0,0,,False,0,False,False,Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/categories/58,200,0.88,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/category/local-resources-and-networking/feed/,200,1.01,Local Resources and Networking Archives - The Miami Entrepreneur,64,,0,0,,False,0,False,False,Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/categories/59,200,0.75,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/category/innovation-and-trends/feed/,200,0.97,Innovation and Trends Archives - The Miami Entrepreneur,55,,0,0,,False,0,False,False,Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/categories/60,200,0.71,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Ffaq%2F,200,0.69,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Ffaq%2F&#038;format=xml,200,0.7,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-includes/blocks/paragraph/style.min.css?ver=6.9.4,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/pages/1635,200,0.9,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/?p=1635,200,1.39,FAQ - The Miami Entrepreneur,28,,0,1,https://themiamientrepreneur.com/faq/,False,0,True,True,Title short (28) | Missing meta desc
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Fabout-us%2F,200,0.75,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Fabout-us%2F&#038;format=xml,200,0.74,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/pages/731,200,0.72,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/?p=731,200,1.41,About Us - The Miami Entrepreneur,33,,0,1,https://themiamientrepreneur.com/about-us/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Faccessibility-statement%2F,200,0.68,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Faccessibility-statement%2F&#038;format=xml,200,0.7,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/pages/1637,200,0.72,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/?p=1637,200,1.42,Accessibility Statement - The Miami Entrepreneur,48,,0,1,https://themiamientrepreneur.com/accessibility-statement/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Fcookies-policy%2F,200,0.74,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Fcookies-policy%2F&#038;format=xml,200,0.73,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/pages/1633,200,0.73,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/?p=1633,200,1.56,Cookies Policy - The Miami Entrepreneur,39,,0,1,https://themiamientrepreneur.com/cookies-policy/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Feditorial-process%2F,200,0.67,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthemiamientrepreneur.com%2Feditorial-process%2F&#038;format=xml,200,0.67,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-json/wp/v2/pages/1630,200,0.77,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/?p=1630,200,1.41,Editorial process - The Miami Entrepreneur,42,,0,1,https://themiamientrepreneur.com/editorial-process/,False,0,True,True,Missing meta desc
+https://themiamientrepreneur.com/wp-admin/css/forms.min.css?ver=6.9.4,200,0.19,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-admin/css/l10n.min.css?ver=6.9.4,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-admin/css/login.min.css?ver=6.9.4,200,0.15,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://themiamientrepreneur.com/wp-login.php?action=lostpassword,200,0.63,Lost Password &lsaquo; The Miami Entrepreneur &#8212; WordPress,63,,0,2,,True,0,False,False,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema

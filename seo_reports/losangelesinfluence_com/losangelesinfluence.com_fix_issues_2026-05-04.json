@@ -1,0 +1,791 @@
+[
+  {
+    "url": "https://losangelesinfluence.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (106) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (106) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (121) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (21) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/newsophy/assets/fonts/css/fontello.css?ver=5.13.0",
+    "slug": "fontello.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/newsophy/style.css?ver=1.0",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/newsophy/assets/css/responsive.css?ver=1.0",
+    "slug": "responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/newsophy/assets/css/interlace.css?ver=2.6",
+    "slug": "interlace.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/newsophy/assets/css/amp.scss?ver=1.0",
+    "slug": "amp.scss",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/buttons.min.css?ver=6.9.4",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/dashicons.min.css?ver=6.9.4",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/media-views.min.css?ver=6.9.4",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=1.0.6",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/kirki/assets/css/kirki.min.css?ver=6.0.3",
+    "slug": "kirki.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2024/12/cropped-NEW-YORK-44-32x32.png",
+    "slug": "cropped-NEW-YORK-44-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2024/12/cropped-NEW-YORK-44-192x192.png",
+    "slug": "cropped-NEW-YORK-44-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2024/12/cropped-NEW-YORK-44-180x180.png",
+    "slug": "cropped-NEW-YORK-44-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/blogging/",
+    "slug": "blogging",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 9 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/city/",
+    "slug": "city",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/gadget/",
+    "slug": "gadget",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/guide/",
+    "slug": "guide",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 9 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/life/",
+    "slug": "life",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/modern/",
+    "slug": "modern",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/money/",
+    "slug": "money",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 9 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/new/",
+    "slug": "new",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/new-york/",
+    "slug": "new-york",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/photography/",
+    "slug": "photography",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/style/",
+    "slug": "style",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/time/",
+    "slug": "time",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/wireless/",
+    "slug": "wireless",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/tag/world/",
+    "slug": "world",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 9 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/",
+    "slug": "localnews",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/entertainmentandmedia/",
+    "slug": "entertainmentandmedia",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/business/",
+    "slug": "business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/foodanddining/",
+    "slug": "foodanddining",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/artsculture/",
+    "slug": "artsculture",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | 10 img no alt",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/editorial-process/",
+    "slug": "editorial-process",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (27) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/about-us/",
+    "slug": "about-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/contact-us/",
+    "slug": "contact-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/innovative-influence-how-los-angeles-shapes-modern-art/",
+    "slug": "innovative-influence-how-los-angeles-shapes-modern-art",
+    "post_id": 3069,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (100) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/brian-ferdinand-helix-alpha/",
+    "slug": "brian-ferdinand-helix-alpha",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (81) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/city-dreams-influence-los-angeles-modern-art-design/",
+    "slug": "city-dreams-influence-los-angeles-modern-art-design",
+    "post_id": 3068,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (103) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/city-angels-how-los-angeles-shaped-hollywood-celebrity/",
+    "slug": "city-angels-how-los-angeles-shaped-hollywood-celebrity",
+    "post_id": 3064,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (94) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/echoes-past-tracing-los-angeles-impact-music-industry/",
+    "slug": "echoes-past-tracing-los-angeles-impact-music-industry",
+    "post_id": 3058,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (98) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/fashionable-fusion-uncovering-los-angeles-cultural-influence-trends/",
+    "slug": "fashionable-fusion-uncovering-los-angeles-cultural-influence-trends",
+    "post_id": 3056,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (105) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/worldwide-impact-la-urban-development-influence/",
+    "slug": "worldwide-impact-la-urban-development-influence",
+    "post_id": 3057,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (85) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/autobongs-revolutionizing-online-headshop-experience-ai-education-fair/",
+    "slug": "autobongs-revolutionizing-online-headshop-experience-ai-education-fair",
+    "post_id": 2278,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (135) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/men-anxiety-coaching-expert-dr-ken-martz-offers/",
+    "slug": "men-anxiety-coaching-expert-dr-ken-martz-offers",
+    "post_id": 2275,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (196) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/unlock-your-creativity-underworld-diverse-entertainment-ecosystem-distribution/",
+    "slug": "unlock-your-creativity-underworld-diverse-entertainment-ecosystem-distribution",
+    "post_id": 2273,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (128) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/brewing-hope-quality-veteran-owned-coffee-company-donates/",
+    "slug": "brewing-hope-quality-veteran-owned-coffee-company-donates",
+    "post_id": 3012,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (125) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/innovative-gourmet-cookie-brand-takes-industry-storm-over/",
+    "slug": "innovative-gourmet-cookie-brand-takes-industry-storm-over",
+    "post_id": 3003,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (108) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/award-winning-filmmaker-author-shines-spotlight-environmental-conservation/",
+    "slug": "award-winning-filmmaker-author-shines-spotlight-environmental-conservation",
+    "post_id": 2282,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (161) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/empowering-veterans-coffee-lovers-mission-reduce-suicide-rates/",
+    "slug": "empowering-veterans-coffee-lovers-mission-reduce-suicide-rates",
+    "post_id": 2277,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (111) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/revolutionizing-creative-media-industry-tbd-cutting-edge-solutions/",
+    "slug": "revolutionizing-creative-media-industry-tbd-cutting-edge-solutions",
+    "post_id": 2258,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (130) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/empowering-future-professionals-los-angeles-based-academy-offers/",
+    "slug": "empowering-future-professionals-los-angeles-based-academy-offers",
+    "post_id": 2255,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (180) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/expert-dei-leader-transforming-workplaces-innovative-hr-strategies/",
+    "slug": "expert-dei-leader-transforming-workplaces-innovative-hr-strategies",
+    "post_id": 3022,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (117) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/unlock-your-creative-potential-exclusive-29-month-package/",
+    "slug": "unlock-your-creative-potential-exclusive-29-month-package",
+    "post_id": 2268,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (133) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/new-study-reveals-surprising-insights-minnesota-unique-healthcare/",
+    "slug": "new-study-reveals-surprising-insights-minnesota-unique-healthcare",
+    "post_id": 2267,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (106) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/unlocking-emotions-micah-bravery-inspiring-journey-through-mental/",
+    "slug": "unlocking-emotions-micah-bravery-inspiring-journey-through-mental",
+    "post_id": 2243,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (119) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/headline-cutting-edge-technology-redefining-real-estate-strategies/",
+    "slug": "headline-cutting-edge-technology-redefining-real-estate-strategies",
+    "post_id": 3024,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (928) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/revolutionizing-online-fashion-shopping-ai-powered-virtual-try/",
+    "slug": "revolutionizing-online-fashion-shopping-ai-powered-virtual-try",
+    "post_id": 2274,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (164) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/questions-answers-tbd-unveils-insider-secrets-achieving-success/",
+    "slug": "questions-answers-tbd-unveils-insider-secrets-achieving-success",
+    "post_id": 2272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (108) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/california-athlete-dominates-retail-commerce-technology-sectors-unmatched/",
+    "slug": "california-athlete-dominates-retail-commerce-technology-sectors-unmatched",
+    "post_id": 2270,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (122) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/empowerment-through-excellence-journey-employment-defense-litigator-mitesh/",
+    "slug": "empowerment-through-excellence-journey-employment-defense-litigator-mitesh",
+    "post_id": 3005,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (120) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/trystyle-sets-new-standard-fashion-tech-ai-driven/",
+    "slug": "trystyle-sets-new-standard-fashion-tech-ai-driven",
+    "post_id": 3001,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (109) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/unlocking-dubai-potential-insights-industry-experts-exclusively-you/",
+    "slug": "unlocking-dubai-potential-insights-industry-experts-exclusively-you",
+    "post_id": 2269,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (108) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/accessibility-policy/",
+    "slug": "accessibility-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/privacy-policy-2/",
+    "slug": "privacy-policy-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/cookies-policy/",
+    "slug": "cookies-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  }
+]

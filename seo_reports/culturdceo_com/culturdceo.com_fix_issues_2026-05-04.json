@@ -1,0 +1,722 @@
+[
+  {
+    "url": "https://culturdceo.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (18) | Meta long (285) | Multiple H1s (7)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (18) | Meta long (285) | Multiple H1s (7)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (11) | Missing meta desc | Multiple H1s (10) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (24) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fculturdceo.com%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fculturdceo.com%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css?ver=2.8.7",
+    "slug": "frontend.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/all-in-one-seo-pack/dist/Lite/assets/css/table-of-contents/global.e90f6d47.css?ver=4.9.6.2",
+    "slug": "global.e90f6d47.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/papermag-extension/assets/css/hover-min.css?ver=6.9.4",
+    "slug": "hover-min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/papermag-extension/assets/css/admin-style.css?ver=6.9.4",
+    "slug": "admin-style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css?ver=2.8.7",
+    "slug": "header-footer-elementor.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.0.3",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/uploads/elementor/css/post-9.css?ver=1777799752",
+    "slug": "post-9.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.0.3",
+    "slug": "widget-image.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5",
+    "slug": "swiper.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=4.0.3",
+    "slug": "e-swiper.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/uploads/elementor/css/post-22.css?ver=1777799752",
+    "slug": "post-22.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/uploads/elementor/css/base-desktop.css?ver=69f71248da7e9",
+    "slug": "base-desktop.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag/assets/css/bootstrap.min.css?ver=6.9.4",
+    "slug": "bootstrap.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag/assets/css/nice-select.css?ver=6.9.4",
+    "slug": "nice-select.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag/assets/fonts/fontawesome/css/all.min.css?ver=6.9.4",
+    "slug": "all.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag/assets/css/owl.carousel.css?ver=6.9.4",
+    "slug": "owl.carousel.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag/assets/css/magnific-popup.css?ver=6.9.4",
+    "slug": "magnific-popup.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag/assets/css/papermag-style.css?ver=6.9.4",
+    "slug": "papermag-style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag/assets/css/responsive.css?ver=6.9.4",
+    "slug": "responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag-child/style.css?ver=1.0",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/themes/papermag/assets/css/custom-style.css?ver=6.9.4",
+    "slug": "custom-style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.34.0",
+    "slug": "elementor-icons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.24.3",
+    "slug": "widget-icon-list.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.24.0",
+    "slug": "widget-social-icons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.css?ver=5.15.3",
+    "slug": "brands.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.css?ver=5.15.3",
+    "slug": "fontawesome.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.css?ver=5.15.3",
+    "slug": "solid.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-json/wp/v2/pages/22",
+    "slug": "22",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | Multiple H1s (6) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/uploads/2026/04/cropped-0d2c491a-3fa9-482b-bf96-c5f975db118d_720-1-e1709847332229-150x150.png",
+    "slug": "cropped-0d2c491a-3fa9-482b-bf96-c5f975db118d_720-1-e1709847332229-150x150.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/wp-content/uploads/2026/04/cropped-0d2c491a-3fa9-482b-bf96-c5f975db118d_720-1-e1709847332229-300x300.png",
+    "slug": "cropped-0d2c491a-3fa9-482b-bf96-c5f975db118d_720-1-e1709847332229-300x300.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/category/lifestyle/",
+    "slug": "lifestyle",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (23) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/category/fashion/",
+    "slug": "fashion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (21) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/category/business/",
+    "slug": "business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (22) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/about-us/",
+    "slug": "about-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (22) | Meta long (353)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (18) | Multiple H1s (11)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/category/travel/",
+    "slug": "travel",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (20) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/category/tech/",
+    "slug": "tech",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (18) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/category/world/",
+    "slug": "world",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (19) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/contact-us/",
+    "slug": "contact-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (24)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/fashion-experts-opinion/",
+    "slug": "fashion-experts-opinion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (83) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/author/autofuturesweekly/",
+    "slug": "autofuturesweekly",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (11)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/iris-apfel-100th-birthday-fashion-tribute/",
+    "slug": "iris-apfel-100th-birthday-fashion-tribute",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (80) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/fashion-conscious-style-inspiration/",
+    "slug": "fashion-conscious-style-inspiration",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (75) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/fashion-resale-future-trend/",
+    "slug": "fashion-resale-future-trend",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (92) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/top-fashion-magazines-world-ranking/",
+    "slug": "top-fashion-magazines-world-ranking",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (73) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/new-york-fashion-week-pilot-theme-2/",
+    "slug": "new-york-fashion-week-pilot-theme-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (90) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/michel-comte-photography-estate/",
+    "slug": "michel-comte-photography-estate",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (92) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/christy-fashion-photography-book/",
+    "slug": "christy-fashion-photography-book",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (86) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/rooftop-fashion-show-new-york/",
+    "slug": "rooftop-fashion-show-new-york",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (80) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/fashion-comfort-familiarity-trend/",
+    "slug": "fashion-comfort-familiarity-trend",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (82) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/new-york-fashion-week-pilot-theme/",
+    "slug": "new-york-fashion-week-pilot-theme",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (94) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/fashion-show-business-inspired-pieces/",
+    "slug": "fashion-show-business-inspired-pieces",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (70) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/dundas-signature-fashion-collection-2/",
+    "slug": "dundas-signature-fashion-collection-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (89) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/ella-interview-facetime-fashion/",
+    "slug": "ella-interview-facetime-fashion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (73) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/ella-music-vocal-performance/",
+    "slug": "ella-music-vocal-performance",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (88) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/creative-movement-fashion-lifestyle/",
+    "slug": "creative-movement-fashion-lifestyle",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (75) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/new-york-fashion-week-trends/",
+    "slug": "new-york-fashion-week-trends",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (90) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/michael-kors-business-casual-fashion/",
+    "slug": "michael-kors-business-casual-fashion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (88) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/ella-vocal-track-music-talent/",
+    "slug": "ella-vocal-track-music-talent",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (93) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/new-york-fashion-week-pilot-theme-3/",
+    "slug": "new-york-fashion-week-pilot-theme-3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (87) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/michel-comte-photography-estate-2/",
+    "slug": "michel-comte-photography-estate-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (88) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/category/video/",
+    "slug": "video",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (19) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/met-gala-fashion-history-event/",
+    "slug": "met-gala-fashion-history-event",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (92) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/shoe-release-august-fashion-drop/",
+    "slug": "shoe-release-august-fashion-drop",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (94) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/new-york-festival-fashion-style-return/",
+    "slug": "new-york-festival-fashion-style-return",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (86) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/celebrity-fashion-guest-outfits/",
+    "slug": "celebrity-fashion-guest-outfits",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (92) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/rooftop-fashion-show-collection/",
+    "slug": "rooftop-fashion-show-collection",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (87) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/victoria-beckham-luxury-fashion-style/",
+    "slug": "victoria-beckham-luxury-fashion-style",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (88) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/nora-fashion-character-style-sex-appeal/",
+    "slug": "nora-fashion-character-style-sex-appeal",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (84) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/fashion-innovation-new-territories/",
+    "slug": "fashion-innovation-new-territories",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (97) | Multiple H1s (3)",
+    "changes": []
+  },
+  {
+    "url": "https://culturdceo.com/met-gala-attendees-2026/",
+    "slug": "met-gala-attendees-2026",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (101) | Multiple H1s (3)",
+    "changes": []
+  }
+]

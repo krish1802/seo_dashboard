@@ -1,0 +1,741 @@
+[
+  {
+    "url": "https://thelosangelesentrepreneur.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (11) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (11) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (28) | Missing meta desc | Multiple H1s (10) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthelosangelesentrepreneur.com%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthelosangelesentrepreneur.com%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.5",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/plugins/kirki/assets/css/kirki.min.css?ver=6.0.3",
+    "slug": "kirki.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/style.css?ver=6.9.4",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen-child/style.css?ver=6.9.4",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/css/bootstrap.min.css?ver=6.9.4",
+    "slug": "bootstrap.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/css/fontawesome.min.css?ver=6.9.4",
+    "slug": "fontawesome.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/css/brands.min.css?ver=6.9.4",
+    "slug": "brands.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/css/solid.min.css?ver=6.9.4",
+    "slug": "solid.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/css/simple-line-icons.css?ver=6.9.4",
+    "slug": "simple-line-icons.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/css/slick.css?ver=6.9.4",
+    "slug": "slick.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/css/style.css?ver=6.9.4",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.0.5",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/uploads/elementor/css/post-9.css?ver=1777810847",
+    "slug": "post-9.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=4.0.5",
+    "slug": "widget-spacer.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.0.5",
+    "slug": "widget-image.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/uploads/elementor/css/post-97.css?ver=1777808851",
+    "slug": "post-97.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/uploads/elementor/css/base-desktop.css?ver=69f73d9f2129e",
+    "slug": "base-desktop.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/themes/katen/css/custom_script.css?ver=6.9.4",
+    "slug": "custom_script.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/wp/v2/pages/97",
+    "slug": "97",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/uploads/2026/04/cropped-22-32x32.png",
+    "slug": "cropped-22-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/uploads/2026/04/cropped-22-192x192.png",
+    "slug": "cropped-22-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/uploads/2026/04/cropped-22-180x180.png",
+    "slug": "cropped-22-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/lifestyle/",
+    "slug": "lifestyle",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/culture/",
+    "slug": "culture",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/politic/",
+    "slug": "politic",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/inspiration/",
+    "slug": "inspiration",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/trending/",
+    "slug": "trending",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/contact/",
+    "slug": "contact",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (14)",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/how-to-make-tattoo-more-appealing/",
+    "slug": "how-to-make-tattoo-more-appealing",
+    "post_id": 52,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (87) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/author/texasfashioninsider/",
+    "slug": "texasfashioninsider",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/how-to-make-iphone-faster/",
+    "slug": "how-to-make-iphone-faster",
+    "post_id": 43,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (101) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/business-facts-for-success/",
+    "slug": "business-facts-for-success",
+    "post_id": 45,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (92) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/ways-to-achieve-greater-walker-success/",
+    "slug": "ways-to-achieve-greater-walker-success",
+    "post_id": 51,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (91) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/building-improvement-ideas/",
+    "slug": "building-improvement-ideas",
+    "post_id": 86,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (93) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/light-is-about-to-stop-being-relevant-meaning/",
+    "slug": "light-is-about-to-stop-being-relevant-meaning",
+    "post_id": 46,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (117) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/fashion/",
+    "slug": "fashion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/buy-bulb-on-a-tight-budget/",
+    "slug": "buy-bulb-on-a-tight-budget",
+    "post_id": 48,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (90) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/construction-learning-tips/",
+    "slug": "construction-learning-tips",
+    "post_id": 47,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (86) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/ways-to-success-faster/",
+    "slug": "ways-to-success-faster",
+    "post_id": 53,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (93) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/nature-photography-tips/",
+    "slug": "nature-photography-tips",
+    "post_id": 44,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (95) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/feel-like-a-pro-tips/",
+    "slug": "feel-like-a-pro-tips",
+    "post_id": 49,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (89) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/celebration/",
+    "slug": "celebration",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/turn-future-into-success-ways/",
+    "slug": "turn-future-into-success-ways",
+    "post_id": 311,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (92) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (11) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/page/3/",
+    "slug": "3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Meta short (11) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/fashion-right-now/",
+    "slug": "fashion-right-now",
+    "post_id": 175,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (97) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/audio/",
+    "slug": "audio",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/content/",
+    "slug": "content",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/featured/",
+    "slug": "featured",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/image/",
+    "slug": "image",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/inspiration/",
+    "slug": "inspiration",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/lifestyle/",
+    "slug": "lifestyle",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/photo/",
+    "slug": "photo",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/pick/",
+    "slug": "pick",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/slide/",
+    "slug": "slide",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/tag/trending/",
+    "slug": "trending",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/how-to-sell-furniture-fast/",
+    "slug": "how-to-sell-furniture-fast",
+    "post_id": 50,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (96) | Multiple H1s (2)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/lifestyle/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (6) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-includes/css/dist/block-library/style.min.css?ver=6.9.4",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/wp/v2/categories/20",
+    "slug": "20",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/culture/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/wp/v2/categories/17",
+    "slug": "17",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/politic/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/wp/v2/categories/21",
+    "slug": "21",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/inspiration/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/wp/v2/categories/19",
+    "slug": "19",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/category/trending/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/wp/v2/categories/22",
+    "slug": "22",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthelosangelesentrepreneur.com%2Fcontact%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthelosangelesentrepreneur.com%2Fcontact%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://thelosangelesentrepreneur.com/wp-content/uploads/elementor/css/post-248.css?ver=1777808851",
+    "slug": "post-248.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  }
+]

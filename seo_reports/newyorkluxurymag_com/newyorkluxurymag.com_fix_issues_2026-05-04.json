@@ -1,0 +1,713 @@
+[
+  {
+    "url": "https://newyorkluxurymag.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (26) | Meta short (36) | No H1 | Slow (4.05s)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (26) | Meta short (36) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (19) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkluxurymag.com%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkluxurymag.com%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/powerkit/assets/fonts/powerkit-icons.woff?ver=3.0.7",
+    "slug": "powerkit-icons.woff",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/powerkit/assets/css/powerkit.css?ver=3.0.7",
+    "slug": "powerkit.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/advanced-popups/public/css/advanced-popups-public.css?ver=1.2.2",
+    "slug": "advanced-popups-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/powerkit/modules/author-box/public/css/public-powerkit-author-box.css?ver=3.0.7",
+    "slug": "public-powerkit-author-box.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/powerkit/modules/social-links/public/css/public-powerkit-social-links.css?ver=3.0.7",
+    "slug": "public-powerkit-social-links.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/powerkit/modules/twitter/public/css/public-powerkit-twitter.css?ver=3.0.7",
+    "slug": "public-powerkit-twitter.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.48.0",
+    "slug": "elementor-icons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.0.4",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/uploads/elementor/css/post-9016.css?ver=1777808552",
+    "slug": "post-9016.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=4.0.4",
+    "slug": "widget-spacer.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.0.4",
+    "slug": "widget-heading.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=4.0.4",
+    "slug": "widget-divider.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.0.4",
+    "slug": "widget-image.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/uploads/elementor/css/post-12386.css?ver=1777808552",
+    "slug": "post-12386.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.9.4",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-json/wp/v2/pages/12386",
+    "slug": "12386",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/advanced-popups/fonts/advanced-popups-icons.woff",
+    "slug": "advanced-popups-icons.woff",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/uploads/2026/04/cropped-Logos-80x80.png",
+    "slug": "cropped-Logos-80x80.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/uploads/2026/04/cropped-Logos-300x300.png",
+    "slug": "cropped-Logos-300x300.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/uploads/elementor/css/post-2902.css?ver=1777808552",
+    "slug": "post-2902.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/uploads/elementor/css/post-1763.css?ver=1777808552",
+    "slug": "post-1763.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5",
+    "slug": "swiper.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/uploads/elementor/css/post-1709.css?ver=1777808552",
+    "slug": "post-1709.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/uploads/elementor/css/post-1063.css?ver=1777808553",
+    "slug": "post-1063.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=4.0.4",
+    "slug": "e-swiper.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/css/font-icons/css/trx_addons_icons.css",
+    "slug": "trx_addons_icons.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/js/magnific/magnific-popup.min.css",
+    "slug": "magnific-popup.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/css/__styles.css",
+    "slug": "__styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/css/trx_addons.animations.css",
+    "slug": "trx_addons.animations.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/components/shortcodes/blogger/blogger.css",
+    "slug": "blogger.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/components/shortcodes/content/content.css",
+    "slug": "content.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/components/widgets/video/video.css",
+    "slug": "video.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/css/font-icons/css/fontello.css",
+    "slug": "fontello.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/trx_addons/components/widgets/video_list/video_list.css",
+    "slug": "video_list.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/style.css",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/css/style.css",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/css/__gutenberg.css",
+    "slug": "__gutenberg.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/css/__plugins.css",
+    "slug": "__plugins.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/plugins/powerkit/powerkit.css",
+    "slug": "powerkit.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/css/extra-style.css",
+    "slug": "extra-style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/css/__custom.css",
+    "slug": "__custom.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle-child/style.css",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/css/__responsive.css",
+    "slug": "__responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/plugins/trx_addons/components/shortcodes/content/content.responsive.css",
+    "slug": "content.responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/css/__gutenberg_responsive.css",
+    "slug": "__gutenberg_responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/trx_addons/components/shortcodes/blogger/blogger.responsive.css",
+    "slug": "blogger.responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/trx_addons/components/widgets/video_list/video_list.responsive.css",
+    "slug": "video_list.responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle/skins/default/css/__responsive.css",
+    "slug": "__responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/wp-content/themes/chronicle-child/responsive.css",
+    "slug": "responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/5-star-hotels-manhattan/",
+    "slug": "5-star-hotels-manhattan",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (77) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/luxury-resorts-usa-couples/",
+    "slug": "luxury-resorts-usa-couples",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (80) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/daily-billionaire-routine-habits/",
+    "slug": "daily-billionaire-routine-habits",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (95) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/luxury-lifestyle-budget-tips/",
+    "slug": "luxury-lifestyle-budget-tips",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (103) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/rich-people-spending-habits/",
+    "slug": "rich-people-spending-habits",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (90) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/blog/",
+    "slug": "blog",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (26) | Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/about/",
+    "slug": "about",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (27) | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/contact-us/",
+    "slug": "contact-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "No H1",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/nasa-latest-missions/",
+    "slug": "nasa-latest-missions",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (78) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/ai-boom-2026/",
+    "slug": "ai-boom-2026",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (86) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/luxury-apartments-nyc-rent/",
+    "slug": "luxury-apartments-nyc-rent",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (87) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/nyc-penthouses/",
+    "slug": "nyc-penthouses",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (97) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/luxury-fashion-brands/",
+    "slug": "luxury-fashion-brands",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (71) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/category/fashion/",
+    "slug": "fashion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/luxury-fashion-brands/#respond",
+    "slug": "luxury-fashion-brands",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (71) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/designer-handbags/",
+    "slug": "designer-handbags",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (86) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/designer-handbags/#respond",
+    "slug": "designer-handbags",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (86) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/richest-celebrities/",
+    "slug": "richest-celebrities",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (102) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/category/celebrities/",
+    "slug": "celebrities",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/author/pangeaiimpgmail-com/",
+    "slug": "pangeaiimpgmail-com",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (10) | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/richest-celebrities/#respond",
+    "slug": "richest-celebrities",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (102) | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkluxurymag.com/category/lifestyle/",
+    "slug": "lifestyle",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (5)",
+    "changes": []
+  }
+]
