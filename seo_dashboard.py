@@ -1111,6 +1111,14 @@ def _render_all_sites():
         snap = compute_audit_snapshot(audit_df) if audit_df is not None else None
         cf_df = load_clickfarm_today(site.domain)
         clickfarm_total = int(cf_df["clicks"].sum()) if cf_df is not None and "clicks" in cf_df else 0
+        # how many cron runs contributed to today's total (each run = unique
+        # run_timestamp; older CSVs lacking that column count as a single run)
+        if cf_df is not None and "run_timestamp" in cf_df.columns:
+            runs_today = int(cf_df["run_timestamp"].nunique())
+        elif cf_df is not None:
+            runs_today = 1
+        else:
+            runs_today = 0
 
         cf_window = load_clickfarm_window(site.domain, days=days)
         clickfarm_window_total = (
@@ -1131,6 +1139,7 @@ def _render_all_sites():
             "Avg load (s)": (snap or {}).get("avg_load_time"),
             f"Users ({days}d)": users if users is not None else 0,
             "Bot clicks (today)": clickfarm_total,
+            "Runs today": runs_today,
             f"Bot clicks ({days}d)": clickfarm_window_total,
             "GA4 OK": "✅" if users is not None else "—",
         })
@@ -1148,7 +1157,9 @@ def _render_all_sites():
     k1, k2, k3, k4, k5, k6, k7 = st.columns(7)
     k1.metric("Sites managed", len(SITES))
     k2.metric(f"Total users ({days}d)", f"{total_users:,}")
-    k3.metric("Bot clicks (today)", f"{total_clicks_today:,}")
+    runs_today_max = int(df["Runs today"].fillna(0).max()) if "Runs today" in df.columns else 0
+    delta_runs = f"{runs_today_max} run" + ("s" if runs_today_max != 1 else "") + " today" if runs_today_max else None
+    k3.metric("Bot clicks (today)", f"{total_clicks_today:,}", delta=delta_runs, delta_color="off")
     k4.metric(f"Bot clicks ({days}d)", f"{total_clicks_window:,}")
     k5.metric("Pages crawled (total)", int(df["Pages crawled"].fillna(0).sum()))
     k6.metric("Issues (total)", int(df["Issues"].fillna(0).sum()))

@@ -83,8 +83,15 @@ def run_for_engine(page, engine: str, domain: str) -> int:
 # ── PERSISTENCE ─────────────────────────────────────────────────────────
 
 def save_daily_clicks(site: Site, results: dict, base_output: str = "seo_reports") -> Path:
-    """Append today's per-engine totals to the per-site CSV."""
-    today = datetime.utcnow().strftime("%Y-%m-%d")
+    """Append this run's per-engine totals to the per-site daily CSV.
+
+    Each cron run appends one row per engine, so the daily total is the SUM
+    of every row for that date. The `run_timestamp` column lets you tell
+    individual runs apart for auditing.
+    """
+    now = datetime.utcnow()
+    today = now.strftime("%Y-%m-%d")
+    run_ts = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     out_dir = Path(site.output_dir(base_output))
     path = out_dir / f"traffic_generated_{today}.csv"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -92,9 +99,9 @@ def save_daily_clicks(site: Site, results: dict, base_output: str = "seo_reports
     with path.open("a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         if not file_exists:
-            writer.writerow(["date", "site", "engine", "clicks"])
+            writer.writerow(["date", "run_timestamp", "site", "engine", "clicks"])
         for engine, clicks in results.items():
-            writer.writerow([today, site.domain, engine, clicks])
+            writer.writerow([today, run_ts, site.domain, engine, clicks])
         f.flush()
     return path
 
