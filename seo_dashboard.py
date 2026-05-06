@@ -164,11 +164,31 @@ def _bind_active_site(domain: str) -> None:
 # GA4
 # ──────────────────────────────────────────────────────────────────────────
 
-def get_ga4_client():
-    """Build a GA4 client from Streamlit secrets ([ga4] table)."""
-    credentials = service_account.Credentials.from_service_account_info(
-        st.secrets["ga4"]
-    )
+def get_ga4c_lient():
+    info = {
+        "type": os.getenv("GA4_TYPE", "service_account").strip(),
+        "project_id": os.getenv("GA4_PROJECT_ID", "").strip(),
+        "private_key_id": os.getenv("GA4_PRIVATE_KEY_ID", "").strip(),
+        "private_key": os.getenv("GA4_PRIVATE_KEY", "").replace("\\n", "\n").strip(),
+        "client_email": os.getenv("GA4_CLIENT_EMAIL", "").strip(),
+        "client_id": os.getenv("GA4_CLIENT_ID", "").strip(),
+        "auth_uri": os.getenv("GA4_AUTH_URI", "https://accounts.google.com/o/oauth2/auth").strip(),
+        "token_uri": os.getenv("GA4_TOKEN_URI", "https://oauth2.googleapis.com/token").strip(),
+        "auth_provider_x509_cert_url": os.getenv("GA4_AUTH_PROVIDER_X509_CERT_URL", "https://www.googleapis.com/oauth2/v1/certs").strip(),
+        "client_x509_cert_url": os.getenv("GA4_CLIENT_X509_CERT_URL", "").strip(),
+        "universe_domain": os.getenv("GA4_UNIVERSE_DOMAIN", "googleapis.com").strip(),
+    }
+
+    required = [
+        "type", "project_id", "private_key_id", "private_key",
+        "client_email", "client_id", "auth_uri", "token_uri",
+        "auth_provider_x509_cert_url", "client_x509_cert_url",
+    ]
+    missing = [k for k in required if not info.get(k)]
+    if missing:
+        raise RuntimeError(f"Missing GA4 env vars: {', '.join(missing)}")
+
+    credentials = service_account.Credentials.from_service_account_info(info)
     return BetaAnalyticsDataClient(credentials=credentials)
 
 
