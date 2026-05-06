@@ -137,6 +137,48 @@ TRACKED_KEYWORDS: list[str] = []
 COMPETITORS:      list[str] = []
 OUTPUT_DIR:       str = REPORTS_BASE  # per-site dir, set in _bind_active_site
 
+import hashlib
+
+def check_password():
+    """Returns `True` if the user had the correct password."""
+    
+    # Hardcoded credentials
+    VALID_USERNAME = "shazir@imperium-pr.com"
+    # Hash of password: $123ktoYh
+    VALID_PASSWORD_HASH = hashlib.sha256("$123ktoYh".encode()).hexdigest()
+    
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        entered_username = st.session_state["username"]
+        entered_password = st.session_state["password"]
+        entered_hash = hashlib.sha256(entered_password.encode()).hexdigest()
+        
+        if entered_username == VALID_USERNAME and entered_hash == VALID_PASSWORD_HASH:
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store password
+            del st.session_state["username"]  # Don't store username
+        else:
+            st.session_state["password_correct"] = False
+
+    # Return True if password is validated
+    if st.session_state.get("password_correct", False):
+        return True
+
+    # Show login form
+    st.markdown("# 🔐 SEO Dashboard Login")
+    st.markdown("Please enter your credentials to access the dashboard.")
+    
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col2:
+        st.text_input("Username", key="username", placeholder="your@email.com")
+        st.text_input("Password", type="password", key="password", placeholder="Enter password")
+        st.button("Login", on_click=password_entered, use_container_width=True)
+        
+        if "password_correct" in st.session_state and not st.session_state["password_correct"]:
+            st.error("😕 Invalid username or password")
+    
+    return False
 
 def _bind_active_site(domain: str) -> None:
     """Repoint the module-level constants at the chosen site for this run."""
@@ -1100,6 +1142,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+# Require login before showing dashboard
+if not check_password():
+    st.stop()
 
 st.markdown("""
 <style>
