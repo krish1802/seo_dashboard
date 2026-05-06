@@ -1096,16 +1096,20 @@ def fetch_top_pages():
 
 @st.cache_data(ttl=600, show_spinner=False)
 def fetch_ga4_users_for_property(ga4_id: str, days: int = 7) -> int | None:
-    """Return total active users for a GA4 property. None on error."""
+    """Return total active users for a GA4 property. None on error.
+
+    `days=0` means "today only".
+    """
     if not ga4_id:
         return None
     try:
         client = get_ga4_client()
+        start_date = "today" if days == 0 else f"{days}daysAgo"
         request = RunReportRequest(
             property=f"properties/{ga4_id}",
             dimensions=[{"name": "date"}],
             metrics=[{"name": "activeUsers"}],
-            date_ranges=[{"start_date": f"{days}daysAgo", "end_date": "today"}],
+            date_ranges=[{"start_date": start_date, "end_date": "today"}],
         )
         response = client.run_report(request)
         return sum(int(r.metric_values[0].value) for r in response.rows)
@@ -1206,11 +1210,14 @@ def _render_all_sites():
 
     days = st.selectbox(
         "GA4 window",
-        [7, 14, 30],
-        index=0,
-        format_func=lambda d: f"Last {d} days",
+        [0, 7, 14, 30],
+        index=1,
+        format_func=lambda d: "Today" if d == 0 else f"Last {d} days",
         key="all_sites_days",
     )
+    window_label = "Today" if days == 0 else f"Last {days}d"
+    users_col = "Users (today)" if days == 0 else f"Users ({days}d)"
+    bot_window_col = "Bot clicks (today)" if days == 0 else f"Bot clicks ({days}d)"
 
     # Build cross-site rollup
     rollup_rows = []
@@ -1229,16 +1236,20 @@ def _render_all_sites():
         else:
             runs_today = 0
 
-        cf_window = load_clickfarm_window(site.domain, days=days)
-        clickfarm_window_total = (
-            int(cf_window["clicks"].sum())
-            if cf_window is not None and "clicks" in cf_window
-            else 0
-        )
+        # Window total — today selection just mirrors today's number
+        if days == 0:
+            clickfarm_window_total = clickfarm_total
+        else:
+            cf_window = load_clickfarm_window(site.domain, days=days)
+            clickfarm_window_total = (
+                int(cf_window["clicks"].sum())
+                if cf_window is not None and "clicks" in cf_window
+                else 0
+            )
 
         users = fetch_ga4_users_for_property(site.ga4_property_id, days=days) if site.ga4_property_id else None
 
-        rollup_rows.append({
+        row = {
             "Site": site.brand_name,
             "Domain": site.domain,
             "Pages crawled": (snap or {}).get("total_pages", 0),
@@ -1246,30 +1257,35 @@ def _render_all_sites():
             "Issues": (snap or {}).get("pages_with_issues", 0),
             "Broken": (snap or {}).get("broken_pages", 0),
             "Avg load (s)": (snap or {}).get("avg_load_time"),
-            f"Users ({days}d)": users if users is not None else 0,
+            users_col: users if users is not None else 0,
             "Bot clicks (today)": clickfarm_total,
             "Runs today": runs_today,
-            f"Bot clicks ({days}d)": clickfarm_window_total,
             "GA4 OK": "✅" if users is not None else "—",
-        })
+        }
+        # Avoid duplicate column when today is the active window
+        if bot_window_col != "Bot clicks (today)":
+            row[bot_window_col] = clickfarm_window_total
+        rollup_rows.append(row)
         progress.progress((i + 1) / len(SITES), text=f"{site.domain} done")
     progress.empty()
 
     df = pd.DataFrame(rollup_rows)
 
     # Top KPIs
-    total_users = int(df[f"Users ({days}d)"].fillna(0).sum())
+    total_users = int(df[users_col].fillna(0).sum())
     total_clicks_today = int(df["Bot clicks (today)"].fillna(0).sum())
-    total_clicks_window = int(df[f"Bot clicks ({days}d)"].fillna(0).sum())
+    total_clicks_window = int(df[bot_window_col].fillna(0).sum()) if bot_window_col in df.columns else total_clicks_today
     healthy_sites = int((df["Health %"].fillna(0) >= 90).sum())
 
     k1, k2, k3, k4, k5, k6, k7 = st.columns(7)
     k1.metric("Sites managed", len(SITES))
-    k2.metric(f"Total users ({days}d)", f"{total_users:,}")
+    users_label = "Total users (today)" if days == 0 else f"Total users ({days}d)"
+    k2.metric(users_label, f"{total_users:,}")
     runs_today_max = int(df["Runs today"].fillna(0).max()) if "Runs today" in df.columns else 0
     delta_runs = f"{runs_today_max} run" + ("s" if runs_today_max != 1 else "") + " today" if runs_today_max else None
     k3.metric("Bot clicks (today)", f"{total_clicks_today:,}", delta=delta_runs, delta_color="off")
-    k4.metric(f"Bot clicks ({days}d)", f"{total_clicks_window:,}")
+    k4_label = "Bot clicks (today)" if days == 0 else f"Bot clicks ({days}d)"
+    k4.metric(k4_label, f"{total_clicks_window:,}")
     k5.metric("Pages crawled (total)", int(df["Pages crawled"].fillna(0).sum()))
     k6.metric("Issues (total)", int(df["Issues"].fillna(0).sum()))
     k7.metric("Sites ≥ 90% health", f"{healthy_sites}/{len(SITES)}")
@@ -1280,11 +1296,16 @@ def _render_all_sites():
     cols = st.columns(2)
     with cols[0]:
         st.markdown("### 👥 Users by site")
-        plot_df = df[["Site", f"Users ({days}d)"]].rename(columns={f"Users ({days}d)": "Users"})
+        plot_df = df[["Site", users_col]].rename(columns={users_col: "Users"})
         if plot_df["Users"].sum() > 0:
+            users_title = (
+                "GA4 active users — today"
+                if days == 0
+                else f"GA4 active users — last {days} days"
+            )
             fig = px.bar(plot_df.sort_values("Users", ascending=False),
                          x="Site", y="Users", color="Site",
-                         title=f"GA4 active users — last {days} days")
+                         title=users_title)
             fig.update_layout(showlegend=False, xaxis_tickangle=-30)
             st.plotly_chart(fig, use_container_width=True, key="all_sites_users")
         else:
@@ -1292,14 +1313,22 @@ def _render_all_sites():
 
     with cols[1]:
         st.markdown(f"### 🤖 Bot clicks by site")
-        cf_window_col = f"Bot clicks ({days}d)"
-        cf_plot = df[["Site", "Bot clicks (today)", cf_window_col]].rename(
-            columns={"Bot clicks (today)": "Today", cf_window_col: f"Last {days}d"}
-        )
-        if cf_plot[["Today", f"Last {days}d"]].sum().sum() > 0:
+        if days == 0:
+            cf_plot = df[["Site", "Bot clicks (today)"]].rename(
+                columns={"Bot clicks (today)": "Today"}
+            )
+            value_vars = ["Today"]
+            cf_title = "Click-farm clicks — today"
+        else:
+            cf_plot = df[["Site", "Bot clicks (today)", bot_window_col]].rename(
+                columns={"Bot clicks (today)": "Today", bot_window_col: f"Last {days}d"}
+            )
+            value_vars = ["Today", f"Last {days}d"]
+            cf_title = f"Click-farm clicks — today vs last {days} days"
+        if cf_plot[value_vars].sum().sum() > 0:
             cf_long = cf_plot.melt(
                 id_vars="Site",
-                value_vars=["Today", f"Last {days}d"],
+                value_vars=value_vars,
                 var_name="Window",
                 value_name="Clicks",
             )
@@ -1307,7 +1336,7 @@ def _render_all_sites():
                 cf_long.sort_values("Clicks", ascending=False),
                 x="Site", y="Clicks", color="Window",
                 barmode="group",
-                title=f"Click-farm clicks — today vs last {days} days",
+                title=cf_title,
             )
             fig_cf.update_layout(xaxis_tickangle=-30)
             st.plotly_chart(fig_cf, use_container_width=True, key="all_sites_clicks")
