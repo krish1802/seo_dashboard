@@ -164,7 +164,7 @@ def _bind_active_site(domain: str) -> None:
 # GA4
 # ──────────────────────────────────────────────────────────────────────────
 
-def get_ga4c_lient():
+def get_ga4_client():
     info = {
         "type": os.getenv("GA4_TYPE", "service_account").strip(),
         "project_id": os.getenv("GA4_PROJECT_ID", "").strip(),
