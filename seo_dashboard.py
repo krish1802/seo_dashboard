@@ -999,23 +999,29 @@ def fetch_traffic_by_source(days=30):
 def compute_audit_snapshot(df):
     if df is None or len(df) == 0:
         return None
-    total = len(df)
-    broken = len(df[df["status"].astype(str).str.match(r"^[45E]")])
-    with_issues = len(df[df["issues"].astype(str).str.len() > 0])
-    clean = total - with_issues
-    avg_load = df["load_time_s"].dropna().mean() if "load_time_s" in df else None
-    slow = len(df[df["load_time_s"].dropna() > 3.0]) if "load_time_s" in df else 0
-    missing_title = len(df[df["title_length"] == 0]) if "title_length" in df else 0
-    missing_meta = len(df[df["meta_desc_length"] == 0]) if "meta_desc_length" in df else 0
-    no_schema = len(df[~df["has_schema"].astype(bool)]) if "has_schema" in df else 0
-    no_og = len(df[~df["has_og_tags"].astype(bool)]) if "has_og_tags" in df else 0
-    return {"total_pages": total, "clean_pages": clean, "pages_with_issues": with_issues,
-            "broken_pages": broken,
-            "avg_load_time": round(avg_load, 3) if pd.notna(avg_load) else None,
-            "slow_pages": slow, "missing_title": missing_title, "missing_meta": missing_meta,
-            "no_schema": no_schema, "no_og": no_og,
-            "health_score": round((clean / total) * 100, 1) if total else 0}
 
+    total = len(df)
+    broken = len(df[df["status"].astype(str).str.match(r"4|5")]) if "status" in df.columns else 0
+    with_issues = len(df[df["issues"].astype(str).str.len() > 0]) if "issues" in df.columns else 0
+    clean = total - with_issues
+
+    load_col = "load_time_s" if "load_time_s" in df.columns else ("loadtimes" if "loadtimes" in df.columns else None)
+    if load_col:
+        s = pd.to_numeric(df[load_col], errors="coerce")
+        avg_load = s.mean()
+        slow = int((s > 3.0).sum())
+    else:
+        avg_load = None
+        slow = 0
+
+    return {
+        "total_pages": total,
+        "clean_pages": clean,
+        "pages_with_issues": with_issues,
+        "broken_pages": broken,
+        "avg_load_time": round(avg_load, 3) if pd.notna(avg_load) else None,
+        "slow_pages": slow,
+    }
 
 def compute_serp_snapshot(df):
     if df is None or len(df) == 0:
