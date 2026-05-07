@@ -1,0 +1,2 @@
+url,status,load_time_s,title,title_length,meta_description,meta_desc_length,h1_count,canonical,noindex,images_missing_alt,has_og_tags,has_schema,issues
+https://lasvegasmonthlyreview.com,ERROR,,,0,,0,0,,False,0,False,False,"HTTPSConnectionPool(host='lasvegasmonthlyreview.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='lasvegasmonthlyreview.com', port=443) at 0x7f31312b34d0>, 'Connection to lasvegasmonthlyreview.com timed out. (connect timeout=15)'))"
