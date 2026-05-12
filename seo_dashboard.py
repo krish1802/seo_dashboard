@@ -1015,24 +1015,43 @@ def fetch_traffic_by_source(days=30):
 
 
 def compute_audit_snapshot(df):
+    """Compute a defensive snapshot dict. Missing columns degrade gracefully
+    instead of raising, so historical CSVs with older schemas still produce a
+    row with `health_score` populated."""
     if df is None or len(df) == 0:
         return None
-    total = len(df)
-    broken = len(df[df["status"].astype(str).str.match(r"^[45E]")])
-    with_issues = len(df[df["issues"].astype(str).str.len() > 0])
-    clean = total - with_issues
-    avg_load = df["load_time_s"].dropna().mean() if "load_time_s" in df else None
-    slow = int((df["load_time_s"].dropna() > 3.0).sum()) if "load_time_s" in df else 0
-    missing_title = len(df[df["title_length"] == 0]) if "title_length" in df else 0
-    missing_meta = len(df[df["meta_desc_length"] == 0]) if "meta_desc_length" in df else 0
-    no_schema = len(df[~df["has_schema"].astype(bool)]) if "has_schema" in df else 0
-    no_og = len(df[~df["has_og_tags"].astype(bool)]) if "has_og_tags" in df else 0
-    return {"total_pages": total, "clean_pages": clean, "pages_with_issues": with_issues,
-            "broken_pages": broken,
-            "avg_load_time": round(avg_load, 3) if pd.notna(avg_load) else None,
-            "slow_pages": slow, "missing_title": missing_title, "missing_meta": missing_meta,
-            "no_schema": no_schema, "no_og": no_og,
-            "health_score": round((clean / total) * 100, 1) if total else 0}
+    try:
+        total = len(df)
+        broken = (
+            len(df[df["status"].astype(str).str.match(r"^[45E]")])
+            if "status" in df.columns else 0
+        )
+        with_issues = (
+            len(df[df["issues"].astype(str).str.len() > 0])
+            if "issues" in df.columns else 0
+        )
+        clean = total - with_issues
+        avg_load = (
+            df["load_time_s"].dropna().mean()
+            if "load_time_s" in df.columns else None
+        )
+        slow = (
+            int((df["load_time_s"].dropna() > 3.0).sum())
+            if "load_time_s" in df.columns else 0
+        )
+        missing_title = len(df[df["title_length"] == 0]) if "title_length" in df.columns else 0
+        missing_meta = len(df[df["meta_desc_length"] == 0]) if "meta_desc_length" in df.columns else 0
+        no_schema = len(df[~df["has_schema"].astype(bool)]) if "has_schema" in df.columns else 0
+        no_og = len(df[~df["has_og_tags"].astype(bool)]) if "has_og_tags" in df.columns else 0
+        return {"total_pages": total, "clean_pages": clean, "pages_with_issues": with_issues,
+                "broken_pages": broken,
+                "avg_load_time": round(avg_load, 3) if pd.notna(avg_load) else None,
+                "slow_pages": slow, "missing_title": missing_title, "missing_meta": missing_meta,
+                "no_schema": no_schema, "no_og": no_og,
+                "health_score": round((clean / total) * 100, 1) if total else 0}
+    except Exception:
+        # Don't let one corrupt CSV break the growth chart.
+        return None
 
 
 def compute_serp_snapshot(df):
@@ -1776,18 +1795,23 @@ def _render_single_site():
                 c4.metric("Broken", snap_new["broken_pages"], delta=snap_new["broken_pages"] - snap_old["broken_pages"])
                 c5.metric("Avg Load", snap_new["avg_load_time"],
                           delta=(snap_new["avg_load_time"] or 0) - (snap_old["avg_load_time"] or 0))
-            if not audit_hist.empty:
+            if not audit_hist.empty and {"date", "health_score"}.issubset(audit_hist.columns):
                 fig = go.Figure()
                 fig.add_trace(go.Scatter(x=audit_hist["date"], y=audit_hist["health_score"],
                                          mode="lines+markers", name="Health Score"))
                 st.plotly_chart(fig, use_container_width=True, key="growth_health")
-            if not serp_hist.empty:
+            elif not audit_hist.empty:
+                st.caption("Health-score trend unavailable — historical snapshots are missing the `health_score` field.")
+            if not serp_hist.empty and "date" in serp_hist.columns:
                 fig = go.Figure()
+                added = False
                 for col in ["top3", "top10", "top20"]:
                     if col in serp_hist.columns:
                         fig.add_trace(go.Scatter(x=serp_hist["date"], y=serp_hist[col],
                                                  mode="lines+markers", name=col))
-                st.plotly_chart(fig, use_container_width=True, key="growth_serp")
+                        added = True
+                if added:
+                    st.plotly_chart(fig, use_container_width=True, key="growth_serp")
 
     st.divider()
 
