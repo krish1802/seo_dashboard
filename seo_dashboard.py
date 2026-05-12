@@ -1022,7 +1022,7 @@ def compute_audit_snapshot(df):
     with_issues = len(df[df["issues"].astype(str).str.len() > 0])
     clean = total - with_issues
     avg_load = df["load_time_s"].dropna().mean() if "load_time_s" in df else None
-    slow = len(df[df["load_time_s"].dropna() > 3.0]) if "load_time_s" in df else 0
+    slow = int((df["load_time_s"].dropna() > 3.0).sum()) if "load_time_s" in df else 0
     missing_title = len(df[df["title_length"] == 0]) if "title_length" in df else 0
     missing_meta = len(df[df["meta_desc_length"] == 0]) if "meta_desc_length" in df else 0
     no_schema = len(df[~df["has_schema"].astype(bool)]) if "has_schema" in df else 0
