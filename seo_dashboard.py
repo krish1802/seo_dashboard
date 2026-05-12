@@ -49,6 +49,24 @@ from google.analytics.data_v1beta.types import (
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
+# PDF export deps (lazy/optional charts via matplotlib)
+import io
+from reportlab.lib.pagesizes import A4, landscape
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import mm
+from reportlab.platypus import (
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
+    PageBreak, Image as RLImage, KeepTogether,
+)
+try:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    _HAS_MPL = True
+except Exception:
+    _HAS_MPL = False
+
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -999,29 +1017,23 @@ def fetch_traffic_by_source(days=30):
 def compute_audit_snapshot(df):
     if df is None or len(df) == 0:
         return None
-
     total = len(df)
-    broken = len(df[df["status"].astype(str).str.match(r"4|5")]) if "status" in df.columns else 0
-    with_issues = len(df[df["issues"].astype(str).str.len() > 0]) if "issues" in df.columns else 0
+    broken = len(df[df["status"].astype(str).str.match(r"^[45E]")])
+    with_issues = len(df[df["issues"].astype(str).str.len() > 0])
     clean = total - with_issues
+    avg_load = df["load_time_s"].dropna().mean() if "load_time_s" in df else None
+    slow = len(df[df["load_time_s"].dropna() > 3.0]) if "load_time_s" in df else 0
+    missing_title = len(df[df["title_length"] == 0]) if "title_length" in df else 0
+    missing_meta = len(df[df["meta_desc_length"] == 0]) if "meta_desc_length" in df else 0
+    no_schema = len(df[~df["has_schema"].astype(bool)]) if "has_schema" in df else 0
+    no_og = len(df[~df["has_og_tags"].astype(bool)]) if "has_og_tags" in df else 0
+    return {"total_pages": total, "clean_pages": clean, "pages_with_issues": with_issues,
+            "broken_pages": broken,
+            "avg_load_time": round(avg_load, 3) if pd.notna(avg_load) else None,
+            "slow_pages": slow, "missing_title": missing_title, "missing_meta": missing_meta,
+            "no_schema": no_schema, "no_og": no_og,
+            "health_score": round((clean / total) * 100, 1) if total else 0}
 
-    load_col = "load_time_s" if "load_time_s" in df.columns else ("loadtimes" if "loadtimes" in df.columns else None)
-    if load_col:
-        s = pd.to_numeric(df[load_col], errors="coerce")
-        avg_load = s.mean()
-        slow = int((s > 3.0).sum())
-    else:
-        avg_load = None
-        slow = 0
-
-    return {
-        "total_pages": total,
-        "clean_pages": clean,
-        "pages_with_issues": with_issues,
-        "broken_pages": broken,
-        "avg_load_time": round(avg_load, 3) if pd.notna(avg_load) else None,
-        "slow_pages": slow,
-    }
 
 def compute_serp_snapshot(df):
     if df is None or len(df) == 0:
@@ -1140,6 +1152,217 @@ def latest_audit_for_domain(domain: str) -> pd.DataFrame | None:
         return pd.read_csv(latest)
     except Exception:
         return None
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# PDF REPORT HELPERS
+# ──────────────────────────────────────────────────────────────────────────
+
+_PDF_STYLES = getSampleStyleSheet()
+_PDF_H1 = ParagraphStyle("H1", parent=_PDF_STYLES["Heading1"], fontName="Helvetica-Bold",
+                         fontSize=18, textColor=colors.HexColor("#01696f"), spaceAfter=8)
+_PDF_H2 = ParagraphStyle("H2", parent=_PDF_STYLES["Heading2"], fontName="Helvetica-Bold",
+                         fontSize=13, textColor=colors.HexColor("#1f2937"),
+                         spaceBefore=10, spaceAfter=4)
+_PDF_BODY = ParagraphStyle("Body", parent=_PDF_STYLES["BodyText"], fontName="Helvetica",
+                           fontSize=9, textColor=colors.HexColor("#374151"), leading=12)
+_PDF_CAPTION = ParagraphStyle("Caption", parent=_PDF_BODY, fontSize=8,
+                              textColor=colors.HexColor("#6b7280"), spaceAfter=6)
+
+
+def _pdf_kpi_grid(kpis: list[tuple[str, str]], cols: int = 4) -> Table:
+    """Render a list of (label, value) tuples as a KPI grid."""
+    cells, row = [], []
+    for label, value in kpis:
+        cell = Table([[Paragraph(f"<font size=8 color='#6b7280'>{label}</font>", _PDF_BODY)],
+                      [Paragraph(f"<b><font size=14 color='#01696f'>{value}</font></b>", _PDF_BODY)]],
+                     colWidths=[42 * mm])
+        cell.setStyle(TableStyle([
+            ("BOX", (0, 0), (-1, -1), 0.5, colors.HexColor("#e5e7eb")),
+            ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f9fafb")),
+            ("LEFTPADDING", (0, 0), (-1, -1), 6),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+            ("TOPPADDING", (0, 0), (-1, -1), 4),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ]))
+        row.append(cell)
+        if len(row) == cols:
+            cells.append(row)
+            row = []
+    if row:
+        while len(row) < cols:
+            row.append("")
+        cells.append(row)
+    grid = Table(cells, colWidths=[44 * mm] * cols)
+    grid.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"),
+                              ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                              ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+                              ("BOTTOMPADDING", (0, 0), (-1, -1), 4)]))
+    return grid
+
+
+def _df_to_pdf_table(df: pd.DataFrame, max_rows: int = 60, max_cols: int = 8,
+                    available_width: float = 260 * mm) -> Table | None:
+    """Render a pandas DataFrame as a styled reportlab Table. Truncates long
+    cells and limits row/col counts so the PDF stays readable."""
+    if df is None or len(df) == 0:
+        return None
+    df = df.copy()
+    if len(df.columns) > max_cols:
+        df = df.iloc[:, :max_cols]
+    truncated = len(df) > max_rows
+    if truncated:
+        df = df.head(max_rows)
+
+    def _fmt(v):
+        if pd.isna(v):
+            return ""
+        s = str(v)
+        return s if len(s) <= 60 else s[:57] + "…"
+
+    header = [str(c) for c in df.columns]
+    rows = [[_fmt(v) for v in row] for row in df.itertuples(index=False, name=None)]
+    data = [header] + rows
+    col_count = len(header)
+    col_width = available_width / max(col_count, 1)
+    tbl = Table(data, colWidths=[col_width] * col_count, repeatRows=1)
+    tbl.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#01696f")),
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("FONTSIZE", (0, 0), (-1, 0), 8),
+        ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
+        ("FONTSIZE", (0, 1), (-1, -1), 7.5),
+        ("ROWBACKGROUNDS", (0, 1), (-1, -1),
+         [colors.white, colors.HexColor("#f3f4f6")]),
+        ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#d1d5db")),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 4),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+    ]))
+    if truncated:
+        return KeepTogether([tbl,
+                             Paragraph(f"<font size=7 color='#6b7280'>(showing first {max_rows} rows)</font>",
+                                       _PDF_BODY)])
+    return tbl
+
+
+def _mpl_to_image(fig, width_mm: float = 170) -> RLImage | None:
+    """Serialize a matplotlib figure to a reportlab Image."""
+    if not _HAS_MPL or fig is None:
+        return None
+    buf = io.BytesIO()
+    fig.tight_layout()
+    fig.savefig(buf, format="png", dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    buf.seek(0)
+    img = RLImage(buf)
+    iw, ih = img.imageWidth, img.imageHeight
+    img.drawWidth = width_mm * mm
+    img.drawHeight = (ih / iw) * width_mm * mm
+    return img
+
+
+def _bar_chart(labels, values, title="", color="#01696f", horizontal=False):
+    if not _HAS_MPL or not labels:
+        return None
+    fig, ax = plt.subplots(figsize=(8, 3.6))
+    if horizontal:
+        ax.barh(labels, values, color=color)
+        ax.invert_yaxis()
+    else:
+        ax.bar(labels, values, color=color)
+        for tick in ax.get_xticklabels():
+            tick.set_rotation(30)
+            tick.set_horizontalalignment("right")
+    ax.set_title(title, fontsize=11, color="#111827")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.grid(axis="y" if not horizontal else "x", linestyle=":", alpha=0.4)
+    return fig
+
+
+def _grouped_bar_chart(labels, series: dict, title=""):
+    """`series` = {legend_label: [values...]} aligned with labels."""
+    if not _HAS_MPL or not labels or not series:
+        return None
+    import numpy as np
+    fig, ax = plt.subplots(figsize=(8, 3.6))
+    n = len(series)
+    x = np.arange(len(labels))
+    width = 0.8 / max(n, 1)
+    palette = ["#01696f", "#da7101", "#4285F4", "#10A37F"]
+    for i, (name, values) in enumerate(series.items()):
+        ax.bar(x + i * width - (0.8 - width) / 2, values, width,
+               label=name, color=palette[i % len(palette)])
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation=30, ha="right")
+    ax.set_title(title, fontsize=11, color="#111827")
+    ax.legend(fontsize=8, frameon=False)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.grid(axis="y", linestyle=":", alpha=0.4)
+    return fig
+
+
+def _line_chart(x, y, title="", color="#01696f"):
+    if not _HAS_MPL or len(x) == 0:
+        return None
+    fig, ax = plt.subplots(figsize=(8, 3.2))
+    ax.plot(list(x), list(y), marker="o", color=color, linewidth=1.8)
+    ax.set_title(title, fontsize=11, color="#111827")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.grid(linestyle=":", alpha=0.4)
+    for tick in ax.get_xticklabels():
+        tick.set_rotation(30)
+        tick.set_horizontalalignment("right")
+    return fig
+
+
+def _hist_chart(values, title="", color="#01696f", vline=None):
+    if not _HAS_MPL or len(values) == 0:
+        return None
+    fig, ax = plt.subplots(figsize=(8, 3.2))
+    ax.hist(values, bins=20, color=color, edgecolor="white")
+    if vline is not None:
+        ax.axvline(vline, color="#da7101", linestyle="--", linewidth=1)
+    ax.set_title(title, fontsize=11, color="#111827")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    return fig
+
+
+def _build_pdf(title: str, subtitle: str, story_blocks: list, landscape_layout: bool = True) -> bytes:
+    """Compose a PDF from a list of flowables and return raw bytes."""
+    buf = io.BytesIO()
+    pagesize = landscape(A4) if landscape_layout else A4
+    doc = SimpleDocTemplate(
+        buf, pagesize=pagesize,
+        leftMargin=14 * mm, rightMargin=14 * mm,
+        topMargin=14 * mm, bottomMargin=14 * mm,
+        title=title,
+    )
+    story = [Paragraph(title, _PDF_H1)]
+    if subtitle:
+        story.append(Paragraph(subtitle, _PDF_CAPTION))
+    story.append(Spacer(1, 4 * mm))
+    for block in story_blocks:
+        if block is None:
+            continue
+        story.append(block)
+    doc.build(story)
+    return buf.getvalue()
+
+
+def _pdf_section(heading: str) -> Paragraph:
+    return Paragraph(heading, _PDF_H2)
+
+
+def _pdf_text(text: str) -> Paragraph:
+    return Paragraph(text, _PDF_BODY)
 
 
 # ──────────────────────────────────────────────────────────────────────────
@@ -1363,13 +1586,97 @@ def _render_all_sites():
     st.markdown("### 📋 Comparison table")
     st.dataframe(df, use_container_width=True, height=420, key="all_sites_table")
 
-    st.download_button(
-        "📥 Download portfolio rollup CSV",
-        df.to_csv(index=False).encode(),
-        "portfolio_rollup.csv",
-        "text/csv",
-        key="all_sites_download",
-    )
+    dl_cols = st.columns(2)
+    with dl_cols[0]:
+        st.download_button(
+            "📥 Download portfolio rollup CSV",
+            df.to_csv(index=False).encode(),
+            "portfolio_rollup.csv",
+            "text/csv",
+            key="all_sites_download",
+            use_container_width=True,
+        )
+    with dl_cols[1]:
+        # Build the All-Sites PDF report
+        kpis_for_pdf = [
+            ("Sites managed", str(len(SITES))),
+            (users_label, f"{total_users:,}"),
+            ("Bot clicks (today)", f"{total_clicks_today:,}"),
+            (k4_label, f"{total_clicks_window:,}"),
+            ("Pages crawled (total)", f"{int(df['Pages crawled'].fillna(0).sum()):,}"),
+            ("Issues (total)", f"{int(df['Issues'].fillna(0).sum()):,}"),
+            ("Sites ≥ 90% health", f"{healthy_sites}/{len(SITES)}"),
+        ]
+
+        users_fig = None
+        if df[users_col].sum() > 0:
+            sorted_users = df.sort_values(users_col, ascending=False)
+            users_fig = _bar_chart(
+                list(sorted_users["Site"]),
+                list(sorted_users[users_col]),
+                title=("GA4 active users — today" if days == 0
+                       else f"GA4 active users — last {days} days"),
+            )
+
+        if days == 0:
+            cf_series = {"Today": list(df["Bot clicks (today)"])}
+            cf_title = "Click-farm clicks — today"
+        else:
+            cf_series = {
+                "Today": list(df["Bot clicks (today)"]),
+                f"Last {days}d": list(df[bot_window_col]),
+            }
+            cf_title = f"Click-farm clicks — today vs last {days} days"
+        cf_fig = None
+        if sum(sum(v) for v in cf_series.values()) > 0:
+            cf_fig = _grouped_bar_chart(list(df["Site"]), cf_series, title=cf_title)
+
+        health_fig = None
+        if df["Pages crawled"].sum() > 0:
+            health_sorted = df.sort_values("Health %", ascending=False)
+            health_fig = _bar_chart(
+                list(health_sorted["Site"]),
+                list(health_sorted["Health %"]),
+                title="Site health (%)", color="#10A37F",
+            )
+
+        story_blocks = [
+            _pdf_section("Headline KPIs"),
+            _pdf_kpi_grid(kpis_for_pdf, cols=4),
+            Spacer(1, 4 * mm),
+        ]
+        if users_fig is not None:
+            story_blocks += [_pdf_section("Users by site"),
+                             _mpl_to_image(users_fig, width_mm=240)]
+        if cf_fig is not None:
+            story_blocks += [_pdf_section("Bot clicks by site"),
+                             _mpl_to_image(cf_fig, width_mm=240)]
+        if health_fig is not None:
+            story_blocks += [_pdf_section("Site health"),
+                             _mpl_to_image(health_fig, width_mm=240)]
+        story_blocks += [PageBreak(),
+                         _pdf_section("Comparison table"),
+                         _df_to_pdf_table(df, max_rows=80, max_cols=12,
+                                          available_width=265 * mm)]
+
+        try:
+            pdf_bytes = _build_pdf(
+                title="All Sites — Portfolio Overview",
+                subtitle=f"Generated {datetime.now().strftime('%Y-%m-%d %H:%M')} · "
+                         f"Window: {window_label} · Sites: {len(SITES)}",
+                story_blocks=story_blocks,
+                landscape_layout=True,
+            )
+            st.download_button(
+                "📄 Download portfolio report PDF",
+                pdf_bytes,
+                file_name=f"portfolio_report_{datetime.now().strftime('%Y-%m-%d')}.pdf",
+                mime="application/pdf",
+                key="all_sites_download_pdf",
+                use_container_width=True,
+            )
+        except Exception as e:
+            st.error(f"Could not build portfolio PDF: {e}")
 
     st.divider()
     st.markdown("### ⚙️ Bulk actions")
@@ -1825,6 +2132,255 @@ def _render_single_site():
     st.download_button("📥 Download latest posts CSV",
                        posts_df.to_csv(index=False).encode(),
                        f"{DOMAIN}_latest_posts.csv", "text/csv", key="lp_dl")
+
+    # ── 📄 FULL SINGLE-SITE PDF REPORT ──────────────────────────────
+    st.divider()
+    st.markdown("## 📄 Full report (PDF)")
+    st.caption("One-click consolidated PDF of every section above for "
+               f"`{DOMAIN}` on {selected_date}.")
+
+    if st.button("Build PDF report", use_container_width=True, key="single_pdf_btn"):
+        with st.spinner("Building PDF report…"):
+            try:
+                pdf_bytes = _build_single_site_pdf(
+                    selected_date=selected_date,
+                    audit_df=audit_df,
+                    serp_df=serp_df,
+                    ga_df=ga_df,
+                    kw_df=kw_df,
+                    cluster_df=cl,
+                    sel_df=sel_df,
+                    posts_df=posts_df,
+                    days_choice=days_choice,
+                )
+                st.session_state["__single_pdf_bytes"] = pdf_bytes
+                st.session_state["__single_pdf_name"] = (
+                    f"{DOMAIN}_seo_report_{selected_date}.pdf"
+                )
+                st.success(f"PDF ready — {len(pdf_bytes) // 1024} KB.")
+            except Exception as e:
+                st.error(f"Could not build PDF: {e}")
+                st.session_state.pop("__single_pdf_bytes", None)
+
+    if st.session_state.get("__single_pdf_bytes"):
+        st.download_button(
+            "💾 Download PDF report",
+            data=st.session_state["__single_pdf_bytes"],
+            file_name=st.session_state.get("__single_pdf_name", "report.pdf"),
+            mime="application/pdf",
+            key="single_pdf_dl",
+            use_container_width=True,
+        )
+
+
+def _build_single_site_pdf(
+    selected_date: str,
+    audit_df,
+    serp_df,
+    ga_df,
+    kw_df,
+    cluster_df,
+    sel_df,
+    posts_df,
+    days_choice: int,
+) -> bytes:
+    """Build a comprehensive PDF for the active single-site dashboard."""
+    blocks: list = []
+
+    # ── Overview KPIs ──────────────────────────────────────────────────
+    overview_kpis: list[tuple[str, str]] = []
+    if audit_df is not None and len(audit_df) > 0:
+        total = len(audit_df)
+        broken = len(audit_df[audit_df["status"].astype(str).str.match(r"^[45E]")])
+        with_issues = len(audit_df[audit_df["issues"].astype(str).str.len() > 0])
+        clean = total - with_issues
+        avg_load = audit_df["load_time_s"].dropna().mean() if "load_time_s" in audit_df else None
+        overview_kpis = [
+            ("Pages Crawled", f"{total:,}"),
+            ("Clean Pages", f"{clean:,} ({clean / max(total, 1) * 100:.0f}%)"),
+            ("Issues Found", f"{with_issues:,}"),
+            ("Broken Pages", f"{broken:,}"),
+            ("Avg Load Time", f"{avg_load:.2f}s" if pd.notna(avg_load) else "N/A"),
+        ]
+
+    blocks.append(_pdf_section("🏠 SEO Performance Overview"))
+    blocks.append(_pdf_text(f"<b>{DOMAIN}</b> — Report for <b>{selected_date}</b>"))
+    if overview_kpis:
+        blocks.append(_pdf_kpi_grid(overview_kpis, cols=5))
+    else:
+        blocks.append(_pdf_text("No technical-audit data available for this date."))
+    blocks.append(Spacer(1, 4 * mm))
+
+    # Issue distribution + load-time histogram
+    if audit_df is not None and len(audit_df) > 0:
+        issue_labels: list[str] = []
+        for iss_str in audit_df["issues"].fillna(""):
+            for iss in str(iss_str).split(" | "):
+                if iss.strip():
+                    issue_labels.append(iss.strip())
+        if issue_labels:
+            issue_counts = pd.Series(issue_labels).value_counts().head(10)
+            fig = _bar_chart(
+                list(issue_counts.index),
+                list(issue_counts.values),
+                title="Top issue types", color="#da7101", horizontal=True,
+            )
+            img = _mpl_to_image(fig, width_mm=240)
+            if img is not None:
+                blocks.append(_pdf_section("Issue distribution"))
+                blocks.append(img)
+
+        if "load_time_s" in audit_df:
+            lt = audit_df["load_time_s"].dropna()
+            if len(lt) > 0:
+                fig = _hist_chart(list(lt), title="Page load times (s)", vline=3.0)
+                img = _mpl_to_image(fig, width_mm=240)
+                if img is not None:
+                    blocks.append(_pdf_section("Load times"))
+                    blocks.append(img)
+
+    # SERP summary
+    if serp_df is not None and len(serp_df) > 0:
+        ss = serp_df[serp_df["site"] == DOMAIN] if "site" in serp_df.columns else serp_df
+        pos = pd.to_numeric(ss["our_position"], errors="coerce")
+        serp_kpis = [
+            ("Top 3", str(int((pos <= 3).sum()))),
+            ("Top 10", str(int((pos <= 10).sum()))),
+            ("Top 20", str(int((pos <= 20).sum()))),
+            ("Not Ranked", str(int(pos.isna().sum()))),
+        ]
+        blocks.append(_pdf_section("🏆 SERP summary"))
+        blocks.append(_pdf_kpi_grid(serp_kpis, cols=4))
+
+    # GA4 trend (last 7d) from overview
+    if ga_df is not None and len(ga_df) > 0:
+        fig = _line_chart(ga_df["date"], ga_df["users"],
+                          title=f"GA4 active users — last 7 days ({DOMAIN})")
+        img = _mpl_to_image(fig, width_mm=240)
+        if img is not None:
+            blocks.append(_pdf_section("📊 Google Analytics (last 7 days)"))
+            blocks.append(img)
+
+    # Click-farm today
+    cf_df = load_clickfarm_today()
+    if cf_df is not None and len(cf_df) > 0:
+        cf_df = cf_df.copy()
+        cf_df["clicks"] = pd.to_numeric(cf_df["clicks"], errors="coerce").fillna(0).astype(int)
+        cf_kpis = [
+            ("Total bot clicks today", f"{int(cf_df['clicks'].sum()):,}"),
+            ("Engines tested", str(len(cf_df))),
+        ]
+        if len(cf_df) > 0:
+            top_eng = cf_df.sort_values("clicks", ascending=False).iloc[0]
+            cf_kpis.append(("Top engine", f"{top_eng['engine']} ({int(top_eng['clicks'])})"))
+        blocks.append(_pdf_section("🧪 Click farm — today"))
+        blocks.append(_pdf_kpi_grid(cf_kpis, cols=3))
+        agg = (cf_df.groupby("engine", as_index=False)["clicks"].sum()
+               .sort_values("clicks", ascending=False))
+        fig = _bar_chart(list(agg["engine"]), list(agg["clicks"]),
+                         title="Clicks by engine, today")
+        img = _mpl_to_image(fig, width_mm=240)
+        if img is not None:
+            blocks.append(img)
+
+    # Top pages
+    top_pages = fetch_top_pages()
+    if top_pages is not None and len(top_pages) > 0:
+        blocks.append(_pdf_section("🔥 Top pages (last 7 days)"))
+        fig = _bar_chart(list(top_pages["page"]), list(top_pages["views"]),
+                         title="Top pages by views", horizontal=True)
+        img = _mpl_to_image(fig, width_mm=240)
+        if img is not None:
+            blocks.append(img)
+        blocks.append(_df_to_pdf_table(top_pages, max_rows=15, max_cols=4,
+                                       available_width=265 * mm))
+
+    blocks.append(PageBreak())
+
+    # Audit table
+    if audit_df is not None and len(audit_df) > 0:
+        cols = [c for c in ["url", "status", "load_time_s", "title_length",
+                            "meta_desc_length", "h1_count", "images_missing_alt",
+                            "has_og_tags", "has_schema", "issues"]
+                if c in audit_df.columns]
+        blocks.append(_pdf_section("🔍 Technical SEO audit"))
+        blocks.append(_df_to_pdf_table(audit_df[cols], max_rows=40, max_cols=10,
+                                       available_width=265 * mm))
+        blocks.append(PageBreak())
+
+    # Traffic sources
+    if sel_df is not None and len(sel_df) > 0:
+        blocks.append(_pdf_section(f"📊 Traffic by source (last {days_choice} days)"))
+        fig = _bar_chart(list(sel_df["source"]), list(sel_df["users"]),
+                         title="Users by source")
+        img = _mpl_to_image(fig, width_mm=240)
+        if img is not None:
+            blocks.append(img)
+        blocks.append(_df_to_pdf_table(sel_df.reset_index(drop=True),
+                                       max_rows=20, max_cols=6,
+                                       available_width=265 * mm))
+
+    # Content analysis
+    if kw_df is not None and len(kw_df) > 0:
+        blocks.append(_pdf_section("📝 Content analysis"))
+        c_kpis = [("Pages", f"{len(kw_df):,}")]
+        if "word_count" in kw_df.columns:
+            c_kpis.append(("Avg Words", f"{kw_df['word_count'].mean():.0f}"))
+            c_kpis.append(("Total Words", f"{int(kw_df['word_count'].sum()):,}"))
+        blocks.append(_pdf_kpi_grid(c_kpis, cols=3))
+        blocks.append(_df_to_pdf_table(kw_df, max_rows=40, max_cols=8,
+                                       available_width=265 * mm))
+        blocks.append(PageBreak())
+
+    # Keyword clusters
+    if cluster_df is not None and len(cluster_df) > 0:
+        blocks.append(_pdf_section("🔑 Keyword clusters"))
+        if "cluster" in cluster_df.columns and "keyword_count" in cluster_df.columns:
+            top = cluster_df.sort_values("keyword_count", ascending=False).head(15)
+            fig = _bar_chart(list(top["cluster"]), list(top["keyword_count"]),
+                             title="Top keyword clusters", horizontal=True)
+            img = _mpl_to_image(fig, width_mm=240)
+            if img is not None:
+                blocks.append(img)
+        blocks.append(_df_to_pdf_table(cluster_df, max_rows=30, max_cols=8,
+                                       available_width=265 * mm))
+
+    # Fix issues (latest)
+    fix_dates_local = get_fix_report_dates()
+    if fix_dates_local:
+        latest_fix_date = fix_dates_local[0]
+        fix_df_local = load_fix_issues(latest_fix_date)
+        if fix_df_local is not None and len(fix_df_local) > 0:
+            blocks.append(PageBreak())
+            blocks.append(_pdf_section(f"✅ Fixed issues ({latest_fix_date})"))
+            blocks.append(_df_to_pdf_table(fix_df_local, max_rows=40, max_cols=8,
+                                           available_width=265 * mm))
+
+    # Latest posts
+    if posts_df is not None and len(posts_df) > 0:
+        blocks.append(PageBreak())
+        blocks.append(_pdf_section("📰 Latest posts"))
+        lp_kpis = [
+            ("Posts fetched", str(len(posts_df))),
+            ("Avg word count", f"{posts_df['word_count'].mean():.0f}" if len(posts_df) else "0"),
+            ("Total words", f"{int(posts_df['word_count'].sum()):,}"),
+        ]
+        blocks.append(_pdf_kpi_grid(lp_kpis, cols=3))
+        display = posts_df[["published", "title", "author", "category", "word_count"]].copy() \
+            if all(c in posts_df.columns for c in ["published", "title", "author", "category", "word_count"]) \
+            else posts_df
+        display.columns = [str(c).title() for c in display.columns]
+        blocks.append(_df_to_pdf_table(display, max_rows=40, max_cols=6,
+                                       available_width=265 * mm))
+
+    return _build_pdf(
+        title=f"SEO Report — {BRAND_NAME}",
+        subtitle=(f"Domain: {DOMAIN} · Report date: {selected_date} · "
+                  f"Generated {datetime.now().strftime('%Y-%m-%d %H:%M')}"),
+        story_blocks=blocks,
+        landscape_layout=True,
+    )
+
 
 
 # ──────────────────────────────────────────────────────────────────────────
