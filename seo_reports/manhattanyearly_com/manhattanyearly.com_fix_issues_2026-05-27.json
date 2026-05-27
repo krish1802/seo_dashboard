@@ -1,0 +1,737 @@
+[
+  {
+    "url": "https://manhattanyearly.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (123) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-content/themes/manhattan-yearly/style.css?ver=7.0",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/pages/2463",
+    "slug": "2463",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (123) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-content/uploads/2024/12/cropped-08ea6936238a4a07a9adaf71b2e82000-free-32x32.png",
+    "slug": "cropped-08ea6936238a4a07a9adaf71b2e82000-free-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-content/uploads/2024/12/cropped-08ea6936238a4a07a9adaf71b2e82000-free-192x192.png",
+    "slug": "cropped-08ea6936238a4a07a9adaf71b2e82000-free-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-content/uploads/2024/12/cropped-08ea6936238a4a07a9adaf71b2e82000-free-180x180.png",
+    "slug": "cropped-08ea6936238a4a07a9adaf71b2e82000-free-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/newyorkinfocus/",
+    "slug": "newyorkinfocus",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/local-news-highlights/",
+    "slug": "local-news-highlights",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/opinion-pieces/",
+    "slug": "opinion-pieces",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/feature-stories/",
+    "slug": "feature-stories",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/breakingheadlines/",
+    "slug": "breakingheadlines",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/about-us/",
+    "slug": "about-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/about-everforward/",
+    "slug": "about-everforward",
+    "post_id": 2636,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://manhattanyearly.com/mastering-art-website-optimization-expert-tips-2/",
+    "slug": "mastering-art-website-optimization-expert-tips-2",
+    "post_id": 2629,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (125) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'mastering-art-website-optimization-expert-tips'"
+    ]
+  },
+  {
+    "url": "https://manhattanyearly.com/digital-domination-how-small-businesses-can-thrive/",
+    "slug": "digital-domination-how-small-businesses-can-thrive",
+    "post_id": 2628,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (112) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://manhattanyearly.com/digital-dynamo-powering-small-businesses-effective/",
+    "slug": "digital-dynamo-powering-small-businesses-effective",
+    "post_id": 2626,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (102) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://manhattanyearly.com/revolutionizing-marketing-impact-ai-machine/",
+    "slug": "revolutionizing-marketing-impact-ai-machine",
+    "post_id": 2624,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (124) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://manhattanyearly.com/accessibility-statement/",
+    "slug": "accessibility-statement",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (28) | Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/cookies-policy/",
+    "slug": "cookies-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/editorial-process/",
+    "slug": "editorial-process",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/newyorkinfocus/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/categories/8",
+    "slug": "8",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/newyorkinfocus/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/local-news-highlights/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/categories/7",
+    "slug": "7",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/local-news-highlights/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/opinion-pieces/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/categories/5",
+    "slug": "5",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/opinion-pieces/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/feature-stories/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/categories/6",
+    "slug": "6",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/breakingheadlines/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/categories/4",
+    "slug": "4",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/category/breakingheadlines/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fabout-us%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fabout-us%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/pages/731",
+    "slug": "731",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/?p=731",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/about-everforward/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fabout-everforward%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fabout-everforward%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/posts/2636",
+    "slug": "2636",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/?p=2636",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/mastering-art-website-optimization-expert-tips-2/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (74) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fmastering-art-website-optimization-expert-tips-2%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fmastering-art-website-optimization-expert-tips-2%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/posts/2629",
+    "slug": "2629",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/?p=2629",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (125) | Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/digital-domination-how-small-businesses-can-thrive/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (72) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fdigital-domination-how-small-businesses-can-thrive%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fdigital-domination-how-small-businesses-can-thrive%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/posts/2628",
+    "slug": "2628",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/?p=2628",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (112) | Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/digital-dynamo-powering-small-businesses-effective/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (72) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fdigital-dynamo-powering-small-businesses-effective%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fdigital-dynamo-powering-small-businesses-effective%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/posts/2626",
+    "slug": "2626",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/?p=2626",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (102) | Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/revolutionizing-marketing-impact-ai-machine/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (71) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Frevolutionizing-marketing-impact-ai-machine%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Frevolutionizing-marketing-impact-ai-machine%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/posts/2624",
+    "slug": "2624",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/?p=2624",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (124) | Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Faccessibility-statement%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Faccessibility-statement%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/pages/1637",
+    "slug": "1637",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/?p=1637",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Ffaq%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Ffaq%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/pages/1635",
+    "slug": "1635",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/?p=1635",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (28) | Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fcookies-policy%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmanhattanyearly.com%2Fcookies-policy%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://manhattanyearly.com/wp-json/wp/v2/pages/1633",
+    "slug": "1633",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  }
+]

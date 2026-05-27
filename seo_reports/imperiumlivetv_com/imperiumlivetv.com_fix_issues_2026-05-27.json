@@ -1,0 +1,307 @@
+[
+  {
+    "url": "https://imperiumlivetv.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (18) | Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (18) | Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (16) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (29) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/wp-content/themes/imperium_folder/style.css?ver=1.0.0",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/wp-content/themes/imperium_folder/custom.css?ver=1.0",
+    "slug": "custom.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/wp-content/uploads/2026/05/logo.jpg",
+    "slug": "logo.jpg",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/metro/",
+    "slug": "metro",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/page-six/",
+    "slug": "page-six",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/sports/",
+    "slug": "sports",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/business/",
+    "slug": "business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/opinion/",
+    "slug": "opinion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/wp-login.php",
+    "slug": "wp-login.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/uncategorized/about-everforward/",
+    "slug": "about-everforward",
+    "post_id": 410,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/category/business/",
+    "slug": "business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/business/export-growth-driving-economic-momentum/",
+    "slug": "export-growth-driving-economic-momentum",
+    "post_id": 238,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/business/remote-work-reshaping-corporate-culture/",
+    "slug": "remote-work-reshaping-corporate-culture",
+    "post_id": 237,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/business/electric-vehicles-changing-auto-industry/",
+    "slug": "electric-vehicles-changing-auto-industry",
+    "post_id": 236,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (67) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/business/how-small-businesses-winning-digital-tools/",
+    "slug": "how-small-businesses-winning-digital-tools",
+    "post_id": 235,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (70) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/business/the-rise-of-ai-startups-in-india/",
+    "slug": "the-rise-of-ai-startups-in-india",
+    "post_id": 234,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/category/metro/",
+    "slug": "metro",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://imperiumlivetv.com/metro/cleanliness-initiatives-in-metro-systems/",
+    "slug": "cleanliness-initiatives-in-metro-systems",
+    "post_id": 243,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/metro/women-only-coaches-a-step-forward/",
+    "slug": "women-only-coaches-a-step-forward",
+    "post_id": 242,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/metro/enhancing-passenger-safety/",
+    "slug": "enhancing-passenger-safety",
+    "post_id": 241,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/metro/smart-ticketing-revolution/",
+    "slug": "smart-ticketing-revolution",
+    "post_id": 240,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/metro/the-reality-of-daily-metro-commutes/",
+    "slug": "the-reality-of-daily-metro-commutes",
+    "post_id": 239,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/metro/metro-expansion-transforming-urban-mobility/",
+    "slug": "metro-expansion-transforming-urban-mobility",
+    "post_id": 284,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://imperiumlivetv.com/category/opinion/",
+    "slug": "opinion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  }
+]
