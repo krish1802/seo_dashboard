@@ -1,0 +1,11 @@
+[
+  {
+    "url": "https://thelosangelesentrepreneur.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  }
+]
