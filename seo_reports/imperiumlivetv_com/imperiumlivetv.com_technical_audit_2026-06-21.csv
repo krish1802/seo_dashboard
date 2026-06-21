@@ -1,0 +1,81 @@
+url,status,load_time_s,title,title_length,meta_description,meta_desc_length,h1_count,canonical,noindex,images_missing_alt,has_og_tags,has_schema,issues
+https://imperiumlivetv.com,200,1.63,Imperium LIve TV -,18,,0,0,http://imperiumlivetv.com/,False,0,True,True,Title short (18) | Missing meta desc | No H1
+https://imperiumlivetv.com/feed/,200,0.41,Imperium LIve TV,16,,0,0,,False,0,False,False,Title short (16) | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/comments/feed/,200,0.26,Comments for Imperium LIve TV,29,,0,0,,False,0,False,False,Title short (29) | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/wp-content/themes/imperium_folder/style.css?ver=1.0.0,200,0.22,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/wp-content/themes/imperium_folder/custom.css?ver=1.0,200,0.26,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/wp-json/,200,0.57,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/xmlrpc.php?rsd,200,0.29,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/wp-content/uploads/2026/05/logo.jpg,200,0.22,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/us-news/,404,0.73,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/metro/,200,0.4,Metro Archives - Imperium LIve TV,33,,0,1,https://imperiumlivetv.com/category/metro/,False,0,True,True,Missing meta desc
+https://imperiumlivetv.com/long-island/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/politics/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/world-news/,404,0.44,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/page-six/,200,0.43,Page Six Archives - Imperium LIve TV,36,,0,1,https://imperiumlivetv.com/category/page-six/,False,0,True,True,Missing meta desc
+https://imperiumlivetv.com/sports/,200,0.35,Sports Archives - Imperium LIve TV,34,,0,1,https://imperiumlivetv.com/category/sports/,False,0,True,True,Missing meta desc
+https://imperiumlivetv.com/nfl/,404,0.4,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/mlb/,404,0.4,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/nba/,404,0.4,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/nhl/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/college-football/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/college-basketball/,404,0.4,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/wnba/,404,0.42,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/sports-plus/,404,0.42,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/betting/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/business/,200,0.37,Business Archives - Imperium LIve TV,36,,0,1,https://imperiumlivetv.com/category/business/,False,0,True,True,Missing meta desc
+https://imperiumlivetv.com/personal-finance/,404,0.42,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/opinion/,200,0.35,Opinion Archives - Imperium LIve TV,35,,0,1,https://imperiumlivetv.com/category/opinion/,False,0,True,True,Missing meta desc
+https://imperiumlivetv.com/entertainment/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/tv/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/movies/,404,0.4,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/music/,404,0.41,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/celebrities/,404,0.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/awards/,404,0.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/theater/,404,0.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/lifestyle/,404,0.41,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/weird-but-true/,404,0.41,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/sex-and-relationships/,404,0.41,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/viral-trends/,404,0.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/human-interest/,404,0.4,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/parenting/,404,0.42,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/fashion-and-beauty/,404,0.41,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/food-and-drink/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/travel/,404,0.4,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/health/,404,0.43,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/wellness/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/fitness/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/health-care/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/medicine/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/mens-health/,404,0.42,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/womens-health/,404,0.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/mental-health/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/nutrition/,404,0.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/real-estate/,404,0.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/tech/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/media/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/science/,404,0.37,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/space/,404,0.41,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/environment/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/wildlife/,404,0.41,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/archaeology/,404,0.39,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/,200,0.38,Imperium LIve TV -,18,,0,0,http://imperiumlivetv.com/,False,0,True,True,Title short (18) | Missing meta desc | No H1
+https://imperiumlivetv.com/wp-login.php,200,0.27,Log In &lsaquo; Imperium LIve TV &#8212; WordPress,50,,0,2,,True,0,False,False,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema
+https://imperiumlivetv.com/podcasts/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/shopping/,404,0.38,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://imperiumlivetv.com/news/brian-ferdinand-long-form-media-bios-publication-2026/,200,0.39,Brian Ferdinand — Long-Form Media Bios By Publication (May,58,"Brian Ferdinand is a portfolio manager, trader, and active member of the Forbes Finance Council recognized for his disciplined approach to systematic…",150,1,https://imperiumlivetv.com/news/brian-ferdinand-long-form-media-bios-publication-2026/,False,0,True,True,
+https://imperiumlivetv.com/category/business/,200,0.35,Business Archives - Imperium LIve TV,36,,0,1,https://imperiumlivetv.com/category/business/,False,0,True,True,Missing meta desc
+https://imperiumlivetv.com/business/export-growth-driving-economic-momentum/,200,0.37,Export Growth Driving Economic Momentum - Imperium LIve TV,58,"India’s export sector has shown resilience despite global uncertainties. Industries such as IT services, pharmaceuticals, and textiles are leading the…",151,1,https://imperiumlivetv.com/business/export-growth-driving-economic-momentum/,False,0,True,True,
+https://imperiumlivetv.com/business/remote-work-reshaping-corporate-culture/,200,0.36,Remote Work Reshaping Corporate Culture - Imperium LIve TV,58,"Remote work has fundamentally changed how companies operate. Employees now value flexibility more than ever, and organizations are adapting by offering…",152,1,https://imperiumlivetv.com/business/remote-work-reshaping-corporate-culture/,False,0,True,True,
+https://imperiumlivetv.com/business/electric-vehicles-changing-auto-industry/,200,0.39,Electric Vehicles and the Changing Auto Industry - ILT,54,"The automotive industry is undergoing a major shift as electric vehicles (EVs) gain popularity. Governments are offering incentives, and consumers are…",151,1,https://imperiumlivetv.com/business/electric-vehicles-changing-auto-industry/,False,0,True,True,
+https://imperiumlivetv.com/business/how-small-businesses-winning-digital-tools/,200,0.36,How Small Businesses Are Winning with Digital Tools - ILT,57,The digital transformation of small businesses has accelerated dramatically in recent years. From neighborhood stores adopting UPI payments to local…,149,1,https://imperiumlivetv.com/business/how-small-businesses-winning-digital-tools/,False,0,True,True,
+https://imperiumlivetv.com/business/the-rise-of-ai-startups-in-india/,200,0.36,The Rise of AI Startups in India - Imperium LIve TV,51,"Artificial intelligence is no longer a futuristic concept—it is now at the core of modern business innovation. Across India, startups are leveraging AI to…",155,1,http://imperiumlivetv.com/business/the-rise-of-ai-startups-in-india/,False,0,True,True,
+https://imperiumlivetv.com/category/metro/,200,0.37,Metro Archives - Imperium LIve TV,33,,0,1,https://imperiumlivetv.com/category/metro/,False,0,True,True,Missing meta desc
+https://imperiumlivetv.com/metro/cleanliness-initiatives-in-metro-systems/,200,0.35,Cleanliness Initiatives in Metro Systems - Imperium LIve TV,59,Maintaining hygiene is essential for public transport. Regular cleaning and awareness campaigns are making a difference.,120,1,https://imperiumlivetv.com/metro/cleanliness-initiatives-in-metro-systems/,False,0,True,True,
+https://imperiumlivetv.com/metro/women-only-coaches-a-step-forward/,200,0.35,Women-Only Coaches: A Step Forward - Imperium LIve TV,53,"Dedicated coaches for women are helping create a safer travel environment, encouraging more women to use public transport.",122,1,https://imperiumlivetv.com/metro/women-only-coaches-a-step-forward/,False,0,True,True,
+https://imperiumlivetv.com/metro/enhancing-passenger-safety/,200,0.36,Enhancing Passenger Safety - Imperium LIve TV,45,"Safety remains a top priority for metro authorities. Increased surveillance, emergency systems, and staff training are improving passenger confidence.",150,1,https://imperiumlivetv.com/metro/enhancing-passenger-safety/,False,0,True,True,
+https://imperiumlivetv.com/metro/smart-ticketing-revolution/,200,0.36,Smart Ticketing Revolution - Imperium LIve TV,45,"Digital ticketing systems are simplifying the commuting experience. With mobile apps and contactless cards, passengers can avoid long queues and enjoy…",151,1,https://imperiumlivetv.com/metro/smart-ticketing-revolution/,False,0,True,True,
+https://imperiumlivetv.com/metro/the-reality-of-daily-metro-commutes/,200,0.36,The Reality of Daily Metro Commutes - Imperium LIve TV,54,"For many commuters, metro travel is both a necessity and a challenge. Overcrowding during peak hours can make journeys uncomfortable. Despite this, metros…",155,1,https://imperiumlivetv.com/metro/the-reality-of-daily-metro-commutes/,False,0,True,True,
+https://imperiumlivetv.com/metro/metro-expansion-transforming-urban-mobility/,200,0.36,Metro Expansion Transforming Urban Mobility - Imperium LIve TV,62,Metro systems are rapidly expanding to meet the needs of growing urban populations. New lines and stations are reducing travel time and improving…,146,1,https://imperiumlivetv.com/metro/metro-expansion-transforming-urban-mobility/,False,0,True,True,
+https://imperiumlivetv.com/category/opinion/,200,0.38,Opinion Archives - Imperium LIve TV,35,,0,1,https://imperiumlivetv.com/category/opinion/,False,0,True,True,Missing meta desc
+https://imperiumlivetv.com/opinion/the-importance-of-work-life-balance/,200,0.39,The Importance of Work-Life Balance - Imperium LIve TV,54,"Achieving balance between work and personal life is essential for long-term well-being. Learn about importance, work, life.",123,1,http://imperiumlivetv.com/opinion/the-importance-of-work-life-balance/,False,0,True,True,
