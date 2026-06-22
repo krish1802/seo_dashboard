@@ -1,0 +1,463 @@
+[
+  {
+    "url": "https://losangelesinfluence.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (106)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (106)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (121)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.6",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0",
+    "slug": "all.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/buttons.min.css?ver=7.0",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/dashicons.min.css?ver=7.0",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=7.0",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/media-views.min.css?ver=7.0",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=1.0.6",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/losangelesinfluence/style.css?ver=1782111017",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2026/05/cropped-cropped-Screenshot-2026-05-01-210739-32x32.png",
+    "slug": "cropped-cropped-Screenshot-2026-05-01-210739-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2026/05/cropped-cropped-Screenshot-2026-05-01-210739-192x192.png",
+    "slug": "cropped-cropped-Screenshot-2026-05-01-210739-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2026/05/cropped-cropped-Screenshot-2026-05-01-210739-180x180.png",
+    "slug": "cropped-cropped-Screenshot-2026-05-01-210739-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/",
+    "slug": "localnews",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/entertainmentandmedia/",
+    "slug": "entertainmentandmedia",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/business/",
+    "slug": "business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/foodanddining/",
+    "slug": "foodanddining",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/artsculture/",
+    "slug": "artsculture",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/editorial-process/",
+    "slug": "editorial-process",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (27) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/about-us/",
+    "slug": "about-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/contact-us/",
+    "slug": "contact-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/href-https-councils-forbes-com-profile-brian-ferdinand/",
+    "slug": "href-https-councils-forbes-com-profile-brian-ferdinand",
+    "post_id": 4164,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title short (5)",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/brian-ferdinand-helix-alpha/",
+    "slug": "brian-ferdinand-helix-alpha",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (81) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/about-brian-ferdinand/",
+    "slug": "about-brian-ferdinand",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (94) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/europe/",
+    "slug": "europe",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/accessibility-policy/",
+    "slug": "accessibility-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/privacy-policy-2/",
+    "slug": "privacy-policy-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/cookies-policy/",
+    "slug": "cookies-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/terms-of-use/",
+    "slug": "terms-of-use",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-admin/upload.php?mode=list",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-admin/upload.php?mode=grid",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/page/3/",
+    "slug": "3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (121)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/losangelesinfluence/style.css?ver=1782111019",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/losangelesinfluence/style.css?ver=1782111032",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-json/wp/v2/categories/6",
+    "slug": "6",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/page/3/",
+    "slug": "3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/page/11/",
+    "slug": "11",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/entertainmentandmedia/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (72) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/entertainmentandmedia/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/losangelesinfluence/style.css?ver=1782111033",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-json/wp/v2/categories/8",
+    "slug": "8",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  }
+]
