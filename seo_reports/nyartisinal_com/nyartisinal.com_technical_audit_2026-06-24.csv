@@ -1,0 +1,9 @@
+url,status,load_time_s,title,title_length,meta_description,meta_desc_length,h1_count,canonical,noindex,images_missing_alt,has_og_tags,has_schema,issues
+https://nyartisinal.com,200,0.77,PRABOWO,7,,0,1,,True,0,False,False,Title short (7) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/feed/,404,0.33,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/comments/feed/,404,0.26,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/,404,0.32,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/xmlrpc.php?rsd,200,0.57,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-includes/js/dist/script-modules/interactivity/index.min.js?ver=efaa5193bbad9c60ffd1,200,0.38,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/sample-page/,404,0.31,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/2026/05/19/hello-world/,404,0.21,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema

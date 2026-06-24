@@ -1,0 +1,4 @@
+url,slug,post_id,fixed,reason,issues,changes
+https://nyartisinal.com,,,False,No matching WP post,Title short (7) | Missing meta desc | Noindexed | No OG tags | No Schema,[]
+https://nyartisinal.com/xmlrpc.php?rsd,xmlrpc.php,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://nyartisinal.com/wp-includes/js/dist/script-modules/interactivity/index.min.js?ver=efaa5193bbad9c60ffd1,index.min.js,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
