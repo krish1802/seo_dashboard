@@ -1,0 +1,761 @@
+[
+  {
+    "url": "https://lasvegasmonthlyreview.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (167)",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (167)",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (182)",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.6",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0",
+    "slug": "all.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-includes/css/buttons.min.css?ver=7.0",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-includes/css/dashicons.min.css?ver=7.0",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=7.0",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-includes/css/media-views.min.css?ver=7.0",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=7.0",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-content/themes/las-vegas-monthly/style.css?ver=7.0",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-content/uploads/2024/12/cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-32x32.png",
+    "slug": "cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-content/uploads/2024/12/cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-192x192.png",
+    "slug": "cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-content/uploads/2024/12/cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-180x180.png",
+    "slug": "cropped-2ec2bc8c7c6c4c609d637839755d69ff-free-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/newyorkinfocus/",
+    "slug": "newyorkinfocus",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/local-news-highlights/",
+    "slug": "local-news-highlights",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/opinion-pieces/",
+    "slug": "opinion-pieces",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/feature-stories/",
+    "slug": "feature-stories",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/breakingheadlines/",
+    "slug": "breakingheadlines",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/about-us/",
+    "slug": "about-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/innovative-food-app-tastedna-revolutionizing-culinary-experiences-with-personalized-recommendations-beyond-your-palate-preferences/",
+    "slug": "innovative-food-app-tastedna-revolutionizing-culinary-experiences-with-personalized-recommendations-beyond-your-palate-preferences",
+    "post_id": 3618,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (157) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'innovative-food-app-tastedna-revolutionizing-culinary'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionize-your-business-with-cutting-edge-ai-entrepreneur-caleb-king-unveils-groundbreaking-chatgpt-course-for-maximizing-profits-and-productivity/",
+    "slug": "revolutionize-your-business-with-cutting-edge-ai-entrepreneur-caleb-king-unveils-groundbreaking-chatgpt-course-for-maximizing-profits-and-productivity",
+    "post_id": 3617,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (178) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'revolutionize-your-business-cutting-edge-ai'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-cat-health-with-innovative-genius-litter-that-changes-color-based-on-your-cats-health/",
+    "slug": "revolutionizing-cat-health-with-innovative-genius-litter-that-changes-color-based-on-your-cats-health",
+    "post_id": 3616,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (134) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'revolutionizing-cat-health-innovative-genius-litter'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/venture-capitalist-kanin-of-robust-eyes-global-tech-transformation-for-superior-investment-returns/",
+    "slug": "venture-capitalist-kanin-of-robust-eyes-global-tech-transformation-for-superior-investment-returns",
+    "post_id": 3615,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (125) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'venture-capitalist-kanin-robust-eyes-global-tech'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-creative-and-media-industry-a-visionary-entrepreneurs-journey-and-insights-into-success/",
+    "slug": "revolutionizing-creative-and-media-industry-a-visionary-entrepreneurs-journey-and-insights-into-success",
+    "post_id": 3614,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (137) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'revolutionizing-creative-media-industry-visionary'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/filmmaker-and-vfx-artist-shreyans-zaveri-making-waves-in-environmental-conservation-and-wildlife-protection-with-global-film-projects-and-bestselling-novels/",
+    "slug": "filmmaker-and-vfx-artist-shreyans-zaveri-making-waves-in-environmental-conservation-and-wildlife-protection-with-global-film-projects-and-bestselling-novels",
+    "post_id": 3613,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (183) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'filmmaker-vfx-artist-shreyans-zaveri-making-waves'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/trends/",
+    "slug": "trends",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/accessibility-statement/",
+    "slug": "accessibility-statement",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/cookies-policy/",
+    "slug": "cookies-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/editorial-process/",
+    "slug": "editorial-process",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-admin/upload.php?mode=list",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-admin/upload.php?mode=grid",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/page/3/",
+    "slug": "3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (182)",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/newyorkinfocus/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (67) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/newyorkinfocus/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-json/wp/v2/categories/8",
+    "slug": "8",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/empowering-artists-setting-trends-inside/",
+    "slug": "empowering-artists-setting-trends-inside",
+    "post_id": 2640,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (128) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-air-travel-experiences-myairrights-unveils/",
+    "slug": "revolutionizing-air-travel-experiences-myairrights-unveils",
+    "post_id": 2638,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (156) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/social-architect-milan-kordestani-pioneers-future-2/",
+    "slug": "social-architect-milan-kordestani-pioneers-future-2",
+    "post_id": 2630,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (158) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'social-architect-milan-kordestani-pioneers-future'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-culinary-exploration-tastedna-charts/",
+    "slug": "revolutionizing-culinary-exploration-tastedna-charts",
+    "post_id": 2445,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (144) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/global-expert-muslim-estate-planning-innovates/",
+    "slug": "global-expert-muslim-estate-planning-innovates",
+    "post_id": 2288,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (125) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/unlock-your-creativity-underworld-diverse/",
+    "slug": "unlock-your-creativity-underworld-diverse",
+    "post_id": 1912,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (131) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-startup-creation-inside-reno/",
+    "slug": "revolutionizing-startup-creation-inside-reno",
+    "post_id": 1910,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (133) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/empowering-confidence-how-swimwear-brand-became-global/",
+    "slug": "empowering-confidence-how-swimwear-brand-became-global",
+    "post_id": 1886,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (182) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/local-news-highlights/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (70) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/local-news-highlights/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-json/wp/v2/categories/7",
+    "slug": "7",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/transforming-entrepreneurship-reno-inside/",
+    "slug": "transforming-entrepreneurship-reno-inside",
+    "post_id": 2673,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (188) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionize-your-business-strategy-om-strategic/",
+    "slug": "revolutionize-your-business-strategy-om-strategic",
+    "post_id": 2663,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (144) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/serial-entrepreneur-kanin-robust-ventures/",
+    "slug": "serial-entrepreneur-kanin-robust-ventures",
+    "post_id": 2633,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (135) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-railways-nevada-how-various-industries/",
+    "slug": "revolutionizing-railways-nevada-how-various-industries",
+    "post_id": 2486,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (123) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/milan-kordestani-innovator-entrepreneur-leader/",
+    "slug": "milan-kordestani-innovator-entrepreneur-leader",
+    "post_id": 1913,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (178) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/social-architect-milan-kordestani-building-impact-driven/",
+    "slug": "social-architect-milan-kordestani-building-impact-driven",
+    "post_id": 1889,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (168) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/transform-your-creative-media-presence-our/",
+    "slug": "transform-your-creative-media-presence-our",
+    "post_id": 1888,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (109) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-creative-media-industry-glimpse/",
+    "slug": "revolutionizing-creative-media-industry-glimpse",
+    "post_id": 1887,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (110) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/new-skills-and-a-snazzy-new-trip/",
+    "slug": "new-skills-and-a-snazzy-new-trip",
+    "post_id": 23,
+    "fixed": true,
+    "reason": "",
+    "issues": "Missing meta desc",
+    "changes": [
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/opinion-pieces/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/category/opinion-pieces/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/wp-json/wp/v2/categories/5",
+    "slug": "5",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/meet-milan-kordestani-visionary-ceo-building-impact-driven-companies-reshaping-the-future-of-careers-music-and-civil-discourse/",
+    "slug": "meet-milan-kordestani-visionary-ceo-building-impact-driven-companies-reshaping-the-future-of-careers-music-and-civil-discourse",
+    "post_id": 3612,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (156) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'meet-milan-kordestani-visionary-ceo-building-impact-driven'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-creative-media-industry-glimpse-3/",
+    "slug": "revolutionizing-creative-media-industry-glimpse-3",
+    "post_id": 2833,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (127) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'revolutionizing-creative-media-industry-glimpse'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/innovative-branding-agency-osmo-media-celebrates-2nd/",
+    "slug": "innovative-branding-agency-osmo-media-celebrates-2nd",
+    "post_id": 2482,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (145) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/meet-milan-kordestani-visionary-entrepreneur/",
+    "slug": "meet-milan-kordestani-visionary-entrepreneur",
+    "post_id": 2439,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (160) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-air-travel-myairrights-delivers/",
+    "slug": "revolutionizing-air-travel-myairrights-delivers",
+    "post_id": 2289,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (138) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-culinary-exploration-tastedna-app-offers/",
+    "slug": "revolutionizing-culinary-exploration-tastedna-app-offers",
+    "post_id": 2287,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (156) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-creative-media-industry-glimpse-2/",
+    "slug": "revolutionizing-creative-media-industry-glimpse-2",
+    "post_id": 2252,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (139) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'revolutionizing-creative-media-industry-glimpse'"
+    ]
+  },
+  {
+    "url": "https://lasvegasmonthlyreview.com/revolutionizing-cinematic-storytelling-meet-visionary/",
+    "slug": "revolutionizing-cinematic-storytelling-meet-visionary",
+    "post_id": 1908,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (162) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  }
+]
