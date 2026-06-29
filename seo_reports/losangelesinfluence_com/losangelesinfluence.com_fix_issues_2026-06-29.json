@@ -1,0 +1,625 @@
+[
+  {
+    "url": "https://losangelesinfluence.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (106)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (106)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (121)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.6",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0",
+    "slug": "all.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/buttons.min.css?ver=7.0",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/dashicons.min.css?ver=7.0",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=7.0",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/css/media-views.min.css?ver=7.0",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=1.0.6",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/losangelesinfluence/style.css?ver=1782713774",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/xmlrpc.php?rsd",
+    "slug": "xmlrpc.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2026/05/cropped-cropped-Screenshot-2026-05-01-210739-32x32.png",
+    "slug": "cropped-cropped-Screenshot-2026-05-01-210739-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2026/05/cropped-cropped-Screenshot-2026-05-01-210739-192x192.png",
+    "slug": "cropped-cropped-Screenshot-2026-05-01-210739-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/uploads/2026/05/cropped-cropped-Screenshot-2026-05-01-210739-180x180.png",
+    "slug": "cropped-cropped-Screenshot-2026-05-01-210739-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/",
+    "slug": "localnews",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/entertainmentandmedia/",
+    "slug": "entertainmentandmedia",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/business/",
+    "slug": "business",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/foodanddining/",
+    "slug": "foodanddining",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/artsculture/",
+    "slug": "artsculture",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/editorial-process/",
+    "slug": "editorial-process",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (27) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/about-us/",
+    "slug": "about-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/contact-us/",
+    "slug": "contact-us",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/master-management-planning-llc-shaping-the-future-of-project-controls-in-manufacturing-and-production-with-ai-sustainability-and-real-time-intelligence/",
+    "slug": "master-management-planning-llc-shaping-the-future-of-project-controls-in-manufacturing-and-production-with-ai-sustainability-and-real-time-intelligence",
+    "post_id": 4259,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (178) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'master-management-planning-llc-shaping-future-project-controls'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/california-businesses-thriving-in-creative-and-media-sector-explore-the-latest-trends-and-innovations/",
+    "slug": "california-businesses-thriving-in-creative-and-media-sector-explore-the-latest-trends-and-innovations",
+    "post_id": 4257,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (128) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'california-businesses-thriving-creative-media-sector-explore-latest'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/revolutionizing-the-art-of-visual-storytelling-a-visionary-editors-impact-on-global-audiences/",
+    "slug": "revolutionizing-the-art-of-visual-storytelling-a-visionary-editors-impact-on-global-audiences",
+    "post_id": 4255,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (124) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'revolutionizing-art-visual-storytelling-visionary-editor-impact-global'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/empowering-it-professionals-of-tomorrow-los-angeles-academy-launches-hands-on-training-in-cybersecurity-cloud-computing-and-more/",
+    "slug": "empowering-it-professionals-of-tomorrow-los-angeles-academy-launches-hands-on-training-in-cybersecurity-cloud-computing-and-more",
+    "post_id": 4253,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (155) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'empowering-professionals-tomorrow-los-angeles-academy-launches-hands'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/entrepreneurial-maverick-kris-kraze-mullins-unveils-revolutionary-marketing-strategies-to-scale-businesses-and-inspire-success/",
+    "slug": "entrepreneurial-maverick-kris-kraze-mullins-unveils-revolutionary-marketing-strategies-to-scale-businesses-and-inspire-success",
+    "post_id": 4251,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (150) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'entrepreneurial-maverick-kris-kraze-mullins-unveils-revolutionary-marketing'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/revolutionizing-art-and-sustainability-a-journey-from-traditional-indian-craftsmanship-to-global-contemporary-design/",
+    "slug": "revolutionizing-art-and-sustainability-a-journey-from-traditional-indian-craftsmanship-to-global-contemporary-design",
+    "post_id": 4249,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (141) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'revolutionizing-art-sustainability-journey-traditional-indian-craftsmanship-global'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/bollywood-star-jasmine-kapoor-aims-to-conquer-hollywood-with-passion-and-purpose-leading-the-way-in-entertainment-and-philanthropy/",
+    "slug": "bollywood-star-jasmine-kapoor-aims-to-conquer-hollywood-with-passion-and-purpose-leading-the-way-in-entertainment-and-philanthropy",
+    "post_id": 4247,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (155) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'bollywood-star-jasmine-kapoor-aims-conquer-hollywood-passion'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/brian-ferdinand-helix-alpha/",
+    "slug": "brian-ferdinand-helix-alpha",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (81) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/about-brian-ferdinand/",
+    "slug": "about-brian-ferdinand",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (94) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/europe/",
+    "slug": "europe",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/actress-jasmine-kapoor-making-waves-in-hollywood-with-a-philanthropic-focus-and-global-expansion/",
+    "slug": "actress-jasmine-kapoor-making-waves-in-hollywood-with-a-philanthropic-focus-and-global-expansion",
+    "post_id": 4245,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (120) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'actress-jasmine-kapoor-making-waves-hollywood-philanthropic-focus'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/global-game-hosting-provider-rocketing-to-success-with-innovative-solutions-for-pc-gamers/",
+    "slug": "global-game-hosting-provider-rocketing-to-success-with-innovative-solutions-for-pc-gamers",
+    "post_id": 4243,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (113) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'global-game-hosting-provider-rocketing-success-innovative-solutions'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/veteran-led-addiction-treatment-facility-expands-reach-with-new-location-in-tampa-florida/",
+    "slug": "veteran-led-addiction-treatment-facility-expands-reach-with-new-location-in-tampa-florida",
+    "post_id": 4241,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (114) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'veteran-led-addiction-treatment-facility-expands-reach-new'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/accessibility-policy/",
+    "slug": "accessibility-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/privacy-policy-2/",
+    "slug": "privacy-policy-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/cookies-policy/",
+    "slug": "cookies-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/terms-of-use/",
+    "slug": "terms-of-use",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-admin/upload.php?mode=list",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-admin/upload.php?mode=grid",
+    "slug": "upload.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/page/3/",
+    "slug": "3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (121)",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/losangelesinfluence/style.css?ver=1782713776",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/losangelesinfluence/style.css?ver=1782713789",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-json/wp/v2/categories/6",
+    "slug": "6",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/revolutionizing-the-roofing-industry-a-visionary-entrepreneurs-journey-towards-excellence-and-innovation/",
+    "slug": "revolutionizing-the-roofing-industry-a-visionary-entrepreneurs-journey-towards-excellence-and-innovation",
+    "post_id": 4239,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (135) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'revolutionizing-roofing-industry-visionary-entrepreneur-journey-towards-excellence'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/music-producer-and-dj-jerk-the-dj-hits-major-milestones-with-latest-single-fast-lane-over-1-1-million-views-on-youtube-100000-streams-on-spotify-and-radio-airplay-across-top-stations/",
+    "slug": "music-producer-and-dj-jerk-the-dj-hits-major-milestones-with-latest-single-fast-lane-over-1-1-million-views-on-youtube-100000-streams-on-spotify-and-radio-airplay-across-top-stations",
+    "post_id": 4233,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (223) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'music-producer-dj-jerk-dj-hits-major-milestones'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/marketing-and-web-development-pro-jack-shepler-pioneers-impactful-entrepreneurship-with-ayokay-agency-spotlight-on-public-health-non-profit-and-fortune-500-collaborations/",
+    "slug": "marketing-and-web-development-pro-jack-shepler-pioneers-impactful-entrepreneurship-with-ayokay-agency-spotlight-on-public-health-non-profit-and-fortune-500-collaborations",
+    "post_id": 4229,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (198) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'marketing-web-development-pro-jack-shepler-pioneers-impactful'"
+    ]
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/page/3/",
+    "slug": "3",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/localnews/page/11/",
+    "slug": "11",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/entertainmentandmedia/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (72) | Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/category/entertainmentandmedia/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-content/themes/losangelesinfluence/style.css?ver=1782713790",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/wp-json/wp/v2/categories/8",
+    "slug": "8",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://losangelesinfluence.com/podcast-sensation-micah-bravery-explores-mental-health-and-wellness-in-groundbreaking-season-3-premiere/",
+    "slug": "podcast-sensation-micah-bravery-explores-mental-health-and-wellness-in-groundbreaking-season-3-premiere",
+    "post_id": 4231,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (129) | Missing meta desc",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'podcast-sensation-micah-bravery-explores-mental-health-wellness'"
+    ]
+  }
+]
