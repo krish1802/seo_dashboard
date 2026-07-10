@@ -1,0 +1,704 @@
+[
+  {
+    "url": "https://miamiheralddaily.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (114)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/themes/wpzoom-prime-news/fonts/primenews.ttf",
+    "slug": "primenews.ttf",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (114)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (129)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (18) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/plugins/coblocks/dist/style-coblocks-extensions.css?ver=3.1.17",
+    "slug": "style-coblocks-extensions.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/plugins/coblocks/dist/style-coblocks-animation.css?ver=2677611078ee87eb3b1c",
+    "slug": "style-coblocks-animation.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.6",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/plugins/wp-user-profile-avatar/assets/lib/fontawesome/all.css?ver=4.4.0",
+    "slug": "all.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-includes/css/buttons.min.css?ver=7.0.1",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-includes/css/dashicons.min.css?ver=7.0.1",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=7.0.1",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-includes/css/media-views.min.css?ver=7.0.1",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=7.0.1",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-includes/css/dist/components/style.min.css?ver=7.0.1",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/plugins/coblocks/includes/Dependencies/GoDaddy/Styles/build/latest.css?ver=2.0.2",
+    "slug": "latest.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/themes/wpzoom-prime-news/functions/wpzoom/assets/css/theme-utils.css?ver=2.0.14",
+    "slug": "theme-utils.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/themes/wpzoom-prime-news/style.css?ver=1.0.15",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/themes/wpzoom-prime-news/css/media-queries.css?ver=1.0.15",
+    "slug": "media-queries.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/themes/wpzoom-prime-news/styles/default.css?ver=1.0.15",
+    "slug": "default.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/uploads/2026/04/cropped-logofavicon-512-×-512-px-2-32x32.png",
+    "slug": "cropped-logofavicon-512-×-512-px-2-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/uploads/2026/04/cropped-logofavicon-512-×-512-px-2-192x192.png",
+    "slug": "cropped-logofavicon-512-×-512-px-2-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-content/uploads/2026/04/cropped-logofavicon-512-×-512-px-2-180x180.png",
+    "slug": "cropped-logofavicon-512-×-512-px-2-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/revolutionizing-beauty-industry-eco-friendly-soco-lashes-leads/",
+    "slug": "revolutionizing-beauty-industry-eco-friendly-soco-lashes-leads",
+    "post_id": 3882,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/healthcare-innovator-justin-ramsaran-group-revolutionizing-clinical-workflows/",
+    "slug": "healthcare-innovator-justin-ramsaran-group-revolutionizing-clinical-workflows",
+    "post_id": 3676,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/top-texas-personal-injury-firm-secures-10-9m/",
+    "slug": "top-texas-personal-injury-firm-secures-10-9m",
+    "post_id": 3675,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/small-business-leadership-expert-reveals-secrets-success-new/",
+    "slug": "small-business-leadership-expert-reveals-secrets-success-new",
+    "post_id": 3674,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/revolutionize-your-well-being-innovative-orthopedic-insoles-foot/",
+    "slug": "revolutionize-your-well-being-innovative-orthopedic-insoles-foot",
+    "post_id": 3586,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/transforming-contracting-industry-transparent-pricing-quality-services-capital/",
+    "slug": "transforming-contracting-industry-transparent-pricing-quality-services-capital",
+    "post_id": 3579,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/revolutionizing-real-estate-industry-look-into-future-property/",
+    "slug": "revolutionizing-real-estate-industry-look-into-future-property",
+    "post_id": 3549,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/revolutionizing-beauty-industry-eco-friendly-eyelash-supplies-trainings/",
+    "slug": "revolutionizing-beauty-industry-eco-friendly-eyelash-supplies-trainings",
+    "post_id": 3397,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/protests-whens-it-time-to-go-home/",
+    "slug": "protests-whens-it-time-to-go-home",
+    "post_id": 1544,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/protests-whens-it-time-to-go-home-2/",
+    "slug": "protests-whens-it-time-to-go-home-2",
+    "post_id": 3249,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/ultimate-guide-mastering-your-first-test/",
+    "slug": "ultimate-guide-mastering-your-first-test",
+    "post_id": 3911,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/noah-neuman-conquers-the-concrete-jungle/",
+    "slug": "noah-neuman-conquers-the-concrete-jungle",
+    "post_id": 3909,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/revolutionizing-biotech-dyadic-international-innovative-solutions-redefining-protein/",
+    "slug": "revolutionizing-biotech-dyadic-international-innovative-solutions-redefining-protein",
+    "post_id": 3901,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/wp-login.php",
+    "slug": "wp-login.php",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/accessibility-statement/",
+    "slug": "accessibility-statement",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/cookies-policy/",
+    "slug": "cookies-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/privacy-policy-2/",
+    "slug": "privacy-policy-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/terms-of-use/",
+    "slug": "terms-of-use",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/faq/",
+    "slug": "faq",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (24) | Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/about-us-2/",
+    "slug": "about-us-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (29) | Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/politics/",
+    "slug": "politics",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/video/",
+    "slug": "video",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/theme-features/",
+    "slug": "theme-features",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/full-width/",
+    "slug": "full-width",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/shortcodes/",
+    "slug": "shortcodes",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Multiple H1s (8)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/apple-2/",
+    "slug": "apple-2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/artsentertainment/",
+    "slug": "artsentertainment",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/opinioneditorial/",
+    "slug": "opinioneditorial",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/localevents/",
+    "slug": "localevents",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/sports/",
+    "slug": "sports",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/topnews/",
+    "slug": "topnews",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/playstation-fifa-19-bundle-launched-september-25th/",
+    "slug": "playstation-fifa-19-bundle-launched-september-25th",
+    "post_id": 3241,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/playstation-fifa-19-bundle-launched-september-25th-2/",
+    "slug": "playstation-fifa-19-bundle-launched-september-25th-2",
+    "post_id": 3250,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/tag/life/",
+    "slug": "life",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/sport/",
+    "slug": "sport",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/international-triathlon-head-malta-2018/",
+    "slug": "international-triathlon-head-malta-2018",
+    "post_id": 2236,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/international-triathlon-head-malta-2018-2/",
+    "slug": "international-triathlon-head-malta-2018-2",
+    "post_id": 3255,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/world/",
+    "slug": "world",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/us-presses-pakistan-afghanistan-on-militants/",
+    "slug": "us-presses-pakistan-afghanistan-on-militants",
+    "post_id": 25,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/us-presses-pakistan-afghanistan-on-militants-2/",
+    "slug": "us-presses-pakistan-afghanistan-on-militants-2",
+    "post_id": 3240,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/category/travel/",
+    "slug": "travel",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/hidden-jewel-nigeria-discover-city-jebba/",
+    "slug": "hidden-jewel-nigeria-discover-city-jebba",
+    "post_id": 3259,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/florida-restaurant-scene-set-thrive-across-various-industries/",
+    "slug": "florida-restaurant-scene-set-thrive-across-various-industries",
+    "post_id": 3900,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/revolutionizing-mortgage-experience-tailored-solutions-every-buyer/",
+    "slug": "revolutionizing-mortgage-experience-tailored-solutions-every-buyer",
+    "post_id": 3899,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/boxr-gym-hosts-groundbreaking-boxr-games-event-miamis/",
+    "slug": "boxr-gym-hosts-groundbreaking-boxr-games-event-miamis",
+    "post_id": 3898,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/florida-restaurant-industry-embraces-digital-transformation-innovation-growth/",
+    "slug": "florida-restaurant-industry-embraces-digital-transformation-innovation-growth",
+    "post_id": 1959,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/transforming-lives-communities-live-your-verse-unveils-global/",
+    "slug": "transforming-lives-communities-live-your-verse-unveils-global",
+    "post_id": 1956,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/serial-entrepreneur-kris-kr-ze-mullins-announces-exciting/",
+    "slug": "serial-entrepreneur-kris-kr-ze-mullins-announces-exciting",
+    "post_id": 1955,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/revolutionizing-test-prep-meet-experts-helping-10-000/",
+    "slug": "revolutionizing-test-prep-meet-experts-helping-10-000",
+    "post_id": 1921,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  },
+  {
+    "url": "https://miamiheralddaily.com/luxurban-securities-class-action-resolves-nuis/",
+    "slug": "luxurban-securities-class-action-resolves-nuis",
+    "post_id": 1898,
+    "fixed": false,
+    "reason": "No applicable fix for listed issues",
+    "issues": "Multiple H1s (2)",
+    "changes": []
+  }
+]

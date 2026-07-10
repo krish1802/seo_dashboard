@@ -1,0 +1,34 @@
+url,status,load_time_s,title,title_length,meta_description,meta_desc_length,h1_count,canonical,noindex,images_missing_alt,has_og_tags,has_schema,issues
+https://nyartisinal.com,200,0.68,PRABOWO,7,,0,1,,True,0,False,False,Title short (7) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/feed/,200,0.46,PRABOWO,7,,0,0,,False,0,False,False,Title short (7) | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/comments/feed/,200,0.46,Comments for PRABOWO,20,,0,0,,False,0,False,False,Title short (20) | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/,200,0.55,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/xmlrpc.php?rsd,403,0.16,,0,,0,0,,False,0,False,False,HTTP 403 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-includes/js/dist/script-modules/interactivity/index.min.js?ver=efaa5193bbad9c60ffd1,200,0.24,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/sample-page/,200,0.54,Sample Page &#8211; PRABOWO,27,,0,1,https://nyartisinal.com/sample-page/,True,0,False,False,Title short (27) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/2026/05/19/hello-world/,200,0.57,Hello world! &#8211; PRABOWO,28,,0,1,https://nyartisinal.com/2026/05/19/hello-world/,True,0,False,False,Title short (28) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/sample-page/feed/,200,0.4,Comments on: Sample Page,24,,0,0,,False,0,False,False,Title short (24) | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnyartisinal.com%2Fsample-page%2F,200,0.42,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnyartisinal.com%2Fsample-page%2F&#038;format=xml,200,0.4,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/wp/v2/pages/2,200,0.46,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/?p=2,200,0.85,Sample Page &#8211; PRABOWO,27,,0,1,https://nyartisinal.com/sample-page/,True,0,False,False,Title short (27) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/wp-admin/,200,0.71,Log In &lsaquo; PRABOWO &#8212; WordPress,41,,0,2,,True,0,False,False,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/2026/05/19/hello-world/feed/,200,0.48,Comments on: Hello world!,25,,0,0,,False,0,False,False,Title short (25) | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnyartisinal.com%2F2026%2F05%2F19%2Fhello-world%2F,200,0.44,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnyartisinal.com%2F2026%2F05%2F19%2Fhello-world%2F&#038;format=xml,200,0.44,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-includes/blocks/navigation/style.min.css?ver=7.0,200,0.21,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/wp/v2/posts/1,200,0.43,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/?p=1,200,0.89,Hello world! &#8211; PRABOWO,28,,0,1,https://nyartisinal.com/2026/05/19/hello-world/,True,0,False,False,Title short (28) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/author/admins/,200,0.61,admins &#8211; PRABOWO,22,,0,1,,True,0,False,False,Title short (22) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/category/uncategorized/,200,0.55,Uncategorized &#8211; PRABOWO,29,,0,1,,True,0,False,False,Title short (29) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/2026/05/19/hello-world/#comment-1,200,0.58,Hello world! &#8211; PRABOWO,28,,0,1,https://nyartisinal.com/2026/05/19/hello-world/,True,0,False,False,Title short (28) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/2026/05/19/hello-world/?replytocom=1#respond,200,0.54,Hello world! &#8211; PRABOWO,28,,0,1,https://nyartisinal.com/2026/05/19/hello-world/,True,0,False,False,Title short (28) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/2026/05/19/hello-world/#respond,200,0.54,Hello world! &#8211; PRABOWO,28,,0,1,https://nyartisinal.com/2026/05/19/hello-world/,True,0,False,False,Title short (28) | Missing meta desc | Noindexed | No OG tags | No Schema
+"https://nyartisinal.com/wp-admin/load-styles.php?c=0&amp;dir=ltr&amp;load%5Bchunk_0%5D=dashicons,buttons,forms,l10n,wp-base-styles,login&amp;ver=7.0",404,0.6,,0,,0,0,,False,0,False,False,HTTP 404 | Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-login.php?action=lostpassword,200,0.41,Lost Password &lsaquo; PRABOWO &#8212; WordPress,48,,0,2,,True,0,False,False,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/,200,0.64,PRABOWO,7,,0,1,,True,0,False,False,Title short (7) | Missing meta desc | Noindexed | No OG tags | No Schema
+https://nyartisinal.com/author/admins/feed/,200,0.47,admins &#8211; PRABOWO,22,,0,0,,False,0,False,False,Title short (22) | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/wp/v2/users/1,200,0.41,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/category/uncategorized/feed/,200,0.4,Uncategorized &#8211; PRABOWO,29,,0,0,,False,0,False,False,Title short (29) | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-json/wp/v2/categories/1,200,0.39,,0,,0,0,,False,0,False,False,Missing title | Missing meta desc | No H1 | No OG tags | No Schema
+https://nyartisinal.com/wp-login.php,200,0.42,Log In &lsaquo; PRABOWO &#8212; WordPress,41,,0,2,,True,0,False,False,Missing meta desc | Multiple H1s (2) | Noindexed | No OG tags | No Schema
