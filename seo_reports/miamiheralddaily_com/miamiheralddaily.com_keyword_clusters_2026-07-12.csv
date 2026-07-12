@@ -1,0 +1,12 @@
+cluster,keyword_count,keywords
+most viewed,5,Most Viewed | Most Viewed | Most Viewed | Most Viewed | Most Viewed
+most popular,5,Most Popular | Most Popular | Most Popular | Most Popular | Most Popular
+selected media,5,Selected media actions | Selected media actions | Selected media actions | Selected media actions | Selected media actions
+{{ data.message,5,{{ data.message }} | {{ data.message }} | {{ data.message }} | {{ data.message }} | {{ data.message }}
+drop files,5,Drop files to upload | Drop files to upload | Drop files to upload | Drop files to upload | Drop files to upload
+attachment preview,5,Attachment Preview | Attachment Preview | Attachment Preview | Attachment Preview | Attachment Preview
+miami daily,1,Miami daily news
+miami headlines,1,Miami headlines
+south florida,1,South Florida news
+miami breaking,1,Miami breaking news
+miami events,1,Miami events

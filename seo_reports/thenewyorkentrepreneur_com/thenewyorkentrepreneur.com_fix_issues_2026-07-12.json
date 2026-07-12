@@ -1,0 +1,11 @@
+[
+  {
+    "url": "https://thenewyorkentrepreneur.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (27) | Missing meta desc | Multiple H1s (2) | 2 img no alt",
+    "changes": []
+  }
+]
