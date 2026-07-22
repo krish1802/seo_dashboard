@@ -1,0 +1,524 @@
+[
+  {
+    "url": "https://londoninfluencerdaily.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (84) | Meta short (58) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (84) | Meta short (58) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/page/2/",
+    "slug": "2",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title long (99) | Meta short (58) | Multiple H1s (5)",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (23) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/themes/newsophy/assets/fonts/css/fontello.css?ver=5.13.0",
+    "slug": "fontello.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/themes/newsophy/style.css?ver=1.0",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/themes/newsophy/assets/css/responsive.css?ver=1.0",
+    "slug": "responsive.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/themes/newsophy/assets/css/interlace.css?ver=2.6",
+    "slug": "interlace.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/themes/newsophy/assets/css/amp.scss?ver=1.0",
+    "slug": "amp.scss",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/plugins/coblocks/dist/style-coblocks-extensions.css?ver=3.1.17",
+    "slug": "style-coblocks-extensions.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/plugins/coblocks/dist/style-coblocks-animation.css?ver=2677611078ee87eb3b1c",
+    "slug": "style-coblocks-animation.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/plugins/co-author/public/css/co-author-public.css?ver=1.0.0",
+    "slug": "co-author-public.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.6",
+    "slug": "styles.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-includes/css/buttons.min.css?ver=7.0.2",
+    "slug": "buttons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-includes/css/dashicons.min.css?ver=7.0.2",
+    "slug": "dashicons.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+    "slug": "mediaelementplayer-legacy.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=7.0.2",
+    "slug": "wp-mediaelement.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-includes/css/media-views.min.css?ver=7.0.2",
+    "slug": "media-views.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-includes/js/imgareaselect/imgareaselect.css?ver=0.9.8",
+    "slug": "imgareaselect.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/plugins/wp-user-profile-avatar/assets/css/frontend.min.css?ver=7.0.2",
+    "slug": "frontend.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-includes/css/dist/components/style.min.css?ver=7.0.2",
+    "slug": "style.min.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/plugins/coblocks/includes/Dependencies/GoDaddy/Styles/build/latest.css?ver=2.0.2",
+    "slug": "latest.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/uploads/2024/03/cropped-DALL·E-2024-03-19-12.39.43-Design-a-modern-and-stylish-logo-for-London-Influencer-Daily-that-reflects-Londons-dynamic-and-influential-culture.-The-logo-should-incorporate-ico-32x32.webp",
+    "slug": "cropped-DALL·E-2024-03-19-12.39.43-Design-a-modern-and-stylish-logo-for-London-Influencer-Daily-that-reflects-Londons-dynamic-and-influential-culture.-The-logo-should-incorporate-ico-32x32.webp",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/uploads/2024/03/cropped-DALL·E-2024-03-19-12.39.43-Design-a-modern-and-stylish-logo-for-London-Influencer-Daily-that-reflects-Londons-dynamic-and-influential-culture.-The-logo-should-incorporate-ico-192x192.webp",
+    "slug": "cropped-DALL·E-2024-03-19-12.39.43-Design-a-modern-and-stylish-logo-for-London-Influencer-Daily-that-reflects-Londons-dynamic-and-influential-culture.-The-logo-should-incorporate-ico-192x192.webp",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/wp-content/uploads/2024/03/cropped-DALL·E-2024-03-19-12.39.43-Design-a-modern-and-stylish-logo-for-London-Influencer-Daily-that-reflects-Londons-dynamic-and-influential-culture.-The-logo-should-incorporate-ico-180x180.webp",
+    "slug": "cropped-DALL·E-2024-03-19-12.39.43-Design-a-modern-and-stylish-logo-for-London-Influencer-Daily-that-reflects-Londons-dynamic-and-influential-culture.-The-logo-should-incorporate-ico-180x180.webp",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/blogging/",
+    "slug": "blogging",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/city/",
+    "slug": "city",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/gadget/",
+    "slug": "gadget",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/guide/",
+    "slug": "guide",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/life/",
+    "slug": "life",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/modern/",
+    "slug": "modern",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/money/",
+    "slug": "money",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/new/",
+    "slug": "new",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/new-york/",
+    "slug": "new-york",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/photography/",
+    "slug": "photography",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/style/",
+    "slug": "style",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/time/",
+    "slug": "time",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/tips/",
+    "slug": "tips",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/wireless/",
+    "slug": "wireless",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/tag/world/",
+    "slug": "world",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/category/influencer-spotlights/",
+    "slug": "influencer-spotlights",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/category/trending-now/",
+    "slug": "trending-now",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/category/events/",
+    "slug": "events",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/category/tech/",
+    "slug": "tech",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/category/tech-innovation/",
+    "slug": "tech-innovation",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/category/food-travel/",
+    "slug": "food-travel",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/category/opinion/",
+    "slug": "opinion",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/category/trends/",
+    "slug": "trends",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/2026/06/",
+    "slug": "06",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/2026/05/",
+    "slug": "05",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/2026/04/",
+    "slug": "04",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/2025/10/",
+    "slug": "10",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/2025/05/",
+    "slug": "05",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/2025/04/",
+    "slug": "04",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  },
+  {
+    "url": "https://londoninfluencerdaily.com/2025/03/",
+    "slug": "03",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | Noindexed",
+    "changes": []
+  }
+]
