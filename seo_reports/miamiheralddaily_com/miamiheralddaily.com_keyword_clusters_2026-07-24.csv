@@ -1,0 +1,20 @@
+cluster,keyword_count,keywords
+most viewed,5,Most Viewed | Most Viewed | Most Viewed | Most Viewed | Most Viewed
+most popular,5,Most Popular | Most Popular | Most Popular | Most Popular | Most Popular
+selected media,5,Selected media actions | Selected media actions | Selected media actions | Selected media actions | Selected media actions
+{{ data.message,5,{{ data.message }} | {{ data.message }} | {{ data.message }} | {{ data.message }} | {{ data.message }}
+drop files,5,Drop files to upload | Drop files to upload | Drop files to upload | Drop files to upload | Drop files to upload
+attachment preview,5,Attachment Preview | Attachment Preview | Attachment Preview | Attachment Preview | Attachment Preview
+miami daily,1,Miami daily news
+miami headlines,1,Miami headlines
+south florida,1,South Florida news
+miami breaking,1,Miami breaking news
+miami events,1,Miami events
+from pre-med,1,From Pre-Med Expectations to Funder Operations
+closing the,1,Closing the Industry’s Automation Gap
+prioritizing systems,1,Prioritizing Systems Over Aggressive Sales Tactics
+foundations in,1,Foundations in Education and Publishing
+practical methodologies,1,Practical Methodologies for Tangible Outcomes
+industry validation,1,Industry Validation and Peer Recognition
+bridging potential,1,Bridging Potential and Performance
+connecting decentralization,1,Connecting Decentralization With Established Markets

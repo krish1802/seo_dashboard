@@ -1,0 +1,739 @@
+[
+  {
+    "url": "https://newyorkdailydigest.com",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (21) | Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (21) | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/comments/feed/",
+    "slug": "feed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/styles/reduxfall.css?ver=7.0.2",
+    "slug": "reduxfall.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/style.css?ver=7.0.2",
+    "slug": "style.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/styles/newsource-addons.css?ver=7.0.2",
+    "slug": "newsource-addons.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/styles/fontawesome.css?ver=7.0.2",
+    "slug": "fontawesome.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/themes/newsource/style-mobile.css?ver=7.0.2",
+    "slug": "style-mobile.css",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/",
+    "slug": "wp-json",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/wp/v2/pages/6820",
+    "slug": "6820",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Title short (21) | Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/2026/05/cropped-Logos-2-32x32.png",
+    "slug": "cropped-Logos-2-32x32.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/2026/05/cropped-Logos-2-192x192.png",
+    "slug": "cropped-Logos-2-192x192.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-content/uploads/2026/05/cropped-Logos-2-180x180.png",
+    "slug": "cropped-Logos-2-180x180.png",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/about/",
+    "slug": "about",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/contact/",
+    "slug": "contact",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/24/transforming-alternative-business-financing-through-artificial-intelligence-and-structured-education/",
+    "slug": "transforming-alternative-business-financing-through-artificial-intelligence-and-structured-education",
+    "post_id": 7590,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (130) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'transforming-alternative-business-financing-through-artificial-intelligence-structured'"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/24/matching-loan-structures-to-investment-lifespans-in-property-ventures/",
+    "slug": "matching-loan-structures-to-investment-lifespans-in-property-ventures",
+    "post_id": 7588,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (99) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'matching-loan-structures-investment-lifespans-property-ventures'"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/23/strategic-property-financing-aligning-loan-structures-with-investment-timelines/",
+    "slug": "strategic-property-financing-aligning-loan-structures-with-investment-timelines",
+    "post_id": 7586,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (110) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'strategic-property-financing-aligning-loan-structures-investment-timelines'"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/23/navigating-real-estate-financing-fixed-vs-adjustable-rate-mortgages-for-portfolios/",
+    "slug": "navigating-real-estate-financing-fixed-vs-adjustable-rate-mortgages-for-portfolios",
+    "post_id": 7584,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (114) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'navigating-real-estate-financing-fixed-vs-adjustable-rate'"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/23/financing-real-estate-portfolios-fixed-rate-vs-adjustable-rate-loans/",
+    "slug": "financing-real-estate-portfolios-fixed-rate-vs-adjustable-rate-loans",
+    "post_id": 7582,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (100) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'financing-real-estate-portfolios-fixed-rate-vs-adjustable'"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/01/daryline-johnson-story/#comment-11",
+    "slug": "daryline-johnson-story",
+    "post_id": 362,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (85) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/01/daryline-johnson-story/#comment-10",
+    "slug": "daryline-johnson-story",
+    "post_id": 362,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (85) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/01/no-stimulus-package-for-investors/#comment-7",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (118) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/01/no-stimulus-package-for-investors/#comment-6",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (118) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/01/no-stimulus-package-for-investors/#comment-5",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (118) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/1/",
+    "slug": "1",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/12/",
+    "slug": "12",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/13/",
+    "slug": "13",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/21/",
+    "slug": "21",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/22/",
+    "slug": "22",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/25/",
+    "slug": "25",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/6/",
+    "slug": "6",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/9/",
+    "slug": "9",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/casino/",
+    "slug": "casino",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/computers-games/",
+    "slug": "computers-games",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/economics/",
+    "slug": "economics",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/featured/",
+    "slug": "featured",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/forex-news/",
+    "slug": "forex-news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/lifestyle/",
+    "slug": "lifestyle",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/nature/",
+    "slug": "nature",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/news/",
+    "slug": "news",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/novos-casinos-2026/",
+    "slug": "novos-casinos-2026",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/photo/",
+    "slug": "photo",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/politics/",
+    "slug": "politics",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/staffs-picks/",
+    "slug": "staffs-picks",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/uncategorized/",
+    "slug": "uncategorized",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/category/video/",
+    "slug": "video",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/privacy-policy",
+    "slug": "privacy-policy",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/",
+    "slug": "07",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/06/",
+    "slug": "06",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/",
+    "slug": "05",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/04/",
+    "slug": "04",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2024/06/",
+    "slug": "06",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2024/05/",
+    "slug": "05",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2024/01/",
+    "slug": "01",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2023/10/",
+    "slug": "10",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2023/09/",
+    "slug": "09",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2023/06/",
+    "slug": "06",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2018/09/",
+    "slug": "09",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/01/daryline-johnson-story/#comment-8",
+    "slug": "daryline-johnson-story",
+    "post_id": 362,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (85) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/05/01/no-stimulus-package-for-investors/#comment-4",
+    "slug": "no-stimulus-package-for-investors",
+    "post_id": 272,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (118) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fabout%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fabout%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/wp/v2/pages/6402",
+    "slug": "6402",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/?p=6402",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fcontact%2F",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fcontact%2F&#038;format=xml",
+    "slug": "embed",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/wp-json/wp/v2/pages/6539",
+    "slug": "6539",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing title | Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/?p=6539",
+    "slug": "",
+    "post_id": null,
+    "fixed": false,
+    "reason": "No matching WP post",
+    "issues": "Missing meta desc | No H1 | No OG tags | No Schema",
+    "changes": []
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/23/overhauling-alternative-capital-brokerage-with-tech-enabled-training-systems/",
+    "slug": "overhauling-alternative-capital-brokerage-with-tech-enabled-training-systems",
+    "post_id": 7580,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (106) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'overhauling-alternative-capital-brokerage-tech-enabled-training-systems'"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/23/choosing-between-fixed-and-adjustable-rate-loans-for-property-portfolios/",
+    "slug": "choosing-between-fixed-and-adjustable-rate-loans-for-property-portfolios",
+    "post_id": 7578,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (102) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'choosing-between-fixed-adjustable-rate-loans-property-portfolios'"
+    ]
+  },
+  {
+    "url": "https://newyorkdailydigest.com/2026/07/23/inside-ali-jozanis-blueprint-for-modernizing-alternative-funding-through-automation/",
+    "slug": "inside-ali-jozanis-blueprint-for-modernizing-alternative-funding-through-automation",
+    "post_id": 7576,
+    "fixed": true,
+    "reason": "",
+    "issues": "Title long (120) | Missing meta desc | No OG tags | No Schema",
+    "changes": [
+      "Updated SEO title (Yoast/RankMath)",
+      "Updated meta description (Yoast/RankMath)",
+      "Slug cleaned to 'inside-ali-jozani-blueprint-modernizing-alternative-funding-through'"
+    ]
+  }
+]

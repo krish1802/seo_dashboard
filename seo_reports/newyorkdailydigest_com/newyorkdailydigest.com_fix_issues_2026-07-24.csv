@@ -1,0 +1,77 @@
+url,slug,post_id,fixed,reason,issues,changes
+https://newyorkdailydigest.com,,,False,No matching WP post,Title short (21) | Missing meta desc | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/feed/,feed,,False,No matching WP post,Title short (21) | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/comments/feed/,feed,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2F,embed,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2F&#038;format=xml,embed,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-content/themes/newsource/styles/reduxfall.css?ver=7.0.2,reduxfall.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-content/themes/newsource/style.css?ver=7.0.2,style.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-content/themes/newsource/styles/newsource-addons.css?ver=7.0.2,newsource-addons.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-content/themes/newsource/styles/fontawesome.css?ver=7.0.2,fontawesome.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-content/themes/newsource/style-mobile.css?ver=7.0.2,style-mobile.css,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/,wp-json,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/wp/v2/pages/6820,6820,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/,,,False,No matching WP post,Title short (21) | Missing meta desc | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-content/uploads/2026/05/cropped-Logos-2-32x32.png,cropped-Logos-2-32x32.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-content/uploads/2026/05/cropped-Logos-2-192x192.png,cropped-Logos-2-192x192.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-content/uploads/2026/05/cropped-Logos-2-180x180.png,cropped-Logos-2-180x180.png,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/about/,about,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/contact/,contact,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/news/,news,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2026/07/24/transforming-alternative-business-financing-through-artificial-intelligence-and-structured-education/,transforming-alternative-business-financing-through-artificial-intelligence-and-structured-education,7590.0,True,,Title long (130) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)', ""Slug cleaned to 'transforming-alternative-business-financing-through-artificial-intelligence-structured'""]"
+https://newyorkdailydigest.com/2026/07/24/matching-loan-structures-to-investment-lifespans-in-property-ventures/,matching-loan-structures-to-investment-lifespans-in-property-ventures,7588.0,True,,Title long (99) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)', ""Slug cleaned to 'matching-loan-structures-investment-lifespans-property-ventures'""]"
+https://newyorkdailydigest.com/2026/07/23/strategic-property-financing-aligning-loan-structures-with-investment-timelines/,strategic-property-financing-aligning-loan-structures-with-investment-timelines,7586.0,True,,Title long (110) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)', ""Slug cleaned to 'strategic-property-financing-aligning-loan-structures-investment-timelines'""]"
+https://newyorkdailydigest.com/2026/07/23/navigating-real-estate-financing-fixed-vs-adjustable-rate-mortgages-for-portfolios/,navigating-real-estate-financing-fixed-vs-adjustable-rate-mortgages-for-portfolios,7584.0,True,,Title long (114) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)', ""Slug cleaned to 'navigating-real-estate-financing-fixed-vs-adjustable-rate'""]"
+https://newyorkdailydigest.com/2026/07/23/financing-real-estate-portfolios-fixed-rate-vs-adjustable-rate-loans/,financing-real-estate-portfolios-fixed-rate-vs-adjustable-rate-loans,7582.0,True,,Title long (100) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)', ""Slug cleaned to 'financing-real-estate-portfolios-fixed-rate-vs-adjustable'""]"
+https://newyorkdailydigest.com/2026/05/01/daryline-johnson-story/#comment-11,daryline-johnson-story,362.0,True,,Title long (85) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://newyorkdailydigest.com/2026/05/01/daryline-johnson-story/#comment-10,daryline-johnson-story,362.0,True,,Title long (85) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://newyorkdailydigest.com/2026/05/01/no-stimulus-package-for-investors/#comment-7,no-stimulus-package-for-investors,272.0,True,,Title long (118) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://newyorkdailydigest.com/2026/05/01/no-stimulus-package-for-investors/#comment-6,no-stimulus-package-for-investors,272.0,True,,Title long (118) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://newyorkdailydigest.com/2026/05/01/no-stimulus-package-for-investors/#comment-5,no-stimulus-package-for-investors,272.0,True,,Title long (118) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://newyorkdailydigest.com/category/1/,1,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/12/,12,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/13/,13,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/21/,21,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/22/,22,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/25/,25,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/6/,6,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/9/,9,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/casino/,casino,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/computers-games/,computers-games,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/economics/,economics,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/featured/,featured,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/forex-news/,forex-news,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/lifestyle/,lifestyle,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/nature/,nature,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/news/,news,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/novos-casinos-2026/,novos-casinos-2026,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/photo/,photo,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/politics/,politics,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/staffs-picks/,staffs-picks,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/uncategorized/,uncategorized,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/category/video/,video,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/privacy-policy,privacy-policy,,False,No matching WP post,Missing meta desc | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2026/07/,07,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2026/06/,06,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2026/05/,05,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2026/04/,04,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2024/06/,06,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2024/05/,05,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2024/01/,01,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2023/10/,10,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2023/09/,09,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2023/06/,06,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2018/09/,09,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2026/05/01/daryline-johnson-story/#comment-8,daryline-johnson-story,362.0,True,,Title long (85) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://newyorkdailydigest.com/2026/05/01/no-stimulus-package-for-investors/#comment-4,no-stimulus-package-for-investors,272.0,True,,Title long (118) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)']"
+https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fabout%2F,embed,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fabout%2F&#038;format=xml,embed,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/wp/v2/pages/6402,6402,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/?p=6402,,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fcontact%2F,embed,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnewyorkdailydigest.com%2Fcontact%2F&#038;format=xml,embed,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/wp-json/wp/v2/pages/6539,6539,,False,No matching WP post,Missing title | Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/?p=6539,,,False,No matching WP post,Missing meta desc | No H1 | No OG tags | No Schema,[]
+https://newyorkdailydigest.com/2026/07/23/overhauling-alternative-capital-brokerage-with-tech-enabled-training-systems/,overhauling-alternative-capital-brokerage-with-tech-enabled-training-systems,7580.0,True,,Title long (106) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)', ""Slug cleaned to 'overhauling-alternative-capital-brokerage-tech-enabled-training-systems'""]"
+https://newyorkdailydigest.com/2026/07/23/choosing-between-fixed-and-adjustable-rate-loans-for-property-portfolios/,choosing-between-fixed-and-adjustable-rate-loans-for-property-portfolios,7578.0,True,,Title long (102) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)', ""Slug cleaned to 'choosing-between-fixed-adjustable-rate-loans-property-portfolios'""]"
+https://newyorkdailydigest.com/2026/07/23/inside-ali-jozanis-blueprint-for-modernizing-alternative-funding-through-automation/,inside-ali-jozanis-blueprint-for-modernizing-alternative-funding-through-automation,7576.0,True,,Title long (120) | Missing meta desc | No OG tags | No Schema,"['Updated SEO title (Yoast/RankMath)', 'Updated meta description (Yoast/RankMath)', ""Slug cleaned to 'inside-ali-jozani-blueprint-modernizing-alternative-funding-through'""]"
